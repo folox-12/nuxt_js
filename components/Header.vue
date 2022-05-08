@@ -8,11 +8,11 @@
               <img src="../assets/img/ico/flydrone.svg" alt="#" />
             </div>
             <nav class="header__menu">
-              <nuxt-link to="/ListOfPlace">Список площадок</nuxt-link>
-              <nuxt-link to="/Cabinet">Кабинет</nuxt-link>
-              <nuxt-link to="/Dronoport">Дронопорт</nuxt-link>
-              <nuxt-link to="/Equipment">Оснащение</nuxt-link>
-              <nuxt-link to="/Infrastructure">Инфраструктура</nuxt-link>
+              <nuxt-link active-class = "nuxt-link-exact-active" to="/ListOfPlace">Список площадок</nuxt-link>
+              <nuxt-link active-class = "nuxt-link-exact-active" to="/Cabinet">Кабинет</nuxt-link>
+              <nuxt-link active-class = "nuxt-link-exact-active" to="/Dronoport">Дронопорт</nuxt-link>
+              <nuxt-link active-class = "nuxt-link-exact-active" to="/Equipment">Оснащение</nuxt-link>
+              <nuxt-link active-class = "nuxt-link-exact-active" to="/Infrastructure">Инфраструктура</nuxt-link>
             </nav>
           </div>
         </div>
@@ -71,6 +71,9 @@
   }
 }
 a.nuxt-link-exact-active {
+  color: #9b42f2;
+}
+.nuxt-link-exact-active{
   color: #9b42f2;
 }
 </style>
