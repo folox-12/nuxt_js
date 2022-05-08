@@ -1,0 +1,76 @@
+<template>
+  <div>
+    <header class="header">
+      <div class="container">
+        <div class="header__body">
+          <div class="header__row">
+            <div class="header__icon">
+              <img src="../assets/img/ico/flydrone.svg" alt="#" />
+            </div>
+            <nav class="header__menu">
+              <nuxt-link to="/ListOfPlace">Список площадок</nuxt-link>
+              <nuxt-link to="/Cabinet">Кабинет</nuxt-link>
+              <nuxt-link to="/Dronoport">Дронопорт</nuxt-link>
+              <nuxt-link to="/Equipment">Оснащение</nuxt-link>
+              <nuxt-link to="/Infrastructure">Инфраструктура</nuxt-link>
+            </nav>
+          </div>
+        </div>
+      </div>
+    </header>
+  </div>
+</template>
+
+<script></script>
+<style lang="scss" scoped>
+.header {
+  position: fixed;
+  width: 100%;
+  z-index: 1000;
+  background-color: #fff;
+
+  &__body {
+    padding: 24px 0;
+  }
+
+  &__row {
+    display: flex;
+    align-items: center;
+    gap: 0 35px;
+  }
+
+  &__icon {
+    min-width: 120px;
+    max-width: 200px;
+    position: relative;
+    height: 51px;
+    cursor: pointer;
+    img {
+      position: absolute;
+      height: 100%;
+      width: 100%;
+      top: 0;
+      left: 0;
+      object-fit: contain;
+    }
+  }
+
+  &__menu {
+    display: flex;
+    gap: 0 35px;
+    a {
+      font-size: 16px;
+      text-decoration: none;
+      line-height: 1.75;
+      font-family: "Montserrat-medium", sans-serif;
+      font-weight: 500;
+      color: rgba(20, 16, 41, 0.8);
+      cursor: pointer;
+      transition: 0.2s;
+    }
+  }
+}
+a.nuxt-link-exact-active {
+  color: #9b42f2;
+}
+</style>

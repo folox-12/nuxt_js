@@ -2,7 +2,8 @@
 
 <script>
 export default {
-  name: "IndexPage",
-  components: {},
+  layout: "card",
 };
 </script>
+
+<style></style>
