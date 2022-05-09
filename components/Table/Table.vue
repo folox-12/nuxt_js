@@ -3,16 +3,10 @@
     <div class="table__data">
       <table class="table__responsive">
         <thead>
-          <tr class="table-title">
-            <th>№</th>
-            <th>Aдресс</th>
-          </tr>
+          <TableTitle :title="tableData[0]"></TableTitle>
         </thead>
         <tbody>
-          <tr class="table-el">
-            <td class="table-numerical"></td>
-            <td class="table-address">{{ tableData[1][1].address }}</td>
-          </tr>
+          <TableRows :rows="tableData[1]"></TableRows>
         </tbody>
       </table>
     </div>
@@ -32,6 +26,8 @@
 </template>
 
 <script>
+import TableTitle from "./TableTitle.vue";
+import TableRows from "./TableRows.vue";
 export default {
   props: {
     tableData: {
@@ -39,10 +35,14 @@ export default {
       required: true,
     },
   },
+  components: {
+    TableTitle,
+    TableRows,
+  },
 };
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 .table {
   background-color: #fff;
   width: 100%;
