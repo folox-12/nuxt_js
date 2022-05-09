@@ -8,11 +8,11 @@
               <img src="../assets/img/ico/flydrone.svg" alt="#" />
             </div>
             <nav class="header__menu">
-              <nuxt-link active-class = "nuxt-link-exact-active" to="/ListOfPlace">Список площадок</nuxt-link>
-              <nuxt-link active-class = "nuxt-link-exact-active" to="/Cabinet">Кабинет</nuxt-link>
-              <nuxt-link active-class = "nuxt-link-exact-active" to="/Dronoport">Дронопорт</nuxt-link>
-              <nuxt-link active-class = "nuxt-link-exact-active" to="/Equipment">Оснащение</nuxt-link>
-              <nuxt-link active-class = "nuxt-link-exact-active" to="/Infrastructure">Инфраструктура</nuxt-link>
+              <nuxt-link no-prefetch active-class = "nuxt-link-exact-active" to="/ListOfPlace">Список площадок</nuxt-link>
+              <nuxt-link no-prefetch active-class = "nuxt-link-exact-active" to="/Cabinet">Кабинет</nuxt-link>
+              <nuxt-link no-prefetch active-class = "nuxt-link-exact-active" to="/Platform">Дронопорт</nuxt-link>
+              <nuxt-link no-prefetch active-class = "nuxt-link-exact-active" to="/Equipment">Оснащение</nuxt-link>
+              <nuxt-link no-prefetch active-class = "nuxt-link-exact-active" to="/Infrastructure">Инфраструктура</nuxt-link>
             </nav>
           </div>
         </div>

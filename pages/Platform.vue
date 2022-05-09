@@ -1,6 +1,6 @@
 <template>
 <div class="page">
-    <div class="title-page">
+    <!-- <div class="title-page">
         <div class="title-page__way">
             <span>Главная > Список площадок > Посадочная площадка №3</span>
         </div>
@@ -8,13 +8,14 @@
             <h1 class="title-page-name__heading">Посадочная площадка №3</h1>
             <button  class="title-page-name__button"><span>Редактировать</span></button>
         </div>
-    </div>
+    </div> -->
     <div class="card">
-        <div class="card__images card-images">
+        <!-- <div class="card__images card-images">
                 <div class="card-images__image"><img src="../assets/img/platform1.jpg" alt="No photo"><button class="card-images__loop"><img src="../assets/img/ico/loop.svg" alt=""></button></div>
                 <div class="card-images__image"><img src="../assets/img/platform2.jpg" alt="No photo"><button class="card-images__loop"><img src="../assets/img/ico/loop.svg" alt=""></button></div>
                 <div class="card-images__image"><img src="../assets/img/platform3.jpg" alt="No photo"><button class="card-images__loop"><img src="../assets/img/ico/loop.svg" alt=""></button></div>
-        </div>
+        </div> -->
+        <Thumbnail :thumbnail="thumbnail" />
         <hr>
         <div class="card__main card-main">
             <div class="card-main__title">
@@ -174,14 +175,29 @@
 </template>
 
 <script>
+import Thumbnail from '../components/ImgCard.vue';
 export default {
-     computed:{
-        editing() {
-        
-           
-        }
-    },
+    layout: 'card',
+     Components: {
+    Thumbnail,
+  },
+  data() {
+    return {
+        Thumbnail:[
+            {
+                thumbnail:"../../assets/img/platform1.jpg"
+            },
+            {
+                thumbnail:"../../assets/img/platform2.jpg"
+            },
+            {
+                thumbnail:"../../assets/img/platform3.jpg"
+            }
+        ]
+    }
+  }
 };
+
 </script>
 
 <style lang="scss">
