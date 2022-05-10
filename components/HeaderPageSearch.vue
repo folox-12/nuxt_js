@@ -1,29 +1,45 @@
 <template>
   <div class="header-page__search header-page-search">
     <div class="header-page-search__input">
-      <img src="static/img/ico/search.svg" alt="" class="search-icon" />
+      <img src="assets/img/ico/loop.svg" alt="" class="search-icon" />
       <input type="text" placeholder="Какой-то поиск" id="input-main" />
-      <button class="clear-input" id="clear-input" onclick="clearInput()">
-        <img src="static/img/ico/close.svg" alt="" class="filter-icon2" />
+      <button class="clear-input" id="clear-input" v-on:click="clearInput('input-main')">
+        <img src="../assets/img/ico/close.svg" alt="" />
       </button>
     </div>
     <div class="header-page-search__buttons">
-      <button class="filter" id="button_filter">
-        <img src="static/img/ico/filter.svg" alt="" class="filter-icon" />
+      <button class="button-filter" id="filter" v-on:click="openFilter()">
+        <img src="../assets/img/ico/filter.svg" alt=""/>
       </button>
-      <button class="filter1" id="button_filter1">
-        <img src="static/img/ico/settings.svg" alt="" class="filter-icon1" />
+      <button class="button-filter" id="settings" v-on:click="openSettings()">
+        <img src="../assets/img/ico/settings.svg" alt=""/>
       </button>
     </div>
   </div>
 </template>
 
 <script>
-export default {};
+export default {
+  mounted() {
+    
+  },
+  methods: {
+    clearInput(target){
+      document.getElementById(target).value='';
+    },
+    openFilter(){
+      alert('Opened Filter');
+    },
+    openSettings(){
+      alert('Opened Settings');
+    }
+  }
+};
 </script>
 
 <style lang="scss" scoped>
 .header-page {
+
   &__search {
     display: flex;
     margin-bottom: 30px;
@@ -31,6 +47,7 @@ export default {};
   }
 }
 .header-page-search {
+  color: #72707c;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -51,14 +68,14 @@ export default {};
     -ms-flex-pack: end;
     justify-content: end;
     gap: 10px;
-    filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+    filter: drop-shadow(2px 4px 20px rgba(3, 3, 3, 0.1));
     flex: 1 0 auto;
     .search-icon {
       position: absolute;
       left: 0px;
       top: 0px;
       pointer-events: none;
-      top: 1.4rem;
+      top: 1.6rem;
       padding-left: 21px;
     }
     input {
@@ -72,21 +89,17 @@ export default {};
       border-radius: 10px;
     }
     input:focus {
-      border-bottom: 2px solid rgb(12, 12, 12);
+      border-bottom: 2px solid rgba(12, 12, 12, 0.1);
       padding: 15px 0px 13px 55px;
     }
     button {
       position: absolute;
       right: 0px;
       top: 0px;
-      top: 1.3rem;
+      top: 1.6rem;
       padding-right: 15px;
       background-color: transparent;
       cursor: pointer;
-      .material-icons {
-        color: #6d6a7a;
-        background-color: #f7f7f9;
-      }
     }
   }
 
@@ -98,11 +111,14 @@ export default {};
       position: relative;
       max-width: 100%;
       height: auto;
+      width: 55px;
       padding: 15px 15px;
       background: rgba(254, 254, 255, 0.5);
       box-shadow: 2px 4px 20px rgba(3, 3, 3, 0.1);
       border-radius: 10px;
+      color: #72707c;
     }
   }
 }
+
 </style>

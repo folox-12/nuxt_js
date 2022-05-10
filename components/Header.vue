@@ -5,15 +5,18 @@
         <div class="header__body">
           <div class="header__row">
             <div class="header__icon">
-              <img src="../assets/img/ico/flydrone.svg" alt="#" />
+              <img src="../assets/img/fd-logo.png" alt="#" />
             </div>
             <nav class="header__menu">
               <nuxt-link active-class = "nuxt-link-exact-active" to="/ListOfPlace">Список площадок</nuxt-link>
-              <nuxt-link active-class = "nuxt-link-exact-active" to="/Cabinet">Кабинет</nuxt-link>
+              <nuxt-link active-class = "nuxt-link-exact-active" to="/Map">Карта</nuxt-link>
               <nuxt-link active-class = "nuxt-link-exact-active" to="/Dronoport">Дронопорт</nuxt-link>
               <nuxt-link active-class = "nuxt-link-exact-active" to="/Equipment">Оснащение</nuxt-link>
               <nuxt-link active-class = "nuxt-link-exact-active" to="/Infrastructure">Инфраструктура</nuxt-link>
             </nav>
+            <div class="header__account">
+              <img src="../assets/img/fd-logo.png">
+            </div>
           </div>
         </div>
       </div>
@@ -55,6 +58,17 @@
     }
   }
 
+  &__account{
+    margin-left: auto;
+    img {
+      width: 55px;
+      height: 55px;
+      border: 2px solid #9c42f5;
+      border-radius: 90%;
+      padding: 2px;
+    }
+  }
+
   &__menu {
     display: flex;
     gap: 0 35px;
@@ -62,7 +76,7 @@
       font-size: 16px;
       text-decoration: none;
       line-height: 1.75;
-      font-family: "Montserrat-medium", sans-serif;
+      font-family: "Montserrat", sans-serif;
       font-weight: 500;
       color: rgba(20, 16, 41, 0.8);
       cursor: pointer;
