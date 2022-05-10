@@ -30,7 +30,7 @@ export default {
       document.getElementById(target).value = "";
     },
     openFilter() {
-      var filter_btn = document.getElementById("filter");
+      const filter_btn = document.getElementById("filter");
       if (filter_btn.classList.contains("active")) {
         filter_btn.classList.remove("active");
         document.getElementById("table").style.width = "100%";
