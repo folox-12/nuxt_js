@@ -8,14 +8,26 @@
               <img src="../assets/img/fd-logo.png" alt="#" />
             </div>
             <nav class="header__menu">
-
-
-              <nuxt-link no-prefetch active-class = "nuxt-link-exact-active" to="/ListOfPlace">Список площадок</nuxt-link>
-              <nuxt-link no-prefetch active-class = "nuxt-link-exact-active" to="/Cabinet">Кабинет</nuxt-link>
-              <nuxt-link no-prefetch active-class = "nuxt-link-exact-active" to="/Platform">Дронопорт</nuxt-link>
-              <nuxt-link no-prefetch active-class = "nuxt-link-exact-active" to="/Equipment">Оснащение</nuxt-link>
-              <nuxt-link no-prefetch active-class = "nuxt-link-exact-active" to="/Infrastructure">Инфраструктура</nuxt-link>
-
+              <nuxt-link no-prefetch to="/">Список площадок</nuxt-link>
+              <nuxt-link no-prefetch to="/Cabinet">Кабинет</nuxt-link>
+              <nuxt-link
+                no-prefetch
+                active-class="nuxt-link-exact-active"
+                to="/Platform"
+                >Дронопорт</nuxt-link
+              >
+              <nuxt-link
+                no-prefetch
+                active-class="nuxt-link-exact-active"
+                to="/Equipment"
+                >Оснащение</nuxt-link
+              >
+              <nuxt-link
+                no-prefetch
+                active-class="nuxt-link-exact-active"
+                to="/Infrastructure"
+                >Инфраструктура</nuxt-link
+              >
             </nav>
             <div class="header__account">
               <img src="../assets/img/fd-logo.png" />
