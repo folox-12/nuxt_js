@@ -4,6 +4,7 @@
     <main>
       <div class="container">
         <HeaderPageNavigation></HeaderPageNavigation>
+        <Breadcrumbs></Breadcrumbs>
         <TitleOfPage></TitleOfPage>
         <HeaderPageSearch></HeaderPageSearch>
         <nuxt />
@@ -16,6 +17,7 @@ import Header from "../components/Header.vue";
 import HeaderPageNavigation from "../components/HeaderPageNavigation.vue";
 import TitleOfPage from "../components/TitleOfPage.vue";
 import HeaderPageSearch from "../components/HeaderPageSearch.vue";
+import Breadcrumbs from "../components/Breadcrumbs.vue";
 export default {
   name: "IndexPage",
   components: {
@@ -23,6 +25,7 @@ export default {
     TitleOfPage,
     HeaderPageNavigation,
     HeaderPageSearch,
+    Breadcrumbs,
   },
 };
 </script>
