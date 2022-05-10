@@ -1,4 +1,10 @@
-<template></template>
+<template>
+  <tr class="table-title">
+    <th v-for="value in title">
+      {{ value }}
+    </th>
+  </tr>
+</template>
 
 <script>
 export default {
@@ -8,7 +14,10 @@ export default {
       required: true,
     },
   },
-  data: {},
+  data() {
+    return {};
+  },
+  methods: {},
 };
 </script>
 
