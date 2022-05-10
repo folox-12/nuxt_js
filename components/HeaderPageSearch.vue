@@ -1,18 +1,22 @@
 <template>
   <div class="header-page__search header-page-search">
     <div class="header-page-search__input">
-      <img src="assets/img/ico/loop.svg" alt="" class="search-icon" />
+      <img src="../assets/img/ico/loop.svg" alt="" class="search-icon" />
       <input type="text" placeholder="Какой-то поиск" id="input-main" />
-      <button class="clear-input" id="clear-input" v-on:click="clearInput('input-main')">
+      <button
+        class="clear-input"
+        id="clear-input"
+        v-on:click="clearInput('input-main')"
+      >
         <img src="../assets/img/ico/close.svg" alt="" />
       </button>
     </div>
     <div class="header-page-search__buttons">
       <button class="button-filter" id="filter" v-on:click="openFilter()">
-        <img src="../assets/img/ico/filter.svg" alt=""/>
+        <img src="../assets/img/ico/filter.svg" alt="" />
       </button>
       <button class="button-filter" id="settings" v-on:click="openSettings()">
-        <img src="../assets/img/ico/settings.svg" alt=""/>
+        <img src="../assets/img/ico/settings.svg" alt="" />
       </button>
     </div>
   </div>
@@ -20,26 +24,23 @@
 
 <script>
 export default {
-  mounted() {
-    
-  },
+  mounted() {},
   methods: {
-    clearInput(target){
-      document.getElementById(target).value='';
+    clearInput(target) {
+      document.getElementById(target).value = "";
     },
-    openFilter(){
-      alert('Opened Filter');
+    openFilter() {
+      alert("Opened Filter");
     },
-    openSettings(){
-      alert('Opened Settings');
-    }
-  }
+    openSettings() {
+      alert("Opened Settings");
+    },
+  },
 };
 </script>
 
 <style lang="scss" scoped>
 .header-page {
-
   &__search {
     display: flex;
     margin-bottom: 30px;
@@ -120,5 +121,4 @@ export default {
     }
   }
 }
-
 </style>
