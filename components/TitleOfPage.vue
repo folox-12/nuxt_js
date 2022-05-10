@@ -5,7 +5,7 @@
         <div class="header-page__title">
           <h1>Список посадочных площадок</h1>
           <div class="header-page__button">
-            <button class="btn">Применить</button>
+            <button class="btn">Редактировать</button>
           </div>
         </div>
       </div>

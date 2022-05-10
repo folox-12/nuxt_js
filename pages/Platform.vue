@@ -1,89 +1,24 @@
 <template>
-  <div class="page">
-    <div class="title-page">
-      <div class="title-page__way">
-        <span>Главная > Список площадок > Посадочная площадка №3</span>
-      </div>
-      <div class="title-page__name title-page-name">
-        <h1 class="title-page-name__heading">Посадочная площадка №3</h1>
-        <button class="title-page-name__button">
-          <span>Редактировать</span>
-        </button>
-      </div>
-    </div>
-    <div class="card">
-        <div class="card__images card-images">
-            <div class="card-images__image"><img src="../assets/img/platform1.jpg" alt="No photo">
-                <button class="card-images__loop">
-                   <Loop></Loop>
-                </button>
-            </div>
-            <div class="card-images__image"><img src="../assets/img/platform2.jpg" alt="No photo">
-                <button class="card-images__loop">
-                    <Loop></Loop>
-                </button>
 
+<div class="page">
+   
+    <div class="card">
+
+
+       
+        <Imagecard :img="img" ></Imagecard>
+        <hr>
+        <div class="card__main card-main">
+            <div class="card-main__title">
+                <h2>Площадка</h2>
             </div>
-            <div class="card-images__image"><img src="../assets/img/platform3.jpg" alt="No photo">
-                <button class="card-images__loop">
-                    <Loop></Loop>
-                </button>
-            </div>
-        </div>
-      
-      <hr />
-      <div class="card__main card-main">
-        <div class="card-main__title">
-          <h2>Площадка</h2>
-        </div>
-        <div class="card-main__list card-main-list">
-          <ul>
-            <hr />
-            <li>
-              <div class="card-main-list__point">
-                <h4>Адрес</h4>
-                <span>г. Одинцово, б-р Маршала Крылова, 20</span>
-              </div>
-            </li>
-            <hr />
-            <li>
-              <div class="card-main-list__point">
-                <h4>Регистрационный номер</h4>
-                <span>450n-144-vc67</span>
-              </div>
-            </li>
-            <hr />
-            <li>
-              <div class="card-main-list__point">
-                <h4>Дата создания</h4>
-                <span>08.02.22</span>
-              </div>
-            </li>
-            <hr />
-            <li>
-              <div class="card-main-list__point">
-                <h4>Размеры(м)</h4>
-                <span>5 х 5</span>
-              </div>
-            </li>
-            <hr />
-            <li>
-              <div class="card-main-list__point">
-                <h4>Рабочая температура(С°)</h4>
-                <span>от -10 до 30 </span>
-              </div>
-            </li>
-            <hr />
-            <li>
-              <div class="card-main-list__point">
-                <h4>Режим эксплуатации</h4>
-                <span>24/7</span>
-              </div>
-            </li>
-          </ul>
-        </div>
-      </div>
-      <hr />
+          
+            <Tablecard :title="title"
+            :description="description"></Tablecard>
+            
+
+       
+
       <div class="card__infrastructure card-infrastructure">
         <div class="card-infrastructure__title">
           <h2>Инфраструктура</h2>
@@ -347,26 +282,67 @@
         </div>
       </div>
     </div>
+    </div>
 </div>
 </template>
 
 <script>
+
 import Loop from '../components/icons/Loop.vue';
 
+// export default {
+//   components: { Loop },
+//      layout: 'card',
+//      computed:{
+//         editing() {           
+//         }
+//     },
+
+//   computed: {
+//     editing() {},
+//   },
+//   layout: "card",
+
+// };
+
+import Imagecard from '../components/ImgCard.vue';
+import Tablecard from '../components/TableCard/TableCard.vue'
 export default {
-  components: { Loop },
-     layout: 'card',
-     computed:{
-        editing() {           
+
+    layout: 'card',
+    components: {
+        Imagecard,
+        Tablecard
+        },
+    data(){
+        return{
+            img:[
+            {img:require("../assets/img/platform1.jpg")},
+            {img: require("../assets/img/platform2.jpg")},
+             {img:require("../assets/img/platform3.jpg")}
+            ],
+            title:[
+                "Адрес",
+                "Регистрационный номер",
+                "Дата создания",
+                "Размеры(м)",
+                "Рабочая температура(С°)",
+                "Режим эксплуатации",
+            ],
+            description:[
+                "г. Одинцово, б-р Маршала Крылова, 20",
+                "450n-144-vc67",
+                "08.02.22",
+                "5 х 5",
+                "от -10 до 30",
+                "24/7"
+            ]
+            
         }
     },
+}
+  
 
-  computed: {
-    editing() {},
-  },
-  layout: "card",
-
-};
 
 </script>
 
