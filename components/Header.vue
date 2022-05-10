@@ -8,9 +8,7 @@
               <img src="../assets/img/fd-logo.png" alt="#" />
             </div>
             <nav class="header__menu">
-              <nuxt-link active-class="nuxt-link-exact-active" to="/"
-                >Список площадок</nuxt-link
-              >
+              <nuxt-link to="/">Список площадок</nuxt-link>
               <nuxt-link active-class="nuxt-link-exact-active" to="/Map"
                 >Карта</nuxt-link
               >
