@@ -5,6 +5,7 @@
         {{ key }}
     </td>
       </td>
+      <td v-for="(name, value) in rows[i]">{{ name }}</td>
     </tr>
   </tbody>
 </template>
