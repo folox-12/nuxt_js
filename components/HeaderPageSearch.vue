@@ -2,12 +2,13 @@
   <div class="header-page__search header-page-search">
     <div class="header-page-search__input">
       <img src="../assets/img/ico/search.svg" alt="" class="search-icon" />
-      <input type="text" placeholder="Какой-то поиск" id="input-main" />
-      <button
-        class="clear-input"
-        id="clear-input"
-        v-on:click="clearInput('input-main')"
-      >
+      <input
+        type="text"
+        v-model="inputValue"
+        placeholder="Какой-то поиск"
+        id="input-main"
+      />
+      <button class="clear-input" id="clear-input" v-on:click="clearInput()">
         <img src="../assets/img/ico/close.svg" alt="" />
       </button>
     </div>
@@ -24,10 +25,15 @@
 
 <script>
 export default {
+  data() {
+    return {
+      inputValue: "",
+    };
+  },
   mounted() {},
   methods: {
-    clearInput(target) {
-      document.getElementById(target).value = "";
+    clearInput() {
+      this.inputValue = "";
     },
     openFilter() {
       const filter_btn = document.getElementById("filter");
