@@ -30,21 +30,7 @@
                 </button>
             </div>
         </div>
-        <div class="card-images__image">
-          <img src="../assets/img/platform2.jpg" alt="No photo" /><button
-            class="card-images__loop"
-          >
-            <img src="../assets/img/ico/loop.svg" alt="" />
-          </button>
-        </div>
-        <div class="card-images__image">
-          <img src="../assets/img/platform3.jpg" alt="No photo" /><button
-            class="card-images__loop"
-          >
-            <img src="../assets/img/ico/loop.svg" alt="" />
-          </button>
-        </div>
-      </div>
+      
       <hr />
       <div class="card__main card-main">
         <div class="card-main__title">
@@ -361,7 +347,7 @@
         </div>
       </div>
     </div>
-  </div>
+</div>
 </template>
 
 <script>
