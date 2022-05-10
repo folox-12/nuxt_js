@@ -1,11 +1,9 @@
 <template>
   <tbody>
-    <tr class="table-el" v-for="i in rows.length">
-      <td v-for="(key, value) in rows[i]" :class="value">
+    <tr class="table-el" v-for="row in rows" :key="row.id">
+      <td v-for="(key, value) in row" :class="value" :key="key.id">
         {{ key }}
-    </td>
       </td>
-      <td v-for="(name, value) in rows[i]">{{ name }}</td>
     </tr>
   </tbody>
 </template>
