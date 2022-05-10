@@ -1,7 +1,7 @@
 <template>
   <thead>
     <tr class="table-title">
-      <th v-for="value in title">
+      <th v-for="value in title" :key="value.id">
         {{ value }}
       </th>
     </tr>
