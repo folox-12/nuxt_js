@@ -15,7 +15,7 @@
               <nuxt-link active-class = "nuxt-link-exact-active" to="/Infrastructure">Инфраструктура</nuxt-link>
             </nav>
             <div class="header__account">
-              <img class with = 55px height = 55px src="../assets/img/fd-logo.png">
+              <img src="../assets/img/fd-logo.png">
             </div>
           </div>
         </div>
@@ -60,10 +60,12 @@
 
   &__account{
     margin-left: auto;
-    img{
-    border: 2px solid #9c42f5;
-    border-radius: 90%;
-    padding: 2px;
+    img {
+      width: 55px;
+      height: 55px;
+      border: 2px solid #9c42f5;
+      border-radius: 90%;
+      padding: 2px;
     }
   }
 
@@ -74,7 +76,7 @@
       font-size: 16px;
       text-decoration: none;
       line-height: 1.75;
-      font-family: "Montserrat-medium", sans-serif;
+      font-family: "Montserrat", sans-serif;
       font-weight: 500;
       color: rgba(20, 16, 41, 0.8);
       cursor: pointer;
