@@ -1,1 +1,91 @@
 @import url(https://fonts.googleapis.com/css?family=Montserrat:100,200,300,regular,500,600,700,800,900,100italic,200italic,300italic,italic,500italic,600italic,700italic,800italic,900italic);
+
+$heading: rgba(20,16,41,.8);
+$description: rgba(20,16,41,.6);
+
+$blue: #007bff;
+$indigo: #6610f2;
+$purple: #6f42c1;
+$pink: #e83e8c;
+$red: #dc3545;
+$orange: #fd7e14;
+$yellow: #ffc107;
+$green: #28a745;
+$teal: #20c997;
+$cyan: #17a2b8;
+$white: #fff;
+$gray: #6c757d;
+$gray-dark: #343a40;
+$primary: #9b42f2;
+$secondary: #6c757d;
+$success: #28a745;
+$info: #17a2b8;
+$warning: #ffc107;
+$danger: #dc3545;
+$light: #f8f9fa;
+$dark: #343a40;
+
+
+
+// $background: #f5f7fa;
+// $footer: rgb(236,238,245);
+// $purple: #9c42f5;
+// $dark-grey: rgba(20,16,41,.6);
+// $light-blue: #03bafd;
+// $yellow: rgba(255,170,0,.2);
+
+
+%heading-h1{
+    color: $heading;
+    font-size: 48px;
+    line-height: 48px;
+    letter-spacing: -2px;
+    font-weight: 700;
+    margin-top: 20px;
+}
+
+%heading-h2{
+    font-size: 36px;
+    letter-spacing: -1px;
+    line-height: 36px;
+    font-weight: 700;
+    color: $heading;
+}
+
+%heading-h4{
+    font-size: 24px;
+    line-height: 32px;
+    letter-spacing: -1px;
+    font-weight: 700;
+    color: $heading;
+}
+
+%description{
+    font-weight: 500;
+    font-size: 20px;
+    color: $description;
+}
+
+%description_thhin{
+    font-size: 20px;
+    color: $description;
+}
+
+%accordion_title{
+    font-weight: 700;
+    font-size: 18px;
+    margin-right: 16px;
+    color: $heading;
+}
+
+%nav-link{
+    font-size: 16px;
+    line-height: 1.75;
+    font-weight: 500;
+    cursor: pointer;
+    color: $heading;
+}
+
+*{
+    font-family: Montserrat;
+}
