@@ -26,8 +26,13 @@ export default {
   },
 };
 </script>
+
 <style lang="scss">
 @import url("../assets/scss/_nullstyle.scss");
+@import "../assets/scss/fonts";
+
+
+
 body {
   background-color: #f7f7f9;
 }

@@ -11,15 +11,9 @@
 
 <script>
 import Header from "../components/Header.vue";
-import HeaderPageNavigation from "../components/HeaderPageNavigation.vue";
-import TitleOfPage from "../components/TitleOfPage.vue";
-import Loop from "../components/icons/Loop.vue";
 export default {
   components: {
-    Header,
-    TitleOfPage,
-    HeaderPageNavigation,
-     Loop,
+    Header
   },
 };
 </script>

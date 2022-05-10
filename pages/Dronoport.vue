@@ -11,9 +11,22 @@
     </div>
     <div class="card">
         <div class="card__images card-images">
-                <div class="card-images__image"><img src="../assets/img/platform1.jpg" alt="No photo"><button class="card-images__loop"><img src="../assets/img/ico/loop.svg" alt=""></button></div>
-                <div class="card-images__image"><img src="../assets/img/platform2.jpg" alt="No photo"><button class="card-images__loop"><img src="../assets/img/ico/loop.svg" alt=""></button></div>
-                <div class="card-images__image"><img src="../assets/img/platform3.jpg" alt="No photo"><button class="card-images__loop"><img src="../assets/img/ico/loop.svg" alt=""></button></div>
+            <div class="card-images__image"><img src="../assets/img/platform1.jpg" alt="No photo">
+                <button class="card-images__loop">
+                   <Loop></Loop>
+                </button>
+            </div>
+            <div class="card-images__image"><img src="../assets/img/platform2.jpg" alt="No photo">
+                <button class="card-images__loop">
+                    <Loop></Loop>
+                </button>
+
+            </div>
+            <div class="card-images__image"><img src="../assets/img/platform3.jpg" alt="No photo">
+                <button class="card-images__loop">
+                    <Loop></Loop>
+                </button>
+            </div>
         </div>
         <hr>
         <div class="card__main card-main">
@@ -174,14 +187,17 @@
 </template>
 
 <script>
+import Loop from '../components/icons/Loop.vue';
+
 export default {
+  components: { Loop },
+     layout: 'card',
      computed:{
-        editing() {
-        
-           
+        editing() {           
         }
     },
 };
+
 </script>
 
 <style lang="scss">
