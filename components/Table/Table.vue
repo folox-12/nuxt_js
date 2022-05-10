@@ -2,12 +2,8 @@
   <section class="table">
     <div class="table__data">
       <table class="table__responsive">
-        <thead>
-          <TableTitle :title="tableData[0]"></TableTitle>
-        </thead>
-        <tbody>
-          <TableRows :rows="tableData[1]"></TableRows>
-        </tbody>
+        <TableTitle :title="tableData[0]"></TableTitle>
+        <TableRows :rows="tableData[1]"></TableRows>
       </table>
     </div>
     <div class="table__paginator table-paginator">

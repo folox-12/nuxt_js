@@ -22,14 +22,14 @@ export default {
         [
           {
             id: "place",
-            address: "г. Одинцово, ул. Северная, 4",
+            address: "г. Одинцово, ул. Северная, 5",
             dronopot: 2,
-            postamat: 1,
+            postamat: 2,
           },
           {
             id: "place",
             address: "г. Одинцово, ул. Северная, 4",
-            dronopot: 2,
+            dronopot: 4,
             postamat: 1,
           },
         ],
