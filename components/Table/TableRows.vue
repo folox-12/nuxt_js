@@ -11,17 +11,17 @@
 
 <script>
 export default {
+  data() {
+    return {};
+  },
   props: {
     rows: {
       type: Array,
       required: true,
     },
   },
-  methods: {
-    showProps() {
-      alert(this.rows);
-    },
-  },
+  methods: {},
+  computed: {},
 };
 </script>
 

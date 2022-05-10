@@ -3,18 +3,24 @@
     <div class="table__data">
       <table class="table__responsive">
         <TableTitle :title="tableData[0]"></TableTitle>
-        <TableRows :rows="tableData[1]"></TableRows>
+        <TableRows :rows="paginatedData"></TableRows>
       </table>
     </div>
     <div class="table__paginator table-paginator">
       <div class="table-paginator__row">
         <div class="table-paginator__ul">
-          <li class="table-paginator__li active">1</li>
-          <li class="table-paginator__li">2</li>
-          <li class="table-paginator__li">3</li>
+          <li
+            class="table-paginator__li"
+            v-for="page in pages"
+            :key="page"
+            :class="{ 'table-paginator__li active': page === pageNumber }"
+            @click="clickPage(page)"
+          >
+            {{ page }}
+          </li>
         </div>
         <div class="table-paginator__total">
-          <span>Найдено всего 1</span>
+          <span>Найдено всего {{ countOfLists }}</span>
         </div>
       </div>
     </div>
@@ -25,6 +31,12 @@
 import TableTitle from "./TableTitle.vue";
 import TableRows from "./TableRows.vue";
 export default {
+  data() {
+    return {
+      countPage: 5,
+      pageNumber: 1,
+    };
+  },
   props: {
     tableData: {
       type: Array,
@@ -34,6 +46,25 @@ export default {
   components: {
     TableTitle,
     TableRows,
+  },
+  computed: {
+    countOfLists() {
+      return this.tableData[1].length;
+    },
+    pages() {
+      return Math.ceil(this.tableData[1].length / this.countPage);
+    },
+    paginatedData() {
+      let from = (this.pageNumber - 1) * this.countPage;
+      let to = from + this.countPage;
+      return this.tableData[1].slice(from, to);
+    },
+    capitalaizedData() {},
+  },
+  methods: {
+    clickPage(page) {
+      this.pageNumber = page;
+    },
   },
 };
 </script>
@@ -108,8 +139,11 @@ table.table__responsive {
     }
     &-numerical {
     }
-    &-address {
+    td.address {
+      width: 520px;
+      word-wrap: wrap;
     }
+
     &-dronport {
     }
     &-postamat {

@@ -31,6 +31,41 @@ export default {
             dronopot: 4,
             postamat: 1,
           },
+          {
+            address: "г. Одинцово, ул. Северная, 3",
+            dronopot: 4,
+            postamat: 1,
+          },
+          {
+            address: "г. Одинцово, ул. Северная, 44",
+            dronopot: 4,
+            postamat: 1,
+          },
+          {
+            address: "г. Одинцово, ул. Северная, 42",
+            dronopot: 4,
+            postamat: 1,
+          },
+          {
+            address: "г. Одинцово, ул. Северная, 41",
+            dronopot: 4,
+            postamat: 1,
+          },
+          {
+            address: "г. Одинцово, ул. Северная, 40",
+            dronopot: 4,
+            postamat: 1,
+          },
+          {
+            address: "г. Одинцово, ул. Северная, 39",
+            dronopot: 4,
+            postamat: 1,
+          },
+          {
+            address: "г. Одинцово, ул. Северная, 38",
+            dronopot: 4,
+            postamat: 1,
+          },
         ],
       ],
     };
