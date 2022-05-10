@@ -8,10 +8,10 @@
       </button>
     </div>
     <div class="header-page-search__buttons">
-      <button class="button-filter" id="filter" v-on:click="openFilter()">
+      <button id="filter" v-on:click="openFilter()">
         <img src="../assets/img/ico/filter.svg" alt=""/>
       </button>
-      <button class="button-filter" id="settings" v-on:click="openSettings()">
+      <button id="settings" v-on:click="openSettings()">
         <img src="../assets/img/ico/settings.svg" alt=""/>
       </button>
     </div>
@@ -28,7 +28,15 @@ export default {
       document.getElementById(target).value='';
     },
     openFilter(){
-      alert('Opened Filter');
+      var filter_btn = document.getElementById('filter');
+      if (filter_btn.classList.contains('active')){
+        filter_btn.classList.remove('active');
+        document.getElementById('table').style.width = "100%";
+      } 
+      else {
+        filter_btn.classList.add('active');
+        document.getElementById('table').style.width = "70%";
+      }
     },
     openSettings(){
       alert('Opened Settings');
@@ -117,6 +125,11 @@ export default {
       box-shadow: 2px 4px 20px rgba(3, 3, 3, 0.1);
       border-radius: 10px;
       color: #72707c;
+      transition: all 0.3s ease;
+      &.active {
+        background: rgba(238, 238, 238, 0.541);
+        box-shadow: 2px 4px 20px rgba(1, 1, 1, 0.1);
+      }
     }
   }
 }

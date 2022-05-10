@@ -1,6 +1,7 @@
 <template>
   <div class="list-of-place">
     <Table :tableData="tableData"></Table>
+    <div class="list-of-place__filter"></div>
   </div>
 </template>
 
@@ -37,4 +38,14 @@ export default {
 };
 </script>
 
-<style></style>
+<style lang="scss" scoped>
+  .list-of-place{
+    display: flex;
+    gap: 1rem;
+
+    &__filter{
+      width: 100%;
+      background: white;
+    }
+  }
+</style>

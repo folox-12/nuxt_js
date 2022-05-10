@@ -1,5 +1,5 @@
 <template>
-  <section class="table">
+  <section class="table" id="table">
     <div class="table__data">
       <table class="table__responsive">
         <TableTitle :title="tableData[0]"></TableTitle>
@@ -45,6 +45,7 @@ export default {
   max-width: 1140px;
   padding-bottom: 25px;
   max-height: 100%;
+  transition: all 0.5s ease;
   &__data {
     width: 100%;
     height: fit-content;
