@@ -1,7 +1,7 @@
 <template>
   <div class="header-page__search header-page-search">
     <div class="header-page-search__input">
-      <img src="assets/img/ico/loop.svg" alt="" class="search-icon" />
+      <img src="../assets/img/ico/search.svg" alt="" class="search-icon" />
       <input type="text" placeholder="Какой-то поиск" id="input-main" />
       <button class="clear-input" id="clear-input" v-on:click="clearInput('input-main')">
         <img src="../assets/img/ico/close.svg" alt="" />
@@ -57,23 +57,16 @@ export default {
 .header-page-search {
   color: #72707c;
   display: flex;
-  flex-direction: row;
   justify-content: space-between;
-  gap: 15px;
+  gap: 18px;
   margin-top: 30px;
 
   &__input {
     height: auto;
     width: 70%;
     position: relative;
-    display: -webkit-box;
-    display: -ms-flexbox;
     display: flex;
-    -webkit-box-align: center;
-    -ms-flex-align: center;
     align-items: center;
-    -webkit-box-pack: end;
-    -ms-flex-pack: end;
     justify-content: end;
     gap: 10px;
     filter: drop-shadow(2px 4px 20px rgba(3, 3, 3, 0.1));
@@ -81,19 +74,16 @@ export default {
     .search-icon {
       position: absolute;
       left: 0px;
-      top: 0px;
       pointer-events: none;
-      top: 1.6rem;
-      padding-left: 21px;
+      opacity: .5;
+      padding-left: 18px;
+      height: 30%;
     }
     input {
       height: 100%;
       width: 100%;
       background-color: #f7f7f9;
-      padding-left: 5px;
-      padding: 15px 0px 15px 55px;
-      border: none;
-      margin-right: 0px;
+      padding: 10px 0px 10px 55px;
       border-radius: 10px;
     }
     input:focus {
@@ -103,11 +93,11 @@ export default {
     button {
       position: absolute;
       right: 0px;
-      top: 0px;
       top: 1.6rem;
       padding-right: 15px;
       background-color: transparent;
       cursor: pointer;
+      align-items: center;
     }
   }
 
