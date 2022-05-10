@@ -2,9 +2,7 @@
   <section class="table">
     <div class="table__data">
       <table class="table__responsive">
-        <thead>
-          <TableTitle :title="tableData[0]"></TableTitle>
-        </thead>
+        <TableTitle :title="tableData[0]"></TableTitle>
         <TableRows :rows="tableData[1]"></TableRows>
       </table>
     </div>

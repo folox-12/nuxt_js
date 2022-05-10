@@ -1,7 +1,9 @@
 <template>
   <tbody>
-    <tr class="table-el" v-for="i in rows.length">
-      <td v-for="(name, value) in rows[i]">{{ name }}</td>
+    <tr class="table-el" v-for="row in rows" :key="row.id">
+      <td v-for="(key, value) in row" :class="value" :key="key.id">
+        {{ key }}
+      </td>
     </tr>
   </tbody>
 </template>
@@ -10,7 +12,7 @@
 export default {
   props: {
     rows: {
-      type: Object,
+      type: Array,
       required: true,
     },
   },

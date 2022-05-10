@@ -1,9 +1,11 @@
 <template>
-  <tr class="table-title">
-    <th v-for="value in title">
-      {{ value }}
-    </th>
-  </tr>
+  <thead>
+    <tr class="table-title">
+      <th v-for="value in title">
+        {{ value }}
+      </th>
+    </tr>
+  </thead>
 </template>
 
 <script>
