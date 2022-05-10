@@ -1,3 +1,3 @@
 <template>
-  <div class="equipment"></div>
+  <div class="equipment">Hello, Im test branch</div>
 </template>
