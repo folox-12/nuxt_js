@@ -5,9 +5,7 @@
         <thead>
           <TableTitle :title="tableData[0]"></TableTitle>
         </thead>
-        <tbody>
-          <TableRows :rows="tableData[1]"></TableRows>
-        </tbody>
+        <TableRows :rows="tableData[1]"></TableRows>
       </table>
     </div>
     <div class="table__paginator table-paginator">

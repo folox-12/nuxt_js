@@ -1,7 +1,9 @@
 <template>
-  <tr class="table-el">
-    <td v-for="i in rows.length" class="table-numerical">{{ i }}</td>
-  </tr>
+  <tbody>
+    <tr class="table-el" v-for="i in rows.length">
+      <td v-for="(name, value) in rows[i]">{{ name }}</td>
+    </tr>
+  </tbody>
 </template>
 
 <script>
