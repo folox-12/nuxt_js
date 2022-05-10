@@ -3,16 +3,20 @@
     <div class="header-page-search__input">
       <img src="../assets/img/ico/search.svg" alt="" class="search-icon" />
       <input type="text" placeholder="Какой-то поиск" id="input-main" />
-      <button class="clear-input" id="clear-input" v-on:click="clearInput('input-main')">
+      <button
+        class="clear-input"
+        id="clear-input"
+        v-on:click="clearInput('input-main')"
+      >
         <img src="../assets/img/ico/close.svg" alt="" />
       </button>
     </div>
     <div class="header-page-search__buttons">
       <button id="filter" v-on:click="openFilter()">
-        <img src="../assets/img/ico/filter.svg" alt=""/>
+        <img src="../assets/img/ico/filter.svg" alt="" />
       </button>
       <button id="settings" v-on:click="openSettings()">
-        <img src="../assets/img/ico/settings.svg" alt=""/>
+        <img src="../assets/img/ico/settings.svg" alt="" />
       </button>
     </div>
   </div>
@@ -20,34 +24,30 @@
 
 <script>
 export default {
-  mounted() {
-    
-  },
+  mounted() {},
   methods: {
-    clearInput(target){
-      document.getElementById(target).value='';
+    clearInput(target) {
+      document.getElementById(target).value = "";
     },
-    openFilter(){
-      var filter_btn = document.getElementById('filter');
-      if (filter_btn.classList.contains('active')){
-        filter_btn.classList.remove('active');
-        document.getElementById('table').style.width = "100%";
-      } 
-      else {
-        filter_btn.classList.add('active');
-        document.getElementById('table').style.width = "70%";
+    openFilter() {
+      const filter_btn = document.getElementById("filter");
+      if (filter_btn.classList.contains("active")) {
+        filter_btn.classList.remove("active");
+        document.getElementById("table").style.width = "100%";
+      } else {
+        filter_btn.classList.add("active");
+        document.getElementById("table").style.width = "70%";
       }
     },
-    openSettings(){
-      alert('Opened Settings');
-    }
-  }
+    openSettings() {
+      alert("Opened Settings");
+    },
+  },
 };
 </script>
 
 <style lang="scss" scoped>
 .header-page {
-
   &__search {
     display: flex;
     margin-bottom: 30px;
@@ -75,7 +75,7 @@ export default {
       position: absolute;
       left: 0px;
       pointer-events: none;
-      opacity: .5;
+      opacity: 0.5;
       padding-left: 18px;
       height: 30%;
     }
@@ -123,5 +123,4 @@ export default {
     }
   }
 }
-
 </style>
