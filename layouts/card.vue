@@ -19,9 +19,12 @@ export default {
     Header,
     TitleOfPage,
     HeaderPageNavigation,
-     Loop,
+    Loop,
   },
 };
 </script>
 
-<style></style>
+<style lang="scss">
+@import "../assets/scss/fonts";
+@import url("../assets/scss/_nullstyle.scss");
+</style>

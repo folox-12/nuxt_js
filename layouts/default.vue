@@ -4,7 +4,6 @@
     <main>
       <div class="container">
         <HeaderPageNavigation></HeaderPageNavigation>
-        <Breadcrumbs></Breadcrumbs>
         <TitleOfPage></TitleOfPage>
         <HeaderPageSearch></HeaderPageSearch>
         <nuxt />
@@ -33,8 +32,6 @@ export default {
 <style lang="scss">
 @import url("../assets/scss/_nullstyle.scss");
 @import "../assets/scss/fonts";
-
-
 
 body {
   background-color: #f7f7f9;

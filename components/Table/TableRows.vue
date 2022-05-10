@@ -1,22 +1,27 @@
 <template>
-  <tr class="table-el">
-    <td v-for="i in rows.length" class="table-numerical">{{ i }}</td>
-  </tr>
+  <tbody>
+    <tr class="table-el" v-for="(index, row) in rows" :key="row.id">
+      <td>{{ row + 1 }}</td>
+      <td v-for="(key, value) in index" :class="value" :key="key.id">
+        {{ key }}
+      </td>
+    </tr>
+  </tbody>
 </template>
 
 <script>
 export default {
+  data() {
+    return {};
+  },
   props: {
     rows: {
-      type: Object,
+      type: Array,
       required: true,
     },
   },
-  methods: {
-    showProps() {
-      alert(this.rows);
-    },
-  },
+  methods: {},
+  computed: {},
 };
 </script>
 
