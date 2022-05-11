@@ -51,5 +51,7 @@
 </template>
 
 <style scoped lang="scss">
-
+    .dropdown-content {
+        display: none;
+    }
 </style>
