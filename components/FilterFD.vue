@@ -6,19 +6,14 @@
                     <div class="name_title">
                         <h3>Фильтр</h3>
                     </div>
-                    <div class="close-dropdown">
-                        <button>
-                            <img src="static/img/ico/close.svg"  alt="" class = "close-svg" >
-                        </button>
-                    </div>
                 </div>
                 <div class = "spoiler__item">
                     <div class = "spoiler__title">Город</div>
                     <div class = "spoiler__content">
                         <div class="input-spoiler-content">
                             <input type="text" placeholder = "Какой-то поиск" id = "input-filter" class = "input-filter">
-                            <button class="clear-input" id = "clear-input-filter" onclick = "clearInput1()">
-                                <span class="material-icons">✖</span>
+                            <button class="clear-input" id = "clear-input-filter">
+                                <img src="../assets/img/ico/close.svg" alt="">
                             </button>
                         </div>
                     </div>
@@ -56,8 +51,34 @@
         background:white;
     }
     .dropdown-content {
-        margin: 1rem;
-        width: 100%;
+        transition: all 1s ease;
         display: none;
+        opacity: 0;
+        margin: 1rem;
+        width: 0;
+        &.active {
+            width: 100%;
+            opacity: 1;
+            display: block;
+        }
     }
+    .spoiler-main {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        justify-content: flex-start;
+        padding: 3% 10%;
+        padding: 10px;
+        gap: 30px;
+    }
+    .spoiler__item {
+        margin:0px 0px 20px 0px;
+    }
+    .spoiler__title {
+        font-weight: 500;
+        font-size: 16px;
+        line-height: 20px;
+    }
+    
+
 </style>
