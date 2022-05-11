@@ -46,11 +46,15 @@ export default {
       if (filter_btn.classList.contains("active")) {
         filter_btn.classList.remove("active");
         document.getElementById("table").style.width = "100%";
+        document.getElementById("myDropdown").style.display = "none";
+
         filter_btn.firstChild.firstChild.style.stroke = "#7D7B84";
         filter_btn.firstChild.lastChild.style.stroke = "#7D7B84";
 
       } else {
         filter_btn.classList.add("active");
+        
+        document.getElementById("myDropdown").style.display = "block";
         document.getElementById("table").style.width = "70%";
         filter_btn.firstChild.firstChild.style.stroke = '#9B42F5';
         filter_btn.firstChild.lastChild.style.stroke = '#9B42F5';
