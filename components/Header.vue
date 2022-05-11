@@ -14,7 +14,7 @@
                 no-prefetch
                 active-class="nuxt-link-exact-active"
                 to="/Platform"
-                >Дронопорт</nuxt-link
+                >Платформа</nuxt-link
               >
               <nuxt-link
                 no-prefetch

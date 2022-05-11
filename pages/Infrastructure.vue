@@ -1,14 +1,5 @@
 <template>
-  <div class="infrastructure">
-  </div>
+  <div class="infrastructure"></div>
 </template>
 
-
-
-<style lang="scss">
-
-@import "../assets/scss/_nullstyle";
-@import "../assets/scss/fonts";
-
-
-</style>
+<style lang="scss"></style>
