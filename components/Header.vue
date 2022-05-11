@@ -9,7 +9,7 @@
             </div>
             <nav class="header__menu">
               <nuxt-link no-prefetch to="/">Список площадок</nuxt-link>
-              <nuxt-link no-prefetch to="/Map">Карта</nuxt-link>
+              <nuxt-link no-prefetch to="/Test">Test</nuxt-link>
               <nuxt-link
                 no-prefetch
                 active-class="nuxt-link-exact-active"
@@ -19,8 +19,8 @@
               <nuxt-link
                 no-prefetch
                 active-class="nuxt-link-exact-active"
-                to="/Equipment"
-                >Оснащение</nuxt-link
+                to="/Map"
+                >Карта</nuxt-link
               >
               <nuxt-link
                 no-prefetch

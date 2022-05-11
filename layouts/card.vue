@@ -6,7 +6,6 @@
        
       <div class="container">
         <HeaderPageNavigation></HeaderPageNavigation>
-
         <TitleOfPage></TitleOfPage>
         <nuxt />
       </div>
