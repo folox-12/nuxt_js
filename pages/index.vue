@@ -1,7 +1,7 @@
 <template>
   <div class="list-of-place">
     <Table :tableData="tableData"></Table>
-    <FilterFD/>
+    <FilterFD />
   </div>
 </template>
 
@@ -15,73 +15,17 @@ export default {
     FilterFD,
   },
 
-  data() {
-    return {
-      tableData: [
-        {
-          numerical: "№",
-          address: "Адресс",
-          dronopot: "Дронопорт",
-          postamat: "Постамат",
-        },
-        [
-          {
-            address: "г. Одинцово, ул. Северная, 5",
-            dronopot: 2,
-            postamat: 2,
-          },
-          {
-            address: "г. Одинцово, ул. Северная, 4",
-            dronopot: 4,
-            postamat: 1,
-          },
-          {
-            address: "г. Одинцово, ул. Северная, 3",
-            dronopot: 4,
-            postamat: 1,
-          },
-          {
-            address: "г. Одинцово, ул. Северная, 44",
-            dronopot: 4,
-            postamat: 1,
-          },
-          {
-            address: "г. Одинцово, ул. Северная, 42",
-            dronopot: 4,
-            postamat: 1,
-          },
-          {
-            address: "г. Одинцово, ул. Северная, 41",
-            dronopot: 4,
-            postamat: 1,
-          },
-          {
-            address: "г. Одинцово, ул. Северная, 40",
-            dronopot: 4,
-            postamat: 1,
-          },
-          {
-            address: "г. Одинцово, ул. Северная, 39",
-            dronopot: 4,
-            postamat: 1,
-          },
-          {
-            address: "г. Одинцово, ул. Северная, 38",
-            dronopot: 4,
-            postamat: 1,
-          },
-        ],
-      ],
-    };
+  computed: {
+    tableData() {
+      return this.$store.getters["dronoports/getAllDronoport"];
+    },
   },
-  computed: {},
 };
 </script>
 
 <style lang="scss" scoped>
-  .list-of-place {
-    display: flex;
-    gap: 1rem;
-  }
-
+.list-of-place {
+  display: flex;
+  gap: 1rem;
+}
 </style>
