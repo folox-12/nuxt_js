@@ -51,7 +51,13 @@
 </template>
 
 <style scoped lang="scss">
+    .filter-block {
+        width: 100%;
+        background:white;
+    }
     .dropdown-content {
+        margin: 1rem;
+        width: 100%;
         display: none;
     }
 </style>
