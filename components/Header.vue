@@ -9,7 +9,7 @@
             </div>
             <nav class="header__menu">
               <nuxt-link no-prefetch to="/">Список площадок</nuxt-link>
-              <nuxt-link no-prefetch to="/Cabinet">Кабинет</nuxt-link>
+              <nuxt-link no-prefetch to="/Map">Карта</nuxt-link>
               <nuxt-link
                 no-prefetch
                 active-class="nuxt-link-exact-active"

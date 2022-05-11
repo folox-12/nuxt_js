@@ -93,8 +93,14 @@ export default {
       border-radius: 10px;
     }
     input:focus {
-      border-bottom: 2px solid rgba(12, 12, 12, 0.1);
-      padding: 15px 0px 13px 55px;
+      border: 1px solid #9c42f5;
+      box-shadow: 0 0 0 4px rgba(156, 66, 245, 0.12);
+      transition: 0.40s;
+    }
+    input:hover {
+      
+      border: 1px solid #9c42f5;
+      transition: 0.15s;  
     }
     button {
       position: absolute;
