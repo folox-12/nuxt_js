@@ -1,8 +1,12 @@
 <template>
   <div id="app">
     <Header></Header>
+   
     <main>
+       
       <div class="container">
+        <HeaderPageNavigation></HeaderPageNavigation>
+    <TitleOfPage></TitleOfPage>
         <nuxt />
       </div>
     </main>
