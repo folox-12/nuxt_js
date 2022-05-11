@@ -2,9 +2,11 @@
   <div class="header-page__search header-page-search">
     <div class="header-page-search__input">
       <img src="static/img/ico/search.svg" alt="" class="search-icon" />
-      <input type="text" placeholder="Какой-то поиск" id="input-main" />
-      <button class="clear-input" id="clear-input" onclick="clearInput()">
-        <img src="static/img/ico/close.svg" alt="" class="filter-icon2" />
+      <input type="text" placeholder="Поиск по координатам" v-model="SearchAdres" />
+      <button class="clear-input" @click="SearchClear">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" role="presentation" class="svg-icon svg-icon--default" fill ="#72707c">
+          <g><path d="M19,6.41L17.59,5L12,10.59L6.41,5L5,6.41L10.59,12L5,17.59L6.41,19L12,13.41L17.59,19L19,17.59L13.41,12L19,6.41Z"></path></g>
+        </svg>
       </button>
     </div>
     <div class="header-page-search__buttons">
@@ -23,7 +25,18 @@
 </template>
 
 <script>
-export default {};
+export default {
+  data() {
+    return{
+      SearchAdres : "",
+    }; 
+  },
+  methods:{
+      SearchClear(){
+        this.SearchAdres = "";
+      },
+    },
+};
 </script>
 
 <style lang="scss" scoped>
@@ -57,7 +70,7 @@ export default {};
     -ms-flex-pack: end;
     justify-content: end;
     gap: 10px;
-    filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+
     flex: 1 0 auto;
     .search-icon {
       position: absolute;
@@ -70,17 +83,24 @@ export default {};
     input {
       height: 100%;
       width: 100%;
-      background-color: #f7f7f9;
+      background-color: rgba(20,16,41,.02);
       padding-left: 5px;
-      padding: 15px 0px 15px 55px;
+      padding: 15px 0px 15px 30px;
       border: none;
       margin-right: 0px;
       border-radius: 10px;
     }
     input:focus {
-      border-bottom: 2px solid rgb(12, 12, 12);
-      padding: 15px 0px 13px 55px;
+      border: 1px solid #9c42f5;
+      box-shadow: 0 0 0 4px rgba(156, 66, 245, 0.12);
+      transition: 0.40s;
     }
+    input:hover {
+      
+      border: 1px solid #9c42f5;
+      transition: 0.15s;  
+    }
+
     button {
       position: absolute;
       right: 0px;
