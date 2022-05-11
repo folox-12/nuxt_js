@@ -288,22 +288,22 @@
 
 <script>
 
-import Loop from '../components/icons/Loop.vue';
+// import Loop from '../components/icons/Loop.vue';
 
-// export default {
-//   components: { Loop },
-//      layout: 'card',
-//      computed:{
-//         editing() {           
-//         }
-//     },
+// // export default {
+// //   components: { Loop },
+// //      layout: 'card',
+// //      computed:{
+// //         editing() {           
+// //         }
+// //     },
 
-//   computed: {
-//     editing() {},
-//   },
-//   layout: "card",
+// //   computed: {
+// //     editing() {},
+// //   },
+// //   layout: "card",
 
-// };
+// // };
 
 import Imagecard from '../components/ImgCard.vue';
 import Tablecard from '../components/TableCard/TableCard.vue'
