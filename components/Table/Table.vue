@@ -184,7 +184,6 @@ table.table__responsive {
       color: #9b42f5;
     }
   }
-
   &__total {
     position: absolute;
     right: 25px;
