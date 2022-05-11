@@ -125,6 +125,8 @@ export default {
       
       border: 1px solid #9c42f5;
       transition: 0.15s;  
+      padding-left:54px;
+      
     }
     button {
       position: absolute;

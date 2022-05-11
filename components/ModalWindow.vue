@@ -9,10 +9,10 @@
         </svg>
     </div>
         <div class="ModalWindow__container-description">
-            <h6>Вид слева</h6>
+            <h6>{{type}}</h6>
         </div>
         <div class="ModalWindow__container-image ">
-            <img src="../assets/img/platform1.jpg" alt="Error">
+            <img :src='img' alt="Error">
         </div>
     </div>
 </div>
@@ -20,6 +20,20 @@
 
 <script>
   export default {
+    props:{
+ img:{
+   type: Array,
+      required: true,
+
+ }
+},
+   methods: {
+  Image(event) {
+      const $button = event.target;
+      const buttonID = $button.dataset.id;
+      console.log(buttonID);
+    }
+}
 }
 </script>
 
@@ -34,6 +48,7 @@
   display: flex;
   justify-content: center;
   background-color: #000000da;
+  z-index:9999;
 
   &__container{
   position: relative;
@@ -41,7 +56,7 @@
   background-color: rgb(255, 255, 255);
   height: 600px;
   width: 570px;
-  margin-top: 10%;
+  margin-top: 5%;
   padding: 30px 30px;
   border-radius: 20px;
 

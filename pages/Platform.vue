@@ -220,7 +220,7 @@
               <td>Hive</td>
               <td>M300</td>
               <td align="right">3430022</td>
-              <td align="right">
+            <td>
                 <svg
                   width="16"
                   height="16"
@@ -288,38 +288,26 @@
 
 <script>
 
-// import Loop from '../components/icons/Loop.vue';
 
-// // export default {
-// //   components: { Loop },
-// //      layout: 'card',
-// //      computed:{
-// //         editing() {           
-// //         }
-// //     },
-
-// //   computed: {
-// //     editing() {},
-// //   },
-// //   layout: "card",
-
-// // };
 
 import Imagecard from '../components/ImgCard.vue';
 import Tablecard from '../components/TableCard/TableCard.vue'
+import ModalWindow from '../components/ModalWindow.vue'
 export default {
 
     layout: 'card',
     components: {
         Imagecard,
-        Tablecard
+        Tablecard,
+        ModalWindow
+        
         },
     data(){
         return{
             img:[
-            {img:require("../assets/img/platform1.jpg")},
-            {img: require("../assets/img/platform2.jpg")},
-             {img:require("../assets/img/platform3.jpg")}
+            require("../assets/img/platform1.jpg"),
+            require("../assets/img/platform2.jpg"),
+             require("../assets/img/platform3.jpg")
             ],
             title:[
                 "Адрес",
@@ -336,8 +324,10 @@ export default {
                 "5 х 5",
                 "от -10 до 30",
                 "24/7"
-            ]
-            
+            ],
+           
+
+           
         }
     },
 }
