@@ -3,7 +3,7 @@
     <Header></Header>
     <main>
       <div class="container">
-        <HeaderPageNavigation></HeaderPageNavigation>
+        <Breadcrumbs :crumbs="getAllRoute" />
         <TitleOfPage></TitleOfPage>
         <HeaderPageSearch></HeaderPageSearch>
         <nuxt />
@@ -25,6 +25,11 @@ export default {
     HeaderPageNavigation,
     HeaderPageSearch,
     Breadcrumbs,
+  },
+  computed: {
+    getAllRoute() {
+      return this.$route.fullPath;
+    },
   },
 };
 </script>
