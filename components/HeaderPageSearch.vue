@@ -158,11 +158,7 @@ export default {
 
       transition: 0.15s;
       padding-left: 54px;
-<<<<<<< HEAD
 
-
-=======
->>>>>>> 256c14ca067685fd3fd91ef2c3fbd63864186853
     }
     button {
       position: absolute;
