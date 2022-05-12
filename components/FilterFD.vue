@@ -63,6 +63,28 @@
 	</div>
 </template>
 
+<script>
+export default {
+    data() {
+    return {
+      selected: 'A',
+      options: [
+        { text: '3D Robotics Iris+', value: 'A' },
+        { text: 'DJI Phantom 4', value: 'B' },
+        { text: 'AOVO W Pro', value: 'C' }
+      ],
+      inputFilter: "",
+      pickedRadio: "radio_first",
+    };
+  },
+    methods:{
+        inputFilterClear() {
+      this.inputFilter = "";
+    },
+    }
+}
+
+</script>
 <style scoped lang="scss">
 @import "../assets/scss/_nullstyle";
 @import "../assets/scss/fonts";
@@ -219,25 +241,3 @@
 
 </style>
 
-<script>
-export default {
-    data() {
-    return {
-      selected: 'A',
-      options: [
-        { text: '3D Robotics Iris+', value: 'A' },
-        { text: 'DJI Phantom 4', value: 'B' },
-        { text: 'AOVO W Pro', value: 'C' }
-      ],
-      inputFilter: "",
-      pickedRadio: "radio_first",
-    };
-  },
-    methods:{
-        inputFilterClear() {
-      this.inputFilter = "";
-    },
-    }
-}
-
-</script>

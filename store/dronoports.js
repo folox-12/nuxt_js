@@ -62,5 +62,8 @@ export default {
     getAllDronoport(state) {
       return state.tableData;
     },
+    countOfLenght(state) {
+      return state.tableData[1].length;
+    },
   },
 };
