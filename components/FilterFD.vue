@@ -129,15 +129,6 @@
 
 <script>
 export default {
-<<<<<<< HEAD
-    data() {
-    return {
-      selected: 'A',
-      options: [
-        { text: '3D Robotics Iris+', value: 'A' },
-        { text: 'DJI Phantom 4', value: 'B' },
-        { text: 'AOVO W Pro', value: 'C' }
-=======
   data() {
     return {
       selected: "A",
@@ -145,22 +136,11 @@ export default {
         { text: "3D Robotics Iris+", value: "A" },
         { text: "DJI Phantom 4", value: "B" },
         { text: "AOVO W Pro", value: "C" },
->>>>>>> Test
       ],
       inputFilter: "",
       pickedRadio: "radio_first",
     };
   },
-<<<<<<< HEAD
-    methods:{
-        inputFilterClear() {
-      this.inputFilter = "";
-    },
-    }
-}
-
-</script>
-=======
   methods: {
     inputFilterClear() {
       this.inputFilter = "";
@@ -173,165 +153,10 @@ export default {
 };
 </script>
 
->>>>>>> Test
 <style scoped lang="scss">
 @import "../assets/scss/_nullstyle";
 @import "../assets/scss/fonts";
 
-<<<<<<< HEAD
-    .filter-block {
-        width: 100%;
-        background:white;
-        
-    }
-    .dropdown-content {
-        transition: all 1s ease;
-        display: none;
-        opacity: 0;
-        margin: 1rem;
-        width: 0;
-        &.active {
-            width: 100%;
-            opacity: 1;
-            display: block;
-        }
-    }
-    .spoiler-main {
-        display: flex;
-        flex-direction: column;
-        width: 100%;
-        justify-content: flex-start;
-        padding: 3% 10%;
-        padding: 10px;
-        gap: 30px;
-    }
-    .spoiler__item {
-        margin:0px 0px 20px 0px;
-    }
-
-    .spoiler__reset{
-        margin-bottom: 15px;
-        &_button{
-        background: rgba(20, 16, 41, 0.05);
-        color: black;
-        height: 48px;
-        width: 280px;
-        min-width: 200px;
-        font-family: "Montserrat", serif;
-        border: none;
-        border-radius: 10px;
-        cursor: pointer;
-        -webkit-transition: 0.5s;
-        transition: all 0.2s;
-            &:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
-            color: #9b42f5;
-            }
-        }
-    }
-
-    .spoiler__apply{
-        &_button{
-        background: linear-gradient(90deg, #0094ff 3.2%, #9b42f5 73.28%);
-        color: white;
-        height: 48px;
-        width: 280px;
-        min-width: 200px;
-        font-family: "Montserrat", serif;
-        border: none;
-        border-radius: 10px;
-        cursor: pointer;
-        -webkit-transition: 0.5s;
-        transition: all 0.2s;
-            &:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
-            color: rgba(255, 255, 255, 0.6);
-            }
-        }
-    }
-
-    
-    
-    
-    .spoiler__title {
-        font-weight: 500;
-        font-size: 16px;
-        line-height: 20px;
-        margin-bottom: 15px;
-    }
-
-    .input-filter{
-        background-color: rgba(20,16,41,.02);
-        padding: 15px 15px 15px 15px;
-        width: 280px;
-    }
-    
-    .input-spoiler-content{
-    position: relative;
-    width: 100%;    
-    }
-
-    .clear-input{
-        position: absolute;
-        background-color: inherit;
-        top: 18px;
-        right: 30px;
-        
-    }
-    
-    .radio-filter__item{
-        display: flex;
-        align-items: center;
-        background: rgba(20,16,41,.02);
-        padding: 12px 20px 12px 12px;
-        margin-top: 5px;
-        width: 280px;
-    }
-
-    .radio__input{
-    width: 24px;
-    height: 24px;
-    margin-right: 12px;
-    background: rgba(20,16,41,.06);
-    border: 10px solid rgba(20,16,41,.06);
-
-
-    &:checked{
-        background: rgba(20,16,41,.06);
-        width: 24px;
-        height: 24px;
-        -webkit-appearance: none;
-        appearance: none;
-        border-radius: 50%;
-        border: 7px solid $purple;
-        margin-right: 12px;
-        transition: border-color .25s,background .25s
-    }
-    }
-
-    .spoiler__selector {
-    &-select{
-        background-color: rgba(20, 16, 41, 0.05);
-        width: 280px;
-        padding: 15px 15px 15px 15px;
-    }
-    &-option{
-        background-color: #ffffff;
-        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2); 
-            &:hover{
-            background: rgba(20, 16, 41, 0.05);
-            color: #9b42f5;
-            }
-    }
-    }
-
-
-
-</style>
-
-=======
 .filter-block {
   width: 100%;
   background: white;
