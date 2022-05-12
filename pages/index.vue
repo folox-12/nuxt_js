@@ -1,6 +1,10 @@
 <template>
-  <div class="list-of-place">
-    <Table :tableData="tableData"></Table>
+  <div class="main-area" id="main-area">
+    <div class="main-area__content" id="main-area-content">
+      <div class="list-of-place">
+        <Table :tableData="tableData"></Table>
+      </div>
+    </div>
     <FilterFD />
   </div>
 </template>
@@ -24,8 +28,15 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.list-of-place {
+.main-area {
+  width: 100%;
   display: flex;
   gap: 1rem;
+  transition: all 0.5s ease;
+  &__content {
+    width: 100%;
+    // background: red;
+    transition: all 0.5s ease;
+  }
 }
 </style>

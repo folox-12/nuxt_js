@@ -1,5 +1,5 @@
 <template>
-  <div class="filter-block">
+  <div class="filter-block" id="filter-block">
     <div id="myDropdown" class="dropdown-content">
       <div class="spoiler-main" id="spoiler-main">
         <div class="title_dropdown">
@@ -158,19 +158,23 @@ export default {
 @import "../assets/scss/fonts";
 
 .filter-block {
-  width: 100%;
+  height: auto;
+  width: 0%;
   background: white;
+  transition: all 0.5s ease;
 }
 .dropdown-content {
-  transition: all 1s ease;
-  display: none;
+  transition: all 0.2s ease;
+  // display: block;
+  visibility: hidden;
   opacity: 0;
   margin: 1rem;
   width: 0;
   &.active {
     width: 100%;
+    visibility: visible;
     opacity: 1;
-    display: block;
+    // display: block;
   }
 }
 .spoiler-main {
@@ -283,7 +287,7 @@ export default {
     -webkit-appearance: none;
     appearance: none;
     border-radius: 50%;
-    border: 7px solid $purple;
+    border: 7px solid #9b42f5;
     margin-right: 12px;
     transition: border-color 0.25s, background 0.25s;
   }

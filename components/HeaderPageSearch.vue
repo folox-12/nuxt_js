@@ -71,19 +71,23 @@ export default {
     },
     openFilter() {
       const filter_btn = document.getElementById("filter-btn");
-      const table = document.getElementById("table");
-      const filter_field = document.getElementById("myDropdown");
+      const element = document.getElementById("main-area").children[0];
+      const filter_content = document.getElementById("myDropdown");
+      const filter_field = document.getElementById("filter-block");
 
       if (filter_btn.classList.contains("active")) {
         filter_btn.classList.remove("active");
-        table.style.width = "100%";
-        filter_field.classList.remove("active");
+        element.style.width = "100%";
+        filter_field.style.width = "0%";
+
+        filter_content.classList.remove("active");
         filter_btn.firstChild.firstChild.style.stroke = "#7D7B84";
         filter_btn.firstChild.lastChild.style.stroke = "#7D7B84";
       } else {
         filter_btn.classList.add("active");
-        filter_field.classList.add("active");
-        table.style.width = "70%";
+        filter_content.classList.add("active");
+        element.style.width = "70%";
+        filter_field.style.width = "30%";
         filter_btn.firstChild.firstChild.style.stroke = "#9B42F5";
         filter_btn.firstChild.lastChild.style.stroke = "#9B42F5";
       }
