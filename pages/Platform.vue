@@ -95,7 +95,7 @@
               <td>M300</td>
               <td align="right">3430022</td>
               <td>
-                <svg
+                <!-- <svg
                   width="16"
                   height="16"
                   viewBox="0 0 16 16"
@@ -107,9 +107,11 @@
                     fill="#141029"
                     fill-opacity="0.8"
                   />
-                </svg>
+                </svg> -->
+                <OpenCard></OpenCard>
               </td>
             </tr>
+            
             <tr>
               <td>Дронопорт</td>
               <td>Hive</td>
@@ -295,13 +297,15 @@
 import Imagecard from '../components/ImgCard.vue';
 import Tablecard from '../components/TableCard/TableCard.vue'
 import ModalWindow from '../components/ModalWindow.vue'
+import OpenCard from '../components/buttonCardOpen.vue'
 export default {
 
     layout: 'card',
     components: {
         Imagecard,
         Tablecard,
-        ModalWindow
+        ModalWindow,
+        OpenCard
         
         },
     data(){
@@ -349,4 +353,31 @@ export default {
 
 <style lang="scss">
 @import "../assets/scss/card-area";
+::-webkit-scrollbar{
+    width: 5px;
+}
+
+::-webkit-scrollbar-track {
+   
+    background: #FFFFFF;
+    border-radius: 6px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #9B42F5;
+    border-radius: 6px;
+}
+
+
+progress::-webkit-progress-bar {
+ color: #9B42F5;
+  }
+  
+  progress::-webkit-progress-value {
+    color: #9B42F5;
+  }
+
+  progress {
+    color: #9B42F5;
+  }
 </style>
