@@ -9,7 +9,7 @@
         </svg>
     </div>
         <div class="ModalWindow__container-description">
-            <h6>{{type}}</h6>
+            <h6>{{titleImage}}</h6>
         </div>
         <div class="ModalWindow__container-image ">
             <img :src='image' alt="Error">
@@ -20,13 +20,17 @@
 </template>
 
 <script>
-import imgcard from '../components/ImgCard.vue'
+
   export default {
     props:{
  image:{
    type: Object,
       required: true,
 
+ },
+ titleImage:{
+   type: String,
+   required: true
  }
 },
 

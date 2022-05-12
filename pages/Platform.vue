@@ -5,7 +5,8 @@
 
 
        
-        <Imagecard :img="img" ></Imagecard>
+        <Imagecard :img="img"
+        :titleImg="titleImg" ></Imagecard>
         <hr>
         <div class="card__main card-main">
             <div class="card-main__title">
@@ -310,6 +311,11 @@ export default {
             require("../assets/img/platform1.jpg"),
             require("../assets/img/platform2.jpg"),
              require("../assets/img/platform3.jpg")
+            ],
+            titleImg:[
+              'Слева',
+              'Сверху',
+              'Справа'
             ],
             title:[
                 "Адрес",

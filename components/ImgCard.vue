@@ -1,9 +1,9 @@
 <template>
 <div class="card__images card-images">
-                <div v-for="item,index in img" :key='item' class="card-images__image"><img :src='img[index]'/><button  
-                 @click="showModal = true, showModal1(img[index]) "   class="card-images__loop"><img src="../assets/img/ico/loop.svg" alt=""></button>
+                <div v-for="item,index in img" :key='item'  class="card-images__image"><img :src='img[index]'/><button  
+                 @click="showModal = true, showModal1(img[index]), showModal2(titleImg[index]) "   class="card-images__loop"><img src="../assets/img/ico/loop.svg" alt=""></button>
                </div>
-               <ModalWindow v-show="showModal" @close-modal="showModal = false" :image="image"  />
+               <ModalWindow v-show="showModal" @close-modal="showModal = false" :image="image" :titleImage="titleImage" />
         </div>
 </template>
     <script>
@@ -15,7 +15,8 @@ components: { ModalWindow },
   data() {
     return {
       showModal: false,
-    image: ''
+    image: '',
+    titleImage: ''
      }
   
   
@@ -30,12 +31,22 @@ props:{
    type: Array,
       required: true,
 
- }
+
+ },
+ titleImg:{
+  type: Array,
+      required: true,
+}
 },
 methods:{
    showModal1(data){
     
      this.image = data;
+
+    },
+    showModal2(date){
+    
+     this.titleImage = date;
 
     }
 },
