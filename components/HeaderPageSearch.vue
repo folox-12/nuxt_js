@@ -64,11 +64,10 @@ export default {
        if (settings_btn.classList.contains("active")) {
         settings_btn.classList.remove("active");
         settings_btn.firstChild.firstChild.style.fill = "#7D7B84";
-        } else {
+      } else {
         settings_btn.classList.add("active");
-          settings_btn.firstChild.firstChild.style.fill = '#9B42F5';
-
-        }
+        settings_btn.firstChild.firstChild.style.fill = '#9B42F5';
+      }
     },
   },
 };
@@ -151,8 +150,12 @@ export default {
       border-radius: 10px;
       color: #72707c;
       transition: all 0.3s ease;
+      &:hover {
+        transform: translateY(-3px);
+        box-shadow: 2px 4px 20px rgba(1, 1, 1, 0.1);
+      }
       &.active {
-        background: rgba(238, 238, 238, 0.541);
+        // background: rgba(238, 238, 238, 0.541);
         box-shadow: 2px 4px 20px rgba(1, 1, 1, 0.1);
       }
     }
