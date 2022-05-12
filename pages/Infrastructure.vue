@@ -1,7 +1,5 @@
 <template>
   <div class="infrastructure">
-    <h1>Првиет</h1>
-    <h2>Првиет</h2>
   </div>
 </template>
 

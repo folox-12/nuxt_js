@@ -12,28 +12,25 @@
             <h6>{{type}}</h6>
         </div>
         <div class="ModalWindow__container-image ">
-            <img :src='img' alt="Error">
+            <img :src='image' alt="Error">
+            
         </div>
     </div>
 </div>
 </template>
 
 <script>
+import imgcard from '../components/ImgCard.vue'
   export default {
     props:{
- img:{
-   type: Array,
+ image:{
+   type: Object,
       required: true,
 
  }
 },
-   methods: {
-  Image(event) {
-      const $button = event.target;
-      const buttonID = $button.dataset.id;
-      console.log(buttonID);
-    }
-}
+
+
 }
 </script>
 

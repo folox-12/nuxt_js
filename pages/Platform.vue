@@ -305,6 +305,7 @@ export default {
     data(){
         return{
             img:[
+
             require("../assets/img/platform1.jpg"),
             require("../assets/img/platform2.jpg"),
              require("../assets/img/platform3.jpg")
@@ -324,10 +325,12 @@ export default {
                 "5 х 5",
                 "от -10 до 30",
                 "24/7"
+
             ],
            
 
            
+
         }
     },
 }

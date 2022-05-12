@@ -236,7 +236,7 @@ transform: matrix(1, 0, 0.01, -1, 0, 0);
         }
     }
 }
-::-webkit-scrollbar {
+::-webkit-scrollbar{
     width: 5px;
 }
 
@@ -263,3 +263,19 @@ progress::-webkit-progress-bar {
   progress {
     color: #9B42F5;
   }
+@media (max-width:1000px){
+    .card-infrastructure{
+        &__table{
+            min-width:100px;
+        }
+}
+.card{
+    &__images{
+        padding:30px 80px 30px 80px;
+    }
+    &__infrastructure{
+        padding:10px;
+    }
+}
+}
+

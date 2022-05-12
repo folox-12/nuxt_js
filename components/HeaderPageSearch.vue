@@ -2,9 +2,7 @@
   <div class="header-page__search header-page-search">
     <div class="header-page-search__input">
       <img src="../assets/img/ico/search.svg" alt="" class="search-icon" />
-      <input
-        type="text"
-        v-model="inputValue"
+      <input type="text" v-model="inputValue"
         placeholder="Какой-то поиск"
         id="input-main"
       />
@@ -122,11 +120,12 @@ export default {
       transition: 0.40s;
     }
     input:hover {
-      
       border: 1px solid #9c42f5;
-      transition: 0.15s;  
-      padding-left:54px;
-      
+
+      transition: 0.15s;
+      padding-left: 54px;
+
+
     }
     button {
       position: absolute;
