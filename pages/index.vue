@@ -29,7 +29,6 @@ export default {
   props: {
     querySearch: {
       type: String,
-      default: "",
     },
   },
   created() {
@@ -40,11 +39,16 @@ export default {
       return this.tableData[0];
     },
     tableDataSearched() {
-      let querySearch =
-        this.$store.getters["search/getStoreQuery"].toLowerCase();
-      return this.tableData[1].filter((elem) => {
-        console.log(this.querySearch);
-        return elem.address.toLowerCase().includes(querySearch);
+      let querySearch = this.$store.getters["search/getStoreQuery"]
+        .trim()
+        .toLowerCase()
+        .replace(/[\s.,\s]/g, "");
+      let data = this.tableData[1];
+      return data.filter((elem) => {
+        return elem.address
+          .toLowerCase()
+          .replace(/[\s.,\s]/g, "")
+          .includes(querySearch, 0);
       });
     },
   },
