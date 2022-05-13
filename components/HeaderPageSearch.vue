@@ -74,6 +74,7 @@ export default {
       this.updateQuery(this.inputValue);
     },
     clearInput() {
+      this.updateQuery("");
       this.inputValue = "";
     },
     openFilter() {

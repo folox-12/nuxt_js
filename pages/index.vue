@@ -43,7 +43,6 @@ export default {
       let querySearch =
         this.$store.getters["search/getStoreQuery"].toLowerCase();
       return this.tableData[1].filter((elem) => {
-        console.log(this.querySearch);
         return elem.address.toLowerCase().includes(querySearch);
       });
     },
