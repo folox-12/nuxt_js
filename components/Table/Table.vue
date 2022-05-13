@@ -57,7 +57,6 @@ export default {
       let to = from + this.countPage;
       return this.tableDescription.slice(from, to);
     },
-    capitalaizedData() {},
   },
   methods: {
     clickPage(page) {

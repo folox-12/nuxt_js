@@ -1,5 +1,10 @@
 <template>
   <tbody>
+    <tr v-show="!rows.length" class="empty">
+      <td colspan="4" style="text-align: center; font-size: 1.5rem">
+        Ничего не найдено
+      </td>
+    </tr>
     <tr class="table-el" v-for="(index, row) in rows" :key="row.id">
       <td>{{ row + 1 }}</td>
       <td v-for="(key, value) in index" :class="value" :key="key.id">
@@ -17,7 +22,7 @@ export default {
   props: {
     rows: {
       type: Array,
-      required: true,
+      default: [],
     },
   },
   methods: {},
@@ -25,4 +30,9 @@ export default {
 };
 </script>
 
-<style></style>
+<style lang="scss" scoped>
+.empty {
+  &__text {
+  }
+}
+</style>

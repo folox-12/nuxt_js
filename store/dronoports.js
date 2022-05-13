@@ -44,12 +44,12 @@ export default {
           postamat: 1,
         },
         {
-          address: "г. Одинцово, ул. Северная, 39",
+          address: "г. Одинцово, ул. Южная, 39",
           dronopot: 4,
           postamat: 1,
         },
         {
-          address: "г. Одинцово, ул. Северная, 38",
+          address: "г. Москва, ул. Северная, 38",
           dronopot: 4,
           postamat: 1,
         },
