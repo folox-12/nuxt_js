@@ -33,7 +33,7 @@ export default {
 };
 </script>
 
-<style lang="scss">
+<style lang="scss" >
 @import url("../assets/scss/_nullstyle.scss");
 @import "../assets/scss/fonts";
 

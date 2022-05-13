@@ -219,7 +219,7 @@ export default {
 
 </script>
 
-<style lang="scss">
+<style lang="scss" >
 @import "../assets/scss/card-area";
 ::-webkit-scrollbar{
     width: 5px;
