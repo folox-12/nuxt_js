@@ -3,9 +3,10 @@
     <div class="header-page-search__input">
       <img src="../assets/img/ico/search.svg" alt="" class="search-icon" />
       <input
-        type="text"
+        type="search"
         v-model="inputValue"
-        placeholder="Какой-то поиск"
+        @input="getInputValue"
+        placeholder="Поиск по адресу"
         id="input-main"
       />
       <button class="clear-input" id="clear-input" v-on:click="clearInput()">
@@ -58,14 +59,20 @@
 </template>
 
 <script>
+import { mapActions, mapMutations } from "vuex";
 export default {
   data() {
     return {
       inputValue: "",
     };
   },
-  mounted() {},
+  computed: {},
   methods: {
+    ...mapActions("search", ["getValue"]),
+    ...mapMutations("search", ["updateQuery"]),
+    getInputValue() {
+      this.updateQuery(this.inputValue);
+    },
     clearInput() {
       this.inputValue = "";
     },
@@ -158,7 +165,6 @@ export default {
 
       transition: 0.15s;
       padding-left: 54px;
-
     }
     button {
       position: absolute;

@@ -2,7 +2,7 @@
   <section class="table" id="table">
     <div class="table__data">
       <table class="table__responsive">
-        <TableTitle :title="tableData[0]"></TableTitle>
+        <TableTitle :title="tableTitle"></TableTitle>
         <TableRows :rows="paginatedData"></TableRows>
       </table>
     </div>
@@ -38,10 +38,8 @@ export default {
     };
   },
   props: {
-    tableData: {
-      type: Array,
-      required: true,
-    },
+    tableTitle: { type: Object, default: {} },
+    tableDescription: { type: Array, default: [] },
   },
   components: {
     TableTitle,
@@ -49,15 +47,15 @@ export default {
   },
   computed: {
     countOfLists() {
-      return this.tableData[1].length;
+      return this.tableDescription.length;
     },
     pages() {
-      return Math.ceil(this.tableData[1].length / this.countPage);
+      return Math.ceil(this.tableDescription.length / this.countPage);
     },
     paginatedData() {
       let from = (this.pageNumber - 1) * this.countPage;
       let to = from + this.countPage;
-      return this.tableData[1].slice(from, to);
+      return this.tableDescription.slice(from, to);
     },
     capitalaizedData() {},
   },

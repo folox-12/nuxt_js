@@ -2,7 +2,10 @@
   <div class="main-area" id="main-area">
     <div class="main-area__content" id="main-area-content">
       <div class="list-of-place">
-        <Table :tableData="tableData"></Table>
+        <Table
+          :tableTitle="tableTitle"
+          :tableDescription="tableDataSearched"
+        ></Table>
       </div>
     </div>
     <FilterFD />
@@ -14,14 +17,40 @@ import Table from "../components/Table/Table.vue";
 import FilterFD from "../components/FilterFD.vue";
 
 export default {
+  data() {
+    return {
+      tableData: [],
+    };
+  },
   components: {
     Table,
     FilterFD,
   },
-
+  props: {
+    querySearch: {
+      type: String,
+      default: "",
+    },
+  },
+  created() {
+    this.tableData = this.$store.getters["dronoports/getAllDronoport"];
+  },
   computed: {
-    tableData() {
-      return this.$store.getters["dronoports/getAllDronoport"];
+    tableTitle() {
+      return this.tableData[0];
+    },
+    tableDataSearched() {
+      let querySearch =
+        this.$store.getters["search/getStoreQuery"].toLowerCase();
+      return this.tableData[1].filter((elem) => {
+        console.log(this.querySearch);
+        return elem.address.toLowerCase().includes(querySearch);
+      });
+    },
+  },
+  methods: {
+    inputValue(value) {
+      this.querySearch = value;
     },
   },
 };
