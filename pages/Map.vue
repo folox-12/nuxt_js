@@ -203,7 +203,7 @@ margin: 15px;
 
 .RightShelf-items__buttons{
     right: 30px;
-    bottom: 30px;
+    bottom: 40px;
     display: flex;
     flex-direction: column;
     position: absolute;
