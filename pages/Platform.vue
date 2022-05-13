@@ -317,9 +317,9 @@ export default {
              require("../assets/img/platform3.jpg")
             ],
             titleImg:[
-              'Слева',
-              'Сверху',
-              'Справа'
+              'Вид слева',
+              'Вид сверху',
+              'Вид справа'
             ],
             title:[
                 "Адрес",
