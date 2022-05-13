@@ -1,6 +1,6 @@
 <template>
   <div>
-    <header class="header">
+    <header class="header" :class="{ 'active1' : isOpen }">
       <div class="container">
         <div class="header__body">
           <div class="header__row">
@@ -36,10 +36,30 @@
         </div>
       </div>
     </header>
+    <div class="header__burger" :class="{ 'active' : isOpen }"
+       @click.prevent="toggle">
+                <span>
+            
+                </span>
+            </div>
   </div>
+  
 </template>
 
-<script></script>
+<script>
+export default {
+data() {
+    return {
+      isOpen: false      
+    }
+  },
+  methods: {
+    toggle() {
+      this.isOpen = !this.isOpen
+     }
+  }
+}
+</script>
 <style lang="scss" scoped>
 .header {
   position: fixed;
@@ -104,5 +124,103 @@ a.nuxt-link-exact-active {
 }
 .nuxt-link-exact-active {
   color: #9b42f2;
+}
+@media (max-width: 667px){
+.header__burger{
+		display: block;
+		position: relative;
+		width:20px;
+		height:16px;
+	z-index: 3;
+	margin-right:20px;
+	top:15px;
+	left:15px;
+	span{
+		content:"";
+		background-color: rgba(20,16,41,.8);
+		position: absolute;
+		height:3px;
+		left:0;
+		top:6px;
+		transition: all 0.3s ease 0s;
+		width:100%;
+	}
+	}
+	
+	
+	.header__burger:before,
+	.header__burger:after{
+		content:"";
+		background-color: rgba(20,16,41,.8);
+		position: absolute;
+		width:100%;
+		height:3px;
+		left:0;
+		transition: all 0.3s ease 0s;
+		
+	}
+	.header__burger:before{
+		top: 0px;
+	}
+	.header__burger:after{
+		bottom: 1.5px;
+		height:3px;
+	}
+	.header__burger.active:before{
+		transform: rotate(45deg);
+		top:4px;
+    background:rgba(51, 50, 54, 8);
+    
+    
+
+	}
+	.header__burger.active:after{
+		transform: rotate(-45deg);
+		bottom:9px;
+       background:rgba(51, 50, 54, 8);
+       
+
+	}
+	.header__burger.active span{
+		transform: scale(0);
+  background:rgba(51, 50, 54, 8);
+  
+	}
+  .header__burger.active{
+    position: fixed;
+    width:20px;
+		height:16px;
+    left:270px;
+
+  }
+	.header{
+		position: fixed;
+		left:-100%;
+		width: 100%;
+    max-width: 300px;
+		height:100%;
+		background-color: white;
+		transition: all 0.3s ease 0s;
+		padding: 80px 10px 20px 10px;
+		z-index:2;
+   
+    &__row{
+      flex-direction: column;
+       gap:40px;
+    }
+    &__menu{
+      flex-direction: column;
+      gap:10px;
+    }
+    &__account{
+      display: none;
+    }
+	}
+	.header.active1{
+		left:0;
+		
+		
+	
+	}
 }
 </style>

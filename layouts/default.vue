@@ -60,4 +60,10 @@ body {
 main {
   margin-top: 103px;
 }
+@media (max-width: 667px){
+  main {
+  margin-top: 0px;
+}
+}
+
 </style>
