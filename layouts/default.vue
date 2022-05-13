@@ -5,7 +5,7 @@
       <div class="container">
         <Breadcrumbs :crumbs="getAllRoute" />
         <TitleOfPage></TitleOfPage>
-        <HeaderPageSearch></HeaderPageSearch>
+        <HeaderPageSearch />
         <nuxt />
       </div>
     </main>
@@ -26,11 +26,17 @@ export default {
     HeaderPageSearch,
     Breadcrumbs,
   },
+  data() {
+    return {
+      querySearch1: "",
+    };
+  },
   computed: {
     getAllRoute() {
       return this.$route.fullPath;
     },
   },
+  methods: {},
 };
 </script>
 
