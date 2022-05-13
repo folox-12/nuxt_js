@@ -45,7 +45,7 @@ export default {
           return "Инфраструктура";
         }
         case "Map": {
-          return;
+          return "Карта";
         }
         case "Platform": {
           return "Платформа";
