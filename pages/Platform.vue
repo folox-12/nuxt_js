@@ -53,99 +53,54 @@
               <td>M300</td>
               <td align="right">3430022</td>
               <td>
-               <OpenCard></OpenCard>
+               <OpenCard :link='link[0]'></OpenCard>
               </td>
             </tr>
             <tr>
-              <td>Дронопорт</td>
-              <td>Hive</td>
-              <td>M300</td>
+              <td>Камера</td>
+              <td>AHD</td>
+              <td>C201HD</td>
               <td align="right">3430022</td>
               <td>
-              <OpenCard></OpenCard>
+              <OpenCard :link='link[1]'></OpenCard>
               </td>
             </tr>
             <tr>
-              <td>Дронопорт</td>
-              <td>Hive</td>
-              <td>M300</td>
+              <td>Датчики движения</td>
+              <td>Ajax</td>
+              <td>MonionProtect</td>
               <td align="right">3430022</td>
               <td>
              
-                <OpenCard></OpenCard>
+                <OpenCard :link='link[2]'></OpenCard>
               </td>
             </tr>
             
             <tr>
-              <td>Дронопорт</td>
-              <td>Hive</td>
-              <td>M300</td>
+              <td>Ограждение</td>
+              <td>Wall</td>
+              <td>WallOne</td>
               <td align="right">3430022</td>
               <td>
-               <OpenCard></OpenCard>
+               <OpenCard :link='link[3]'></OpenCard>
               </td>
             </tr>
             <tr>
-              <td>Дронопорт</td>
-              <td>Hive</td>
-              <td>M300</td>
+              <td>Освещение</td>
+              <td>FERON</td>
+              <td>SP3040</td>
               <td align="right">3430022</td>
               <td>
-               <OpenCard></OpenCard>
+               <OpenCard :link='link[4]'></OpenCard>
               </td>
             </tr>
             <tr>
-              <td>Дронопорт</td>
-              <td>Hive</td>
-              <td>M300</td>
+              <td>Постамат</td>
+              <td>Ozon</td>
+              <td>Box</td>
               <td align="right">3430022</td>
               <td>
-                <OpenCard></OpenCard>
-              </td>
-            </tr>
-            <tr>
-              <td>Дронопорт</td>
-              <td>Hive</td>
-              <td>M300</td>
-              <td align="right">3430022</td>
-              <td>
-                <OpenCard></OpenCard>
-              </td>
-            </tr>
-            <tr>
-              <td>Дронопорт</td>
-              <td>Hive</td>
-              <td>M300</td>
-              <td align="right">3430022</td>
-              <td>
-                <OpenCard></OpenCard>
-              </td>
-            </tr>
-            <tr>
-              <td>Дронопорт</td>
-              <td>Hive</td>
-              <td>M300</td>
-              <td align="right">3430022</td>
-            <td>
-                <OpenCard></OpenCard>
-              </td>
-            </tr>
-            <tr>
-              <td>Дронопорт</td>
-              <td>Hive</td>
-              <td>M300</td>
-              <td align="right">3430022</td>
-              <td>
-                <OpenCard></OpenCard>
-              </td>
-            </tr>
-            <tr>
-              <td>Дронопорт</td>
-              <td>Hive</td>
-              <td>M300</td>
-              <td align="right">3430022</td>
-              <td>
-               <OpenCard></OpenCard>
+               <OpenCard :link='link[5]'></OpenCard>
               </td>
             </tr>
           </table>
@@ -178,6 +133,14 @@ export default {
         },
     data(){
         return{
+          link:[
+            '/Dronoport',
+            '/Camera',
+            '/Sensor',
+            '/Wall',
+            '/Light',
+            '/Postamat'
+          ],
             img:[
 
             require("../assets/img/platform1.jpg"),

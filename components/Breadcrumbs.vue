@@ -50,6 +50,21 @@ export default {
         case "Platform": {
           return "Платформа";
         }
+        case "Postamat": {
+          return "Постамат";
+        }
+        case "Camera": {
+          return "Камера";
+        }
+        case "Light": {
+          return "Освещение";
+        }
+        case "Wall": {
+          return "Ограждение";
+        }
+        case "Sensor": {
+          return "Датчик движения";
+        }
         default: {
           return item;
         }

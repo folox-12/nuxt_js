@@ -23,7 +23,7 @@
             </svg>
           </button>
         </div>
-        <button class="ModalButton-button" v-show="showButton">Открыть</button>
+        <nuxt-link :to="link"><button class="ModalButton-button" v-show="showButton">Открыть</button></nuxt-link>
       </div>
     </div>
   </div>
@@ -33,6 +33,12 @@
 import ModalWindow from "../components/ModalWindow.vue";
 
 export default {
+     props:{
+    link:{
+   type: String,
+      required: true,
+}
+  },
   layout: "map",
   components: { ModalWindow },
   data() {
@@ -41,6 +47,7 @@ export default {
       showButton: false,
     };
   },
+ 
 
   methods: {
     hideButton() {
