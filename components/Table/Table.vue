@@ -3,7 +3,10 @@
     <div class="table__data">
       <table class="table__responsive">
         <TableTitle :title="tableTitle"></TableTitle>
-        <TableRows :rows="paginatedData"></TableRows>
+        <TableRows
+          :rows="paginatedData"
+          :selectedPage="indexForNumberOfRow"
+        ></TableRows>
       </table>
     </div>
     <div class="table__paginator table-paginator">
@@ -28,8 +31,10 @@
 </template>
 
 <script>
+import { mapGetters, mapMutations } from "vuex";
 import TableTitle from "./TableTitle.vue";
 import TableRows from "./TableRows.vue";
+
 export default {
   data() {
     return {
@@ -46,22 +51,43 @@ export default {
     TableRows,
   },
   computed: {
+    ...mapGetters("table", ["getSortName", "getSortFlag"]),
     countOfLists() {
       return this.tableDescription.length;
     },
     pages() {
+      if (this.sortedByName.length < this.countPage) {
+        this.pageNumber = 1;
+      }
       return Math.ceil(this.tableDescription.length / this.countPage);
+    },
+    indexForNumberOfRow() {
+      return this.countPage * (this.pageNumber - 1);
+    },
+    sortedByName() {
+      let object = this.tableDescription;
+      let sortName = this.getSortName;
+      return object.sort((a, b) => {
+        if (this.getSortFlag) {
+          return a[sortName] > b[sortName];
+        }
+        return a[sortName] < b[sortName];
+      });
     },
     paginatedData() {
       let from = (this.pageNumber - 1) * this.countPage;
       let to = from + this.countPage;
-      return this.tableDescription.slice(from, to);
+      return this.sortedByName.slice(from, to);
     },
   },
   methods: {
+    ...mapMutations("table", ["updateQuery"]),
     clickPage(page) {
       this.pageNumber = page;
     },
+  },
+  destroyed() {
+    this.updateQuery("");
   },
 };
 </script>

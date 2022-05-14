@@ -6,7 +6,7 @@
       </td>
     </tr>
     <tr class="table-el" v-for="(index, row) in rows" :key="row.id">
-      <td>{{ row + 1 }}</td>
+      <td>{{ row + 1 + selectedPage }}</td>
       <td v-for="(key, value) in index" :class="value" :key="key.id">
         {{ key }}
       </td>
@@ -23,6 +23,10 @@ export default {
     rows: {
       type: Array,
       default: [],
+    },
+    selectedPage: {
+      type: Number,
+      default: 1,
     },
   },
   methods: {},
