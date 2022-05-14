@@ -31,7 +31,7 @@
 </template>
 
 <script>
-import { mapGetters } from "vuex";
+import { mapGetters, mapMutations } from "vuex";
 import TableTitle from "./TableTitle.vue";
 import TableRows from "./TableRows.vue";
 
@@ -81,9 +81,13 @@ export default {
     },
   },
   methods: {
+    ...mapMutations("table", ["updateQuery"]),
     clickPage(page) {
       this.pageNumber = page;
     },
+  },
+  destroyed() {
+    this.updateQuery("");
   },
 };
 </script>

@@ -59,14 +59,19 @@
 </template>
 
 <script>
-import { mapActions, mapMutations } from "vuex";
+import { mapActions, mapMutations, mapGetters } from "vuex";
 export default {
   data() {
     return {
       inputValue: "",
     };
   },
-  computed: {},
+  computed: {
+    ...mapGetters("search", ["getStoreQuery"]),
+  },
+  beforeMount() {
+    this.inputValue = this.getStoreQuery;
+  },
   methods: {
     ...mapActions("search", ["getValue"]),
     ...mapMutations("search", ["updateQuery"]),
