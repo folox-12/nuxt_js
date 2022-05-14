@@ -28,8 +28,10 @@
 </template>
 
 <script>
+import { mapGetters } from "vuex";
 import TableTitle from "./TableTitle.vue";
 import TableRows from "./TableRows.vue";
+
 export default {
   data() {
     return {
@@ -46,16 +48,29 @@ export default {
     TableRows,
   },
   computed: {
+    ...mapGetters("table", ["getSortName", "getSortFlag"]),
     countOfLists() {
       return this.tableDescription.length;
     },
     pages() {
       return Math.ceil(this.tableDescription.length / this.countPage);
     },
+    sortByName() {
+      let object = this.tableDescription;
+      let sortName = this.getSortName;
+      return object.sort((a, b) => {
+        if (this.getSortFlag) {
+          console.log("мы здесь");
+          return a[sortName] > b[sortName];
+        }
+        console.log("a мы здесь");
+        return a[sortName] < b[sortName];
+      });
+    },
     paginatedData() {
       let from = (this.pageNumber - 1) * this.countPage;
       let to = from + this.countPage;
-      return this.tableDescription.slice(from, to);
+      return this.sortByName.slice(from, to);
     },
   },
   methods: {

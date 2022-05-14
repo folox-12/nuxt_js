@@ -1,14 +1,19 @@
 <template>
   <thead>
     <tr class="table-title">
-      <th v-for="value in title" :key="value.id">
-        {{ value }}
+      <th
+        v-for="(name, value) in title"
+        :key="name"
+        @click="getNameForSort(value)"
+      >
+        {{ name }}
       </th>
     </tr>
   </thead>
 </template>
 
 <script>
+import { mapGetters, mapActions } from "vuex";
 export default {
   props: {
     title: {
@@ -19,7 +24,15 @@ export default {
   data() {
     return {};
   },
-  methods: {},
+  computed: {
+    ...mapGetters("table", ["getSortFlag"]),
+  },
+  methods: {
+    ...mapActions("table", ["changeSort"]),
+    getNameForSort(value) {
+      this.changeSort(value);
+    },
+  },
 };
 </script>
 
