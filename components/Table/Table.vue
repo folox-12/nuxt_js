@@ -1,22 +1,29 @@
 <template>
-  <section class="table">
+  <section class="table" id="table">
     <div class="table__data">
       <table class="table__responsive">
-        <thead>
-          <TableTitle :title="tableData[0]"></TableTitle>
-        </thead>
-        <TableRows :rows="tableData[1]"></TableRows>
+        <TableTitle :title="tableTitle"></TableTitle>
+        <TableRows
+          :rows="paginatedData"
+          :selectedPage="indexForNumberOfRow"
+        ></TableRows>
       </table>
     </div>
     <div class="table__paginator table-paginator">
       <div class="table-paginator__row">
         <div class="table-paginator__ul">
-          <li class="table-paginator__li active">1</li>
-          <li class="table-paginator__li">2</li>
-          <li class="table-paginator__li">3</li>
+          <li
+            class="table-paginator__li"
+            v-for="page in pages"
+            :key="page"
+            :class="{ 'table-paginator__li active': page === pageNumber }"
+            @click="clickPage(page)"
+          >
+            {{ page }}
+          </li>
         </div>
         <div class="table-paginator__total">
-          <span>Найдено всего 1</span>
+          <span>Найдено всего {{ countOfLists }}</span>
         </div>
       </div>
     </div>
@@ -24,18 +31,63 @@
 </template>
 
 <script>
+import { mapGetters, mapMutations } from "vuex";
 import TableTitle from "./TableTitle.vue";
 import TableRows from "./TableRows.vue";
+
 export default {
+  data() {
+    return {
+      countPage: 5,
+      pageNumber: 1,
+    };
+  },
   props: {
-    tableData: {
-      type: Array,
-      required: true,
-    },
+    tableTitle: { type: Object, default: {} },
+    tableDescription: { type: Array, default: [] },
   },
   components: {
     TableTitle,
     TableRows,
+  },
+  computed: {
+    ...mapGetters("table", ["getSortName", "getSortFlag"]),
+    countOfLists() {
+      return this.tableDescription.length;
+    },
+    pages() {
+      if (this.sortedByName.length < this.countPage) {
+        this.pageNumber = 1;
+      }
+      return Math.ceil(this.tableDescription.length / this.countPage);
+    },
+    indexForNumberOfRow() {
+      return this.countPage * (this.pageNumber - 1);
+    },
+    sortedByName() {
+      let object = this.tableDescription;
+      let sortName = this.getSortName;
+      return object.sort((a, b) => {
+        if (this.getSortFlag) {
+          return a[sortName] > b[sortName];
+        }
+        return a[sortName] < b[sortName];
+      });
+    },
+    paginatedData() {
+      let from = (this.pageNumber - 1) * this.countPage;
+      let to = from + this.countPage;
+      return this.sortedByName.slice(from, to);
+    },
+  },
+  methods: {
+    ...mapMutations("table", ["updateQuery"]),
+    clickPage(page) {
+      this.pageNumber = page;
+    },
+  },
+  destroyed() {
+    this.updateQuery("");
   },
 };
 </script>
@@ -47,6 +99,7 @@ export default {
   max-width: 1140px;
   padding-bottom: 25px;
   max-height: 100%;
+  transition: all 0.5s ease;
   &__data {
     width: 100%;
     height: fit-content;
@@ -109,8 +162,11 @@ table.table__responsive {
     }
     &-numerical {
     }
-    &-address {
+    td.address {
+      width: 520px;
+      word-wrap: wrap;
     }
+
     &-dronport {
     }
     &-postamat {
@@ -151,7 +207,6 @@ table.table__responsive {
       color: #9b42f5;
     }
   }
-
   &__total {
     position: absolute;
     right: 25px;

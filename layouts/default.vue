@@ -3,10 +3,9 @@
     <Header></Header>
     <main>
       <div class="container">
-        <HeaderPageNavigation></HeaderPageNavigation>
-        <Breadcrumbs></Breadcrumbs>
+        <Breadcrumbs :crumbs="getAllRoute" />
         <TitleOfPage></TitleOfPage>
-        <HeaderPageSearch></HeaderPageSearch>
+        <HeaderPageSearch />
         <nuxt />
       </div>
     </main>
@@ -27,14 +26,23 @@ export default {
     HeaderPageSearch,
     Breadcrumbs,
   },
+  data() {
+    return {
+      querySearch1: "",
+    };
+  },
+  computed: {
+    getAllRoute() {
+      return this.$route.fullPath;
+    },
+  },
+  methods: {},
 };
 </script>
 
 <style lang="scss">
 @import url("../assets/scss/_nullstyle.scss");
 @import "../assets/scss/fonts";
-
-
 
 body {
   background-color: #f7f7f9;
@@ -52,4 +60,10 @@ body {
 main {
   margin-top: 103px;
 }
+@media (max-width: 667px){
+  main {
+  margin-top: 0px;
+}
+}
+
 </style>

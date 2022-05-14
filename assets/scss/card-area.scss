@@ -66,6 +66,7 @@ transition: all .2s;
     }
 }
 .card{
+    margin-top:30px;
     hr{
         border: 1px solid #D3D3D3;
         width:100%;  
@@ -235,30 +236,20 @@ transform: matrix(1, 0, 0.01, -1, 0, 0);
         }
     }
 }
-::-webkit-scrollbar {
-    width: 5px;
+
+@media (max-width:1000px){
+    .card-infrastructure{
+        &__table{
+            min-width:100px;
+        }
+}
+.card{
+    &__images{
+        padding:30px 80px 30px 80px;
+    }
+    &__infrastructure{
+        padding:10px;
+    }
+}
 }
 
-::-webkit-scrollbar-track {
-   
-    background: #FFFFFF;
-    border-radius: 6px;
-}
-
-::-webkit-scrollbar-thumb {
-    background: #9B42F5;
-    border-radius: 6px;
-}
-
-
-progress::-webkit-progress-bar {
- color: #9B42F5;
-  }
-  
-  progress::-webkit-progress-value {
-    color: #9B42F5;
-  }
-
-  progress {
-    color: #9B42F5;
-  }

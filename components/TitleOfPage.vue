@@ -5,7 +5,7 @@
         <div class="header-page__title">
           <h1>Список посадочных площадок</h1>
           <div class="header-page__button">
-            <button class="btn">Применить</button>
+            <button class="btn">Редактировать</button>
           </div>
         </div>
       </div>
@@ -52,5 +52,35 @@ export default {};
     }
   }
 
+}
+@media (max-width: 667px){
+  .header-page {
+  &__title {
+    display: flex;
+    justify-content: space-between;
+    h1 {
+      font-family: "Montserrat";
+      font-style: normal;
+      font-weight: 500;
+      font-size: 20px;
+      line-height: 29px;
+      color: #141029;
+    }
+  }
+  &__button {
+    button {
+      background: linear-gradient(90deg, #0094ff 3.2%, #9b42f5 73.28%);
+      color: white;
+      height: 38px;
+      min-width: 150px;
+      font-family: "Montserrat", serif;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      -webkit-transition: 0.5s;
+      transition: all 0.2s;
+    }
+}
+}
 }
 </style>
