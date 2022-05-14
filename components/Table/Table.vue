@@ -56,6 +56,9 @@ export default {
       return this.tableDescription.length;
     },
     pages() {
+      if (this.sortedByName.length < this.countPage) {
+        this.pageNumber = 1;
+      }
       return Math.ceil(this.tableDescription.length / this.countPage);
     },
     indexForNumberOfRow() {
