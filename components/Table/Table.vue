@@ -3,7 +3,10 @@
     <div class="table__data">
       <table class="table__responsive">
         <TableTitle :title="tableTitle"></TableTitle>
-        <TableRows :rows="paginatedData"></TableRows>
+        <TableRows
+          :rows="paginatedData"
+          :selectedPage="indexForNumberOfRow"
+        ></TableRows>
       </table>
     </div>
     <div class="table__paginator table-paginator">
@@ -55,22 +58,23 @@ export default {
     pages() {
       return Math.ceil(this.tableDescription.length / this.countPage);
     },
-    sortByName() {
+    indexForNumberOfRow() {
+      return this.countPage * (this.pageNumber - 1);
+    },
+    sortedByName() {
       let object = this.tableDescription;
       let sortName = this.getSortName;
       return object.sort((a, b) => {
         if (this.getSortFlag) {
-          console.log("мы здесь");
           return a[sortName] > b[sortName];
         }
-        console.log("a мы здесь");
         return a[sortName] < b[sortName];
       });
     },
     paginatedData() {
       let from = (this.pageNumber - 1) * this.countPage;
       let to = from + this.countPage;
-      return this.sortByName.slice(from, to);
+      return this.sortedByName.slice(from, to);
     },
   },
   methods: {
