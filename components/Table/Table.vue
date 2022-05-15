@@ -86,9 +86,6 @@ export default {
       this.pageNumber = page;
     },
   },
-  destroyed() {
-    this.updateQuery("");
-  },
 };
 </script>
 
