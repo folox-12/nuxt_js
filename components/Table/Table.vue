@@ -95,8 +95,8 @@ export default {
 <style lang="scss">
 .table {
   background-color: #fff;
-  width: 100%;
-  max-width: 1140px;
+  // width: 100%;
+  // max-width: 1140px;
   padding-bottom: 25px;
   max-height: 100%;
   transition: all 0.5s ease;
