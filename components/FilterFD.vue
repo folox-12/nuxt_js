@@ -1,7 +1,6 @@
 <template>
   <transition name="slide-fade">
     <div v-if="this.showFilter" class="filter-block" id="filter-block">
-      <!-- <h1>{{ this.showFilter }}</h1> -->
       <div
         v-if="this.showFilter"
         id="myDropdown"
@@ -200,7 +199,6 @@ export default {
     width: 100%;
     visibility: visible;
     opacity: 1;
-    // display: block;
   }
 }
 .spoiler-main {
@@ -215,7 +213,6 @@ export default {
 .spoiler__item {
   margin: 0px 0px 20px 0px;
 }
-
 .spoiler__reset {
   margin-bottom: 15px;
   &_button {
@@ -264,30 +261,25 @@ export default {
   line-height: 20px;
   margin-bottom: 15px;
 }
-
 .input-filter {
   background-color: rgba(20, 16, 41, 0.02);
   padding: 15px 15px 15px 15px;
   width: 280px;
 }
-
 .input-spoiler-content {
   position: relative;
   width: 100%;
-
   &#droneport-num-inp {
     margin-top: 1rem;
     display: none;
   }
 }
-
 .clear-input {
   position: absolute;
   background-color: inherit;
   top: 18px;
   right: 30px;
 }
-
 .radio-filter__item {
   display: flex;
   align-items: center;
@@ -297,7 +289,6 @@ export default {
   // margin-top: 5px;
   width: 280px;
 }
-
 .radio__input {
   cursor: pointer;
   width: 24px;

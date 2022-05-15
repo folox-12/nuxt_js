@@ -1,6 +1,7 @@
 export default {
   state: {
     showFilter: false,
+    defaultInput: "",
   },
   mutations: {
     changeVisibility(state) {
