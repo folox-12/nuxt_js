@@ -5,7 +5,7 @@
       <div class="container">
         <Breadcrumbs :crumbs="getAllRoute" />
         <TitleOfPage></TitleOfPage>
-        <HeaderPageSearch />
+        <HeaderPageSearch @showFilter="openFilter()" />
         <nuxt />
       </div>
     </main>
@@ -29,6 +29,7 @@ export default {
   data() {
     return {
       querySearch1: "",
+      showFilter: false,
     };
   },
   computed: {
@@ -36,7 +37,12 @@ export default {
       return this.$route.fullPath;
     },
   },
-  methods: {},
+  methods: {
+    openFilter() {
+      this.showFilter = !this.showFilter;
+      alert("hui");
+    },
+  },
 };
 </script>
 
@@ -60,10 +66,9 @@ body {
 main {
   margin-top: 103px;
 }
-@media (max-width: 667px){
+@media (max-width: 667px) {
   main {
-  margin-top: 0px;
+    margin-top: 0px;
+  }
 }
-}
-
 </style>

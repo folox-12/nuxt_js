@@ -62,13 +62,11 @@ export default {
 
 <style lang="scss" scoped>
 .main-area {
-  width: 100%;
   display: flex;
   gap: 1rem;
   transition: all 0.5s ease;
   &__content {
     width: 100%;
-    // background: red;
     transition: all 0.5s ease;
   }
 }
