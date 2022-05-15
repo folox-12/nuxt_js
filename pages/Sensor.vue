@@ -10,7 +10,7 @@
         <hr>
         <div class="card__main card-main">
             <div class="card-main__title">
-                <h2>Постамат</h2>
+                <h2>Датчики движения</h2>
             </div>
           
             <Tablecard :title="title"
