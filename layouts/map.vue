@@ -14,7 +14,6 @@
 import Header from "../components/Header.vue";
 import HeaderPageNavigation from "../components/HeaderPageNavigation.vue";
 import TitleOfPage from "../components/TitleOfPage.vue";
-import HeaderPageSearch from "../components/HeaderPageSearch.vue";
 import Breadcrumbs from "../components/Breadcrumbs.vue";
 export default {
   name: "Map",
@@ -22,7 +21,6 @@ export default {
     Header,
     TitleOfPage,
     HeaderPageNavigation,
-    HeaderPageSearch,
     Breadcrumbs,
   },
   computed: {
@@ -33,13 +31,11 @@ export default {
 };
 </script>
 
-<style lang="scss" >
+<style lang="scss">
 @import url("../assets/scss/_nullstyle.scss");
 @import "../assets/scss/fonts";
 
 body {
   background-color: #f7f7f9;
 }
-
 </style>
-
