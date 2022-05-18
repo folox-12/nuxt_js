@@ -37,6 +37,7 @@ export default {
     link:{
    type: String,
       required: true,
+      default:"/Platform"
 }
   },
   layout: "map",

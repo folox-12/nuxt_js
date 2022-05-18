@@ -65,6 +65,9 @@ export default {
         case "Sensor": {
           return "Датчик движения";
         }
+        case "Dronoport":{
+          return "Дронопорт"
+        }
         default: {
           return item;
         }
