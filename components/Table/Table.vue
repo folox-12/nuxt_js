@@ -109,17 +109,6 @@ export default {
     overflow-x: auto;
   }
 
-  &-numerical {
-  }
-  &-address {
-  }
-  &-dronport {
-  }
-  &-postamat {
-  }
-  &-title {
-  }
-
   &-el {
   }
 }
@@ -157,48 +146,6 @@ table.table__responsive {
         cursor: pointer;
       }
     }
-  }
-}
-
-.table-paginator {
-  &__row {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    position: relative;
-    flex-direction: column;
-  }
-
-  &__ul {
-    display: flex;
-    gap: 0 4px;
-    ul {
-      list-style-type: none;
-    }
-  }
-
-  &__li {
-    width: 50px;
-    height: 50px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    border-radius: 100%;
-    &:hover {
-      background-color: #f7f7f9;
-    }
-    &.active {
-      background-color: #f7f7f9;
-      color: #9b42f5;
-    }
-  }
-  &__total {
-    position: absolute;
-    right: 25px;
-    color: #6d6a7a;
-    font-size: 17px;
-    font-weight: 400;
   }
 }
 </style>

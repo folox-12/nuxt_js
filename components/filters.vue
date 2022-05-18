@@ -57,12 +57,14 @@
         </button>
       </div>
     </div>
-    <slot
-      :viewFormat="viewFormat"
-      :showOption="showOption"
-      :switchTypeOfView="switchTypeOfView"
-    >
-    </slot>
+    <div class="filter-content">
+      <slot
+        :viewFormat="viewFormat"
+        :showOption="showOption"
+        :switchTypeOfView="switchTypeOfView"
+      >
+      </slot>
+    </div>
   </div>
 </template>
 
@@ -78,6 +80,10 @@ export default {
       type: Boolean,
       default: false,
     },
+    data: {
+      type: Array,
+      required: true,
+    },
   },
   computed: {},
   methods: {
@@ -89,6 +95,10 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.filter-content {
+  display: flex;
+  flex-wrap: wrap;
+}
 .slide-fade-enter-active {
   transition: all 0.8s ease;
 }
