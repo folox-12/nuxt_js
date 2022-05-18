@@ -13,10 +13,6 @@
         <button class="clear-input" id="clear-input" @:click="clearInput()">
           <img src="../assets/img/ico/close.svg" alt="" />
         </button>
-
-        <transition name="slide-fade">
-          <h1 v-if="showFilter">text</h1>
-        </transition>
       </div>
       <div class="header-page-search__buttons">
         <button id="filter-btn" v-on:click="openFilter()">
@@ -45,7 +41,7 @@
             />
           </svg>
         </button>
-        <button id="settings-btn" v-on:click="openSettings()">
+        <button id="settings-btn" v-on:click="showOption = !showOption">
           <svg
             width="26"
             height="25"
@@ -61,15 +57,34 @@
         </button>
       </div>
     </div>
-    <slot> </slot>
+    <slot
+      :viewFormat="viewFormat"
+      :showOption="showOption"
+      :switchTypeOfView="switchTypeOfView"
+    >
+    </slot>
   </div>
 </template>
 
 <script>
-import Table from "./Table/Table.vue";
-
 export default {
   components: {},
+  props: {
+    viewFormat: {
+      type: String,
+      default: "table",
+    },
+    showOption: {
+      type: Boolean,
+      default: false,
+    },
+  },
+  computed: {},
+  methods: {
+    switchTypeOfView(value) {
+      this.viewFormat = value;
+    },
+  },
 };
 </script>
 
