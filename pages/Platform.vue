@@ -38,16 +38,16 @@
                 <th align="right">Инвентарный номер</th>
                 <th></th>
               </tr>
-              <tr>
-                <td>Дронопорт</td>
-                <td>Hive</td>
-                <td>M300</td>
-                <td align="right">3430022</td>
+              <tr v-for="(item,index) in infrastructure " v-bind:key='index'>
+                <td>{{item.name}}</td>
+                <td>{{item.company}}</td>
+                <td>{{item.type}}</td>
+                <td align="right">{{item.id}}</td>
                 <td>
-                  <OpenCard :link="link[0]"></OpenCard>
+                  <OpenCard :link="item.link"></OpenCard>
                 </td>
               </tr>
-              <tr>
+              <!-- <tr>
                 <td>Камера</td>
                 <td>AHD</td>
                 <td>C201HD</td>
@@ -92,7 +92,7 @@
                 <td>
                   <OpenCard :link="link[5]"></OpenCard>
                 </td>
-              </tr>
+              </tr> -->
             </table>
           </div>
         </div>
@@ -116,14 +116,16 @@ export default {
   },
   data() {
     return {
-      link: [
-        "/Dronoport",
-        "/Camera",
-        "/Sensor",
-        "/Wall",
-        "/Light",
-        "/Postamat",
+      infrastructure:[
+{name : 'Дронопорт', company:'Hive', type:'М300', id: "312312414",link: "/Dronoport"  },
+{name : 'Камера', company:'AHD', type:'C201HD', id: "312312414",link: "/Camera"  },
+{name : 'Датчики движения', company:'Ajax', type:'MonionProtect', id: "312312414",link: "/Sensor"  },
+{name : 'Ограждение', company:'Wall', type:'WallOne', id: "312312414",link: "/Wall"  },
+{name : 'Освещение', company:'FERON', type:'SP3040', id: "312312414",link: "/Light"  },
+{name : 'Постамат', company:'Ozon', type:'Box', id: "312312414",link: "/Postamat"  },
+
       ],
+     
       img: [
         require("../assets/img/platform1.jpg"),
         require("../assets/img/platform2.jpg"),
