@@ -6,10 +6,10 @@
       <selectComponent />
     </div> -->
     <filters
-      :view-formats="['table', 'map']"
       :view-format="'table'"
       :data="dataAboutDronoport"
-      @updateValue="updateValue"
+      :itemsOnPage="5"
+      :placeHolder="placeHolder"
     >
       <template
         #default="{
@@ -18,6 +18,9 @@
           switchTypeOfView,
           tableDescription,
           tableTitle,
+          itemsOnPage,
+          lenghtSearchedData,
+          onChangePage,
         }"
       >
         <div class="left-main-content">
@@ -26,7 +29,11 @@
             :tableDescription="tableDescription"
             :tableTitle="tableTitle"
           >
-            <pagination :countOfallDronoport="tableDescription.size" />
+            <pagination
+              :itemsOnPage="itemsOnPage"
+              :countOfallDronoport="lenghtSearchedData"
+              @UpdatedPage="onChangePage"
+            />
           </tableView>
           <div v-else-if="viewFormat === 'map'">
             <Map></Map>
@@ -69,6 +76,7 @@ export default {
   },
   data() {
     return {
+      placeHolder: "Введите адрес",
       showModal: false,
     };
   },

@@ -6,7 +6,7 @@
         <input
           type="search"
           v-model="inputValue"
-          placeholder="Поиск по адресу"
+          :placeholder="placeHolder"
           id="input-main"
         />
         <button class="clear-input" id="clear-input" @click="clearInput()">
@@ -61,8 +61,11 @@
         :viewFormat="viewFormat"
         :showOption="showOption"
         :switchTypeOfView="switchTypeOfView"
-        :tableDescription="tableDataSearched"
+        :tableDescription="tableDataPaginated"
+        :lenghtSearchedData="tableDataSearched.length"
         :tableTitle="data[0]"
+        :itemsOnPage="itemsOnPage"
+        :onChangePage="updatedPage"
       >
       </slot>
     </div>
@@ -74,10 +77,16 @@ export default {
   data() {
     return {
       inputValue: "",
+      to: this.itemsOnPage,
+      from: 0,
     };
   },
   components: {},
   props: {
+    itemsOnPage: {
+      type: Number,
+      dafault: 5,
+    },
     viewFormat: {
       type: String,
       default: "table",
@@ -89,6 +98,10 @@ export default {
     data: {
       type: Array,
       required: true,
+    },
+    placeHolder: {
+      type: String,
+      default: "Поиск по адресу",
     },
   },
   computed: {
@@ -108,9 +121,16 @@ export default {
           .includes(querySearch, 0);
       });
     },
+    tableDataPaginated() {
+      return this.tableDataSearched.slice(this.from, this.to);
+    },
   },
 
   methods: {
+    updatedPage(from, to) {
+      this.from = from;
+      this.to = to;
+    },
     clearInput() {
       this.inputValue = "";
     },
