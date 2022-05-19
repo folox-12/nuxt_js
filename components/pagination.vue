@@ -12,7 +12,7 @@
         </li>
       </div>
       <div class="paginator__total">
-        <span>Найдено всего {{ sortedByName.lenght }}</span>
+        <span>Найдено всего {{ allPage }}</span>
       </div>
     </div>
   </div>
@@ -23,8 +23,7 @@ export default {
     return {
       countPage: 5,
       pageNumber: 1,
-      sortedByName: [1, 2, 3],
-      tableDescription: [1, 2, 3, 5],
+      allPage: 0,
     };
   },
   proops: {
@@ -32,14 +31,15 @@ export default {
       type: [String, Number],
       default: 5,
     },
+    countOfallDronoport: {
+      type: Number,
+      required: true,
+    },
+  },
+  mounted() {
+    this.allPages = this.countOfallDronoport / this.countPage;
   },
   computed: {
-    pages() {
-      if (this.sortedByName.length < this.countPage) {
-        this.pageNumber = 1;
-      }
-      return Math.ceil(this.tableDescription.length / this.countPage);
-    },
     indexForNumberOfRow() {
       return this.countPage * (this.pageNumber - 1);
     },
