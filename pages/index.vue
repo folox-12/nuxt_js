@@ -8,7 +8,9 @@
         ></Table>
       </div>
     </div>
+    <keep-alive>
     <FilterFD />
+    </keep-alive>
   </div>
 </template>
 

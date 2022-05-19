@@ -1,4 +1,5 @@
 <template>
+<keep-alive>
   <div class="filters">
     <div class="header-page__search header-page-search">
       <div class="header-page-search__input">
@@ -64,6 +65,7 @@
     >
     </slot>
   </div>
+</keep-alive>
 </template>
 
 <script>

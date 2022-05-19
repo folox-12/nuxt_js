@@ -1,4 +1,5 @@
 <template>
+<keep-alive>
   <transition name="slide-fade">
     <div v-if="this.showFilter" class="filter-block" id="filter-block">
       <div
@@ -133,6 +134,7 @@
       </div>
     </div>
   </transition>
+  </keep-alive>
 </template>
 
 <script>

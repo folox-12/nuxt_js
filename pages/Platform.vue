@@ -47,52 +47,7 @@
                   <OpenCard :link="item.link"></OpenCard>
                 </td>
               </tr>
-              <!-- <tr>
-                <td>Камера</td>
-                <td>AHD</td>
-                <td>C201HD</td>
-                <td align="right">3430022</td>
-                <td>
-                  <OpenCard :link="link[1]"></OpenCard>
-                </td>
-              </tr>
-              <tr>
-                <td>Датчики движения</td>
-                <td>Ajax</td>
-                <td>MonionProtect</td>
-                <td align="right">3430022</td>
-                <td>
-                  <OpenCard :link="link[2]"></OpenCard>
-                </td>
-              </tr>
-
-              <tr>
-                <td>Ограждение</td>
-                <td>Wall</td>
-                <td>WallOne</td>
-                <td align="right">3430022</td>
-                <td>
-                  <OpenCard :link="link[3]"></OpenCard>
-                </td>
-              </tr>
-              <tr>
-                <td>Освещение</td>
-                <td>FERON</td>
-                <td>SP3040</td>
-                <td align="right">3430022</td>
-                <td>
-                  <OpenCard :link="link[4]"></OpenCard>
-                </td>
-              </tr>
-              <tr>
-                <td>Постамат</td>
-                <td>Ozon</td>
-                <td>Box</td>
-                <td align="right">3430022</td>
-                <td>
-                  <OpenCard :link="link[5]"></OpenCard>
-                </td>
-              </tr> -->
+             
             </table>
           </div>
         </div>

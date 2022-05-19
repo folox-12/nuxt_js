@@ -18,6 +18,7 @@
       </transition>
     </div>
     <div class="header-page-search__buttons">
+      <keep-alive>
       <button id="filter-btn" v-on:click="openFilter()">
         <svg
           svg
@@ -44,6 +45,7 @@
           />
         </svg>
       </button>
+      </keep-alive>
       <button id="settings-btn" v-on:click="openSettings()">
         <svg
           width="26"
