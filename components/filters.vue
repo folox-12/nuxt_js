@@ -6,11 +6,10 @@
         <input
           type="search"
           v-model="inputValue"
-          @input="getInputValue"
           placeholder="Поиск по адресу"
           id="input-main"
         />
-        <button class="clear-input" id="clear-input" @:click="clearInput()">
+        <button class="clear-input" id="clear-input" @click="clearInput()">
           <img src="../assets/img/ico/close.svg" alt="" />
         </button>
       </div>
@@ -57,17 +56,26 @@
         </button>
       </div>
     </div>
-    <slot
-      :viewFormat="viewFormat"
-      :showOption="showOption"
-      :switchTypeOfView="switchTypeOfView"
-    >
-    </slot>
+    <div class="filter-content">
+      <slot
+        :viewFormat="viewFormat"
+        :showOption="showOption"
+        :switchTypeOfView="switchTypeOfView"
+        :tableDescription="tableDataSearched"
+        :tableTitle="data[0]"
+      >
+      </slot>
+    </div>
   </div>
 </template>
 
 <script>
 export default {
+  data() {
+    return {
+      inputValue: "",
+    };
+  },
   components: {},
   props: {
     viewFormat: {
@@ -78,17 +86,66 @@ export default {
       type: Boolean,
       default: false,
     },
+    data: {
+      type: Array,
+      required: true,
+    },
   },
-  computed: {},
+  computed: {
+    inputValueUpdated() {
+      return this.inputValue
+        .trim()
+        .toLowerCase()
+        .replace(/[\s.,\s]/g, "");
+    },
+    tableDataSearched() {
+      let querySearch = this.inputValueUpdated;
+      let data = this.data[1];
+      return data.filter((elem) => {
+        return elem.address
+          .toLowerCase()
+          .replace(/[\s.,\s]/g, "")
+          .includes(querySearch, 0);
+      });
+    },
+  },
+
   methods: {
+    clearInput() {
+      this.inputValue = "";
+    },
     switchTypeOfView(value) {
       this.viewFormat = value;
+    },
+    searchedDataDescription(filters) {
+      if (!filters) {
+        return tableData[1];
+      }
+      let data = tableData[1];
+      return data.filter((elem) => {
+        for (const [key, value] of Object.entries(filters)) {
+          return elem[key]
+            .toLowerCase()
+            .replace(/[\s.,\s]/g, "")
+            .includes(
+              value
+                .trim()
+                .toLowerCase()
+                .replace(/[\s.,\s]/g, ""),
+              0
+            );
+        }
+      });
     },
   },
 };
 </script>
 
 <style lang="scss" scoped>
+.filter-content {
+  display: flex;
+  flex-wrap: wrap;
+}
 .slide-fade-enter-active {
   transition: all 0.8s ease;
 }

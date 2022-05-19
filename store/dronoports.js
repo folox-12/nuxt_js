@@ -65,5 +65,19 @@ export default {
     countOfLenght(state) {
       return state.tableData[1].length;
     },
+    filteredDataDescription(filters) {
+      if (!filters) {
+        return state.tableData[1];
+      }
+      let data = state.tableData[1];
+      for (const [key, value] in Object.entries(filters)) {
+        return data.filter((elem) => {
+          return elem[key]
+            .toLowerCase()
+            .replace(/[\s.,\s]/g, "")
+            .includes(value, 0);
+        });
+      }
+    },
   },
 };
