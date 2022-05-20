@@ -11,6 +11,7 @@
             >
               {{ name }}
               <svg
+                v-show="false"
                 width="11"
                 height="11"
                 viewBox="0 0 11 11"
@@ -111,22 +112,10 @@ export default {
     overflow-x: auto;
   }
 
-  &-numerical {
-  }
-  &-address {
-  }
-  &-dronport {
-  }
-  &-postamat {
-  }
-  &-title {
-  }
-
   &-el {
   }
 }
 table.table__responsive {
-  min-width: 1140px;
   border-collapse: collapse;
 
   th,
