@@ -1,7 +1,6 @@
 <template>
-  <div class="buttons">
-    <button @click="changeViewFormat('map')">Карта</button>
-    <button @click="changeViewFormat('table')">Таблица</button>
+  <div class="right-side">
+    <slot></slot>
   </div>
 </template>
 
