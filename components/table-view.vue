@@ -56,13 +56,14 @@ export default {
   data() {
     return {
       countPage: 5,
-      pageNumber: 1,
       to: "",
     };
   },
   props: {
     tableTitle: { type: Object, default: {} },
     tableDescription: { type: Array, default: [] },
+    pageNumber: { type: Number, default: 1 },
+    itemsOnPage: { type: Number, required: true },
   },
   components: {},
   computed: {
@@ -70,7 +71,7 @@ export default {
       return this.tableDescription.length;
     },
     indexForNumberOfRow() {
-      return this.countPage * (this.pageNumber - 1) + 1;
+      return this.itemsOnPage * (this.pageNumber - 1) + 1; //row[0, 1] + countItem * (pageNumber -1) + 1
     },
     // sortedByName() {
     //   let object = this.tableDescription;
@@ -88,7 +89,11 @@ export default {
     //   return this.sortedByName.slice(from, to);
     // },
   },
-  methods: {},
+  methods: {
+    UpdatedPageNumber(value) {
+      this.pageNumber = value;
+    },
+  },
 };
 </script>
 

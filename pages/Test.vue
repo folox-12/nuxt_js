@@ -26,6 +26,8 @@
           itemsOnPage,
           lenghtSearchedData,
           onChangePage,
+          UpdatedPageNumber,
+          pageNumber,
         }"
       >
         <div class="left-main-content">
@@ -33,11 +35,14 @@
             v-if="viewFormat === 'table'"
             :tableDescription="tableDescription"
             :tableTitle="tableTitle"
+            :pageNumber="pageNumber"
+            :itemsOnPage="itemsOnPage"
           >
             <pagination
               :itemsOnPage="itemsOnPage"
               :countOfallDronoport="lenghtSearchedData"
-              @UpdatedPage="onChangePage"
+              @UpdatedPageSlice="onChangePage"
+              @UpdatedPageNumber="UpdatedPageNumber"
             />
           </tableView>
           <div v-else-if="viewFormat === 'map'">

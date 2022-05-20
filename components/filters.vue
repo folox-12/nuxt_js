@@ -33,6 +33,8 @@
         :tableTitle="data[0]"
         :itemsOnPage="itemsOnPage"
         :onChangePage="updatedPage"
+        :pageNumber="pageNumber"
+        :UpdatedPageNumber="updatedIndexRow"
         :typeViewOfRightSide="typeViewOfRightSide"
       >
       </slot>
@@ -49,6 +51,7 @@ export default {
       from: 0,
       showRightSide: false,
       typeViewOfRightSide: null,
+      pageNumber: 1,
     };
   },
   components: {},
@@ -114,6 +117,9 @@ export default {
     updatedPage(from, to) {
       this.from = from;
       this.to = to;
+    },
+    updatedIndexRow(value) {
+      this.pageNumber = value;
     },
     clearInput() {
       this.inputValue = "";

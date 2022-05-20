@@ -48,16 +48,14 @@ export default {
       }
       return Math.ceil(this.countOfallDronoport / this.itemsOnPage);
     },
-    indexForNumberOfRow() {
-      return this.itemsOnPage * (this.pageNumber - 1);
-    },
   },
   methods: {
     changePage(page) {
       this.pageNumber = page;
       let from = (page - 1) * this.itemsOnPage;
       let to = (page - 1) * this.itemsOnPage + this.itemsOnPage;
-      this.$emit("UpdatedPage", from, to);
+      this.$emit("UpdatedPageSlice", from, to);
+      this.$emit("UpdatedPageNumber", page);
     },
   },
 };
