@@ -34,6 +34,8 @@
         :tableTitle="data[0]"
         :itemsOnPage="itemsOnPage"
         :onChangePage="updatedPage"
+        :pageNumber="pageNumber"
+        :UpdatedPageNumber="updatedIndexRow"
         :typeViewOfRightSide="typeViewOfRightSide"
       >
       </slot>
@@ -50,7 +52,8 @@ export default {
       to: this.itemsOnPage,
       from: 0,
       showRightSide: false,
-      typeViewOfRightSide: "",
+      typeViewOfRightSide: null,
+      pageNumber: 1,
     };
   },
   components: {},
@@ -105,6 +108,10 @@ export default {
     toggleShowRightSide(value) {
       if (value == this.typeViewOfRightSide) {
         this.showRightSide = !this.showRightSide;
+        this.typeViewOfRightSide = null;
+      } else if (this.typeViewOfRightSide == null) {
+        this.typeViewOfRightSide = value;
+        this.showRightSide = !this.showRightSide;
       } else {
         this.typeViewOfRightSide = value;
       }
@@ -112,6 +119,9 @@ export default {
     updatedPage(from, to) {
       this.from = from;
       this.to = to;
+    },
+    updatedIndexRow(value) {
+      this.pageNumber = value;
     },
     clearInput() {
       this.inputValue = "";
@@ -145,15 +155,16 @@ export default {
 
 <style lang="scss" scoped>
 .filter-content {
+  width: 100%;
   display: flex;
-  flex-wrap: wrap;
+  gap: 15px;
 }
 .filter-content :first-child() {
-  flex: 1 1 auto;
+  flex: 1 1 63%;
 }
 
 .filter-content :last-child() {
-  flex: 0 0 20%;
+  flex: 0 0 35%;
 }
 .slide-fade-enter-active {
   transition: all 0.8s ease;
