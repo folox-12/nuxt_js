@@ -2,10 +2,12 @@
   <div class="main-area" id="main-area">
     <div class="main-area__content" id="main-area-content">
       <div class="list-of-place">
+        <keep-alive>
         <Table
           :tableTitle="tableTitle"
           :tableDescription="tableDataSearched"
         ></Table>
+        </keep-alive>
       </div>
     </div>
     <keep-alive>
@@ -18,11 +20,15 @@
 import Table from "../components/Table/Table.vue";
 import FilterFD from "../components/FilterFD.vue";
 
+
 export default {
   data() {
     return {
       tableData: [],
     };
+  },
+   headerData:{
+      title: "Список посадочных площадок",
   },
   components: {
     Table,

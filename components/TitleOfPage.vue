@@ -3,7 +3,7 @@
     <div class="header-page">
       <div class="header-page__mainblok">
         <div class="header-page__title">
-          <h1>Список посадочных площадок</h1>
+          <h1>{{ headerData.title}}</h1>
           <div class="header-page__button">
             <button class="btn">Редактировать</button>
           </div>
@@ -14,7 +14,14 @@
 </template>
 
 <script>
-export default {};
+export default {
+  props:{
+     headerData:{
+      type: Function,
+      required: true,
+    },
+  },
+};
 </script>
 
 <style lang="scss" scoped>

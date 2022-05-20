@@ -81,6 +81,9 @@ export default {
 
         }
     },
+    headerData:{
+      title: "Камера -  AHD M300",
+  },
 }
   
 

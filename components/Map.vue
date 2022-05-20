@@ -153,6 +153,9 @@ export default {
       showDescr: false,
     };
   },
+  headerData:{
+      title: "Карта",
+  },
   methods: {
     hideDescr() {
       this.showDescr = false;

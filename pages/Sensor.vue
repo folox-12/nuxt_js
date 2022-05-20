@@ -81,6 +81,9 @@ export default {
 
         }
     },
+     headerData:{
+      title: "Датчик движения - Ajax Motion Protect",
+  },
 }
   
 

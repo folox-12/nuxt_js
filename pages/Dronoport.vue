@@ -134,7 +134,11 @@ export default {
            
 
         }
+        
     },
+    headerData:{
+      title: "Дронопорт - Drone Port Hive M300",
+  },
     computed:{
         computedObj(){
         return this.limit ? this.equipments.slice(0,this.limit) : this.equipments

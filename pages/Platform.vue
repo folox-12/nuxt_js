@@ -69,6 +69,7 @@ export default {
     ModalWindow,
     OpenCard,
   },
+  
   data() {
     return {
       infrastructure:[
@@ -104,6 +105,9 @@ export default {
         "24/7",
       ],
     };
+  },
+  headerData:{
+      title: "Посадочная площадка №3",
   },
 };
 </script>

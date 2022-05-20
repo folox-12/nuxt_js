@@ -90,5 +90,23 @@ h6 {
   font-weight: 500;
   font-size: 28px;
 }
+@media (max-width:800px){
+.ModalWindow {
+  &__container{
+    height: 300px;
+  width: 270px;
+  padding: 10px;
+  &-image{
+    margin-top: 20px;
+        img{
+            width: 100%;
+            height: 100%;
+        }
+      
+    }
+  }
+  
+}
+}
 
 </style>
