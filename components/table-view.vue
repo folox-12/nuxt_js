@@ -92,7 +92,7 @@ export default {
 };
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 .table {
   background-color: #fff;
   width: 100%;
@@ -111,15 +111,13 @@ export default {
     width: 100%;
     overflow-x: auto;
   }
-
-  &-el {
-  }
 }
 table.table__responsive {
   border-collapse: collapse;
 
   th,
   td {
+    text-align: center;
     padding: 22px 15px 22px 0px;
     &:first-child {
       padding-left: 30px;
@@ -137,7 +135,7 @@ table.table__responsive {
       font-weight: bold;
       padding-bottom: 29px;
       padding-top: 30px;
-      text-align: left;
+      text-align: center;
     }
   }
   tbody {

@@ -44,10 +44,9 @@
             <Map></Map>
           </div>
         </div>
-        <div class="right-main-content">
+        <div class="right-main-content" v-if="showRightSide">
           <rightSide
             class="option"
-            v-if="showRightSide"
             style="background-color: #fff display: flex; flex-wrap: wrap; gap: 10px"
             @changeViewFormat="switchTypeOfView"
           >
@@ -103,9 +102,9 @@ export default {
 
 <style lang="scss" scoped>
 .right-main-content {
-  flex: 0 0 20%;
+  flex: 0 0 35%;
 }
 .left-main-content {
-  flex: 1 0 80%;
+  flex: 1 1 auto;
 }
 </style>
