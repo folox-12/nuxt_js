@@ -7,12 +7,13 @@
           v-for="page in pages"
           :key="page"
           :class="{ 'paginator__li active': page === pageNumber }"
+          @click="changePage(page)"
         >
           {{ page }}
         </li>
       </div>
       <div class="paginator__total">
-        <span>Найдено всего {{ allPage }}</span>
+        <span>Найдено всего {{ countOfallDronoport }}</span>
       </div>
     </div>
   </div>
@@ -21,12 +22,11 @@
 export default {
   data() {
     return {
-      countPage: 5,
       pageNumber: 1,
       allPage: 0,
     };
   },
-  proops: {
+  props: {
     countItemInTable: {
       type: [String, Number],
       default: 5,
@@ -35,13 +35,29 @@ export default {
       type: Number,
       required: true,
     },
+    itemsOnPage: {
+      type: Number,
+      required: true,
+    },
   },
-  mounted() {
-    this.allPages = this.countOfallDronoport / this.countPage;
-  },
+  mounted() {},
   computed: {
+    pages() {
+      if (this.countOfallDronoport < this.itemsOnPage) {
+        this.pageNumber = 1;
+      }
+      return Math.ceil(this.countOfallDronoport / this.itemsOnPage);
+    },
     indexForNumberOfRow() {
-      return this.countPage * (this.pageNumber - 1);
+      return this.itemsOnPage * (this.pageNumber - 1);
+    },
+  },
+  methods: {
+    changePage(page) {
+      this.pageNumber = page;
+      let from = (page - 1) * this.itemsOnPage;
+      let to = (page - 1) * this.itemsOnPage + this.itemsOnPage;
+      this.$emit("UpdatedPage", from, to);
     },
   },
 };

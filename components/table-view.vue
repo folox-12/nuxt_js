@@ -46,7 +46,7 @@
         </tbody>
       </table>
     </div>
-    <slot :countOfAllDronoport="countofAllDronoport"></slot>
+    <slot></slot>
   </section>
 </template>
 
@@ -56,6 +56,7 @@ export default {
     return {
       countPage: 5,
       pageNumber: 1,
+      to: "",
     };
   },
   props: {
