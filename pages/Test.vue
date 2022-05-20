@@ -8,13 +8,18 @@
     <filters
       :view-format="'table'"
       :data="dataAboutDronoport"
-      :itemsOnPage="5"
+      :itemsOnPage="4"
       :placeHolder="placeHolder"
+      :rightSideView="[
+        { name: 'Options', img: 'ico/settings.svg' },
+        { name: 'Filters', img: 'ico/filter.svg' },
+      ]"
     >
       <template
         #default="{
           viewFormat,
-          showOption,
+          showRightSide,
+          typeViewOfRightSide,
           switchTypeOfView,
           tableDescription,
           tableTitle,
@@ -42,10 +47,17 @@
         <div class="right-main-content">
           <rightSide
             class="option"
-            v-if="showOption"
+            v-if="showRightSide"
             style="background-color: #fff display: flex; flex-wrap: wrap; gap: 10px"
             @changeViewFormat="switchTypeOfView"
           >
+            <div class="buttons" v-if="typeViewOfRightSide === 'Options'">
+              <button @click="switchTypeOfView('map')">Карта</button>
+              <button @click="switchTypeOfView('table')">Таблица</button>
+            </div>
+            <div class="filter" v-else-if="typeViewOfRightSide === 'Filters'">
+              filters
+            </div>
           </rightSide>
         </div>
       </template>
