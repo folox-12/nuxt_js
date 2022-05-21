@@ -103,6 +103,9 @@ export default {
   },
 
   methods: {
+    changeInputValue() {
+      this.inputValue = inputValue;
+    },
     toggleShowRightSide(value) {
       if (value == this.typeViewOfRightSide) {
         this.showRightSide = !this.showRightSide;

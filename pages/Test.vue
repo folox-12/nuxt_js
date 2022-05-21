@@ -1,5 +1,5 @@
 <template>
-  <div class="jl">
+  <div class="Test">
     <!-- <div class="save-btn">
       <button @click="showModal = true">Фото</button>
       <ModalWindow v-show="showModal" @close-modal="showModal = false" />

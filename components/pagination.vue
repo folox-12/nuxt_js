@@ -45,6 +45,8 @@ export default {
     pages() {
       if (this.countOfallDronoport < this.itemsOnPage) {
         this.pageNumber = 1;
+        this.$emit("UpdatedPageSlice", 0, this.itemsOnPage);
+        this.$emit("UpdatedPageNumber", this.pageNumber);
       }
       return Math.ceil(this.countOfallDronoport / this.itemsOnPage);
     },
