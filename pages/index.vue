@@ -1,10 +1,5 @@
 <template>
   <div class="Test">
-    <!-- <div class="save-btn">
-      <button @click="showModal = true">Фото</button>
-      <ModalWindow v-show="showModal" @close-modal="showModal = false" />
-      <selectComponent />
-    </div> -->
     <filters
       :view-format="'table'"
       :data="dataAboutDronoport"
@@ -101,6 +96,10 @@ export default {
       showModal: false,
     };
   },
+  headerData: {
+    title: "Список посадочных площадок",
+  },
+  created() {},
   computed: {
     ...mapGetters("dronoports", {
       dataAboutDronoport: "getAllDronoport",

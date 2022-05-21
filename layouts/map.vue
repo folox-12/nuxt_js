@@ -4,7 +4,7 @@
     <main>
       <div class="container">
         <Breadcrumbs :crumbs="getAllRoute" />
-        <TitleOfPage></TitleOfPage>
+        <TitleOfPage :headerData="headerData" v-if="headerData"></TitleOfPage>
         <nuxt />
       </div>
     </main>
@@ -27,6 +27,11 @@ export default {
     getAllRoute() {
       return this.$route.fullPath;
     },
+    headerData() {
+        return this.$route.matched.map(r => {
+          return r.components.default.options.headerData
+        })[0]
+      }
   },
 };
 </script>

@@ -56,6 +56,9 @@ export default {
       ],
     };
   },
+  headerData:{
+      title: "Постамат - OZON Box",
+  },
 };
 </script>
 

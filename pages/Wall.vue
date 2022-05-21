@@ -74,6 +74,9 @@ export default {
 
         }
     },
+     headerData:{
+      title: "Сетка оцинкованная «Рабица»",
+  },
 }
   
 

@@ -81,6 +81,9 @@ export default {
 
         }
     },
+    headerData:{
+      title: "Освещение - Feron SP3040",
+  },
 }
   
 
