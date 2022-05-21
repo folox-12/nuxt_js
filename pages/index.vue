@@ -80,7 +80,6 @@ import pagination from "../components/pagination.vue";
 
 import { mapGetters } from "vuex";
 export default {
-  layout: "map",
   components: {
     ModalWindow,
     selectComponent,
