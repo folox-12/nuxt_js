@@ -26,6 +26,7 @@
  image:{
    type: Object,
       required: true,
+      default: "../assets/img/platform1.jpg",
 
  },
  titleImage:{
@@ -33,6 +34,7 @@
    required: true
  }
 },
+
 
 
 }
@@ -100,12 +102,24 @@ h6 {
     margin-top: 20px;
         img{
             width: 100%;
-            height: 100%;
+            height: 230px;
         }
       
     }
   }
   
+}
+.Close {
+ position: absolute;
+  cursor: pointer;
+  right: 7.5px;
+  top: 15px;
+
+}
+h6 {
+    text-align: start;
+  font-weight: 400;
+  font-size: 22px;
 }
 }
 

@@ -5,7 +5,8 @@
         <div class="header-page__title">
           <h1>{{ headerData.title}}</h1>
           <div class="header-page__button">
-            <button class="btn">Редактировать</button>
+            <button v-if="this.$store.getters['GetChangestatus'] == false" @click="click" class="btn">Редактировать</button>
+            <button v-else-if="this.$store.getters['GetChangestatus'] == true" @click="click" class="btn">Применить</button>
           </div>
         </div>
       </div>
@@ -21,6 +22,16 @@ export default {
       required: true,
     },
   },
+  data(){
+    return{
+status : this.$store.getters['GetChangestatus'] ,
+    }
+  },
+  methods:{
+    click(){
+      this.$emit('click')
+    },
+  }
 };
 </script>
 
