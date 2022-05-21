@@ -5,7 +5,6 @@
       <div class="container">
         <Breadcrumbs :crumbs="getAllRoute" />
         <TitleOfPage :headerData="headerData" v-if="headerData"></TitleOfPage>
-        <HeaderPageSearch @showFilter="openFilter()" />
         <nuxt />
       </div>
     </main>
@@ -36,18 +35,16 @@ export default {
     getAllRoute() {
       return this.$route.fullPath;
     },
-     headerData() {
-        return this.$route.matched.map(r => {
-          return r.components.default.options.headerData
-        })[0]
-      }
+    headerData() {
+      return this.$route.matched.map((r) => {
+        return r.components.default.options.headerData;
+      })[0];
+    },
   },
   methods: {
     openFilter() {
       this.showFilter = !this.showFilter;
-      alert("hui");
     },
-    
   },
 };
 </script>

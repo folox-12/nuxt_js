@@ -1,12 +1,20 @@
 <template>
   <div class="right-side">
+    <div class="right-side__title">
+      {{ title }}
+    </div>
     <slot></slot>
   </div>
 </template>
 
 <script>
 export default {
-  props: {},
+  props: {
+    title: {
+      type: String,
+      required: true,
+    },
+  },
   methods: {
     changeViewFormat(value) {
       this.$emit("changeViewFormat", value);

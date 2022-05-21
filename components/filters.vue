@@ -1,47 +1,47 @@
 <template>
-<keep-alive>
-  <div class="filters">
-    <div class="header-page__search header-page-search">
-      <div class="header-page-search__input">
-        <img src="../assets/img/ico/search.svg" alt="" class="search-icon" />
-        <input
-          type="search"
-          v-model="inputValue"
-          :placeholder="placeHolder"
-          id="input-main"
-        />
-        <button class="clear-input" id="clear-input" @click="clearInput()">
-          <img src="../assets/img/ico/close.svg" alt="" />
-        </button>
+  <keep-alive>
+    <div class="filters">
+      <div class="header-page__search header-page-search">
+        <div class="header-page-search__input">
+          <img src="../assets/img/ico/search.svg" alt="" class="search-icon" />
+          <input
+            type="search"
+            v-model="inputValue"
+            :placeholder="placeHolder"
+            id="input-main"
+          />
+          <button class="clear-input" id="clear-input" @click="clearInput()">
+            <img src="../assets/img/ico/close.svg" alt="" />
+          </button>
+        </div>
+        <div class="header-page-search__buttons">
+          <button
+            v-for="key in sortedRightSideViews"
+            :key="key.name"
+            v-on:click="toggleShowRightSide(key.name)"
+          >
+            <img :src="key.img" alt="#" />
+          </button>
+        </div>
       </div>
-      <div class="header-page-search__buttons">
-        <button
-          v-for="key in sortedRightSideViews"
-          :key="key"
-          v-on:click="toggleShowRightSide(key.name)"
+      <div class="filter-content">
+        <slot
+          :viewFormat="viewFormat"
+          :showRightSide="showRightSide"
+          :switchTypeOfView="switchTypeOfView"
+          :tableDescription="tableDataPaginated"
+          :lenghtSearchedData="tableDataSearched.length"
+          :tableTitle="data[0]"
+          :itemsOnPage="itemsOnPage"
+          :onChangePage="updatedPage"
+          :pageNumber="pageNumber"
+          :UpdatedPageNumber="updatedIndexRow"
+          :typeViewOfRightSide="typeViewOfRightSide"
         >
-          <img :src="key.img" alt="#" />
-        </button>
+        </slot>
       </div>
     </div>
-    <div class="filter-content">
-      <slot
-        :viewFormat="viewFormat"
-        :showRightSide="showRightSide"
-        :switchTypeOfView="switchTypeOfView"
-        :tableDescription="tableDataPaginated"
-        :lenghtSearchedData="tableDataSearched.length"
-        :tableTitle="data[0]"
-        :itemsOnPage="itemsOnPage"
-        :onChangePage="updatedPage"
-        :pageNumber="pageNumber"
-        :UpdatedPageNumber="updatedIndexRow"
-        :typeViewOfRightSide="typeViewOfRightSide"
-      >
-      </slot>
-    </div>
-  </div>
-</keep-alive>
+  </keep-alive>
 </template>
 
 <script>
