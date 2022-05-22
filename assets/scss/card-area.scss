@@ -117,8 +117,7 @@ transition: all .2s;
         transition: all 0.3s ease 0s;
     }
     &__button:hover{
-        transform: scale(90%);
-        box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.15);
+        transform: scale(110%);
     }
 }
 .card-images{
@@ -188,22 +187,28 @@ transform: matrix(1, 0, 0.01, -1, 0, 0);
         display: flex;
         align-items: center;
         color: #141029;
-        width:fit-content
+        width:100%;
        
     }
     &__addres{
-        width:100%;
+        width:77%;
     }
     
     &__point{
         display: flex;
         gap:30px;
         align-items: center;
-        position: relative;
-        img{
+        div{
+            position: relative;
+        }
+        button{
             position: absolute;
-            right:15px;
-            top:24px;
+            right: 0px;
+            top: 1.6rem;
+            padding-right: 15px;
+            background-color: transparent;
+            cursor: pointer;
+            align-items: center;
         }
         h4{
             font-family: 'Montserrat';
@@ -282,6 +287,14 @@ transform: matrix(1, 0, 0.01, -1, 0, 0);
 }
 
 @media (max-width:1000px){
+    .card-main-list{
+        &__point{
+            display: flex;
+            flex-direction: column;
+            gap:30px;
+            align-items: center;
+    }
+}
     .card-infrastructure{
         &__table{
             min-width:100px;
