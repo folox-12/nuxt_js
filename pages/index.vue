@@ -6,8 +6,8 @@
       :itemsOnPage="4"
       :placeHolder="placeHolder"
       :rightSideView="[
-        { name: 'Options', img: 'ico/settings.svg' },
         { name: 'Filters', img: 'ico/filter.svg' },
+        { name: 'Options', img: 'ico/settings.svg' },
       ]"
     >
       <template
@@ -51,15 +51,41 @@
             :title="typeViewOfRightSide"
             @changeViewFormat="switchTypeOfView"
           >
-            <div class="buttons" v-if="typeViewOfRightSide === 'Options'">
-              <button @click="switchTypeOfView('map')">
-                <img src="/ico/map.svg" alt="#" />
-              </button>
-              <button @click="switchTypeOfView('table')">
-                <img src="/ico/table.svg" alt="#" />
-              </button>
+            <div
+              class="right-side__option right-side-option"
+              v-if="typeViewOfRightSide === 'Options'"
+            >
+              <div class="right-side-option__content">
+                <div
+                  class="right-side-option__item"
+                  :class="{
+                    active: viewFormat === 'map',
+                  }"
+                  @click="switchTypeOfView('map')"
+                >
+                  <button>
+                    <img src="/ico/map.svg" alt="#" />
+                  </button>
+                  <span>Карта</span>
+                </div>
+                <div
+                  class="right-side-option__item"
+                  :class="{
+                    active: viewFormat === 'table',
+                  }"
+                  @click="switchTypeOfView('table')"
+                >
+                  <button>
+                    <img src="/ico/table.svg" alt="#" />
+                  </button>
+                  <span>Таблица</span>
+                </div>
+              </div>
             </div>
-            <div class="filter" v-else-if="typeViewOfRightSide === 'Filters'">
+            <div
+              class="right-side__filter"
+              v-else-if="typeViewOfRightSide === 'Filters'"
+            >
               filters
             </div>
           </rightSide>
@@ -114,5 +140,37 @@ export default {
 }
 .left-main-content {
   flex: 1 1 auto;
+}
+.right-side-option {
+  &__content {
+    display: flex;
+    flex-direction: column;
+    padding-left: 15px;
+    flex-wrap: wrap;
+    gap: 15px;
+  }
+  &__item {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    cursor: pointer;
+    button {
+      display: flex;
+      width: 30px;
+      height: 30px;
+      justify-content: center;
+      box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+      border-radius: 20px;
+      align-items: center;
+      justify-content: center;
+      img {
+      }
+    }
+    &.active {
+      button {
+        background-color: rgba(155, 66, 245, 1);
+      }
+    }
+  }
 }
 </style>
