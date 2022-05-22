@@ -1,60 +1,29 @@
 <template>
   <div class="main-area" id="main-area">
-    <div class="main-area__content" id="main-area-content">
-      <div class="list-of-place">
-        <Table
-          :tableTitle="tableTitle"
-          :tableDescription="tableDataSearched"
-        ></Table>
-      </div>
-    </div>
-    <FilterFD />
+    <v-select
+      :options="['go', 'python', 'rust', 'javascript']"
+      :default="'go'"
+      class="select"
+      @input="$event"
+    />
   </div>
 </template>
-
 <script>
-import Table from "../components/Table/Table.vue";
-import FilterFD from "../components/FilterFD.vue";
+import selectComponent from "../components/selectComponent.vue";
 
 export default {
   data() {
     return {
-      tableData: [],
+      selectValue: "",
     };
   },
   components: {
-    Table,
-    FilterFD,
+    "v-select": selectComponent,
   },
-  props: {
-    querySearch: {
-      type: String,
-    },
-  },
-  created() {
-    this.tableData = this.$store.getters["dronoports/getAllDronoport"];
-  },
-  computed: {
-    tableTitle() {
-      return this.tableData[0];
-    },
-    tableDataSearched() {
-      let querySearch = this.$store.getters["search/getStoreQuery"]
-        .trim()
-        .toLowerCase()
-        .replace(/[\s.,\s]/g, "");
-      let data = this.tableData[1];
-      return data.filter((elem) => {
-        return elem.address
-          .toLowerCase()
-          .replace(/[\s.,\s]/g, "")
-          .includes(querySearch, 0);
-      });
-    },
-  },
+  created() {},
   methods: {
-    inputValue(value) {
-      this.querySearch = value;
+    select(value) {
+      this.selectValue = value;
     },
   },
 };
