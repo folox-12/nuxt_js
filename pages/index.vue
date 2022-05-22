@@ -6,8 +6,8 @@
       :itemsOnPage="4"
       :placeHolder="placeHolder"
       :rightSideView="[
-        { name: 'Options', img: 'ico/settings.svg' },
         { name: 'Filters', img: 'ico/filter.svg' },
+        { name: 'Options', img: 'ico/settings.svg' },
       ]"
     >
       <template
