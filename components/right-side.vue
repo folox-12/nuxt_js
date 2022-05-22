@@ -27,6 +27,11 @@ export default {
 .right-side {
   background-color: #fff;
   height: 100%;
-  padding: 15px;
+  padding: 15px 30px;
+  &__title {
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin-bottom: 15px;
+  }
 }
 </style>

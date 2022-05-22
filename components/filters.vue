@@ -60,7 +60,7 @@ export default {
   props: {
     rightSideView: {
       type: Array,
-      default: ["Options", "Filters"],
+      default: ["Filters", "Options"],
     },
     itemsOnPage: {
       type: Number,
