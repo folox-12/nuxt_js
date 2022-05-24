@@ -11,7 +11,7 @@
             >
               {{ name }}
               <svg
-                v-show="false"
+                v-show="true"
                 width="11"
                 height="11"
                 viewBox="0 0 11 11"
@@ -73,25 +73,13 @@ export default {
     indexForNumberOfRow() {
       return this.itemsOnPage * (this.pageNumber - 1) + 1; //row[0, 1] + countItem * (pageNumber -1) + 1
     },
-    // sortedByName() {
-    //   let object = this.tableDescription;
-    //   let sortName = this.getSortName;
-    //   return object.sort((a, b) => {
-    //     if (this.getSortFlag) {
-    //       return a[sortName] > b[sortName];
-    //     }
-    //     return a[sortName] < b[sortName];
-    //   });
-    // },
-    // paginatedData() {
-    //   let from = (this.pageNumber - 1) * this.countPage;
-    //   let to = from + this.countPage;
-    //   return this.sortedByName.slice(from, to);
-    // },
   },
   methods: {
     UpdatedPageNumber(value) {
       this.pageNumber = value;
+    },
+    getNameForSort(value) {
+      this.$emit("onSorted", value, true);
     },
   },
 };

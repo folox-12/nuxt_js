@@ -9,28 +9,16 @@
             </div>
             <nav class="header__menu">
               <nuxt-link no-prefetch to="/">Список площадок</nuxt-link>
-              <nuxt-link no-prefetch to="/Test">{{
-                "testTitle" | localizationFilter
-              }}</nuxt-link>
               <nuxt-link
                 no-prefetch
                 active-class="nuxt-link-exact-active"
                 to="/Platform"
                 >Платформа</nuxt-link
               >
-              <nuxt-link
-                no-prefetch
-                active-class="nuxt-link-exact-active"
-                to="/Map"
-                >Карта</nuxt-link
-              >
-              <nuxt-link
-                no-prefetch
-                active-class="nuxt-link-exact-active"
-                to="/Infrastructure"
-                >Инфраструктура</nuxt-link
-              >
             </nav>
+            <nuxt-link no-prefetch to="/Test">{{
+              "testTitle" | localizationFilter
+            }}</nuxt-link>
             <div class="lang-selector">
               {{ this.locale }}
               <input
