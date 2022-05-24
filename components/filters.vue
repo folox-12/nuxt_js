@@ -37,6 +37,7 @@
           :pageNumber="pageNumber"
           :UpdatedPageNumber="updatedIndexRow"
           :typeViewOfRightSide="typeViewOfRightSide"
+          :getNameForSort="sortByName"
         >
         </slot>
       </div>
@@ -48,6 +49,7 @@
 export default {
   data() {
     return {
+      sortName: "",
       inputValue: "",
       to: this.itemsOnPage,
       from: 0,
@@ -132,24 +134,34 @@ export default {
     switchTypeOfView(value) {
       this.viewFormat = value;
     },
-    searchedDataDescription(filters) {
-      if (!filters) {
-        return tableData[1];
-      }
-      let data = tableData[1];
-      return data.filter((elem) => {
-        for (const [key, value] of Object.entries(filters)) {
-          return elem[key]
-            .toLowerCase()
-            .replace(/[\s.,\s]/g, "")
-            .includes(
-              value
-                .trim()
-                .toLowerCase()
-                .replace(/[\s.,\s]/g, ""),
-              0
-            );
+    // searchedDataDescription(filters) {
+    //   if (!filters) {
+    //     return tableData[1];
+    //   }
+    //   let data = tableData[1];
+    //   return data.filter((elem) => {
+    //     for (const [key, value] of Object.entries(filters)) {
+    //       return elem[key]
+    //         .toLowerCase()
+    //         .replace(/[\s.,\s]/g, "")
+    //         .includes(
+    //           value
+    //             .trim()
+    //             .toLowerCase()
+    //             .replace(/[\s.,\s]/g, ""),
+    //           0
+    //         );
+    //     }
+    //   });
+    // },
+
+    sortByName(value, arrowDirection) {
+      let sortName = this.sortName;
+      return object.sort((a, b) => {
+        if (this.getSortFlag) {
+          return a[sortName] > b[sortName];
         }
+        return a[sortName] < b[sortName];
       });
     },
   },

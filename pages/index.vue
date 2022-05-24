@@ -23,6 +23,7 @@
           onChangePage,
           UpdatedPageNumber,
           pageNumber,
+          getNameForSort,
         }"
       >
         <div class="left-main-content">
@@ -32,6 +33,7 @@
             :tableTitle="tableTitle"
             :pageNumber="pageNumber"
             :itemsOnPage="itemsOnPage"
+            @onSort="getNameForSort"
           >
             <pagination
               :itemsOnPage="itemsOnPage"
