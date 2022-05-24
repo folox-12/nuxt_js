@@ -3,13 +3,11 @@ export default {
     locale: "ru",
   },
   mutations: {
-    updateInfo(state) {
+    setLocate(state) {
       state.locale = state.locale == "ru" ? "en" : "ru";
     },
   },
   getters: {
-    getLocale(state) {
-      return state.locale || "ru";
-    },
+    locale: (state) => state.locale,
   },
 };

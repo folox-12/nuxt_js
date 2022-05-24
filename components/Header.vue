@@ -57,28 +57,38 @@
 </template>
 
 <script>
-import { mapMutations, mapState } from "vuex";
+import { mapMutations, mapGetters } from "vuex";
 
 export default {
   data() {
     return {
       isRuLocate: true,
       isOpen: false,
+      // testTitle: true,
     };
   },
   methods: {
-    ...mapMutations("info", ["updateInfo"]),
+    ...mapMutations(["setLocate"]),
 
     toggle() {
       this.isOpen = !this.isOpen;
     },
 
     changeLang() {
-      this.updateInfo();
+      this.setLocate();
     },
   },
   computed: {
-    ...mapState("info", ["locale"]),
+    ...mapGetters(["locale"]),
+
+    selectedLocate: {
+      get() {
+        return this.locate;
+      },
+      set(lang) {
+        this.setLocate(lang);
+      },
+    },
   },
 };
 </script>

@@ -1,6 +1,5 @@
 import Vue from "vue";
 import info from "../store/info";
-import { mapState } from "vuex";
 
 const locales = {
   ru: {
@@ -10,12 +9,10 @@ const locales = {
     testTitle: "Test",
   },
 };
+// console.log(locales[);
 
-export default () => {
-  Vue.filter("localizationFilter", (lang) => {
-    const locale = info.state.locale || "hhh";
-    console.log(info.state.locale);
-    return locales[locale][lang] || "huita";
-    info.mutations.updateInfo();
-  });
-};
+Vue.filter("localizationFilter", (lang) => {
+  const locale = info.getters.locale || "hhh";
+  console.log(lang, locale);
+  return locales["en"][lang] || "huita";
+});
