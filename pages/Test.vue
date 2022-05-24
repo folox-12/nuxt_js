@@ -13,9 +13,7 @@ import selectComponent from "../components/selectComponent.vue";
 
 export default {
   data() {
-    return {
-      selectValue: "",
-    };
+    return {};
   },
   components: {
     "v-select": selectComponent,
