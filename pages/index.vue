@@ -33,7 +33,7 @@
             :tableTitle="tableTitle"
             :pageNumber="pageNumber"
             :itemsOnPage="itemsOnPage"
-            @onSort="getNameForSort"
+            @onSorted="getNameForSort"
           >
             <pagination
               :itemsOnPage="itemsOnPage"
