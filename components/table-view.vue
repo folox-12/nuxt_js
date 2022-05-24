@@ -11,7 +11,7 @@
             >
               {{ name }}
               <svg
-                v-show="true"
+                v-if="sortedFlag == value"
                 width="11"
                 height="11"
                 viewBox="0 0 11 11"
@@ -55,8 +55,8 @@
 export default {
   data() {
     return {
-      countPage: 5,
       to: "",
+      sortedFlag: "",
     };
   },
   props: {
@@ -79,6 +79,7 @@ export default {
       this.pageNumber = value;
     },
     getNameForSort(value) {
+      this.sortedFlag = value;
       this.$emit("onSorted", value, true);
     },
   },
@@ -107,7 +108,7 @@ export default {
 }
 table.table__responsive {
   border-collapse: collapse;
-
+  table-layout: fixed;
   th,
   td {
     text-align: center;
