@@ -102,6 +102,24 @@ transition: all .2s;
     }
     
 }
+.card-images-editing{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap:60px;
+    padding:30px 62px 30px 62px;
+    flex-wrap: wrap;
+    &__button{
+        width:93px;
+        height:82px;
+        border-radius: 20px;
+        transition: all 0.3s ease 0s;
+    }
+    &__button:hover{
+        transform: scale(110%);
+    }
+}
 .card-images{
     &__image{
         position: relative;
@@ -155,13 +173,43 @@ transform: matrix(1, 0, 0.01, -1, 0, 0);
             padding:15px 0px 15px 0px;
             transition: all .2s;
         }
-        li:hover{
-            background: #F7F7F9;
-        }
+       
     }
+    &__input{
+        min-width:66px;
+        padding:19px 20px 19px 8px;
+        background: #F7F7F9;
+        font-family: 'Montserrat';
+        font-style: normal;
+        font-weight: 500;
+        font-size: 16px;
+        line-height: 100%;
+        display: flex;
+        align-items: center;
+        color: #141029;
+        width:100%;
+       
+    }
+    &__addres{
+        width:77%;
+    }
+    
     &__point{
         display: flex;
         gap:30px;
+        align-items: center;
+        div{
+            position: relative;
+        }
+        button{
+            position: absolute;
+            right: 0px;
+            top: 1.6rem;
+            padding-right: 15px;
+            background-color: transparent;
+            cursor: pointer;
+            align-items: center;
+        }
         h4{
             font-family: 'Montserrat';
             font-style: normal;
@@ -239,6 +287,14 @@ transform: matrix(1, 0, 0.01, -1, 0, 0);
 }
 
 @media (max-width:1000px){
+    .card-main-list{
+        &__point{
+            display: flex;
+            flex-direction: column;
+            gap:30px;
+            align-items: center;
+    }
+}
     .card-infrastructure{
         &__table{
             min-width:100px;

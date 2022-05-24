@@ -44,13 +44,18 @@
                 <td>{{item.type}}</td>
                 <td align="right">{{item.id}}</td>
                 <td>
-                  <OpenCard :link="item.link"></OpenCard>
+                  <OpenCard v-if="$store.getters['GetChangestatus'] ==  false" :link="item.link"></OpenCard>
+                  <EditCard v-else></EditCard>
                 </td>
               </tr>
              
             </table>
           </div>
+          <div class="card-infrastructure__button">
+          <button v-if="$store.getters['GetChangestatus'] ==  true" class="spoiler__reset_button">+ Добавить</button>
         </div>
+        </div>
+        
       </div>
     </div>
   </div>
@@ -61,6 +66,7 @@ import Imagecard from "../components/ImgCard.vue";
 import Tablecard from "../components/TableCard/TableCard.vue";
 import ModalWindow from "../components/ModalWindow.vue";
 import OpenCard from "../components/buttonCardOpen.vue";
+import EditCard from "../components/buttonCardEditing.vue"
 export default {
   layout: "card",
   components: {
@@ -68,6 +74,7 @@ export default {
     Tablecard,
     ModalWindow,
     OpenCard,
+    EditCard
   },
   
   data() {
