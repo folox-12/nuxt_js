@@ -8,24 +8,33 @@
               <img src="../assets/img/fd-logo.png" alt="#" />
             </div>
             <nav class="header__menu">
-              <nuxt-link no-prefetch to="/">Список площадок</nuxt-link>
+              <nuxt-link no-prefetch to="/">{{
+                $t("landing-areas-list-title")
+              }}</nuxt-link>
               <nuxt-link
                 no-prefetch
                 active-class="nuxt-link-exact-active"
                 to="/Platform"
-                >Платформа</nuxt-link
+                >{{ $t("platforms-title") }}</nuxt-link
               >
             </nav>
             <nuxt-link no-prefetch to="/Test">{{
               "testTitle" | localizationFilter
             }}</nuxt-link>
             <div class="lang-selector">
-              {{ this.locale }}
-              <input
-                type="checkbox"
-                v-model="isRuLocate"
-                v-on:change="changeLang()"
-              />
+              <nuxt-link
+                v-if="$i18n.locale !== 'en'"
+                :to="switchLocalePath('en')"
+              >
+                Русский
+              </nuxt-link>
+
+              <nuxt-link
+                v-if="$i18n.locale !== 'ru'"
+                :to="switchLocalePath('ru')"
+              >
+                English
+              </nuxt-link>
             </div>
             <div class="header__account">
               <img src="../assets/img/fd-logo.png" />
@@ -127,6 +136,7 @@ export default {
   &__menu {
     display: flex;
     gap: 0 35px;
+    // margin-left: 5rem;
     a {
       font-size: 16px;
       text-decoration: none;

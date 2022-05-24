@@ -10,7 +10,7 @@ export default {
   getters: {
     locale: (state) => state.locale,
     getLocale(state) {
-      return this.locale;
+      return state.locale;
     },
   },
 };

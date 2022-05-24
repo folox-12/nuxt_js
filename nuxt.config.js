@@ -27,7 +27,40 @@ export default {
   buildModules: [],
 
   // Modules: https://go.nuxtjs.dev/config-modules
-  modules: [],
+  modules: [
+    [
+      "@nuxtjs/i18n",
+      {
+        locales: [
+          {
+            code: "en",
+            file: "en.json",
+          },
+          {
+            code: "ru",
+            file: "ru.json",
+          },
+        ],
+        lazy: true,
+        langDir: "locales/",
+        defaultLocale: "ru",
+        // strategy: "prefix",
+        /*
+        vueI18n: {
+          fallbackLocale: "en",
+          messages: {
+            en: {
+              test: "Hello",
+            },
+            ru: {
+              test: "Привет",
+            },
+          },
+        },
+        */
+      },
+    ],
+  ],
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {},
