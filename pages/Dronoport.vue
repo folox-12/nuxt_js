@@ -1,5 +1,5 @@
 <template>
-  <div class="page">
+  <div class="page" >
     <div class="card">
       
 
@@ -37,9 +37,15 @@
                         <td>{{equipment.name}}</td>
                     </tr>
                 </table>
-                 <button v-if='limit == 3 ' @click="limit = null" class="spoiler__reset_button">Показать все</button>
+                <div  v-if="$store.getters['GetChangestatus'] ==  false">
+                 <button  v-if='limit == 3 ' @click="limit = null" class="spoiler__reset_button">Показать все</button>
                  <button v-else @click="limit = 3" class="spoiler__reset_button">Скрыть</button>
+                 </div>
+                 <button v-onload='this.limit = null' v-if="$store.getters['GetChangestatus'] ==  true" class="spoiler__reset_button">+ Добавить</button>
             </div>
+           
+          
+       
               </div>
   </div>
   <div class="card">
@@ -60,6 +66,7 @@
                         <td><OpenCard></OpenCard></td>
                     </tr>
                 </table>
+                <button  v-if="$store.getters['GetChangestatus'] ==  true" class="spoiler__reset_button">+ Добавить</button>
             </div>
               </div>
   </div>
@@ -93,7 +100,7 @@ export default {
               {id:'4', name: 'Модуль контроля неба', by: 'DJI'},
               {id:'5', name: 'Модуль посадки', by: 'DJI'},
           ],
-          limit: 3 ,
+          limit: 3,
             img:[
 
             require("../assets/img/dronoport1.jpg"),
@@ -138,6 +145,15 @@ export default {
     },
     headerData:{
       title: "Дронопорт - Drone Port Hive M300",
+  },
+  limitActive(){
+    if($store.getters['GetChangestatus'] ==  true){
+      this.limit = null
+     
+    }
+     else{
+        this.limit = 3
+      }
   },
     computed:{
         computedObj(){
