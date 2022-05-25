@@ -8,21 +8,34 @@
               <img src="../assets/img/fd-logo.png" alt="#" />
             </div>
             <nav class="header__menu">
-              <nuxt-link no-prefetch to="/">{{
+              <nuxt-link no-prefetch :to="localePath('/')">{{
                 $t("landing-areas-list-title")
               }}</nuxt-link>
               <nuxt-link
                 no-prefetch
                 active-class="nuxt-link-exact-active"
-                to="/Platform"
+                :to="localePath('Platform')"
                 >{{ $t("platforms-title") }}</nuxt-link
               >
+              <nuxt-link no-prefetch :to="localePath('Test')">{{
+                $t("test-title")
+              }}</nuxt-link>
             </nav>
-            <nuxt-link no-prefetch to="/Test">{{
-              "testTitle" | localizationFilter
-            }}</nuxt-link>
-            <div class="lang-selector">
-              <nuxt-link
+            <div class="header__account">
+              <div class="lang-selector">
+                <a
+                  href="#"
+                  v-if="$i18n.locale == 'en'"
+                  @click.prevent.stop="$i18n.setLocale('ru')"
+                  >EN</a
+                >
+                <a
+                  href="#"
+                  v-if="$i18n.locale !== 'en'"
+                  @click.prevent.stop="$i18n.setLocale('en')"
+                  >RU</a
+                >
+                <!-- <nuxt-link
                 v-if="$i18n.locale !== 'en'"
                 :to="switchLocalePath('en')"
               >
@@ -34,9 +47,8 @@
                 :to="switchLocalePath('ru')"
               >
                 English
-              </nuxt-link>
-            </div>
-            <div class="header__account">
+              </nuxt-link> -->
+              </div>
               <img src="../assets/img/fd-logo.png" />
             </div>
           </div>
@@ -123,6 +135,9 @@ export default {
   }
 
   &__account {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
     margin-left: auto;
     img {
       width: 55px;

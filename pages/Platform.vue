@@ -38,24 +38,30 @@
                 <th align="right">Инвентарный номер</th>
                 <th></th>
               </tr>
-              <tr v-for="(item,index) in infrastructure " v-bind:key='index'>
-                <td>{{item.name}}</td>
-                <td>{{item.company}}</td>
-                <td>{{item.type}}</td>
-                <td align="right">{{item.id}}</td>
+              <tr v-for="(item, index) in infrastructure" v-bind:key="index">
+                <td>{{ item.name }}</td>
+                <td>{{ item.company }}</td>
+                <td>{{ item.type }}</td>
+                <td align="right">{{ item.id }}</td>
                 <td>
-                  <OpenCard v-if="$store.getters['GetChangestatus'] ==  false" :link="item.link"></OpenCard>
+                  <OpenCard
+                    v-if="$store.getters['GetChangestatus'] == false"
+                    :link="item.link"
+                  ></OpenCard>
                   <EditCard v-else></EditCard>
                 </td>
               </tr>
-             
             </table>
           </div>
           <div class="card-infrastructure__button">
-          <button v-if="$store.getters['GetChangestatus'] ==  true" class="spoiler__reset_button">+ Добавить</button>
+            <button
+              v-if="$store.getters['GetChangestatus'] == true"
+              class="spoiler__reset_button"
+            >
+              + Добавить
+            </button>
+          </div>
         </div>
-        </div>
-        
       </div>
     </div>
   </div>
@@ -66,29 +72,72 @@ import Imagecard from "../components/ImgCard.vue";
 import Tablecard from "../components/TableCard/TableCard.vue";
 import ModalWindow from "../components/ModalWindow.vue";
 import OpenCard from "../components/buttonCardOpen.vue";
-import EditCard from "../components/buttonCardEditing.vue"
+import EditCard from "../components/buttonCardEditing.vue";
 export default {
+  /*
+  async asyncData({ store }) {
+    await store.dispatch("i18n/setRouteParams", {
+      en: { postId: "my-post" },
+      ru: { Platform: "" },
+    });
+  },
+  */
   layout: "card",
   components: {
     Imagecard,
     Tablecard,
     ModalWindow,
     OpenCard,
-    EditCard
+    EditCard,
   },
-  
+
   data() {
     return {
-      infrastructure:[
-{name : 'Дронопорт', company:'Hive', type:'М300', id: "312312414",link: "/Dronoport"  },
-{name : 'Камера', company:'AHD', type:'C201HD', id: "312312414",link: "/Camera"  },
-{name : 'Датчики движения', company:'Ajax', type:'MonionProtect', id: "312312414",link: "/Sensor"  },
-{name : 'Ограждение', company:'Wall', type:'WallOne', id: "312312414",link: "/Wall"  },
-{name : 'Освещение', company:'FERON', type:'SP3040', id: "312312414",link: "/Light"  },
-{name : 'Постамат', company:'Ozon', type:'Box', id: "312312414",link: "/Postamat"  },
-
+      infrastructure: [
+        {
+          name: "Дронопорт",
+          company: "Hive",
+          type: "М300",
+          id: "312312414",
+          link: "/Dronoport",
+        },
+        {
+          name: "Камера",
+          company: "AHD",
+          type: "C201HD",
+          id: "312312414",
+          link: "/Camera",
+        },
+        {
+          name: "Датчики движения",
+          company: "Ajax",
+          type: "MonionProtect",
+          id: "312312414",
+          link: "/Sensor",
+        },
+        {
+          name: "Ограждение",
+          company: "Wall",
+          type: "WallOne",
+          id: "312312414",
+          link: "/Wall",
+        },
+        {
+          name: "Освещение",
+          company: "FERON",
+          type: "SP3040",
+          id: "312312414",
+          link: "/Light",
+        },
+        {
+          name: "Постамат",
+          company: "Ozon",
+          type: "Box",
+          id: "312312414",
+          link: "/Postamat",
+        },
       ],
-     
+
       img: [
         require("../assets/img/platform1.jpg"),
         require("../assets/img/platform2.jpg"),
@@ -114,8 +163,8 @@ export default {
       ],
     };
   },
-  headerData:{
-      title: "Посадочная площадка №3",
+  headerData: {
+    title: "Посадочная площадка №3",
   },
   methods:{
     changeData(number, value){
