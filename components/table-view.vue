@@ -88,13 +88,16 @@ export default {
         this.flagDirection = true;
       }
 
-      this.$emit("onSorted", value, this.flagDirection);
+      setTimeout(() => this.$emit("onSorted", value, this.flagDirection), 500);
     },
   },
 };
 </script>
 
 <style lang="scss" scoped>
+svg {
+  transition: all 0.8s ease;
+}
 svg.reverse {
   transform: rotate(180deg);
 }
