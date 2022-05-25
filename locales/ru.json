@@ -34,5 +34,14 @@
   "infrastructure-model": "Модель",
   "infrastructure-num": "Инвентарный номер",
 
-  "open-btn": "Открыть"
+  "open-btn": "Открыть",
+  "add-btn-edit-platform": "+ Добавить",
+  "accept-edit-btn": "Применить",
+
+  "droneport": "Дронопрорт",
+  "camera": "Камера",
+  "motion-sensors": "Датчики движения",
+  "protection": "Ограждение",
+  "lights": "Освещение",
+  "postamat": "Постамат"
 }

@@ -17,7 +17,7 @@
               @click="click"
               class="btn"
             >
-              Применить
+              {{ $t("accept-edit-btn") }}
             </button>
           </div>
         </div>

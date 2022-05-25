@@ -44,7 +44,7 @@
                 <th></th>
               </tr>
               <tr v-for="(item, index) in infrastructure" v-bind:key="index">
-                <td>{{ item.name }}</td>
+                <td>{{ $t(item.name) }}</td>
                 <td>{{ item.company }}</td>
                 <td>{{ item.type }}</td>
                 <td align="right">{{ item.id }}</td>
@@ -63,7 +63,7 @@
               v-if="$store.getters['GetChangestatus'] == true"
               class="spoiler__reset_button"
             >
-              + Добавить
+              {{ $t("add-btn-edit-platform") }}
             </button>
           </div>
         </div>
@@ -100,42 +100,42 @@ export default {
     return {
       infrastructure: [
         {
-          name: "Дронопорт",
+          name: "droneport",
           company: "Hive",
           type: "М300",
           id: "312312414",
           link: "/Dronoport",
         },
         {
-          name: "Камера",
+          name: "camera",
           company: "AHD",
           type: "C201HD",
           id: "312312414",
           link: "/Camera",
         },
         {
-          name: "Датчики движения",
+          name: "motion-sensors",
           company: "Ajax",
           type: "MonionProtect",
           id: "312312414",
           link: "/Sensor",
         },
         {
-          name: "Ограждение",
+          name: "protection",
           company: "Wall",
           type: "WallOne",
           id: "312312414",
           link: "/Wall",
         },
         {
-          name: "Освещение",
+          name: "lights",
           company: "FERON",
           type: "SP3040",
           id: "312312414",
           link: "/Light",
         },
         {
-          name: "Постамат",
+          name: "postamat",
           company: "Ozon",
           type: "Box",
           id: "312312414",

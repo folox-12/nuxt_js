@@ -34,5 +34,14 @@
   "infrastructure-model": "Model",
   "infrastructure-num": "Inventory number",
 
-  "open-btn": "Open"
+  "open-btn": "Open",
+  "add-btn-edit-platform": "+ Add",
+  "accept-edit-btn": "Accept",
+
+  "droneport": "Droneport",
+  "camera": "Camera",
+  "motion-sensors": "Motion sensors",
+  "protection": "Protection",
+  "lights": "Lights",
+  "postamat": "Postamat"
 }

@@ -24,7 +24,7 @@
       <div class="card-main-list__el">
         <li>
           <div class="card-main-list__point">
-            <h4>{{ title[0] }}</h4>
+            <h4>{{ $t(title[0]) }}</h4>
             <div class="card-main-list__addres">
               <input
                 type="text"
@@ -41,7 +41,7 @@
       <div class="card-main-list__el">
         <li>
           <div class="card-main-list__point">
-            <h4>{{ title[1] }}</h4>
+            <h4>{{ $t(title[1]) }}</h4>
             <div>
               <input
                 type="text"
@@ -58,7 +58,7 @@
       <div class="card-main-list__el">
         <li>
           <div class="card-main-list__point">
-            <h4>{{ title[2] }}</h4>
+            <h4>{{ $t(title[2]) }}</h4>
             <div>
               <input
                 type="text"
@@ -75,7 +75,7 @@
       <div v-if="description[3]" class="card-main-list__el">
         <li>
           <div class="card-main-list__point">
-            <h4>{{ title[3] }}</h4>
+            <h4>{{ $t(title[3]) }}</h4>
             <div>
               <input
                 type="text"
@@ -92,7 +92,7 @@
       <div v-if="description[4]" class="card-main-list__el">
         <li>
           <div class="card-main-list__point">
-            <h4>{{ title[4] }}</h4>
+            <h4>{{ $t(title[4]) }}</h4>
             <div>
               <input
                 type="text"
@@ -109,7 +109,7 @@
       <div v-if="description[5]" class="card-main-list__el">
         <li>
           <div class="card-main-list__point">
-            <h4>{{ title[5] }}</h4>
+            <h4>{{ $t(title[5]) }}</h4>
             <div>
               <input
                 type="text"
@@ -126,7 +126,7 @@
       <div v-if="description[6]" class="card-main-list__el">
         <li>
           <div class="card-main-list__point">
-            <h4>{{ title[6] }}</h4>
+            <h4>{{ $t(title[6]) }}</h4>
             <div>
               <input
                 type="text"
@@ -143,7 +143,7 @@
       <div v-if="description[7]" class="card-main-list__el">
         <li>
           <div class="card-main-list__point">
-            <h4>{{ title[7] }}</h4>
+            <h4>{{ $t(title[7]) }}</h4>
             <div>
               <input
                 type="text"
