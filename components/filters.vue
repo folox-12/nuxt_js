@@ -56,6 +56,7 @@ export default {
       showRightSide: false,
       typeViewOfRightSide: null,
       pageNumber: 1,
+      sortFlag: "",
     };
   },
   components: {},
@@ -95,7 +96,11 @@ export default {
       let querySearch = this.inputValueUpdated;
       let data = [...this.data[1]];
       if (this.sortName) {
-        data = data.sort((a, b) => a[this.sortName] > b[this.sortName]);
+        if (this.sortFlag) {
+          data = data.sort((a, b) => a[this.sortName] < b[this.sortName]);
+        } else {
+          data = data.sort((a, b) => a[this.sortName] > b[this.sortName]);
+        }
       }
       return data.filter((elem) => {
         return elem.address
@@ -160,6 +165,7 @@ export default {
 
     sortByName(value, arrowDirection) {
       this.sortName = value;
+      this.sortFlag = arrowDirection;
     },
   },
 };
