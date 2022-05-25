@@ -14,7 +14,7 @@
             </div>
           
             <Tablecard :title="title"
-            :description="description"></Tablecard>
+            :description="description" @changeInfo="changeData"></Tablecard>
 
             </div>
   
@@ -143,7 +143,13 @@ export default {
         computedObj(){
         return this.limit ? this.equipments.slice(0,this.limit) : this.equipments
         }
+    },
+  methods:{
+    changeData(number, value){
+     this.description[number] = value;
+    
     }
+  }
 }
   
 

@@ -16,7 +16,7 @@
       </button>
       
     </div>
-     <button v-if="$store.getters['GetChangestatus'] ==  true" class="card-images-editing__button">
+     <button @click="(showModal = true)" v-if="$store.getters['GetChangestatus'] ==  true" class="card-images-editing__button">
     <img src="../assets/img/add-photo.png" alt="">
     </button>
     <ModalWindow

@@ -14,7 +14,7 @@
             </div>
           
             <Tablecard :title="title"
-            :description="description"></Tablecard>
+            :description="description" @changeInfo="changeData"></Tablecard>
 
             </div>
   
@@ -84,6 +84,12 @@ export default {
     headerData:{
       title: "Освещение - Feron SP3040",
   },
+  methods:{
+    changeData(number, value){
+     this.description[number] = value;
+    
+    }
+  }
 }
   
 

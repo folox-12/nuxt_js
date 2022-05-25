@@ -14,7 +14,7 @@
             </div>
           
             <Tablecard :title="title"
-            :description="description"></Tablecard>
+            :description="description" @changeInfo="changeData"></Tablecard>
 
             </div>
   
@@ -77,6 +77,12 @@ export default {
      headerData:{
       title: "Сетка оцинкованная «Рабица»",
   },
+  methods:{
+    changeData(number, value){
+     this.description[number] = value;
+      
+    }
+  }
 }
   
 

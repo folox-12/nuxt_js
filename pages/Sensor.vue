@@ -14,7 +14,7 @@
             </div>
           
             <Tablecard :title="title"
-            :description="description"></Tablecard>
+            :description="description" @changeInfo="changeData"></Tablecard>
 
             </div>
   
@@ -84,6 +84,12 @@ export default {
      headerData:{
       title: "Датчик движения - Ajax Motion Protect",
   },
+  methods:{
+    changeData(number, value){
+     this.description[number] = value;
+      
+    }
+  }
 }
   
 

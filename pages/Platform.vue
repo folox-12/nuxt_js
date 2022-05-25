@@ -8,7 +8,7 @@
           <h2>Площадка</h2>
         </div>
 
-        <Tablecard :title="title" :description="description"></Tablecard>
+        <Tablecard :title="title" :description="description" @changeInfo="changeData"></Tablecard>
 
         <div class="card__infrastructure card-infrastructure">
           <div class="card-infrastructure__title">
@@ -110,12 +110,19 @@ export default {
         "5 х 5",
         "от -10 до 30",
         "24/7",
+        "",
       ],
     };
   },
   headerData:{
       title: "Посадочная площадка №3",
   },
+  methods:{
+    changeData(number, value){
+     this.description[number] = value;
+      
+    }
+  }
 };
 </script>
 

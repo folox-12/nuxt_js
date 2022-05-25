@@ -8,7 +8,7 @@
           <h2>Постамат</h2>
         </div>
 
-        <Tablecard :title="title" :description="description"></Tablecard>
+        <Tablecard :title="title" :description="description" @changeInfo="changeData"></Tablecard>
       </div>
     </div>
   </div>
@@ -59,6 +59,13 @@ export default {
   headerData:{
       title: "Постамат - OZON Box",
   },
+  methods:{
+    changeData(number, value){
+     this.description[number] = value;
+    
+    }
+  }
+
 };
 </script>
 

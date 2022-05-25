@@ -9,11 +9,16 @@
         </svg>
     </div>
         <div class="ModalWindow__container-description">
-            <h6>{{titleImage}}</h6>
+            <h6 v-if="$store.getters['GetChangestatus'] ==  false">{{titleImage}}</h6>
+            <h6 v-else> Добавьте фото</h6>
         </div>
         <div class="ModalWindow__container-image ">
-            <img :src='image' alt="Error">
-            
+            <img v-if="$store.getters['GetChangestatus'] ==  false" :src='image' alt="Error">
+            <div v-else class="rz-picter">
+						<img :src="img" class="img-avatar">
+						<input type="file" name="avatar" id="uppic" accept="image/gif,image/jpeg,image/jpg,image/png" @change="addImage($event)" ref='avatarInput' class="uppic">
+					</div>
+
         </div>
     </div>
 </div>
@@ -22,6 +27,11 @@
 <script>
 
   export default {
+    data(){
+      return{
+        img: require('../assets/img/ico/addphoto.svg')
+      }
+    },
     props:{
  image:{
    type: Object,
@@ -31,9 +41,23 @@
  },
  titleImage:{
    type: String,
-   required: true
+   required: true,
+   default: "Добавьте фото"
+
  }
 },
+methods:{
+  addImage(e){
+    var file = e.target.files[0];
+    var reader = new FileReader()
+    var that = this
+    reader.readAsDataURL(file)
+    reader.onload = function(e){
+      this.img = this.result
+      console.log(e)
+    }
+  }
+}
 
 
 
@@ -41,6 +65,48 @@
 </script>
 
 <style scoped lang = "scss">
+
+	.rz-picter {
+		height: 100%;
+		width: 100%;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+    position:relative;
+    transition: all 0.5s ease;
+    
+	}
+  .rz-picter:hover{
+    animation: addphoto 3s ease 0s alternate-reverse, move 5s  linear 2s;
+    animation-iteration-count: infinite;
+  }
+	
+	.uppic {
+	 width: 450px;
+   height: 450px;
+		margin: 0 auto;
+		opacity: 0;
+		z-index: 99999;
+    top:10px;
+		position: absolute;
+    cursor:pointer;
+	}
+  	 @keyframes addphoto{
+     from{
+       transform: scale(90%);
+     }
+     to{
+transform: scale(100%);
+     }
+     
+   }
+  .img-avatar {
+    top:10px;
+		position: absolute;
+   
+	}
+  
 
 .ModalWindow {
   position: fixed;
