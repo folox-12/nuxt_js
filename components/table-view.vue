@@ -13,6 +13,7 @@
               <svg
                 v-if="sortedFlag == value"
                 width="11"
+                :class="{ reverse: flagDirection == false }"
                 height="11"
                 viewBox="0 0 11 11"
                 fill="none"
@@ -57,6 +58,7 @@ export default {
     return {
       to: "",
       sortedFlag: "",
+      flagDirection: false,
     };
   },
   props: {
@@ -79,14 +81,23 @@ export default {
       this.pageNumber = value;
     },
     getNameForSort(value) {
-      this.sortedFlag = value;
-      this.$emit("onSorted", value, true);
+      if (this.sortedFlag == value) {
+        this.flagDirection = !this.flagDirection;
+      } else {
+        this.sortedFlag = value;
+        this.flagDirection = true;
+      }
+
+      this.$emit("onSorted", value, this.flagDirection);
     },
   },
 };
 </script>
 
 <style lang="scss" scoped>
+svg.reverse {
+  transform: rotate(180deg);
+}
 .table {
   background-color: #fff;
   width: 100%;
