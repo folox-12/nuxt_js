@@ -124,7 +124,7 @@ export default {
     };
   },
   headerData: {
-    title: "Список посадочных площадок",
+    title: "landing-areas-list-title-page",
   },
   created() {},
   computed: {

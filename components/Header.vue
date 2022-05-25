@@ -9,7 +9,7 @@
             </div>
             <nav class="header__menu">
               <nuxt-link no-prefetch :to="localePath('/')">{{
-                $t("landing-areas-list-title")
+                $t("landing-areas-list-title-header")
               }}</nuxt-link>
               <nuxt-link
                 no-prefetch

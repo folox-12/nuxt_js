@@ -1,23 +1,33 @@
 <template>
-  <div v-bind:class="$store.getters['GetChangestatus'] ==  true ? 'card-images-editing' : 'card__images card-images'" >
+  <div
+    v-bind:class="
+      $store.getters['GetChangestatus'] == true
+        ? 'card-images-editing'
+        : 'card__images card-images'
+    "
+  >
     <div v-for="(item, index) in img" :key="item" class="card-images__image">
-      <img :src="img[index]" /><button v-if="$store.getters['GetChangestatus'] ==  false" 
-        @click="(showModal = true),
+      <img :src="img[index]" /><button
+        v-if="$store.getters['GetChangestatus'] == false"
+        @click="
+          (showModal = true),
             showModal1(img[index]),
-            showModal2(titleImg[index])"
+            showModal2(titleImg[index])
+        "
         class="card-images__loop"
       >
         <img src="../assets/img/ico/loop.svg" alt="" />
       </button>
-      <button v-else 
-        class="card-images__loop"
-      >
+      <button v-else class="card-images__loop">
         <img src="../assets/img/ico/delete.svg" alt="" />
       </button>
-      
     </div>
-     <button @click="(showModal = true)" v-if="$store.getters['GetChangestatus'] ==  true" class="card-images-editing__button">
-    <img src="../assets/img/add-photo.png" alt="">
+    <button
+      @click="showModal = true"
+      v-if="$store.getters['GetChangestatus'] == true"
+      class="card-images-editing__button"
+    >
+      <img src="../assets/img/add-photo.png" alt="" />
     </button>
     <ModalWindow
       v-show="showModal"
@@ -25,7 +35,6 @@
       :image="image"
       :titleImage="titleImage"
     />
-   
   </div>
 </template>
 <script>
@@ -38,7 +47,7 @@ export default {
       showModal: false,
       image: "",
       titleImage: "",
-      status : this.$store.getters['GetChangestatus'] ,
+      status: this.$store.getters["GetChangestatus"],
     };
   },
 

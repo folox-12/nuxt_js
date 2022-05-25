@@ -1,5 +1,38 @@
 {
-  "landing-areas-list-title": "Pads list",
+  "landing-areas-list-title-header": "Pads list",
   "platforms-title": "Platforms",
-  "test-title": "Test"
+  "test-title": "Test",
+
+  "landing-areas-list-title-page": "Landing areas list",
+  "edit-message": "Edit",
+
+  "search-by-address": "Search by address",
+
+  "no-table-title": "№",
+  "address-table-title": "Adress",
+  "droneport-table-title": "Droneport",
+  "postamat-table-title": "Postamat",
+  "counter-table": "Total found: ",
+
+  "platform-title-page": "Landing area №3",
+  "platform-title": "Platfrom",
+
+  "adress-table-card": "Address",
+  "registration-num-table-card": "Registration number",
+  "creation-date-table-card": "Creation date",
+  "dimensions-table-card": "Dimensions(m)",
+  "alowable-temp-table-card": "Alowable temptature(C°)",
+  "operating-mode-table-card": "Operating mode",
+
+  "left-view-modal-img": "Left view",
+  "top-view-modal-img": "Top view",
+  "right-view-modal-img": "Right view",
+
+  "infrastructure-title": "Infrastructure",
+  "infrastructure-type": "Infrastructure type",
+  "infrastructure-manufacturer": "Manufacturer",
+  "infrastructure-model": "Model",
+  "infrastructure-num": "Inventory number",
+
+  "open-btn": "Open"
 }

@@ -9,7 +9,7 @@
               :key="value"
               @click="getNameForSort(value)"
             >
-              {{ name }}
+              {{ $t(name) }}
               <svg
                 v-if="sortedFlag == value"
                 width="11"

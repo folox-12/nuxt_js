@@ -39,7 +39,7 @@ export default {
       if (crumbs[0] == "en") {
         crumbs.splice(0, 1);
       }
-      console.log(crumbs);
+      // console.log(crumbs);
       if (crumbs.length == 0) {
         return ["Main"];
       } else {

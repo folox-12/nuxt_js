@@ -2,10 +2,10 @@ export default {
   state: {
     tableData: [
       {
-        numerical: "№",
-        address: "Адресс",
-        dronopot: "Дронопорт",
-        postamat: "Постамат",
+        numerical: "no-table-title",
+        address: "address-table-title",
+        dronopot: "droneport-table-title",
+        postamat: "postamat-table-title",
       },
       [
         {

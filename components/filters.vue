@@ -7,7 +7,7 @@
           <input
             type="search"
             v-model="inputValue"
-            :placeholder="placeHolder"
+            :placeholder="$t('search-by-address')"
             id="input-main"
           />
           <button class="clear-input" id="clear-input" @click="clearInput()">

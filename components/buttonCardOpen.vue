@@ -23,7 +23,11 @@
             </svg>
           </button>
         </div>
-        <nuxt-link :to="link"><button class="ModalButton-button" v-show="showButton">Открыть</button></nuxt-link>
+        <nuxt-link :to="localePath(link)"
+          ><button class="ModalButton-button" v-show="showButton">
+            {{ $t("open-btn") }}
+          </button></nuxt-link
+        >
       </div>
     </div>
   </div>
@@ -33,12 +37,12 @@
 import ModalWindow from "../components/ModalWindow.vue";
 
 export default {
-     props:{
-    link:{
-   type: String,
+  props: {
+    link: {
+      type: String,
       required: true,
-      default:"/Platform"
-}
+      default: "/Platform",
+    },
   },
   layout: "map",
   components: { ModalWindow },
@@ -48,7 +52,6 @@ export default {
       showButton: false,
     };
   },
- 
 
   methods: {
     hideButton() {
@@ -68,8 +71,8 @@ export default {
   },
 };
 </script>
- 
-<style lang="scss" >
+
+<style lang="scss">
 .ModalButton {
   position: relative;
   &-Show {

@@ -1,5 +1,38 @@
 {
-  "landing-areas-list-title": "Список площадок",
+  "landing-areas-list-title-header": "Список площадок",
   "platforms-title": "Платформа",
-  "test-title": "Тест"
+  "test-title": "Тест",
+
+  "landing-areas-list-title-page": "Список посадочных площадок",
+  "edit-message": "Редактировать",
+
+  "search-by-address": "Поиск по адресу",
+
+  "no-table-title": "№",
+  "address-table-title": "Адрес",
+  "droneport-table-title": "Дронопорт",
+  "postamat-table-title": "Постамат",
+  "counter-table": "Всего найдено: ",
+
+  "platform-title-page": "Посадочная площадка №3",
+  "platform-title": "Площадка",
+
+  "adress-table-card": "Адрес",
+  "registration-num-table-card": "Регистрационный номер",
+  "creation-date-table-card": "Дата создания",
+  "dimensions-table-card": "Размеры(м)",
+  "alowable-temp-table-card": "Рабочая температура(C°)",
+  "operating-mode-table-card": "Режим эксплуатации",
+
+  "left-view-modal-img": "Вид слева",
+  "top-view-modal-img": "Вид сверху",
+  "right-view-modal-img": "Вид справа",
+
+  "infrastructure-title": "Инфраструктура",
+  "infrastructure-type": "Тип инфраструктуры",
+  "infrastructure-manufacturer": "Производитель",
+  "infrastructure-model": "Модель",
+  "infrastructure-num": "Инвентарный номер",
+
+  "open-btn": "Открыть"
 }

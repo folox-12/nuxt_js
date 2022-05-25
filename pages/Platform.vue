@@ -5,20 +5,25 @@
       <hr />
       <div class="card__main card-main">
         <div class="card-main__title">
-          <h2>Площадка</h2>
+          <h2>{{ $t("platform-title") }}</h2>
         </div>
 
-        <Tablecard :title="title" :description="description" @changeInfo="changeData"></Tablecard>
+        <Tablecard
+          :title="title"
+          :description="description"
+          @changeInfo="changeData"
+        ></Tablecard>
 
         <div class="card__infrastructure card-infrastructure">
           <div class="card-infrastructure__title">
-            <h2>Инфраструктура</h2>
+            <h2>{{ $t("infrastructure-title") }}</h2>
           </div>
           <div class="card-infrastructure__table">
             <table>
               <tr>
                 <th align="left">
-                  Тип инфраструктуры<svg
+                  {{ $t("infrastructure-type")
+                  }}<svg
                     width="11"
                     height="11"
                     viewBox="0 0 11 11"
@@ -33,9 +38,9 @@
                     />
                   </svg>
                 </th>
-                <th align="left">Производитель</th>
-                <th align="left">Модель</th>
-                <th align="right">Инвентарный номер</th>
+                <th align="left">{{ $t("infrastructure-manufacturer") }}</th>
+                <th align="left">{{ $t("infrastructure-model") }}</th>
+                <th align="right">{{ $t("infrastructure-num") }}</th>
                 <th></th>
               </tr>
               <tr v-for="(item, index) in infrastructure" v-bind:key="index">
@@ -143,14 +148,18 @@ export default {
         require("../assets/img/platform2.jpg"),
         require("../assets/img/platform3.jpg"),
       ],
-      titleImg: ["Вид слева", "Вид сверху", "Вид справа"],
+      titleImg: [
+        "left-view-modal-img",
+        "top-view-modal-img",
+        "right-view-modal-img",
+      ],
       title: [
-        "Адрес",
-        "Регистрационный номер",
-        "Дата создания",
-        "Размеры(м)",
-        "Рабочая температура(С°)",
-        "Режим эксплуатации",
+        "adress-table-card",
+        "registration-num-table-card",
+        "creation-date-table-card",
+        "dimensions-table-card",
+        "alowable-temp-table-card",
+        "operating-mode-table-card",
       ],
       description: [
         "г. Одинцово, б-р Маршала Крылова, 20",
@@ -164,14 +173,13 @@ export default {
     };
   },
   headerData: {
-    title: "Посадочная площадка №3",
+    title: "platform-title-page",
   },
-  methods:{
-    changeData(number, value){
-     this.description[number] = value;
-      
-    }
-  }
+  methods: {
+    changeData(number, value) {
+      this.description[number] = value;
+    },
+  },
 };
 </script>
 
@@ -201,5 +209,11 @@ progress::-webkit-progress-value {
 
 progress {
   color: #9b42f5;
+}
+
+table {
+  svg {
+    margin-left: 0.5rem;
+  }
 }
 </style>

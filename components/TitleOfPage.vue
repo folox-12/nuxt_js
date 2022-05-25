@@ -3,10 +3,22 @@
     <div class="header-page">
       <div class="header-page__mainblok">
         <div class="header-page__title">
-          <h1>{{ headerData.title}}</h1>
+          <h1>{{ $t(headerData.title) }}</h1>
           <div class="header-page__button">
-            <button v-if="this.$store.getters['GetChangestatus'] == false" @click="click" class="btn">Редактировать</button>
-            <button v-else-if="this.$store.getters['GetChangestatus'] == true" @click="click" class="btn">Применить</button>
+            <button
+              v-if="this.$store.getters['GetChangestatus'] == false"
+              @click="click"
+              class="btn"
+            >
+              {{ $t("edit-message") }}
+            </button>
+            <button
+              v-else-if="this.$store.getters['GetChangestatus'] == true"
+              @click="click"
+              class="btn"
+            >
+              Применить
+            </button>
           </div>
         </div>
       </div>
@@ -16,22 +28,22 @@
 
 <script>
 export default {
-  props:{
-     headerData:{
+  props: {
+    headerData: {
       type: Function,
       required: true,
     },
   },
-  data(){
-    return{
-status : this.$store.getters['GetChangestatus'] ,
-    }
+  data() {
+    return {
+      status: this.$store.getters["GetChangestatus"],
+    };
   },
-  methods:{
-    click(){
-      this.$emit('click')
+  methods: {
+    click() {
+      this.$emit("click");
     },
-  }
+  },
 };
 </script>
 
@@ -69,36 +81,35 @@ status : this.$store.getters['GetChangestatus'] ,
       color: rgba(255, 255, 255, 0.6);
     }
   }
-
 }
-@media (max-width: 667px){
+@media (max-width: 667px) {
   .header-page {
-  &__title {
-    display: flex;
-    justify-content: space-between;
-    h1 {
-      font-family: "Montserrat";
-      font-style: normal;
-      font-weight: 500;
-      font-size: 20px;
-      line-height: 29px;
-      color: #141029;
+    &__title {
+      display: flex;
+      justify-content: space-between;
+      h1 {
+        font-family: "Montserrat";
+        font-style: normal;
+        font-weight: 500;
+        font-size: 20px;
+        line-height: 29px;
+        color: #141029;
+      }
+    }
+    &__button {
+      button {
+        background: linear-gradient(90deg, #0094ff 3.2%, #9b42f5 73.28%);
+        color: white;
+        height: 38px;
+        min-width: 150px;
+        font-family: "Montserrat", serif;
+        border: none;
+        border-radius: 10px;
+        cursor: pointer;
+        -webkit-transition: 0.5s;
+        transition: all 0.2s;
+      }
     }
   }
-  &__button {
-    button {
-      background: linear-gradient(90deg, #0094ff 3.2%, #9b42f5 73.28%);
-      color: white;
-      height: 38px;
-      min-width: 150px;
-      font-family: "Montserrat", serif;
-      border: none;
-      border-radius: 10px;
-      cursor: pointer;
-      -webkit-transition: 0.5s;
-      transition: all 0.2s;
-    }
-}
-}
 }
 </style>

@@ -13,7 +13,7 @@
         </li>
       </div>
       <div class="paginator__total">
-        <span>Найдено всего {{ countOfallDronoport }}</span>
+        <span>{{ $t("counter-table") + countOfallDronoport }}</span>
       </div>
     </div>
   </div>
