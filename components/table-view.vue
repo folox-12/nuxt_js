@@ -11,8 +11,9 @@
             >
               {{ name }}
               <svg
-                v-show="true"
+                v-if="sortedFlag == value"
                 width="11"
+                :class="{ reverse: flagDirection == false }"
                 height="11"
                 viewBox="0 0 11 11"
                 fill="none"
@@ -55,8 +56,9 @@
 export default {
   data() {
     return {
-      countPage: 5,
       to: "",
+      sortedFlag: "",
+      flagDirection: false,
     };
   },
   props: {
@@ -79,13 +81,26 @@ export default {
       this.pageNumber = value;
     },
     getNameForSort(value) {
-      this.$emit("onSorted", value, true);
+      if (this.sortedFlag == value) {
+        this.flagDirection = !this.flagDirection;
+      } else {
+        this.sortedFlag = value;
+        this.flagDirection = true;
+      }
+
+      setTimeout(() => this.$emit("onSorted", value, this.flagDirection), 500);
     },
   },
 };
 </script>
 
 <style lang="scss" scoped>
+svg {
+  transition: all 0.8s ease;
+}
+svg.reverse {
+  transform: rotate(180deg);
+}
 .table {
   background-color: #fff;
   width: 100%;
@@ -107,7 +122,7 @@ export default {
 }
 table.table__responsive {
   border-collapse: collapse;
-
+  table-layout: fixed;
   th,
   td {
     text-align: center;

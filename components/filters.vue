@@ -56,6 +56,7 @@ export default {
       showRightSide: false,
       typeViewOfRightSide: null,
       pageNumber: 1,
+      sortFlag: "",
     };
   },
   components: {},
@@ -93,7 +94,14 @@ export default {
     },
     tableDataSearched() {
       let querySearch = this.inputValueUpdated;
-      let data = this.data[1];
+      let data = [...this.data[1]];
+      if (this.sortName) {
+        if (this.sortFlag) {
+          data = data.sort((a, b) => a[this.sortName] < b[this.sortName]);
+        } else {
+          data = data.sort((a, b) => a[this.sortName] > b[this.sortName]);
+        }
+      }
       return data.filter((elem) => {
         return elem.address
           .toLowerCase()
@@ -156,13 +164,8 @@ export default {
     // },
 
     sortByName(value, arrowDirection) {
-      let sortName = this.sortName;
-      return object.sort((a, b) => {
-        if (this.getSortFlag) {
-          return a[sortName] > b[sortName];
-        }
-        return a[sortName] < b[sortName];
-      });
+      this.sortName = value;
+      this.sortFlag = arrowDirection;
     },
   },
 };
