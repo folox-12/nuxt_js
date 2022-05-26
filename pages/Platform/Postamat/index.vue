@@ -5,7 +5,7 @@
       <hr />
       <div class="card__main card-main">
         <div class="card-main__title">
-          <h2>Освещение</h2>
+          <h2>Постамат</h2>
         </div>
 
         <Tablecard
@@ -18,10 +18,10 @@
   </div>
 </template>
 <script>
-import Imagecard from "../components/ImgCard.vue";
-import Tablecard from "../components/TableCard/TableCard.vue";
-import ModalWindow from "../components/ModalWindow.vue";
-import OpenCard from "../components/buttonCardOpen.vue";
+import Imagecard from "@/components/ImgCard.vue";
+import Tablecard from "@/components/TableCard/TableCard.vue";
+import ModalWindow from "@/components/ModalWindow.vue";
+import OpenCard from "@/components/buttonCardOpen.vue";
 export default {
   layout: "card",
   components: {
@@ -33,35 +33,35 @@ export default {
   data() {
     return {
       img: [
-        require("../assets/img/light1.jpg"),
-        require("../assets/img/light2.jpg"),
-        require("../assets/img/light3.jpg"),
+        require("@/assets/img/postamat1.jpg"),
+        require("@/assets/img/postamat2.jpg"),
+        require("@/assets/img/postamat3.jpg"),
       ],
-      titleImg: ["Вид спереди", "Вид сзади", "Вид сбоку"],
+      titleImg: ["Вид слева", "Вид сверху", "Вид справа"],
       title: [
         "Регистрационный номер",
         "Размеры (мм)",
         "Напряжение питания (В)",
-        "Цветовая температура(К)",
-        "Степень защиты IP",
-        "Световой поток, Lm",
+        "Вес (кг)",
+        "Время выдачи заказа (мин.)",
+        "Максимальная скорость ветра (м/с)",
         "Диапазон рабочих температур (C°)",
-        "Тип светодиода  ",
+        "Время обслуживания дрона (мин.)",
       ],
       description: [
         "450n-144-vc67PST",
-        "455 x 180 x 49",
-        "100",
-        "5000",
-        "IP65",
-        "12000",
-        "от -40 до 50",
-        "SMD2835",
+        "2045 x 1145 x 565",
+        "220",
+        "1600",
+        "1",
+        "15",
+        "от 0 до 40",
+        "5",
       ],
     };
   },
   headerData: {
-    title: "Освещение - Feron SP3040",
+    title: "Постамат - OZON Box",
   },
   methods: {
     changeData(number, value) {
@@ -72,7 +72,7 @@ export default {
 </script>
 
 <style lang="scss">
-@import "../assets/scss/card-area";
+@import "@/assets/scss/card-area";
 ::-webkit-scrollbar {
   width: 5px;
 }

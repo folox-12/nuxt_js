@@ -32,7 +32,7 @@
                 v-bind:value="description[0]"
                 @input="$emit('changeInfo', 0, $event.target.value)"
               /><button @click="clearInput()">
-                <img src="../../assets/img/ico/smallClear.svg" alt="" />
+                <img src="@/assets/img/ico/smallClear.svg" alt="" />
               </button>
             </div>
           </div>
@@ -49,7 +49,7 @@
                 v-bind:value="description[1]"
                 @input="$emit('changeInfo', 1, $event.target.value)"
               /><button @click="clearInput()">
-                <img src="../../assets/img/ico/smallClear.svg" alt="" />
+                <img src="@/assets/img/ico/smallClear.svg" alt="" />
               </button>
             </div>
           </div>
@@ -66,7 +66,7 @@
                 v-bind:value="description[2]"
                 @input="$emit('changeInfo', 2, $event.target.value)"
               /><button @click="clearInput()">
-                <img src="../../assets/img/ico/smallClear.svg" alt="" />
+                <img src="@/assets/img/ico/smallClear.svg" alt="" />
               </button>
             </div>
           </div>
@@ -83,7 +83,7 @@
                 v-bind:value="description[3]"
                 @input="$emit('changeInfo', 3, $event.target.value)"
               /><button @click="clearInput()">
-                <img src="../../assets/img/ico/smallClear.svg" alt="" />
+                <img src="@/assets/img/ico/smallClear.svg" alt="" />
               </button>
             </div>
           </div>
@@ -100,7 +100,7 @@
                 v-bind:value="description[4]"
                 @input="$emit('changeInfo', 4, $event.target.value)"
               /><button @click="clearInput()">
-                <img src="../../assets/img/ico/smallClear.svg" alt="" />
+                <img src="@/assets/img/ico/smallClear.svg" alt="" />
               </button>
             </div>
           </div>
@@ -117,7 +117,7 @@
                 v-bind:value="description[5]"
                 @input="$emit('changeInfo', 5, $event.target.value)"
               /><button @click="clearInput()">
-                <img src="../../assets/img/ico/smallClear.svg" alt="" />
+                <img src="@/assets/img/ico/smallClear.svg" alt="" />
               </button>
             </div>
           </div>
@@ -134,7 +134,7 @@
                 v-bind:value="description[6]"
                 @input="$emit('changeInfo', 6, $event.target.value)"
               /><button @click="clearInput()">
-                <img src="../../assets/img/ico/smallClear.svg" alt="" />
+                <img src="@/assets/img/ico/smallClear.svg" alt="" />
               </button>
             </div>
           </div>
@@ -151,7 +151,7 @@
                 v-bind:value="description[7]"
                 @input="$emit('changeInfo', 7, $event.target.value)"
               /><button @click="clearInput()">
-                <img src="../../assets/img/ico/smallClear.svg" alt="" />
+                <img src="@/assets/img/ico/smallClear.svg" alt="" />
               </button>
             </div>
           </div>
@@ -168,7 +168,7 @@
                 v-bind:value="description[8]"
                 @input="$emit('changeInfo', 8, $event.target.value)"
               /><button @click="clearInput()">
-                <img src="../../assets/img/ico/smallClear.svg" alt="" />
+                <img src="@/assets/img/ico/smallClear.svg" alt="" />
               </button>
             </div>
           </div>
@@ -185,7 +185,7 @@
                 v-bind:value="description[9]"
                 @input="$emit('changeInfo', 9, $event.target.value)"
               /><button @click="clearInput()">
-                <img src="../../assets/img/ico/smallClear.svg" alt="" />
+                <img src="@/assets/img/ico/smallClear.svg" alt="" />
               </button>
             </div>
           </div>

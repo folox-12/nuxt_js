@@ -73,11 +73,11 @@
 </template>
 
 <script>
-import Imagecard from "../../components/ImgCard.vue";
-import Tablecard from "../../components/TableCard/TableCard.vue";
-import ModalWindow from "../../components/ModalWindow.vue";
-import OpenCard from "../../components/buttonCardOpen.vue";
-import EditCard from "../../components/buttonCardEditing.vue";
+import Imagecard from "@/components/ImgCard.vue";
+import Tablecard from "@/components/TableCard/TableCard.vue";
+import ModalWindow from "@/components/ModalWindow.vue";
+import OpenCard from "@/components/buttonCardOpen.vue";
+import EditCard from "@/components/buttonCardEditing.vue";
 export default {
   /*
   async asyncData({ store }) {
@@ -118,28 +118,28 @@ export default {
           company: "Ajax",
           type: "MonionProtect",
           id: "312312414",
-          link: "/Sensor",
+          link: "/Platform/Sensor",
         },
         {
           name: "protection",
           company: "Wall",
           type: "WallOne",
           id: "312312414",
-          link: "/Wall",
+          link: "/Platform/Wall",
         },
         {
           name: "lights",
           company: "FERON",
           type: "SP3040",
           id: "312312414",
-          link: "/Light",
+          link: "/Platform/Light",
         },
         {
           name: "postamat",
           company: "Ozon",
           type: "Box",
           id: "312312414",
-          link: "/Postamat",
+          link: "/Platform/Postamat",
         },
       ],
 
@@ -157,7 +157,7 @@ export default {
         "adress-table-card",
         "registration-num-table-card",
         "creation-date-table-card",
-        "dimensions-table-card",
+        "dimensions-table-card-meters",
         "alowable-temp-table-card",
         "operating-mode-table-card",
       ],
