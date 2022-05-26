@@ -173,7 +173,6 @@ export default {
   &__content {
     display: flex;
     flex-direction: column;
-    padding-left: 15px;
     flex-wrap: wrap;
     gap: 15px;
   }

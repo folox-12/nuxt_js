@@ -3,7 +3,9 @@
     <div class="right-side__title">
       {{ title }}
     </div>
-    <slot></slot>
+    <div class="right-side__content">
+      <slot></slot>
+    </div>
   </div>
 </template>
 
@@ -32,6 +34,9 @@ export default {
     font-size: 1.2rem;
     font-weight: bold;
     margin-bottom: 15px;
+  }
+  &__content {
+    padding-left: 15px;
   }
 }
 </style>
