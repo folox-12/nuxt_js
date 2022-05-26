@@ -19,6 +19,7 @@
             v-for="key in sortedRightSideViews"
             :key="key.name"
             v-on:click="toggleShowRightSide(key.name)"
+            :class="isBtnActive(key.name)"
           >
             <img :src="key.img" alt="#" />
           </button>
@@ -166,6 +167,11 @@ export default {
     sortByName(value, arrowDirection) {
       this.sortName = value;
       this.sortFlag = arrowDirection;
+    },
+    isBtnActive(btn_name) {
+      if (btn_name == this.typeViewOfRightSide) {
+        return "active";
+      }
     },
   },
 };
