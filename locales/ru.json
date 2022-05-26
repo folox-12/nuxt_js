@@ -54,5 +54,12 @@
   "wind-speed-table-card": "Максимальная скорость ветра (м/с)",
   "maintence-time-table-card": "Время обслуживания дрона (мин.)",
 
-  "equipment": "Оснащение"
+  "equipment": "Оснащение",
+  "equipment-name": "Наименование",
+  "equipment-type": "Тип",
+
+  "show-all-btn": "Показать все",
+  "hide-all-btn": "Скрыть",
+
+  "serviced-drones": "Обслуживаемые дроны"
 }

@@ -50,7 +50,7 @@
             v-if="$store.getters['GetChangestatus'] == true"
             class="spoiler__reset_button"
           >
-            + Добавить
+            {{ $t("add-btn-edit-platform") }}
           </button>
         </div>
       </div>
@@ -58,13 +58,17 @@
     <div class="card">
       <div class="card__main card-main">
         <div class="card-main__title">
-          <h2>Обслуживаемые дроны</h2>
+          <h2>{{ $t("serviced-drones") }}</h2>
         </div>
         <div class="card-main__table">
           <table>
             <tr>
-              <th style="padding-bottom: 15px">Производитель</th>
-              <th style="padding-bottom: 15px">Модель</th>
+              <th style="padding-bottom: 15px">
+                {{ $t("infrastructure-manufacturer") }}
+              </th>
+              <th style="padding-bottom: 15px">
+                {{ $t("infrastructure-model") }}
+              </th>
               <th style="padding-bottom: 15px"></th>
             </tr>
             <tr>
@@ -77,7 +81,7 @@
             v-if="$store.getters['GetChangestatus'] == true"
             class="spoiler__reset_button"
           >
-            + Добавить
+            {{ $t("add-btn") }}
           </button>
         </div>
       </div>
