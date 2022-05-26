@@ -1,15 +1,32 @@
 <template>
-  <div class="main-area" id="main-area">
-    <v-select
+  <div>
+    <!-- <v-select
       :options="['go', 'python', 'rust', 'javascript']"
       :default="'go'"
       class="select"
       @input="$event"
-    />
+    /> -->
+    <spoiler :title="'ПРостоолЖ'">
+      <div class="class">1 1 1</div>
+    </spoiler>
+    <div class="div">
+      Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptates,
+      repudiandae dolor natus magnam dolorem pariatur nobis est numquam expedita
+      veritatis. Illo consequatur molestias neque accusantium esse ipsam
+      asperiores veniam minima eveniet atque dolore qui aspernatur commodi
+      sapiente recusandae modi, facilis animi aliquid quasi magni nihil harum
+      corporis laudantium iste. Cumque atque eveniet laudantium! Harum
+      architecto expedita inventore quod ullam aliquam veritatis ducimus
+      asperiores, tenetur tempora vero minus amet unde doloremque iste ratione
+      sed aut nulla in magnam, ad quaerat voluptate? Amet laudantium illum error
+      assumenda! Modi officiis repellendus voluptatum quo quis quasi, doloremque
+      sunt numquam, soluta consectetur, quod recusandae consequuntur.
+    </div>
   </div>
 </template>
 <script>
 import selectComponent from "../components/selectComponent.vue";
+import spoiler from "../components/spoiler.vue";
 
 export default {
   data() {
@@ -17,6 +34,7 @@ export default {
   },
   components: {
     "v-select": selectComponent,
+    spoiler,
   },
   created() {},
   methods: {
