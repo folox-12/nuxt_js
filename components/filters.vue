@@ -189,16 +189,6 @@ export default {
 
 .filter-content :last-child() {
   flex: 0 0 35%;
-}
-.slide-fade-enter-active {
-  transition: all 0.8s ease;
-}
-.slide-fade-leave-active {
-  transition: all 0.3s ease;
-}
-.slide-fade-enter,
-.slide-fade-leave-to {
-  transform: translateX(10px);
   opacity: 0;
 }
 .header-page {

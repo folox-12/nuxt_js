@@ -26,26 +26,28 @@
           getNameForSort,
         }"
       >
-        <div class="left-main-content">
-          <tableView
-            v-if="viewFormat === 'table'"
-            :tableDescription="tableDescription"
-            :tableTitle="tableTitle"
-            :pageNumber="pageNumber"
-            :itemsOnPage="itemsOnPage"
-            @onSorted="getNameForSort"
-          >
-            <pagination
+        <transition name="slide-fade">
+          <div class="left-main-content">
+            <tableView
+              v-if="viewFormat === 'table'"
+              :tableDescription="tableDescription"
+              :tableTitle="tableTitle"
+              :pageNumber="pageNumber"
               :itemsOnPage="itemsOnPage"
-              :countOfallDronoport="lenghtSearchedData"
-              @UpdatedPageSlice="onChangePage"
-              @UpdatedPageNumber="UpdatedPageNumber"
-            />
-          </tableView>
-          <div v-else-if="viewFormat === 'map'">
-            <Map></Map>
+              @onSorted="getNameForSort"
+            >
+              <pagination
+                :itemsOnPage="itemsOnPage"
+                :countOfallDronoport="lenghtSearchedData"
+                @UpdatedPageSlice="onChangePage"
+                @UpdatedPageNumber="UpdatedPageNumber"
+              />
+            </tableView>
+            <div v-else-if="viewFormat === 'map'">
+              <Map></Map>
+            </div>
           </div>
-        </div>
+        </transition>
         <Transition name="slide-fade">
           <div class="right-main-content" v-if="showRightSide">
             <rightSide

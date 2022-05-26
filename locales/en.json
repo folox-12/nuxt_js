@@ -9,7 +9,7 @@
   "search-by-address": "Search by address",
 
   "no-table-title": "№",
-  "address-table-title": "Adress",
+  "address-table-title": "Address",
   "droneport-table-title": "Droneport",
   "postamat-table-title": "Postamat",
   "counter-table": "Total found: ",
@@ -43,5 +43,21 @@
   "motion-sensors": "Motion sensors",
   "protection": "Protection",
   "lights": "Lights",
-  "postamat": "Postamat"
+  "postamat": "Postamat",
+
+  "droneport-title-page": "Droneport - Drone Port Hive M300",
+  "dimensions-table-card-mm": "Dimensions (mm)",
+  "voltage-table-card": "Voltge (V)",
+  "energy-consumption-table-card": "Energy consumption (kV/h)",
+  "weight-table-card": "Weight (kg)",
+  "battery-table-card": "Battery charging time (minutes)",
+  "wind-speed-table-card": "Maximum wind speed (m/s)",
+  "maintence-time-table-card": "Drone maintenance time (min.)",
+
+  "equipment": "Equipment",
+  "equipment-name": "Name",
+  "equipment-type": "Type",
+
+  "show-all-btn": "Show all",
+  "hide-all-btn": "Hide"
 }
