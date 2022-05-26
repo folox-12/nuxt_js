@@ -58,30 +58,32 @@
               v-if="typeViewOfRightSide === 'Options'"
             >
               <div class="right-side-option__content">
-                <div
-                  class="right-side-option__item"
-                  :class="{
-                    active: viewFormat === 'map',
-                  }"
-                  @click="switchTypeOfView('map')"
-                >
-                  <button>
-                    <img src="/ico/map.svg" alt="#" />
-                  </button>
-                  <span>Карта</span>
-                </div>
-                <div
-                  class="right-side-option__item"
-                  :class="{
-                    active: viewFormat === 'table',
-                  }"
-                  @click="switchTypeOfView('table')"
-                >
-                  <button>
-                    <img src="/ico/table.svg" alt="#" />
-                  </button>
-                  <span>Таблица</span>
-                </div>
+                <spoiler :title="'Вид представления'">
+                  <div
+                    class="right-side-option__item"
+                    :class="{
+                      active: viewFormat === 'map',
+                    }"
+                    @click="switchTypeOfView('map')"
+                  >
+                    <button>
+                      <img src="/ico/map.svg" alt="#" />
+                    </button>
+                    <span>Карта</span>
+                  </div>
+                  <div
+                    class="right-side-option__item"
+                    :class="{
+                      active: viewFormat === 'table',
+                    }"
+                    @click="switchTypeOfView('table')"
+                  >
+                    <button>
+                      <img src="/ico/table.svg" alt="#" />
+                    </button>
+                    <span>Таблица</span>
+                  </div>
+                </spoiler>
               </div>
             </div>
             <div
@@ -105,6 +107,7 @@ import rightSide from "../components/right-side.vue";
 import tableView from "../components/table-view.vue";
 import Map from "../components/Map.vue";
 import pagination from "../components/pagination.vue";
+import spoiler from "../components/spoiler.vue";
 
 import { mapGetters } from "vuex";
 export default {
@@ -116,6 +119,7 @@ export default {
     Map,
     pagination,
     rightSide,
+    spoiler,
   },
   data() {
     return {
@@ -155,6 +159,10 @@ export default {
     display: flex;
     align-items: center;
     gap: 15px;
+    margin-bottom: 15px;
+    &:last-child() {
+      margin-bottom: 0;
+    }
     cursor: pointer;
     button {
       display: flex;
