@@ -85,10 +85,10 @@
   </div>
 </template>
 <script>
-import Imagecard from "../components/ImgCard.vue";
-import Tablecard from "../components/TableCard/TableCard.vue";
-import ModalWindow from "../components/ModalWindow.vue";
-import OpenCard from "../components/buttonCardOpen.vue";
+import Imagecard from "../../../components/ImgCard.vue";
+import Tablecard from "../../../components/TableCard/TableCard.vue";
+import ModalWindow from "../../../components/ModalWindow.vue";
+import OpenCard from "../../../components/buttonCardOpen.vue";
 export default {
   layout: "card",
   components: {
@@ -108,9 +108,9 @@ export default {
       ],
       limit: 3,
       img: [
-        require("../assets/img/dronoport1.jpg"),
-        require("../assets/img/dronoport2.jpg"),
-        require("../assets/img/dronoport3.jpg"),
+        require("@/assets/img/dronoport1.jpg"),
+        require("@/assets/img/dronoport2.jpg"),
+        require("@/assets/img/dronoport3.jpg"),
       ],
       titleImg: [
         "left-view-modal-img",
@@ -167,7 +167,7 @@ export default {
 </script>
 
 <style lang="scss">
-@import "../assets/scss/card-area";
+@import "@/assets/scss/card-area";
 .spoiler__reset {
   margin-bottom: 15px;
   &_button {

@@ -6,14 +6,21 @@
   <nav class="header-page__navigation header-page-navigation">
     <div
       class="header-page-navigation__item"
-      v-for="crumb in getAllRoute"
+      v-for="(crumb, ci) in getAllRoute"
       :key="crumb"
     >
       <div class="header-page-navigation__link">
-        <nuxt-link :to="crumb" v-if="$i18n.locale !== 'en'">
+        <nuxt-link
+          :to="localePath(createLink(getAllRoute.slice(0, ci + 1)))"
+          v-if="$i18n.locale !== 'en'"
+        >
           {{ translateToRus(crumb) }}
         </nuxt-link>
-        <nuxt-link :to="crumb" v-if="$i18n.locale == 'en'">
+
+        <nuxt-link
+          :to="localePath(createLink(getAllRoute.slice(0, ci + 1)))"
+          v-if="$i18n.locale == 'en'"
+        >
           {{ normalize(crumb) }}
         </nuxt-link>
       </div>
@@ -36,6 +43,7 @@ export default {
     getAllRoute() {
       // console.log(this.crumbs);
       let crumbs = this.crumbs.slice(1).split("/");
+      console.log(this.crumbs);
       if (crumbs[0] == "en") {
         crumbs.splice(0, 1);
       }
@@ -81,7 +89,7 @@ export default {
         case "Sensor": {
           return "Датчик движения";
         }
-        case "Dronoport": {
+        case "Droneport": {
           return "Дронопорт";
         }
         default: {
@@ -92,6 +100,13 @@ export default {
     normalize(item) {
       if (item == "") return "Main";
       else return item;
+    },
+    createLink(crumbs) {
+      let _link = "";
+      crumbs.forEach((element) => {
+        _link += "/" + element;
+      });
+      return _link;
     },
   },
 };

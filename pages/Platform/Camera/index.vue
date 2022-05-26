@@ -5,7 +5,7 @@
       <hr />
       <div class="card__main card-main">
         <div class="card-main__title">
-          <h2>Освещение</h2>
+          <h2>Камера</h2>
         </div>
 
         <Tablecard
@@ -18,10 +18,10 @@
   </div>
 </template>
 <script>
-import Imagecard from "../components/ImgCard.vue";
-import Tablecard from "../components/TableCard/TableCard.vue";
-import ModalWindow from "../components/ModalWindow.vue";
-import OpenCard from "../components/buttonCardOpen.vue";
+import Imagecard from "@/components/ImgCard.vue";
+import Tablecard from "@/components/TableCard/TableCard.vue";
+import ModalWindow from "@/components/ModalWindow.vue";
+import OpenCard from "@/components/buttonCardOpen.vue";
 export default {
   layout: "card",
   components: {
@@ -33,35 +33,33 @@ export default {
   data() {
     return {
       img: [
-        require("../assets/img/light1.jpg"),
-        require("../assets/img/light2.jpg"),
-        require("../assets/img/light3.jpg"),
+        require("@/assets/img/camera1.jpg"),
+        require("@/assets/img/camera2.jpg"),
+        require("@/assets/img/camera3.jpg"),
       ],
-      titleImg: ["Вид спереди", "Вид сзади", "Вид сбоку"],
+      titleImg: ["Вид слева", "Вид сверху", "Вид справа"],
       title: [
         "Регистрационный номер",
         "Размеры (мм)",
         "Напряжение питания (В)",
-        "Цветовая температура(К)",
-        "Степень защиты IP",
-        "Световой поток, Lm",
-        "Диапазон рабочих температур (C°)",
-        "Тип светодиода  ",
+        "Угол обзора (°)",
+        "Качество видео (p)",
+        "Фокусное расстояние(мм)",
+        "Количество видео-входов",
       ],
       description: [
         "450n-144-vc67PST",
-        "455 x 180 x 49",
-        "100",
-        "5000",
-        "IP65",
-        "12000",
-        "от -40 до 50",
-        "SMD2835",
+        "290 x 150 x 80",
+        "12",
+        "85",
+        "1080",
+        "3,6",
+        "4",
       ],
     };
   },
   headerData: {
-    title: "Освещение - Feron SP3040",
+    title: "Камера -  AHD M300",
   },
   methods: {
     changeData(number, value) {
@@ -72,7 +70,7 @@ export default {
 </script>
 
 <style lang="scss">
-@import "../assets/scss/card-area";
+@import "@/assets/scss/card-area";
 ::-webkit-scrollbar {
   width: 5px;
 }

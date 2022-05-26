@@ -73,11 +73,11 @@
 </template>
 
 <script>
-import Imagecard from "../components/ImgCard.vue";
-import Tablecard from "../components/TableCard/TableCard.vue";
-import ModalWindow from "../components/ModalWindow.vue";
-import OpenCard from "../components/buttonCardOpen.vue";
-import EditCard from "../components/buttonCardEditing.vue";
+import Imagecard from "../../components/ImgCard.vue";
+import Tablecard from "../../components/TableCard/TableCard.vue";
+import ModalWindow from "../../components/ModalWindow.vue";
+import OpenCard from "../../components/buttonCardOpen.vue";
+import EditCard from "../../components/buttonCardEditing.vue";
 export default {
   /*
   async asyncData({ store }) {
@@ -104,14 +104,14 @@ export default {
           company: "Hive",
           type: "М300",
           id: "312312414",
-          link: "/Dronoport",
+          link: "/Platform/Droneport",
         },
         {
           name: "camera",
           company: "AHD",
           type: "C201HD",
           id: "312312414",
-          link: "/Camera",
+          link: "/Platform/Camera",
         },
         {
           name: "motion-sensors",
@@ -144,9 +144,9 @@ export default {
       ],
 
       img: [
-        require("../assets/img/platform1.jpg"),
-        require("../assets/img/platform2.jpg"),
-        require("../assets/img/platform3.jpg"),
+        require("@/assets/img/platform1.jpg"),
+        require("@/assets/img/platform2.jpg"),
+        require("@/assets/img/platform3.jpg"),
       ],
       titleImg: [
         "left-view-modal-img",
@@ -184,7 +184,7 @@ export default {
 </script>
 
 <style lang="scss">
-@import "../assets/scss/card-area";
+@import "@/assets/scss/card-area";
 ::-webkit-scrollbar {
   width: 5px;
 }
