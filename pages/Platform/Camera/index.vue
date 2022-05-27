@@ -1,7 +1,7 @@
 <template>
   <div class="page">
     <div class="card">
-      <Imagecard :img="img" :titleImg="titleImg"></Imagecard>
+      <Imagecard :img="img" :titleImg="titleImg" @DeleteImg="DeleteImg"></Imagecard>
       <hr />
       <div class="card__main card-main">
         <div class="card-main__title">
@@ -65,6 +65,9 @@ export default {
     changeData(number, value) {
       this.description[number] = value;
     },
+     DeleteImg(index){
+      this.img.splice(index, 1)
+    }
   },
 };
 </script>

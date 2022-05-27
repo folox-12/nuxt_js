@@ -54,5 +54,14 @@
   "wind-speed-table-card": "Максимальная скорость ветра (м/с)",
   "maintence-time-table-card": "Время обслуживания дрона (мин.)",
 
-  "equipment": "Оснащение"
+  "equipment": "Оснащение",
+
+  "show-all-btn": "Показать",
+  "hide-all-btn": "Скрыть",
+  "equipment-name": "Наимнование",
+  "equipment-type": "Производитель",
+
+  "you-can-add-photo": "Вы можете добавить фото",
+  "no-photo": "Нет фотографий",
+  "no-info" : "Нет данных"
 }

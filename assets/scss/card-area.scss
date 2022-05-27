@@ -89,6 +89,7 @@ $color-for-bg: #ffffff;
     gap: 90px;
     padding: 30px 115px 30px 115px;
     flex-wrap: wrap;
+    justify-content: center;
   }
   &__main {
     display: flex;
@@ -117,6 +118,14 @@ $color-for-bg: #ffffff;
   }
 }
 .card-images {
+    &__noPhoto{
+        font-family: 'Montserrat';
+font-style: normal;
+font-weight: 600;
+font-size: 20px;
+line-height: 25px;
+color: #141029
+    }
   &__image {
     position: relative;
     transition: all 0.2s;

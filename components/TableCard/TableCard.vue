@@ -13,7 +13,8 @@
         <li>
           <div class="card-main-list__point">
             <h4>{{ $t(title[index]) }}</h4>
-            <span>{{ description[index] }}</span>
+            <span v-if="description[index] != ''">{{ description[index] }}</span>
+            <span v-else>{{ $t("no-info") }}</span>
           </div>
         </li>
       </div>
@@ -157,7 +158,7 @@
           </div>
         </li>
       </div>
-      <div v-if="description[7]" class="card-main-list__el">
+      <div v-if="description[8]" class="card-main-list__el">
         <li>
           <div class="card-main-list__point">
             <h4>{{ title[8] }}</h4>

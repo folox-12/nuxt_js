@@ -59,5 +59,9 @@
   "equipment-type": "Type",
 
   "show-all-btn": "Show all",
-  "hide-all-btn": "Hide"
+  "hide-all-btn": "Hide",
+
+  "you-can-add-photo": "You can add a photo",
+  "no-photo": "No photo",
+  "no-info" : "No data"
 }
