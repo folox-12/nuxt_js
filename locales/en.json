@@ -20,7 +20,7 @@
   "adress-table-card": "Address",
   "registration-num-table-card": "Registration number",
   "creation-date-table-card": "Creation date",
-  "dimensions-table-card": "Dimensions(m)",
+  "dimensions-table-card-meters": "Dimensions(m)",
   "alowable-temp-table-card": "Alowable temptature(C°)",
   "operating-mode-table-card": "Operating mode",
 
@@ -61,7 +61,10 @@
   "show-all-btn": "Show all",
   "hide-all-btn": "Hide",
 
+
   "you-can-add-photo": "You can add a photo",
   "no-photo": "No photo",
-  "no-info" : "No data"
+  "no-info" : "No data",
+  "serviced-drones" : "Serviced drones"
 }
+

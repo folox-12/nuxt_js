@@ -56,12 +56,16 @@
 
   "equipment": "Оснащение",
 
-  "show-all-btn": "Показать",
-  "hide-all-btn": "Скрыть",
-  "equipment-name": "Наимнование",
-  "equipment-type": "Производитель",
-
   "you-can-add-photo": "Вы можете добавить фото",
   "no-photo": "Нет фотографий",
-  "no-info" : "Нет данных"
+  "no-info" : "Нет данных",
+
+  "equipment-name": "Наименование",
+  "equipment-type": "Тип",
+
+  "show-all-btn": "Показать все",
+  "hide-all-btn": "Скрыть",
+
+  "serviced-drones": "Обслуживаемые дроны"
+
 }
