@@ -20,7 +20,7 @@
   "adress-table-card": "Address",
   "registration-num-table-card": "Registration number",
   "creation-date-table-card": "Creation date",
-  "dimensions-table-card": "Dimensions(m)",
+  "dimensions-table-card-meters": "Dimensions(m)",
   "alowable-temp-table-card": "Alowable temptature(C°)",
   "operating-mode-table-card": "Operating mode",
 
