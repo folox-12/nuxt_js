@@ -77,5 +77,10 @@
   "camera-info-title": "Camera information",
   "camera-resolution": "Video quantity (p)",
   "focal-length": "Focal length",
-  "number-of-inputs-outputs": "Number of inputs-outputs"
+  "number-of-inputs-outputs": "Number of inputs-outputs",
+
+  "motions-sensors-title": "Motion sensors",
+  "motion-sensor-title-page": "Motion Sensor - Ajax Motion Protect",
+  "motion-sensor-speed-table-card": "Motion speed (м/с)",
+  "detection-range-table-card": "Detection range (m)"
 }

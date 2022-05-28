@@ -79,5 +79,10 @@
   "camera-info-title": "Информация о камере",
   "camera-resolution": "Качество видео (p)",
   "focal-length": "Фокусное расстояние (мм)",
-  "number-of-inputs-outputs": "Количество входов-выходов"
+  "number-of-inputs-outputs": "Количество входов-выходов",
+
+  "motions-sensors-title": "Датчики движения",
+  "motion-sensor-title-page": "Датчик движения - Ajax Motion Protect",
+  "motion-sensor-speed-table-card": "Скорость движения (м/с)",
+  "detection-range-table-card": "Дальность обнаружения (м)"
 }
