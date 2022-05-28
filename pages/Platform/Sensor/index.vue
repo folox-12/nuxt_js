@@ -1,11 +1,15 @@
 <template>
   <div class="page">
     <div class="card">
-      <Imagecard :img="img" :titleImg="titleImg" @DeleteImg="DeleteImg"></Imagecard>
+      <Imagecard
+        :img="img"
+        :titleImg="titleImg"
+        @DeleteImg="DeleteImg"
+      ></Imagecard>
       <hr />
       <div class="card__main card-main">
         <div class="card-main__title">
-          <h2>Датчики движения</h2>
+          <h2>{{ $t("motions-sensors-title") }}</h2>
         </div>
 
         <Tablecard
@@ -40,14 +44,14 @@ export default {
       ],
       titleImg: ["Вид слева", "Вид сверху", "Вид справа"],
       title: [
-        "Регистрационный номер",
-        "Размеры (мм)",
-        "Напряжение питания (В)",
-        "Вес (кг)",
-        "Угол обзора (°)",
-        "Скорость движения  (м/с)",
-        "Диапазон рабочих температур (C°)",
-        "Дальность обнаружения (м)",
+        "registration-num-table-card",
+        "dimensions-table-card-mm",
+        "voltage-table-card",
+        "weight-table-card",
+        "viewing-angle-table-card",
+        "motion-sensor-speed-table-card",
+        "alowable-temp-table-card",
+        "detection-range-table-card",
       ],
       description: [
         "450n-144-vc67PST",
@@ -62,18 +66,20 @@ export default {
     };
   },
   headerData: {
-    title: "Датчик движения - Ajax Motion Protect",
+    title: "motion-sensor-title-page",
   },
   methods: {
     changeData(number, value) {
       this.description[number] = value;
     },
+
      DeleteImg(index){
       this.img.splice(index, 1)
     },
     clearInput(index){
       this.description[index] = ''
     }
+
   },
 };
 </script>

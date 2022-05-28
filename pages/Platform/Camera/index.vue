@@ -1,11 +1,15 @@
 <template>
   <div class="page">
     <div class="card">
-      <Imagecard :img="img" :titleImg="titleImg" @DeleteImg="DeleteImg"></Imagecard>
+      <Imagecard
+        :img="img"
+        :titleImg="titleImg"
+        @DeleteImg="DeleteImg"
+      ></Imagecard>
       <hr />
       <div class="card__main card-main">
         <div class="card-main__title">
-          <h2>Камера</h2>
+          <h2>{{ $t("camera-info-title") }}</h2>
         </div>
 
         <Tablecard
@@ -38,15 +42,19 @@ export default {
         require("@/assets/img/camera2.jpg"),
         require("@/assets/img/camera3.jpg"),
       ],
-      titleImg: ["Вид слева", "Вид сверху", "Вид справа"],
+      titleImg: [
+        "left-view-modal-img",
+        "top-view-modal-img",
+        "right-view-modal-img",
+      ],
       title: [
-        "Регистрационный номер",
-        "Размеры (мм)",
-        "Напряжение питания (В)",
-        "Угол обзора (°)",
-        "Качество видео (p)",
-        "Фокусное расстояние(мм)",
-        "Количество видео-входов",
+        "registration-num-table-card",
+        "dimensions-table-card-mm",
+        "voltage-table-card",
+        "viewing-angle-table-card",
+        "camera-resolution",
+        "focal-length",
+        "number-of-inputs-outputs",
       ],
       description: [
         "450n-144-vc67PST",
@@ -60,18 +68,20 @@ export default {
     };
   },
   headerData: {
-    title: "Камера -  AHD M300",
+    title: "camera-title-page",
   },
   methods: {
     changeData(number, value) {
       this.description[number] = value;
     },
+
      DeleteImg(index){
       this.img.splice(index, 1)
     },
     clearInput(index){
       this.description[index] = ''
     }
+
   },
 };
 </script>

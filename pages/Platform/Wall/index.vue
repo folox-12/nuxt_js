@@ -1,11 +1,15 @@
 <template>
   <div class="page">
     <div class="card">
-      <Imagecard :img="img" :titleImg="titleImg" @DeleteImg="DeleteImg"></Imagecard>
+      <Imagecard
+        :img="img"
+        :titleImg="titleImg"
+        @DeleteImg="DeleteImg"
+      ></Imagecard>
       <hr />
       <div class="card__main card-main">
         <div class="card-main__title">
-          <h2>Ограждение</h2>
+          <h2>{{ $t("wall-title") }}</h2>
         </div>
 
         <Tablecard
@@ -38,8 +42,16 @@ export default {
         require("@/assets/img/wall2.jpg"),
         require("@/assets/img/wall3.jpg"),
       ],
-      titleImg: ["Вид слева", "Вид сверху", "Вид справа"],
-      title: ["Производитель", "Высота (мм)", "Размеры ячейки (ДxШ) (мм)"],
+      titleImg: [
+        "left-view-table-card",
+        "top-view-table-card",
+        "right-view-table-card",
+      ],
+      title: [
+        "infrastructure-manufacturer",
+        "height-table-card",
+        "Размеры ячейки (ДxШ) (мм)",
+      ],
       description: ["Россия", "1500", "50 x 50"],
     };
   },
@@ -50,12 +62,14 @@ export default {
     changeData(number, value) {
       this.description[number] = value;
     },
+
      DeleteImg(index){
       this.img.splice(index, 1)
     },
     clearInput(index){
       this.description[index] = ''
     }
+
   },
 };
 </script>

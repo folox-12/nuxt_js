@@ -1,11 +1,15 @@
 <template>
   <div class="page">
     <div class="card">
-      <Imagecard :img="img" :titleImg="titleImg" @DeleteImg="DeleteImg"></Imagecard>
+      <Imagecard
+        :img="img"
+        :titleImg="titleImg"
+        @DeleteImg="DeleteImg"
+      ></Imagecard>
       <hr />
       <div class="card__main card-main">
         <div class="card-main__title">
-          <h2>Освещение</h2>
+          <h2>{{ $t("lights-title-page") }}</h2>
         </div>
 
         <Tablecard
@@ -38,16 +42,20 @@ export default {
         require("@/assets/img/light2.jpg"),
         require("@/assets/img/light3.jpg"),
       ],
-      titleImg: ["Вид спереди", "Вид сзади", "Вид сбоку"],
+      titleImg: [
+        "front-view-table-card",
+        "back-view-table-card",
+        "left-view-table-card",
+      ],
       title: [
-        "Регистрационный номер",
-        "Размеры (мм)",
-        "Напряжение питания (В)",
-        "Цветовая температура(К)",
+        "registration-num-table-card",
+        "dimensions-table-card-mm",
+        "voltage-table-card",
+        "temp-color-table-card",
         "Степень защиты IP",
         "Световой поток, Lm",
-        "Диапазон рабочих температур (C°)",
-        "Тип светодиода  ",
+        "alowable-temp-table-card",
+        "Тип светодиода",
       ],
       description: [
         "450n-144-vc67PST",
@@ -62,18 +70,20 @@ export default {
     };
   },
   headerData: {
-    title: "Освещение - Feron SP3040",
+    title: "light-title",
   },
   methods: {
     changeData(number, value) {
       this.description[number] = value;
     },
+
      DeleteImg(index){
       this.img.splice(index, 1)
     },
     clearInput(index){
       this.description[index] = ''
     }
+
   },
 };
 </script>

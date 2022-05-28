@@ -61,10 +61,42 @@
   "show-all-btn": "Show all",
   "hide-all-btn": "Hide",
 
-
   "you-can-add-photo": "You can add a photo",
   "no-photo": "No photo",
-  "no-info" : "No data",
-  "serviced-drones" : "Serviced drones"
-}
+  "no-info": "No data",
+  "serviced-drones": "Serviced drones",
 
+  "user-information-title": "Main information",
+  "user-profile-title-page": "Profile",
+  "name-table-card": "Name",
+  "surname-table-card": "Surname",
+  "birth-date-table-card": "Birth date",
+
+  "camera-title-page": "Camera - AHD M300",
+  "viewing-angle-table-card": "Viewing angle (°)",
+  "camera-info-title": "Camera information",
+  "camera-resolution": "Video quantity (p)",
+  "focal-length": "Focal length",
+  "number-of-inputs-outputs": "Number of inputs-outputs",
+
+  "motions-sensors-title": "Motion sensors",
+  "motion-sensor-title-page": "Motion Sensor - Ajax Motion Protect",
+  "motion-sensor-speed-table-card": "Motion speed (м/с)",
+  "detection-range-table-card": "Detection range (m)",
+
+  "lights-title-page": "Lights",
+  "temp-color-table-card": "Tempretare color(K)",
+
+  "front-view-table-card": "Front view",
+  "back-view-table-card": "Back view",
+  "left-view-table-card": "Left view",
+  "top-view-table-card": "Top view",
+  "right-view-table-card": "Right view",
+
+  "light-title": "Lights - Feron SP3040",
+
+  "postamat-title-page": "Postamat",
+  "postamat-title": "Postamat - OZON Box",
+  "wall-title": "Wall",
+  "height-table-card": "Height (mm)"
+}
