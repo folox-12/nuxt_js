@@ -58,7 +58,7 @@
 
   "you-can-add-photo": "Вы можете добавить фото",
   "no-photo": "Нет фотографий",
-  "no-info" : "Нет данных",
+  "no-info": "Нет данных",
 
   "equipment-name": "Наименование",
   "equipment-type": "Тип",
@@ -66,6 +66,18 @@
   "show-all-btn": "Показать все",
   "hide-all-btn": "Скрыть",
 
-  "serviced-drones": "Обслуживаемые дроны"
+  "serviced-drones": "Обслуживаемые дроны",
 
+  "user-information-title": "Главная информация",
+  "user-profile-title-page": "Профиль",
+  "name-table-card": "Имя",
+  "surname-table-card": "Фамилия",
+  "birth-date-table-card": "Дата рождения",
+
+  "camera-title-page": "Камера - AHD M300",
+  "viewing-angle-table-card": "Угол обзора (°)",
+  "camera-info-title": "Информация о камере",
+  "camera-resolution": "Качество видео (p)",
+  "focal-length": "Фокусное расстояние (мм)",
+  "number-of-inputs-outputs": "Количество входов-выходов"
 }

@@ -35,21 +35,10 @@
                   @click.prevent.stop="$i18n.setLocale('en')"
                   >RU</a
                 >
-                <!-- <nuxt-link
-                v-if="$i18n.locale !== 'en'"
-                :to="switchLocalePath('en')"
-              >
-                Русский
-              </nuxt-link>
-
-              <nuxt-link
-                v-if="$i18n.locale !== 'ru'"
-                :to="switchLocalePath('ru')"
-              >
-                English
-              </nuxt-link> -->
               </div>
-              <img src="../assets/img/fd-logo.png" />
+              <nuxt-link href="" :to="localePath('/User')">
+                <img src="@/assets/img/fd-logo.png" />
+              </nuxt-link>
             </div>
           </div>
         </div>

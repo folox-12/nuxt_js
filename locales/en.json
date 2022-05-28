@@ -61,10 +61,21 @@
   "show-all-btn": "Show all",
   "hide-all-btn": "Hide",
 
-
   "you-can-add-photo": "You can add a photo",
   "no-photo": "No photo",
-  "no-info" : "No data",
-  "serviced-drones" : "Serviced drones"
-}
+  "no-info": "No data",
+  "serviced-drones": "Serviced drones",
 
+  "user-information-title": "Main information",
+  "user-profile-title-page": "Profile",
+  "name-table-card": "Name",
+  "surname-table-card": "Surname",
+  "birth-date-table-card": "Birth date",
+
+  "camera-title-page": "Camera - AHD M300",
+  "viewing-angle-table-card": "Viewing angle (°)",
+  "camera-info-title": "Camera information",
+  "camera-resolution": "Video quantity (p)",
+  "focal-length": "Focal length",
+  "number-of-inputs-outputs": "Number of inputs-outputs"
+}
