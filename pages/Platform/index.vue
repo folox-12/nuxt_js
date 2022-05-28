@@ -13,6 +13,7 @@
           :title="title"
           :description="description"
           @changeInfo="changeData"
+          @clearInput='clearInput'
         ></Tablecard>
 
         <div class="card__infrastructure card-infrastructure">
@@ -182,6 +183,9 @@ export default {
     },
     DeleteImg(index){
       this.img.splice(index, 1)
+    },
+    clearInput(index){
+      this.description[index] = ''
     }
   },
 };
