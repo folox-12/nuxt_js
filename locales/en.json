@@ -82,5 +82,21 @@
   "motions-sensors-title": "Motion sensors",
   "motion-sensor-title-page": "Motion Sensor - Ajax Motion Protect",
   "motion-sensor-speed-table-card": "Motion speed (м/с)",
-  "detection-range-table-card": "Detection range (m)"
+  "detection-range-table-card": "Detection range (m)",
+
+  "lights-title-page": "Lights",
+  "temp-color-table-card": "Tempretare color(K)",
+
+  "front-view-table-card": "Front view",
+  "back-view-table-card": "Back view",
+  "left-view-table-card": "Left view",
+  "top-view-table-card": "Top view",
+  "right-view-table-card": "Right view",
+
+  "light-title": "Lights - Feron SP3040",
+
+  "postamat-title-page": "Postamat",
+  "postamat-title": "Postamat - OZON Box",
+  "wall-title": "Wall",
+  "height-table-card": "Height (mm)"
 }
