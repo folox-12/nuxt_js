@@ -52,7 +52,7 @@ export default {
         "dimensions-table-card-mm",
         "voltage-table-card",
         "temp-color-table-card",
-        "Степень защиты IP",
+        "degree-protection-table-card",
         "Световой поток, Lm",
         "alowable-temp-table-card",
         "Тип светодиода",

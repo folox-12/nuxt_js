@@ -97,6 +97,12 @@
 
   "postamat-title-page": "Postamat",
   "postamat-title": "Postamat - OZON Box",
+
   "wall-title": "Wall",
-  "height-table-card": "Height (mm)"
+  "height-table-card": "Height (mm)",
+
+  "wall-desc-title": "Grid galvanized \"Рабица\"",
+  "cell-dimensions-table-card": "Cell dimensions (LxW) (mm)",
+  "time-order-table-card": "Time of issue of the order (min.)",
+  "degree-protection-table-card": "Degree of protection IP"
 }
