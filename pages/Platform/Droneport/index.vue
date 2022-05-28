@@ -12,6 +12,7 @@
           :title="title"
           :description="description"
           @changeInfo="changeData"
+          @clearInput='clearInput'
         ></Tablecard>
       </div>
     </div>
@@ -81,7 +82,7 @@
             v-if="$store.getters['GetChangestatus'] == true"
             class="spoiler__reset_button"
           >
-            {{ $t("add-btn") }}
+            {{ $t("add-btn-edit-platform") }}
           </button>
         </div>
       </div>
@@ -168,6 +169,9 @@ export default {
     },
      DeleteImg(index){
       this.img.splice(index, 1)
+    },
+    clearInput(index){
+      this.description[index] = ''
     }
   },
 };

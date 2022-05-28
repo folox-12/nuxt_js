@@ -28,11 +28,12 @@
             <h4>{{ $t(title[0]) }}</h4>
             <div class="card-main-list__addres">
               <input
+              :id="title[0]"
                 type="text"
                 class="card-main-list__input"
-                v-bind:value="description[0]"
+                :value="description[0]"
                 @input="$emit('changeInfo', 0, $event.target.value)"
-              /><button @click="clearInput()">
+              /><button  @click="clearInput(title[0]), $emit('clearInput', 0)">
                 <img src="@/assets/img/ico/smallClear.svg" alt="" />
               </button>
             </div>
@@ -45,11 +46,12 @@
             <h4>{{ $t(title[1]) }}</h4>
             <div>
               <input
+              :id="title[1]"
                 type="text"
                 class="card-main-list__input"
                 v-bind:value="description[1]"
                 @input="$emit('changeInfo', 1, $event.target.value)"
-              /><button @click="clearInput()">
+              /><button  @click="clearInput(title[1]), $emit('clearInput', 1)">
                 <img src="@/assets/img/ico/smallClear.svg" alt="" />
               </button>
             </div>
@@ -62,11 +64,12 @@
             <h4>{{ $t(title[2]) }}</h4>
             <div>
               <input
+              :id="title[2]"
                 type="text"
                 class="card-main-list__input"
                 v-bind:value="description[2]"
                 @input="$emit('changeInfo', 2, $event.target.value)"
-              /><button @click="clearInput()">
+              /><button @click="clearInput(title[2]), $emit('clearInput', 2)">
                 <img src="@/assets/img/ico/smallClear.svg" alt="" />
               </button>
             </div>
@@ -79,11 +82,12 @@
             <h4>{{ $t(title[3]) }}</h4>
             <div>
               <input
+              :id="title[3]"
                 type="text"
                 class="card-main-list__input"
                 v-bind:value="description[3]"
                 @input="$emit('changeInfo', 3, $event.target.value)"
-              /><button @click="clearInput()">
+              /><button @click="clearInput(title[3]), $emit('clearInput', 3)">
                 <img src="@/assets/img/ico/smallClear.svg" alt="" />
               </button>
             </div>
@@ -96,11 +100,12 @@
             <h4>{{ $t(title[4]) }}</h4>
             <div>
               <input
+              :id="title[4]"
                 type="text"
                 class="card-main-list__input"
                 v-bind:value="description[4]"
                 @input="$emit('changeInfo', 4, $event.target.value)"
-              /><button @click="clearInput()">
+              /><button @click="clearInput(title[4]), $emit('clearInput', 4)">
                 <img src="@/assets/img/ico/smallClear.svg" alt="" />
               </button>
             </div>
@@ -113,11 +118,12 @@
             <h4>{{ $t(title[5]) }}</h4>
             <div>
               <input
+              :id="title[5]"
                 type="text"
                 class="card-main-list__input"
                 v-bind:value="description[5]"
                 @input="$emit('changeInfo', 5, $event.target.value)"
-              /><button @click="clearInput()">
+              /><button @click="clearInput(title[5]), $emit('clearInput', 5)">
                 <img src="@/assets/img/ico/smallClear.svg" alt="" />
               </button>
             </div>
@@ -130,11 +136,12 @@
             <h4>{{ $t(title[6]) }}</h4>
             <div>
               <input
+              :id="title[6]"
                 type="text"
                 class="card-main-list__input"
                 v-bind:value="description[6]"
                 @input="$emit('changeInfo', 6, $event.target.value)"
-              /><button @click="clearInput()">
+              /><button @click="clearInput(title[6]), $emit('clearInput', 6)">
                 <img src="@/assets/img/ico/smallClear.svg" alt="" />
               </button>
             </div>
@@ -147,11 +154,12 @@
             <h4>{{ $t(title[7]) }}</h4>
             <div>
               <input
+              :id="title[7]"
                 type="text"
                 class="card-main-list__input"
                 v-bind:value="description[7]"
                 @input="$emit('changeInfo', 7, $event.target.value)"
-              /><button @click="clearInput()">
+              /><button @click="clearInput(title[7]), $emit('clearInput', 7)">
                 <img src="@/assets/img/ico/smallClear.svg" alt="" />
               </button>
             </div>
@@ -164,11 +172,12 @@
             <h4>{{ title[8] }}</h4>
             <div>
               <input
+              :id="title[8]"
                 type="text"
                 class="card-main-list__input"
                 v-bind:value="description[8]"
                 @input="$emit('changeInfo', 8, $event.target.value)"
-              /><button @click="clearInput()">
+              /><button @click="clearInput(title[8]), $emit('clearInput', 8)">
                 <img src="@/assets/img/ico/smallClear.svg" alt="" />
               </button>
             </div>
@@ -178,14 +187,15 @@
       <div v-if="description[9]" class="card-main-list__el">
         <li>
           <div class="card-main-list__point">
-            <h4>{{ title[7] }}</h4>
+            <h4>{{ title[9] }}</h4>
             <div>
               <input
+              :id="title[9]"
                 type="text"
                 class="card-main-list__input"
                 v-bind:value="description[9]"
                 @input="$emit('changeInfo', 9, $event.target.value)"
-              /><button @click="clearInput()">
+              /><button  @click="clearInput(title[9]), $emit('clearInput', 9)">
                 <img src="@/assets/img/ico/smallClear.svg" alt="" />
               </button>
             </div>
@@ -214,7 +224,9 @@ export default {
     },
   },
   methods: {
-    clearInput() {},
+    clearInput(index) {
+        document.getElementById(index).value='';
+    },
   },
 };
 </script>

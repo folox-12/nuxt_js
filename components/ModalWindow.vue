@@ -48,7 +48,6 @@
             id="uppic"
             accept="image/gif,image/jpeg,image/jpg,image/png"
             @change="addImage($event)"
-            ref="avatarInput"
             class="uppic"
           />
         </div>
@@ -77,14 +76,15 @@ export default {
     },
   },
   methods: {
-    addImage(e) {
-      var file = e.target.files[0];
-      var reader = new FileReader();
-      var that = this;
-      reader.readAsDataURL(file);
-      reader.onload = function (e) {
-        this.img = this.result;
-        console.log(e);
+    addImage($event) {
+     let agree =  confirm('Добавить фото?')
+     if(agree == true){
+       const image = $event.target.files[0];
+                const reader = new FileReader();
+                reader.readAsDataURL(image);
+                reader.onload = $event =>{
+                    this.img = $event.target.result;
+                }
       };
     },
   },

@@ -16,6 +16,7 @@
           :title="title"
           :description="description"
           @changeInfo="changeData"
+          @clearInput='clearInput'
         ></Tablecard>
       </div>
     </div>
@@ -71,9 +72,14 @@ export default {
     changeData(number, value) {
       this.description[number] = value;
     },
-    DeleteImg(index) {
-      this.img.splice(index, 1);
+
+     DeleteImg(index){
+      this.img.splice(index, 1)
     },
+    clearInput(index){
+      this.description[index] = ''
+    }
+
   },
 };
 </script>

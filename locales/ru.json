@@ -84,5 +84,27 @@
   "motions-sensors-title": "Датчики движения",
   "motion-sensor-title-page": "Датчик движения - Ajax Motion Protect",
   "motion-sensor-speed-table-card": "Скорость движения (м/с)",
-  "detection-range-table-card": "Дальность обнаружения (м)"
+  "detection-range-table-card": "Дальность обнаружения (м)",
+
+  "lights-title-page": "Освещение",
+  "temp-color-table-card": "Температурный цвет(K)",
+
+  "front-view-table-card": "Вид спереди",
+  "back-view-table-card": "Вид сзади",
+  "left-view-table-card": "Вид сбоку",
+  "top-view-table-card": "Вид сверху",
+  "right-view-table-card": "Вид справа",
+
+  "light-title": "Освещение - Feron SP3040",
+
+  "postamat-title-page": "Постамат",
+  "postamat-title": "Постамат - OZON Box",
+
+  "wall-title": "Ограждение",
+  "height-table-card": "Высота (мм)",
+
+  "wall-desc-title": "Сетка оцинкованная «Рабица»",
+  "cell-dimensions-table-card": "Размеры ячейки (ДxШ) (мм)",
+  "time-order-table-card": "Время выдачи заказа (мин.)",
+  "degree-protection-table-card": "Степень защиты IP"
 }

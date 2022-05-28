@@ -1,17 +1,22 @@
 <template>
   <div class="page">
     <div class="card">
-      <Imagecard :img="img" :titleImg="titleImg" @DeleteImg="DeleteImg"></Imagecard>
+      <Imagecard
+        :img="img"
+        :titleImg="titleImg"
+        @DeleteImg="DeleteImg"
+      ></Imagecard>
       <hr />
       <div class="card__main card-main">
         <div class="card-main__title">
-          <h2>Ограждение</h2>
+          <h2>{{ $t("wall-title") }}</h2>
         </div>
 
         <Tablecard
           :title="title"
           :description="description"
           @changeInfo="changeData"
+          @clearInput='clearInput'
         ></Tablecard>
       </div>
     </div>
@@ -37,21 +42,34 @@ export default {
         require("@/assets/img/wall2.jpg"),
         require("@/assets/img/wall3.jpg"),
       ],
-      titleImg: ["Вид слева", "Вид сверху", "Вид справа"],
-      title: ["Производитель", "Высота (мм)", "Размеры ячейки (ДxШ) (мм)"],
+      titleImg: [
+        "left-view-table-card",
+        "top-view-table-card",
+        "right-view-table-card",
+      ],
+      title: [
+        "infrastructure-manufacturer",
+        "height-table-card",
+        "cell-dimensions-table-card",
+      ],
       description: ["Россия", "1500", "50 x 50"],
     };
   },
   headerData: {
-    title: "Сетка оцинкованная «Рабица»",
+    title: "wall-desc-title",
   },
   methods: {
     changeData(number, value) {
       this.description[number] = value;
     },
+
      DeleteImg(index){
       this.img.splice(index, 1)
+    },
+    clearInput(index){
+      this.description[index] = ''
     }
+
   },
 };
 </script>

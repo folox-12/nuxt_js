@@ -1,17 +1,22 @@
 <template>
   <div class="page">
     <div class="card">
-      <Imagecard :img="img" :titleImg="titleImg" @DeleteImg="DeleteImg"></Imagecard>
+      <Imagecard
+        :img="img"
+        :titleImg="titleImg"
+        @DeleteImg="DeleteImg"
+      ></Imagecard>
       <hr />
       <div class="card__main card-main">
         <div class="card-main__title">
-          <h2>Постамат</h2>
+          <h2>{{ $t("postamat-title-page") }}</h2>
         </div>
 
         <Tablecard
           :title="title"
           :description="description"
           @changeInfo="changeData"
+          @clearInput='clearInput'
         ></Tablecard>
       </div>
     </div>
@@ -37,16 +42,20 @@ export default {
         require("@/assets/img/postamat2.jpg"),
         require("@/assets/img/postamat3.jpg"),
       ],
-      titleImg: ["Вид слева", "Вид сверху", "Вид справа"],
+      titleImg: [
+        "left-view-table-card",
+        "top-view-table-card",
+        "right-view-table-card",
+      ],
       title: [
-        "Регистрационный номер",
-        "Размеры (мм)",
-        "Напряжение питания (В)",
-        "Вес (кг)",
-        "Время выдачи заказа (мин.)",
-        "Максимальная скорость ветра (м/с)",
-        "Диапазон рабочих температур (C°)",
-        "Время обслуживания дрона (мин.)",
+        "registration-num-table-card",
+        "dimensions-table-card-mm",
+        "voltage-table-card",
+        "weight-table-card",
+        "time-order-table-card",
+        "wind-speed-table-card",
+        "alowable-temp-table-card",
+        "maintence-time-table-card",
       ],
       description: [
         "450n-144-vc67PST",
@@ -61,7 +70,7 @@ export default {
     };
   },
   headerData: {
-    title: "Постамат - OZON Box",
+    title: "postamat-title",
   },
   methods: {
     changeData(number, value) {
@@ -69,7 +78,11 @@ export default {
     },
      DeleteImg(index){
       this.img.splice(index, 1)
+    },
+    clearInput(index){
+      this.description[index] = ''
     }
+
   },
 };
 </script>
