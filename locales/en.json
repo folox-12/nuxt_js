@@ -86,6 +86,8 @@
 
   "lights-title-page": "Lights",
   "temp-color-table-card": "Tempretare color(K)",
+  "luminous-flux-table-card": "Luminous flux, Lm",
+  "led-type-table-card": "LED type",
 
   "front-view-table-card": "Front view",
   "back-view-table-card": "Back view",
@@ -97,6 +99,12 @@
 
   "postamat-title-page": "Postamat",
   "postamat-title": "Postamat - OZON Box",
+
   "wall-title": "Wall",
-  "height-table-card": "Height (mm)"
+  "height-table-card": "Height (mm)",
+
+  "wall-desc-title": "Grid galvanized \"Рабица\"",
+  "cell-dimensions-table-card": "Cell dimensions (LxW) (mm)",
+  "time-order-table-card": "Time of issue of the order (min.)",
+  "degree-protection-table-card": "Degree of protection IP"
 }

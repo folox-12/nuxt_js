@@ -22,19 +22,24 @@
       assumenda! Modi officiis repellendus voluptatum quo quis quasi, doloremque
       sunt numquam, soluta consectetur, quod recusandae consequuntur.
     </div>
+    <radioButton :valueRadio="1"></radioButton>
   </div>
 </template>
 <script>
 import selectComponent from "../components/selectComponent.vue";
-import spoiler from "../components/spoiler.vue";
+import spoiler from "../components/UI/spoiler.vue";
+import radioButton from "../components/radio-button.vue";
 
 export default {
   data() {
-    return {};
+    return {
+      mySelectedValues: "",
+    };
   },
   components: {
     "v-select": selectComponent,
     spoiler,
+    radioButton,
   },
   created() {},
   methods: {

@@ -17,7 +17,7 @@
           :description="description"
           :type="type"
           @changeInfo="changeData"
-          @clearInput='clearInput'
+          @clearInput="clearInput"
         ></Tablecard>
       </div>
     </div>
@@ -53,10 +53,11 @@ export default {
         "dimensions-table-card-mm",
         "voltage-table-card",
         "temp-color-table-card",
-                "alowable-temp-table-card",
-        "Степень защиты IP",
-        "Световой поток, Lm",
-        "Тип светодиода",
+        "alowable-temp-table-card",
+        "degree-protection-table-card",
+        "luminous-flux-table-card",
+        "led-type-table-card",
+
       ],
       description: [
         "450n-144-vc67PST",
@@ -90,13 +91,12 @@ export default {
       this.description[number] = value;
     },
 
-     DeleteImg(index){
-      this.img.splice(index, 1)
+    DeleteImg(index) {
+      this.img.splice(index, 1);
     },
-    clearInput(index){
-      this.description[index] = ''
-    }
-
+    clearInput(index) {
+      this.description[index] = "";
+    },
   },
 };
 </script>

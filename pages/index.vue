@@ -133,7 +133,7 @@ import rightSide from "../components/right-side.vue";
 import tableView from "../components/table-view.vue";
 import Map from "../components/Map.vue";
 import pagination from "../components/pagination.vue";
-import spoiler from "../components/spoiler.vue";
+import spoiler from "../components/UI/spoiler.vue";
 
 import { mapGetters } from "vuex";
 export default {

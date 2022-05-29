@@ -54,7 +54,7 @@ export default {
         "voltage-table-card",
         "weight-table-card",
         "alowable-temp-table-card",
-        "Время выдачи заказа (мин.)",
+        "time-order-table-card",
         "wind-speed-table-card",
         "maintence-time-table-card",
       ],

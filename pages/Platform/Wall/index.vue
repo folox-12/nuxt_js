@@ -51,10 +51,10 @@ export default {
       ],
       title: [
         "infrastructure-manufacturer",
+        "cell-dimensions-table-card",
         "height-table-card",
-        "Размеры ячейки (ВxШxД) (мм)",
       ],
-      description: ["Россия", "1500", "50 x 1 x 50"],
+      description: ["Россия", "50 x 1 x 50", "1500"],
        type:[
         'text',
         'number',
@@ -65,7 +65,7 @@ export default {
     
   },
   headerData: {
-    title: "Сетка оцинкованная «Рабица»",
+    title: "wall-desc-title",
   },
   methods: {
     changeData(number, value) {
