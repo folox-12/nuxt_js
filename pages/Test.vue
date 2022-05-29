@@ -22,13 +22,16 @@
       assumenda! Modi officiis repellendus voluptatum quo quis quasi, doloremque
       sunt numquam, soluta consectetur, quod recusandae consequuntur.
     </div>
-    <radioButton :valueRadio="1"></radioButton>
+    <radioButton
+      :valuesRadio="{ 1: 1, 2: 2, Все: 21 }"
+      :custom="true"
+    ></radioButton>
   </div>
 </template>
 <script>
 import selectComponent from "../components/selectComponent.vue";
 import spoiler from "../components/UI/spoiler.vue";
-import radioButton from "../components/radio-button.vue";
+import radioButton from "../components/UI/radio-button.vue";
 
 export default {
   data() {

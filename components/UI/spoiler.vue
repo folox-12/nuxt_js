@@ -46,6 +46,7 @@ export default {
   margin-bottom: 15px;
   display: flex;
   flex-direction: column;
+  cursor: pointer;
   &__title {
     a {
       color: grey;

@@ -1,14 +1,28 @@
 <template>
   <div class="radio-button">
+    <div
+      class="radio-button__item"
+      v-for="(item, index) in allRadioInput"
+      :key="item"
+      @click="checkButton(item)"
+    >
+      <input
+        type="checkbox"
+        class="custom-checkbox"
+        name="radio"
+        :class="{ checked: item === radioValue }"
+      />
+      <label for="radio">
+        {{ index }}
+      </label>
+    </div>
     <input
-      type="checkbox"
-      class="custom-checkbox"
-      id="happy"
-      name="happy"
-      value="yes"
-      :class="{ checked: (value = valueRadio && pickedRadio) }"
+      type="number"
+      v-if="radioValue === 'custom'"
+      v-model="inputValue"
+      class="custom"
+      max="20"
     />
-    <label for="happy" @click="checkButton(valueRadio)">Happy</label>
   </div>
 </template>
 
@@ -16,29 +30,49 @@
 export default {
   data() {
     return {
-      pickedRadio: false,
       radioValue: "",
+      inputValue: "",
     };
   },
   props: {
-    valueRadio: {
+    valuesRadio: {
       required: true,
+    },
+    custom: {
+      type: Boolean,
+      default: false,
+    },
+  },
+  computed: {
+    allRadioInput() {
+      let obj = { ...this.valuesRadio };
+      if (this.custom) {
+        obj["Несколько"] = "custom";
+      }
+      return obj;
     },
   },
   methods: {
     checkButton(value) {
       if (this.radioValue == value) {
-        this.pickedRadio = false;
         this.radioValue = "";
       } else {
-        this.pickedRadio = true;
-        this.radioValue = this.valueRadio;
+        this.radioValue = value;
       }
     },
   },
 };
 </script>
 <style lang="scss">
+.radio-button {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  &__item {
+    cursor: pointer;
+  }
+}
+
 .custom-checkbox {
   position: absolute;
   z-index: -1;
