@@ -6,8 +6,9 @@
         : 'card__images card-images'
     "
   >
-    <div  v-for="(item, index) in img" :key="item"  class="card-images__image">
-      <img :src="img[index]" /><button
+    <div v-for="(item, index) in img" :key="item" class="card-images__image">
+      <img :src="img[index]" />
+      <button
         v-if="$store.getters['GetChangestatus'] == false"
         @click="
           (showModal = true),
@@ -16,20 +17,34 @@
         "
         class="card-images__loop"
       >
-        <img src="../assets/img/ico/loop.svg" alt="" />
+        <img src="@/assets/img/ico/loop.svg" alt="" />
       </button>
-      <button @click="$emit('DeleteImg', index)" v-else class="card-images__loop">
-        <img src="../assets/img/ico/delete.svg" alt="" />
+      <button
+        @click="$emit('DeleteImg', index)"
+        v-else
+        class="card-images__loop"
+      >
+        <img src="@/assets/img/ico/delete.svg" alt="" />
       </button>
     </div>
-    <h1 class = "card-images__noPhoto" v-if="img.length == 0 && $store.getters['GetChangestatus'] == true" >{{ $t("you-can-add-photo") }}</h1>
-    <h1 class = "card-images__noPhoto" v-if="img.length == 0 && $store.getters['GetChangestatus'] == false" >{{ $t("no-photo") }}</h1>
+    <h1
+      class="card-images__noPhoto"
+      v-if="img.length == 0 && $store.getters['GetChangestatus'] == true"
+    >
+      {{ $t("you-can-add-photo") }}
+    </h1>
+    <h1
+      class="card-images__noPhoto"
+      v-if="img.length == 0 && $store.getters['GetChangestatus'] == false"
+    >
+      {{ $t("no-photo") }}
+    </h1>
     <button
       @click="showModal = true"
       v-if="$store.getters['GetChangestatus'] == true"
       class="card-images-editing__button"
     >
-      <img src="../assets/img/add-photo.png" alt="" />
+      <img src="@/assets/img/add-photo.png" alt="" />
     </button>
     <ModalWindow
       v-show="showModal"
@@ -40,7 +55,7 @@
   </div>
 </template>
 <script>
-import ModalWindow from "../components/ModalWindow.vue";
+import ModalWindow from "@/components/ModalWindow.vue";
 export default {
   components: { ModalWindow },
 

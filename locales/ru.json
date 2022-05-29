@@ -88,6 +88,8 @@
 
   "lights-title-page": "Освещение",
   "temp-color-table-card": "Температурный цвет(K)",
+  "luminous-flux-table-card": "Световой поток, Lm",
+  "led-type-table-card": "Тип светодиода",
 
   "front-view-table-card": "Вид спереди",
   "back-view-table-card": "Вид сзади",

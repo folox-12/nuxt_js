@@ -22,8 +22,6 @@ $color-for-bg: #ffffff;
       cursor: pointer;
     }
   }
-  &__name {
-  }
 }
 .title-page-name {
   display: flex;
@@ -118,21 +116,28 @@ $color-for-bg: #ffffff;
   }
 }
 .card-images {
-    &__noPhoto{
-        font-family: 'Montserrat';
-font-style: normal;
-font-weight: 600;
-font-size: 20px;
-line-height: 25px;
-color: #141029
-    }
+  &__noPhoto {
+    font-family: "Montserrat";
+    font-style: normal;
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 25px;
+    color: #141029;
+  }
   &__image {
     position: relative;
     transition: all 0.2s;
-    border-radius: 10px;
+    border-radius: 1.5rem;
+    // border: solid black 1px;
+    box-shadow: 2px 4px 20px rgba(0, 0, 0, 0.25);
+
+    img {
+      border-radius: 1.5rem;
+    }
   }
   &__image:hover {
     transform: translateY(-3px);
+    background: rgba(0, 0, 0, 0.231);
     // box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   }
   &__loop {

@@ -86,6 +86,8 @@
 
   "lights-title-page": "Lights",
   "temp-color-table-card": "Tempretare color(K)",
+  "luminous-flux-table-card": "Luminous flux, Lm",
+  "led-type-table-card": "LED type",
 
   "front-view-table-card": "Front view",
   "back-view-table-card": "Back view",
