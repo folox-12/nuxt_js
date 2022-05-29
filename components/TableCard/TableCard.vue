@@ -13,7 +13,9 @@
         <li>
           <div class="card-main-list__point">
             <h4>{{ $t(title[index]) }}</h4>
-            <span v-if="description[index] != ''">{{ description[index] }}</span>
+            <span v-if="description[index] != ''">{{
+              description[index]
+            }}</span>
             <span v-else>{{ $t("no-info") }}</span>
           </div>
         </li>
@@ -27,26 +29,26 @@
           <div class="card-main-list__point">
             <h4>{{ $t(title[0]) }}</h4>
             <div v-if="type[0] == 'addres'" class="card-main-list__addres">
-              <input 
-              :id="title[0]"
+              <input
+                :id="title[0]"
                 type="text"
                 class="card-main-list__input"
                 :value="description[0]"
                 @input="$emit('changeInfo', 0, $event.target.value)"
               />
-              <button  @click="clearInput(title[0]), $emit('clearInput', 0)">
+              <button @click="clearInput(title[0]), $emit('clearInput', 0)">
                 <img src="@/assets/img/ico/smallClear.svg" alt="" />
               </button>
             </div>
             <div v-else-if="type[0] == 'text'">
-              <input 
-              :id="title[0]"
+              <input
+                :id="title[0]"
                 type="text"
                 class="card-main-list__input"
                 :value="description[0]"
                 @input="$emit('changeInfo', 0, $event.target.value)"
               />
-              <button  @click="clearInput(title[0]), $emit('clearInput', 0)">
+              <button @click="clearInput(title[0]), $emit('clearInput', 0)">
                 <img src="@/assets/img/ico/smallClear.svg" alt="" />
               </button>
             </div>
@@ -59,24 +61,24 @@
             <h4>{{ $t(title[1]) }}</h4>
             <div v-if="type[1] == 'text'">
               <input
-              :id="title[1]"
+                :id="title[1]"
                 type="text"
                 class="card-main-list__input"
                 v-bind:value="description[1]"
                 @input="$emit('changeInfo', 1, $event.target.value)"
-              /><button  @click="clearInput(title[1]), $emit('clearInput', 1)">
+              /><button @click="clearInput(title[1]), $emit('clearInput', 1)">
                 <img src="@/assets/img/ico/smallClear.svg" alt="" />
               </button>
             </div>
-             <div v-else-if="type[1] == 'three quantity'">
-              <input 
-              :id="title[1]"
+            <div v-else-if="type[1] == 'three quantity'">
+              <input
+                :id="title[1]"
                 type="text"
                 class="card-main-list__input"
                 :value="description[1]"
                 @input="$emit('changeInfo', 1, $event.target.value)"
               />
-              <button  @click="clearInput(title[1]), $emit('clearInput', 1)">
+              <button @click="clearInput(title[1]), $emit('clearInput', 1)">
                 <img src="@/assets/img/ico/smallClear.svg" alt="" />
               </button>
             </div>
@@ -89,7 +91,7 @@
             <h4>{{ $t(title[2]) }}</h4>
             <div>
               <input
-              :id="title[2]"
+                :id="title[2]"
                 type="text"
                 class="card-main-list__input"
                 v-bind:value="description[2]"
@@ -107,7 +109,7 @@
             <h4>{{ $t(title[3]) }}</h4>
             <div>
               <input
-              :id="title[3]"
+                :id="title[3]"
                 type="text"
                 class="card-main-list__input"
                 v-bind:value="description[3]"
@@ -125,7 +127,7 @@
             <h4>{{ $t(title[4]) }}</h4>
             <div>
               <input
-              :id="title[4]"
+                :id="title[4]"
                 type="text"
                 class="card-main-list__input"
                 v-bind:value="description[4]"
@@ -143,7 +145,7 @@
             <h4>{{ $t(title[5]) }}</h4>
             <div>
               <input
-              :id="title[5]"
+                :id="title[5]"
                 type="text"
                 class="card-main-list__input"
                 v-bind:value="description[5]"
@@ -161,7 +163,7 @@
             <h4>{{ $t(title[6]) }}</h4>
             <div>
               <input
-              :id="title[6]"
+                :id="title[6]"
                 type="text"
                 class="card-main-list__input"
                 v-bind:value="description[6]"
@@ -179,7 +181,7 @@
             <h4>{{ $t(title[7]) }}</h4>
             <div>
               <input
-              :id="title[7]"
+                :id="title[7]"
                 type="text"
                 class="card-main-list__input"
                 v-bind:value="description[7]"
@@ -197,7 +199,7 @@
             <h4>{{ title[8] }}</h4>
             <div>
               <input
-              :id="title[8]"
+                :id="title[8]"
                 type="text"
                 class="card-main-list__input"
                 v-bind:value="description[8]"
@@ -215,12 +217,12 @@
             <h4>{{ title[9] }}</h4>
             <div>
               <input
-              :id="title[9]"
+                :id="title[9]"
                 type="text"
                 class="card-main-list__input"
                 v-bind:value="description[9]"
                 @input="$emit('changeInfo', 9, $event.target.value)"
-              /><button  @click="clearInput(title[9]), $emit('clearInput', 9)">
+              /><button @click="clearInput(title[9]), $emit('clearInput', 9)">
                 <img src="@/assets/img/ico/smallClear.svg" alt="" />
               </button>
             </div>
@@ -233,9 +235,7 @@
 <script>
 export default {
   data() {
-    return {
-     mask
-    };
+    return {};
   },
 
   props: {
@@ -247,17 +247,16 @@ export default {
       type: Array,
       required: true,
     },
-    type:{
+    type: {
       type: Array,
       required: true,
-    }
+    },
   },
- 
+
   methods: {
     clearInput(index) {
-        document.getElementById(index).value='';
+      document.getElementById(index).value = "";
     },
-     
   },
 };
 </script>

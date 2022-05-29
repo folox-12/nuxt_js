@@ -115,12 +115,21 @@
               >
                 <spoiler :title="'Дронопорт'">
                   <radioButton
-                    :valuesRadio="{ 1: 1, 2: 2, Все: 21 }"
+                    :valuesRadio="{
+                      1: 1,
+                      2: 2,
+                      Все: 21,
+                    }"
                     :custom="true"
                   />
                 </spoiler>
                 <spoiler :title="'Обслуживаемые дроны'"></spoiler>
-                <spoiler :title="'Постамат'"></spoiler>
+                <spoiler :title="'Постамат'">
+                  <radioButton
+                    :valuesRadio="{ 1: 1, 2: 2, Все: 21 }"
+                    :custom="true"
+                  />
+                </spoiler>
               </div>
             </rightSide>
           </div>

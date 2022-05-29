@@ -70,6 +70,9 @@ export default {
   gap: 15px;
   &__item {
     cursor: pointer;
+    &:hover {
+      // background-color: grey;
+    }
   }
 }
 
@@ -82,6 +85,7 @@ export default {
   display: inline-flex;
   align-items: center;
   user-select: none;
+  cursor: pointer;
 }
 .custom-checkbox + label::before {
   content: "";
