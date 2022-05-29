@@ -44,6 +44,7 @@
                 type="text"
                 class="card-main-list__input"
                 :value="description[0]"
+                v-mask="[ 'XXXX-XXX-XXXX', 'XXXX-XXXX-XXXX',]"
                 @input="$emit('changeInfo', 0, $event.target.value)"
               />
               <button  @click="clearInput(title[0]), $emit('clearInput', 0)">
@@ -63,17 +64,18 @@
                 type="text"
                 class="card-main-list__input"
                 v-bind:value="description[1]"
+                v-mask="[ 'XXXX-XXX-XXXX', 'XXXX-XXXX-XXXX',]"
                 @input="$emit('changeInfo', 1, $event.target.value)"
               /><button  @click="clearInput(title[1]), $emit('clearInput', 1)">
                 <img src="@/assets/img/ico/smallClear.svg" alt="" />
               </button>
             </div>
              <div v-else-if="type[1] == 'three quantity'">
-              <input 
+              <input
               :id="title[1]"
-                type="text"
                 class="card-main-list__input"
-                :value="description[1]"
+               v-mask="[ '#### x #### x ###', '### x ### x ###',]"
+                v-model="description[1]"
                 @input="$emit('changeInfo', 1, $event.target.value)"
               />
               <button  @click="clearInput(title[1]), $emit('clearInput', 1)">
@@ -87,14 +89,25 @@
         <li>
           <div class="card-main-list__point">
             <h4>{{ $t(title[2]) }}</h4>
-            <div>
+            <div v-if='type[2] == "number"'>
               <input
               :id="title[2]"
-                type="text"
+                type="number"
                 class="card-main-list__input"
                 v-bind:value="description[2]"
                 @input="$emit('changeInfo', 2, $event.target.value)"
-              /><button @click="clearInput(title[2]), $emit('clearInput', 2)">
+              /><button @click="clearInput(title[2]), $emit('clearInput', 2)" style="right:-5px;">
+                <img src="@/assets/img/ico/smallClear.svg" alt="" />
+              </button>
+            </div>
+            <div v-else-if='type[2] == "date"'>
+              <input
+              :id="title[2]"
+                type="date"
+                class="card-main-list__input"
+                v-bind:value="description[2]"
+                @input="$emit('changeInfo', 2, $event.target.value)"
+              /><button @click="clearInput(title[2]), $emit('clearInput', 2)" style="right:-5px;">
                 <img src="@/assets/img/ico/smallClear.svg" alt="" />
               </button>
             </div>
@@ -105,14 +118,26 @@
         <li>
           <div class="card-main-list__point">
             <h4>{{ $t(title[3]) }}</h4>
-            <div>
+            <div v-if='type[3] == "two quantity"'>
               <input
               :id="title[3]"
                 type="text"
                 class="card-main-list__input"
                 v-bind:value="description[3]"
+                v-mask="[ '## x ##', '# x #', '## x #', ]"
                 @input="$emit('changeInfo', 3, $event.target.value)"
               /><button @click="clearInput(title[3]), $emit('clearInput', 3)">
+                <img src="@/assets/img/ico/smallClear.svg" alt="" />
+              </button>
+            </div>
+             <div v-else-if="type[3] == 'number'">
+              <input
+              :id="title[3]"
+                type="number"
+                class="card-main-list__input"
+                v-bind:value="description[3]"
+                @input="$emit('changeInfo', 3, $event.target.value)"
+              /><button @click="clearInput(title[3]), $emit('clearInput', 3)" style="right:-5px;">
                 <img src="@/assets/img/ico/smallClear.svg" alt="" />
               </button>
             </div>
@@ -123,12 +148,24 @@
         <li>
           <div class="card-main-list__point">
             <h4>{{ $t(title[4]) }}</h4>
-            <div>
+            <div v-if='type[4] == "number"'>
+              <input
+              :id="title[4]"
+                type="number"
+                class="card-main-list__input"
+                v-bind:value="description[4]"
+                @input="$emit('changeInfo', 4, $event.target.value)"
+              /><button @click="clearInput(title[4]), $emit('clearInput', 4)" style="right:-5px;">
+                <img src="@/assets/img/ico/smallClear.svg" alt="" />
+              </button>
+            </div>
+            <div v-else-if="type[4] == 'two quantity'">
               <input
               :id="title[4]"
                 type="text"
                 class="card-main-list__input"
                 v-bind:value="description[4]"
+                v-mask="[ 'от XXX до XXX', 'от XX до XX', 'от XXX до XX',   ]"
                 @input="$emit('changeInfo', 4, $event.target.value)"
               /><button @click="clearInput(title[4]), $emit('clearInput', 4)">
                 <img src="@/assets/img/ico/smallClear.svg" alt="" />
@@ -231,13 +268,13 @@
   </div>
 </template>
 <script>
+import {mask} from 'vue-the-mask'
 export default {
+  directives: {mask},
   data() {
     return {
-     mask
     };
   },
-
   props: {
     title: {
       type: Array,

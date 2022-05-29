@@ -177,7 +177,7 @@ export default {
         'addres',
         'text',
         'date',
-        'number',
+        'two quantity',
         'two quantity',
         'select',
       ]

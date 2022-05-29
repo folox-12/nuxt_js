@@ -135,7 +135,7 @@ export default {
         "maintence-time-table-card",
       ],
       description: [
-        "450n-144-vc67PST",
+        "450n-144-vc67",
         "2800 x 1840 x 140 ",
         "230",
         "6",

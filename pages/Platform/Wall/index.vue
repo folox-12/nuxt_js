@@ -51,14 +51,14 @@ export default {
       ],
       title: [
         "infrastructure-manufacturer",
-        "cell-dimensions-table-card",
         "height-table-card",
+        "cell-dimensions-table-card",
       ],
       description: ["Россия", "50 x 1 x 50", "1500"],
        type:[
-        'text',
-        'number',
+        'addres',
         'three quantity',
+        'number',
       ]
     };
     

@@ -71,7 +71,7 @@ export default {
         'three quantity',
         'number',
         'number',
-         'number',
+        'number',
         'number',
         'number',
         'number',

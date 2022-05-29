@@ -4,7 +4,7 @@
       <Imagecard
         :img="img"
         :titleImg="titleImg"
-        :type="type"
+        
         @DeleteImg="DeleteImg"
       ></Imagecard>
       <hr />
@@ -16,6 +16,7 @@
         <Tablecard
           :title="title"
           :description="description"
+          :type="type"
           @changeInfo="changeData"
           @clearInput='clearInput'
         ></Tablecard>
