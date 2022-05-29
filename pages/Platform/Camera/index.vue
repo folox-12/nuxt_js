@@ -15,6 +15,7 @@
         <Tablecard
           :title="title"
           :description="description"
+          :type="type"
           @changeInfo="changeData"
           @clearInput='clearInput'
         ></Tablecard>
@@ -65,6 +66,18 @@ export default {
         "3,6",
         "4",
       ],
+         type:[
+        'text',
+        'three quantity',
+        'number',
+        'number',
+         'number',
+        'number',
+        'number',
+        'number',
+        
+        
+      ]
     };
   },
   headerData: {

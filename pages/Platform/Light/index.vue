@@ -15,6 +15,7 @@
         <Tablecard
           :title="title"
           :description="description"
+          :type="type"
           @changeInfo="changeData"
           @clearInput='clearInput'
         ></Tablecard>
@@ -52,9 +53,9 @@ export default {
         "dimensions-table-card-mm",
         "voltage-table-card",
         "temp-color-table-card",
+                "alowable-temp-table-card",
         "Степень защиты IP",
         "Световой поток, Lm",
-        "alowable-temp-table-card",
         "Тип светодиода",
       ],
       description: [
@@ -62,11 +63,23 @@ export default {
         "455 x 180 x 49",
         "100",
         "5000",
+        "от -40 до 50",
         "IP65",
         "12000",
-        "от -40 до 50",
         "SMD2835",
       ],
+         type:[
+        'text',
+        'three quantity',
+        'number',
+        'number',
+         'two quantity',
+        'text',
+        'number',
+        'text',
+        
+        
+      ]
     };
   },
   headerData: {

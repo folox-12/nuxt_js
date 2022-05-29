@@ -4,6 +4,7 @@
       <Imagecard
         :img="img"
         :titleImg="titleImg"
+      
         @DeleteImg="DeleteImg"
       ></Imagecard>
       <hr />
@@ -15,6 +16,7 @@
         <Tablecard
           :title="title"
           :description="description"
+            :type="type"
           @changeInfo="changeData"
           @clearInput='clearInput'
         ></Tablecard>
@@ -50,10 +52,17 @@ export default {
       title: [
         "infrastructure-manufacturer",
         "height-table-card",
-        "Размеры ячейки (ДxШ) (мм)",
+        "Размеры ячейки (ВxШxД) (мм)",
       ],
-      description: ["Россия", "1500", "50 x 50"],
+      description: ["Россия", "1500", "50 x 1 x 50"],
+       type:[
+        'text',
+        'number',
+        'three quantity',
+      ]
     };
+    
+    
   },
   headerData: {
     title: "Сетка оцинкованная «Рабица»",

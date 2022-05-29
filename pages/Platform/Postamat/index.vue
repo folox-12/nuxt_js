@@ -4,6 +4,7 @@
       <Imagecard
         :img="img"
         :titleImg="titleImg"
+        :type="type"
         @DeleteImg="DeleteImg"
       ></Imagecard>
       <hr />
@@ -52,9 +53,9 @@ export default {
         "dimensions-table-card-mm",
         "voltage-table-card",
         "weight-table-card",
+        "alowable-temp-table-card",
         "Время выдачи заказа (мин.)",
         "wind-speed-table-card",
-        "alowable-temp-table-card",
         "maintence-time-table-card",
       ],
       description: [
@@ -62,11 +63,23 @@ export default {
         "2045 x 1145 x 565",
         "220",
         "1600",
+         "от 0 до 40",
         "1",
         "15",
-        "от 0 до 40",
         "5",
       ],
+       type:[
+        'text',
+        'three quantity',
+        'number',
+        'number',
+         'two quantity',
+        'number',
+        'number',
+        'number',
+        
+        
+      ]
     };
   },
   headerData: {

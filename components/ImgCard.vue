@@ -11,9 +11,7 @@
         v-if="$store.getters['GetChangestatus'] == false"
         @click="
           (showModal = true),
-            showModal1(img[index]),
-            showModal2(titleImg[index])
-        "
+            showModal1(img[index],titleImg[index])"
         class="card-images__loop"
       >
         <img src="../assets/img/ico/loop.svg" alt="" />
@@ -64,10 +62,8 @@ export default {
     },
   },
   methods: {
-    showModal1(data) {
+    showModal1(data,date) {
       this.image = data;
-    },
-    showModal2(date) {
       this.titleImage = date;
     },
   },
