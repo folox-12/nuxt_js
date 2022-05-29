@@ -12,6 +12,7 @@
         <Tablecard
           :title="title"
           :description="description"
+          :type="type"
           @changeInfo="changeData"
           @clearInput='clearInput'
         ></Tablecard>
@@ -172,6 +173,14 @@ export default {
         "24/7",
         "",
       ],
+      type:[
+        'addres',
+        'text',
+        'date',
+        'number',
+        'two quantity',
+        'select',
+      ]
     };
   },
   headerData: {

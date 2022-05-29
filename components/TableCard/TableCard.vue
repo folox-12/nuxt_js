@@ -26,14 +26,27 @@
         <li>
           <div class="card-main-list__point">
             <h4>{{ $t(title[0]) }}</h4>
-            <div class="card-main-list__addres">
-              <input
+            <div v-if="type[0] == 'addres'" class="card-main-list__addres">
+              <input 
               :id="title[0]"
                 type="text"
                 class="card-main-list__input"
                 :value="description[0]"
                 @input="$emit('changeInfo', 0, $event.target.value)"
-              /><button  @click="clearInput(title[0]), $emit('clearInput', 0)">
+              />
+              <button  @click="clearInput(title[0]), $emit('clearInput', 0)">
+                <img src="@/assets/img/ico/smallClear.svg" alt="" />
+              </button>
+            </div>
+            <div v-else-if="type[0] == 'text'">
+              <input 
+              :id="title[0]"
+                type="text"
+                class="card-main-list__input"
+                :value="description[0]"
+                @input="$emit('changeInfo', 0, $event.target.value)"
+              />
+              <button  @click="clearInput(title[0]), $emit('clearInput', 0)">
                 <img src="@/assets/img/ico/smallClear.svg" alt="" />
               </button>
             </div>
@@ -44,7 +57,7 @@
         <li>
           <div class="card-main-list__point">
             <h4>{{ $t(title[1]) }}</h4>
-            <div>
+            <div v-if="type[1] == 'text'">
               <input
               :id="title[1]"
                 type="text"
@@ -52,6 +65,18 @@
                 v-bind:value="description[1]"
                 @input="$emit('changeInfo', 1, $event.target.value)"
               /><button  @click="clearInput(title[1]), $emit('clearInput', 1)">
+                <img src="@/assets/img/ico/smallClear.svg" alt="" />
+              </button>
+            </div>
+             <div v-else-if="type[1] == 'three quantity'">
+              <input 
+              :id="title[1]"
+                type="text"
+                class="card-main-list__input"
+                :value="description[1]"
+                @input="$emit('changeInfo', 1, $event.target.value)"
+              />
+              <button  @click="clearInput(title[1]), $emit('clearInput', 1)">
                 <img src="@/assets/img/ico/smallClear.svg" alt="" />
               </button>
             </div>
@@ -209,7 +234,7 @@
 export default {
   data() {
     return {
-      property: "sdada",
+     mask
     };
   },
 
@@ -222,11 +247,17 @@ export default {
       type: Array,
       required: true,
     },
+    type:{
+      type: Array,
+      required: true,
+    }
   },
+ 
   methods: {
     clearInput(index) {
         document.getElementById(index).value='';
     },
+     
   },
 };
 </script>

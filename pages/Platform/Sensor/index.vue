@@ -4,6 +4,7 @@
       <Imagecard
         :img="img"
         :titleImg="titleImg"
+        :type="type"
         @DeleteImg="DeleteImg"
       ></Imagecard>
       <hr />
@@ -48,9 +49,9 @@ export default {
         "dimensions-table-card-mm",
         "voltage-table-card",
         "weight-table-card",
+         "alowable-temp-table-card",
         "viewing-angle-table-card",
         "motion-sensor-speed-table-card",
-        "alowable-temp-table-card",
         "detection-range-table-card",
       ],
       description: [
@@ -58,11 +59,23 @@ export default {
         "110 x 65 x 50",
         "3",
         "1",
+        "от 0,3 до 2",
         "1",
         "90",
-        "от 0,3 до 2",
         "12",
       ],
+       type:[
+        'text',
+        'three quantity',
+        'number',
+        'number',
+         'two quantity',
+        'number',
+        'number',
+        'number',
+        
+        
+      ]
     };
   },
   headerData: {

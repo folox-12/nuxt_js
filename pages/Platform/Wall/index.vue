@@ -4,6 +4,7 @@
       <Imagecard
         :img="img"
         :titleImg="titleImg"
+      
         @DeleteImg="DeleteImg"
       ></Imagecard>
       <hr />
@@ -15,6 +16,7 @@
         <Tablecard
           :title="title"
           :description="description"
+            :type="type"
           @changeInfo="changeData"
           @clearInput='clearInput'
         ></Tablecard>
@@ -49,11 +51,18 @@ export default {
       ],
       title: [
         "infrastructure-manufacturer",
-        "height-table-card",
         "cell-dimensions-table-card",
+        "height-table-card",
       ],
-      description: ["Россия", "1500", "50 x 50"],
+      description: ["Россия", "50 x 1 x 50", "1500"],
+       type:[
+        'text',
+        'number',
+        'three quantity',
+      ]
     };
+    
+    
   },
   headerData: {
     title: "wall-desc-title",

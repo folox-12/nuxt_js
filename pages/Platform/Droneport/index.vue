@@ -11,6 +11,7 @@
         <Tablecard
           :title="title"
           :description="description"
+          :type="type"
           @changeInfo="changeData"
           @clearInput='clearInput'
         ></Tablecard>
@@ -127,10 +128,10 @@ export default {
         "dimensions-table-card-mm",
         "voltage-table-card",
         "energy-consumption-table-card",
+        "alowable-temp-table-card",
         "weight-table-card",
         "battery-table-card",
         "wind-speed-table-card",
-        "alowable-temp-table-card",
         "maintence-time-table-card",
       ],
       description: [
@@ -138,12 +139,23 @@ export default {
         "2800 x 1840 x 140 ",
         "230",
         "6",
+         "от -20 до 40",
         "1600",
         "17",
         "15",
-        "от -20 до 40",
         "5",
       ],
+      type:[
+        'text',
+        'three quantity',
+        'number',
+        'number',
+        'two quantity',
+        'number',
+        'number',
+        'number',
+        'number'
+      ]
     };
   },
   headerData: {
