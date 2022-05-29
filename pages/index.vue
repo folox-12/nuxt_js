@@ -113,9 +113,23 @@
                 class="right-side__filter"
                 v-else-if="typeViewOfRightSide === 'Filters'"
               >
-                <spoiler :title="'Дронопорт'"> </spoiler>
+                <spoiler :title="'Дронопорт'">
+                  <radioButton
+                    :valuesRadio="{
+                      1: 1,
+                      2: 2,
+                      Все: 21,
+                    }"
+                    :custom="true"
+                  />
+                </spoiler>
                 <spoiler :title="'Обслуживаемые дроны'"></spoiler>
-                <spoiler :title="'Постамат'"></spoiler>
+                <spoiler :title="'Постамат'">
+                  <radioButton
+                    :valuesRadio="{ 1: 1, 2: 2, Все: 21 }"
+                    :custom="true"
+                  />
+                </spoiler>
               </div>
             </rightSide>
           </div>
@@ -133,7 +147,9 @@ import rightSide from "../components/right-side.vue";
 import tableView from "../components/table-view.vue";
 import Map from "../components/Map.vue";
 import pagination from "../components/pagination.vue";
+
 import spoiler from "../components/UI/spoiler.vue";
+import radioButton from "../components/UI/radio-button.vue";
 
 import { mapGetters } from "vuex";
 export default {
@@ -146,10 +162,11 @@ export default {
     pagination,
     rightSide,
     spoiler,
+    radioButton,
   },
   data() {
     return {
-      placeHolder: "Введите адрес",
+      placeHolder: "алё",
       showModal: false,
     };
   },
