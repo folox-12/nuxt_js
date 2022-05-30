@@ -153,8 +153,8 @@ export default {
       showDescr: false,
     };
   },
-  headerData:{
-      title: "Карта",
+  headerData: {
+    title: "Карта",
   },
   methods: {
     hideDescr() {
@@ -166,7 +166,6 @@ export default {
 
 <style lang="scss" scoped>
 @import "../assets/scss/fonts";
-
 h1 {
   margin-top: 15px;
   font-size: 18px;
@@ -177,18 +176,19 @@ h1 {
   background-color: $white;
   width: 100%;
   height: 780px;
-  margin-top: 30px;
   position: relative;
 }
 
 svg {
   fill: rgba(20, 16, 41, 0.6);
 }
-
+.TopShelf {
+  position: relative;
+}
 .TopShelf__descr {
   display: flex;
   align-items: center;
-  margin: 15px;
+  margin: 0 15px 15px;
   button {
     display: flex;
     align-items: center;
@@ -204,6 +204,12 @@ svg {
   position: absolute;
   margin-left: 15px;
   display: flex;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 40px;
+  flex-wrap: wrap;
+  z-index: 999;
   align-items: center;
   &__input {
     margin: 15px;
@@ -288,7 +294,18 @@ svg {
     }
   }
 }
-
+.Layout {
+  position: relative;
+  height: 100%;
+  img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+  }
+}
 .Modal_descr {
   position: absolute;
   margin-left: 50px;
