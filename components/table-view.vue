@@ -1,7 +1,7 @@
 <template>
   <section class="table" id="table">
-    <div class="table__data">
-      <table class="table__responsive">
+    <div class="table__responsive">
+      <table class="table__data">
         <thead>
           <tr class="table-title">
             <th
@@ -9,7 +9,7 @@
               :key="value"
               @click="getNameForSort(value)"
             >
-              {{ $t(name) }}
+              <div>{{ $t(name) }}</div>
               <svg
                 v-if="sortedFlag == value"
                 width="11"
@@ -42,7 +42,7 @@
           >
             <td>{{ row + indexForNumberOfRow }}</td>
             <td v-for="(key, value) in index" :class="value" :key="key.id">
-              {{ key }}
+              <span>{{ key }}</span>
             </td>
           </tr>
         </tbody>
@@ -101,101 +101,40 @@ svg {
 svg.reverse {
   transform: rotate(180deg);
 }
+
 .table {
-  background-color: #fff;
-  width: 100%;
-  max-width: 1140px;
-  padding-bottom: 25px;
-  max-height: 100%;
   transition: all 0.5s ease;
-  &__data {
-    width: 100%;
-    height: fit-content;
-    overflow-x: auto;
-    margin-bottom: 16px;
-  }
+  max-width: 1140px;
+  height: fit-content;
+  padding: 15px 0 25px;
+  background-color: #fff;
+  box-shadow: 2px 4px 20px rgba(0, 0, 0, 0.1);
 
   &__responsive {
+    display: block;
     width: 100%;
-    overflow-x: auto;
+    overflow-x: scroll;
+    margin-bottom: 16px;
   }
-}
-table.table__responsive {
-  border-collapse: collapse;
-  table-layout: fixed;
-  th,
-  td {
-    text-align: center;
-    padding: 22px 15px 22px 0px;
-    &:first-child {
-      padding-left: 30px;
-    }
-    &:last-child {
-      padding-right: 30px;
-    }
-  }
-
-  thead {
-    cursor: pointer;
-    &__title {
-    }
+  table.table__data {
+    color: #413e53;
+    min-width: 1140px;
+    width: 100%;
+    border-collapse: collapse;
+    td,
     th {
-      font-weight: bold;
-      padding-bottom: 29px;
-      padding-top: 30px;
+      padding: 12px;
+      width: min-content;
+    }
+
+    th {
+      text-align: left;
+    }
+
+    td.postamat,
+    td.dronoport {
       text-align: center;
     }
-  }
-  tbody {
-    tr {
-      &:hover {
-        background-color: #ececec;
-        // #f8f9fa
-        cursor: pointer;
-      }
-    }
-  }
-}
-
-.table-paginator {
-  &__row {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    position: relative;
-    flex-direction: column;
-  }
-
-  &__ul {
-    display: flex;
-    gap: 0 4px;
-    ul {
-      list-style-type: none;
-    }
-  }
-
-  &__li {
-    width: 50px;
-    height: 50px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    border-radius: 100%;
-    &:hover {
-      background-color: #f7f7f9;
-    }
-    &.active {
-      background-color: #f7f7f9;
-      color: #9b42f5;
-    }
-  }
-  &__total {
-    position: absolute;
-    right: 25px;
-    color: #6d6a7a;
-    font-size: 17px;
-    font-weight: 400;
   }
 }
 </style>

@@ -228,6 +228,7 @@ export default {
 }
 .left-main-content {
   flex: 1 1 auto;
+  width: 750px;
 }
 .right-side-option {
   &__item {
