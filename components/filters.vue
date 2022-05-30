@@ -39,6 +39,7 @@
           :UpdatedPageNumber="updatedIndexRow"
           :typeViewOfRightSide="typeViewOfRightSide"
           :getNameForSort="sortByName"
+          :updateItemsOnPage="updateItemsOnPage"
         >
         </slot>
       </div>
@@ -172,6 +173,10 @@ export default {
       if (btn_name == this.typeViewOfRightSide) {
         return "active";
       }
+    },
+    updateItemsOnPage(value) {
+      this.itemsOnPage = value;
+      this.to = value;
     },
   },
 };

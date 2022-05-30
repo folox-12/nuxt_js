@@ -3,7 +3,7 @@
     <filters
       :view-format="'table'"
       :data="dataAboutDronoport"
-      :itemsOnPage="4"
+      :itemsOnPage="5"
       :placeHolder="placeHolder"
       :rightSideView="[
         { name: 'Filters', img: 'ico/filter.svg' },
@@ -24,6 +24,7 @@
           UpdatedPageNumber,
           pageNumber,
           getNameForSort,
+          updateItemsOnPage,
         }"
       >
         <transition name="slide-fade">
@@ -107,6 +108,22 @@
                       <span>Таблица</span>
                     </div>
                   </spoiler>
+                  <spoiler :title="'Настройка представления'">
+                    <button
+                      class="count"
+                      @click="updateItemsOnPage(5)"
+                      :class="{ active: itemsOnPage == 5 }"
+                    >
+                      5
+                    </button>
+                    <button
+                      class="count"
+                      @click="updateItemsOnPage(10)"
+                      :class="{ active: itemsOnPage == 10 }"
+                    >
+                      10
+                    </button>
+                  </spoiler>
                 </div>
               </div>
               <div
@@ -184,6 +201,16 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.count {
+  width: 30px;
+  height: 30px;
+  margin-right: 15px;
+  border-radius: 20px;
+}
+.count.active {
+  background-color: rgba(155, 66, 245, 1);
+  color: #fff;
+}
 .slide-fade-enter-active {
   transition: all 0.8s ease;
 }
@@ -203,12 +230,6 @@ export default {
   flex: 1 1 auto;
 }
 .right-side-option {
-  &__content {
-    display: flex;
-    flex-direction: column;
-    flex-wrap: wrap;
-    gap: 15px;
-  }
   &__item {
     display: flex;
     align-items: center;
