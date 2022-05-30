@@ -4,8 +4,7 @@
     <main>
       <div class="container">
         <Breadcrumbs :crumbs="getAllRoute" />
-        <TitleOfPage></TitleOfPage>
-        <HeaderPageSearch />
+        <TitleOfPage :headerData="headerData" v-if="headerData"></TitleOfPage>
         <nuxt />
       </div>
     </main>
@@ -29,14 +28,24 @@ export default {
   data() {
     return {
       querySearch1: "",
+      showFilter: false,
     };
   },
   computed: {
     getAllRoute() {
       return this.$route.fullPath;
     },
+    headerData() {
+      return this.$route.matched.map((r) => {
+        return r.components.default.options.headerData;
+      })[0];
+    },
   },
-  methods: {},
+  methods: {
+    openFilter() {
+      this.showFilter = !this.showFilter;
+    },
+  },
 };
 </script>
 
@@ -60,10 +69,9 @@ body {
 main {
   margin-top: 103px;
 }
-@media (max-width: 667px){
+@media (max-width: 667px) {
   main {
-  margin-top: 0px;
+    margin-top: 0px;
+  }
 }
-}
-
 </style>

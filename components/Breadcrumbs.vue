@@ -6,12 +6,22 @@
   <nav class="header-page__navigation header-page-navigation">
     <div
       class="header-page-navigation__item"
-      v-for="crumb in getAllRoute"
+      v-for="(crumb, ci) in getAllRoute"
       :key="crumb"
     >
       <div class="header-page-navigation__link">
-        <nuxt-link :to="crumb">
+        <nuxt-link
+          :to="localePath(createLink(getAllRoute.slice(0, ci + 1)))"
+          v-if="$i18n.locale !== 'en'"
+        >
           {{ translateToRus(crumb) }}
+        </nuxt-link>
+
+        <nuxt-link
+          :to="localePath(createLink(getAllRoute.slice(0, ci + 1)))"
+          v-if="$i18n.locale == 'en'"
+        >
+          {{ normalize(crumb) }}
         </nuxt-link>
       </div>
       <div class="header-page-navigation__splitter">></div>
@@ -31,15 +41,29 @@ export default {
   },
   computed: {
     getAllRoute() {
+      // console.log(this.crumbs);
       let crumbs = this.crumbs.slice(1).split("/");
-      return crumbs;
+      console.log(this.crumbs);
+      if (crumbs[0] == "en") {
+        crumbs.splice(0, 1);
+      }
+      // console.log(crumbs);
+      if (crumbs.length == 0) {
+        return ["Main"];
+      } else {
+        return crumbs;
+      }
     },
   },
   methods: {
     translateToRus(item) {
+      // if () return item;
       switch (item) {
         case "": {
           return "Главная";
+        }
+        case "Test": {
+          return "Тест";
         }
         case "Infrastructure": {
           return "Инфраструктура";
@@ -65,10 +89,24 @@ export default {
         case "Sensor": {
           return "Датчик движения";
         }
+        case "Droneport": {
+          return "Дронопорт";
+        }
         default: {
           return item;
         }
       }
+    },
+    normalize(item) {
+      if (item == "") return "Main";
+      else return item;
+    },
+    createLink(crumbs) {
+      let _link = "";
+      crumbs.forEach((element) => {
+        _link += "/" + element;
+      });
+      return _link;
     },
   },
 };

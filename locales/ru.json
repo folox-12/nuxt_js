@@ -1,0 +1,112 @@
+{
+  "landing-areas-list-title-header": "Список площадок",
+  "platforms-title": "Платформа",
+  "test-title": "Тест",
+
+  "landing-areas-list-title-page": "Список посадочных площадок",
+  "edit-message": "Редактировать",
+
+  "search-by-address": "Поиск по адресу",
+
+  "no-table-title": "№",
+  "address-table-title": "Адрес",
+  "droneport-table-title": "Дронопорт",
+  "postamat-table-title": "Постамат",
+  "counter-table": "Всего найдено: ",
+
+  "platform-title-page": "Посадочная площадка №3",
+  "platform-title": "Площадка",
+
+  "adress-table-card": "Адрес",
+  "registration-num-table-card": "Регистрационный номер",
+  "creation-date-table-card": "Дата создания",
+  "dimensions-table-card-meters": "Размеры(м)",
+  "alowable-temp-table-card": "Рабочая температура(C°)",
+  "operating-mode-table-card": "Режим эксплуатации",
+
+  "left-view-modal-img": "Вид слева",
+  "top-view-modal-img": "Вид сверху",
+  "right-view-modal-img": "Вид справа",
+
+  "infrastructure-title": "Инфраструктура",
+  "infrastructure-type": "Тип инфраструктуры",
+  "infrastructure-manufacturer": "Производитель",
+  "infrastructure-model": "Модель",
+  "infrastructure-num": "Инвентарный номер",
+
+  "open-btn": "Открыть",
+  "add-btn-edit-platform": "+ Добавить",
+  "accept-edit-btn": "Применить",
+
+  "droneport": "Дронопорт",
+  "camera": "Камера",
+  "motion-sensors": "Датчики движения",
+  "protection": "Ограждение",
+  "lights": "Освещение",
+  "postamat": "Постамат",
+
+  "droneport-title-page": "Дронопорт - Drone Port Hive M300",
+  "dimensions-table-card-mm": "Размеры(мм)",
+  "voltage-table-card": "Напряжение питания (В)",
+  "energy-consumption-table-card": "Энергопотребление (кВт/ч)",
+  "weight-table-card": "Вес (кг)",
+  "battery-table-card": "Время зарядки АКБ (мин.)",
+  "wind-speed-table-card": "Максимальная скорость ветра (м/с)",
+  "maintence-time-table-card": "Время обслуживания дрона (мин.)",
+
+  "equipment": "Оснащение",
+
+  "you-can-add-photo": "Вы можете добавить фото",
+  "no-photo": "Нет фотографий",
+  "no-info": "Нет данных",
+
+  "equipment-name": "Наименование",
+  "equipment-type": "Тип",
+
+  "show-all-btn": "Показать все",
+  "hide-all-btn": "Скрыть",
+
+  "serviced-drones": "Обслуживаемые дроны",
+
+  "user-information-title": "Главная информация",
+  "user-profile-title-page": "Профиль",
+  "name-table-card": "Имя",
+  "surname-table-card": "Фамилия",
+  "birth-date-table-card": "Дата рождения",
+
+  "camera-title-page": "Камера - AHD M300",
+  "viewing-angle-table-card": "Угол обзора (°)",
+  "camera-info-title": "Информация о камере",
+  "camera-resolution": "Качество видео (p)",
+  "focal-length": "Фокусное расстояние (мм)",
+  "number-of-inputs-outputs": "Количество входов-выходов",
+
+  "motions-sensors-title": "Датчики движения",
+  "motion-sensor-title-page": "Датчик движения - Ajax Motion Protect",
+  "motion-sensor-speed-table-card": "Скорость движения (м/с)",
+  "detection-range-table-card": "Дальность обнаружения (м)",
+
+  "lights-title-page": "Освещение",
+  "temp-color-table-card": "Температурный цвет(K)",
+  "luminous-flux-table-card": "Световой поток, Lm",
+  "led-type-table-card": "Тип светодиода",
+
+  "front-view-table-card": "Вид спереди",
+  "back-view-table-card": "Вид сзади",
+  "left-view-table-card": "Вид сбоку",
+  "top-view-table-card": "Вид сверху",
+  "right-view-table-card": "Вид справа",
+
+  "light-title": "Освещение - Feron SP3040",
+
+  "postamat-title-page": "Постамат",
+  "postamat-title": "Постамат - OZON Box",
+
+  "wall-title": "Ограждение",
+  "height-table-card": "Высота (мм)",
+
+  "wall-desc-title": "Сетка оцинкованная «Рабица»",
+  "cell-dimensions-table-card": "Размеры ячейки (ДxШ) (мм)",
+  "time-order-table-card": "Время выдачи заказа (мин.)",
+  "degree-protection-table-card": "Степень защиты IP"
+}

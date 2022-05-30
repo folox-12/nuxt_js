@@ -4,7 +4,7 @@
     <main>
       <div class="container">
         <Breadcrumbs :crumbs="getAllRoute" />
-        <TitleOfPage></TitleOfPage>
+        <TitleOfPage :headerData="headerData" v-if="headerData"></TitleOfPage>
         <nuxt />
       </div>
     </main>
@@ -14,7 +14,6 @@
 import Header from "../components/Header.vue";
 import HeaderPageNavigation from "../components/HeaderPageNavigation.vue";
 import TitleOfPage from "../components/TitleOfPage.vue";
-import HeaderPageSearch from "../components/HeaderPageSearch.vue";
 import Breadcrumbs from "../components/Breadcrumbs.vue";
 export default {
   name: "Map",
@@ -22,24 +21,26 @@ export default {
     Header,
     TitleOfPage,
     HeaderPageNavigation,
-    HeaderPageSearch,
     Breadcrumbs,
   },
   computed: {
     getAllRoute() {
       return this.$route.fullPath;
     },
+    headerData() {
+        return this.$route.matched.map(r => {
+          return r.components.default.options.headerData
+        })[0]
+      }
   },
 };
 </script>
 
-<style lang="scss" >
+<style lang="scss">
 @import url("../assets/scss/_nullstyle.scss");
 @import "../assets/scss/fonts";
 
 body {
   background-color: #f7f7f9;
 }
-
 </style>
-

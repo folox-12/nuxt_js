@@ -9,11 +9,16 @@
         placeholder="Поиск по адресу"
         id="input-main"
       />
-      <button class="clear-input" id="clear-input" v-on:click="clearInput()">
+      <button class="clear-input" id="clear-input" @:click="clearInput()">
         <img src="../assets/img/ico/close.svg" alt="" />
       </button>
+
+      <transition name="slide-fade">
+        <h1 v-if="showFilter">text</h1>
+      </transition>
     </div>
     <div class="header-page-search__buttons">
+      <keep-alive>
       <button id="filter-btn" v-on:click="openFilter()">
         <svg
           svg
@@ -40,6 +45,7 @@
           />
         </svg>
       </button>
+      </keep-alive>
       <button id="settings-btn" v-on:click="openSettings()">
         <svg
           width="26"
@@ -61,13 +67,16 @@
 <script>
 import { mapActions, mapMutations, mapGetters } from "vuex";
 export default {
+  // name: 'Show'
   data() {
     return {
       inputValue: "",
+      showFilter: false,
     };
   },
   computed: {
     ...mapGetters("search", ["getStoreQuery"]),
+    // ...mapGetters("filter", ["getFilter"]),
   },
   beforeMount() {
     this.inputValue = this.getStoreQuery;
@@ -75,6 +84,8 @@ export default {
   methods: {
     ...mapActions("search", ["getValue"]),
     ...mapMutations("search", ["updateQuery"]),
+    ...mapMutations("filter", ["changeVisibility"]),
+
     getInputValue() {
       this.updateQuery(this.inputValue);
     },
@@ -83,6 +94,40 @@ export default {
       this.inputValue = "";
     },
     openFilter() {
+      /*
+      this.showFilter = !this.showFilter;
+      this.$emit("showFilter", this.showFilter);
+      */
+      // alert("func");
+      this.changeVisibility();
+
+      const filter_btn = document.getElementById("filter-btn");
+      const element = document.getElementById("main-area").children[0];
+      // const filter_content = document.getElementById("myDropdown");
+      // const filter_field = document.getElementById("filter-block");
+
+      if (filter_btn.classList.contains("active")) {
+        filter_btn.classList.remove("active");
+        element.style.width = "100%";
+        // filter_field.style.width = "0%";
+
+        // filter_content.classList.remove("active");
+        filter_btn.firstChild.firstChild.style.stroke = "#7D7B84";
+        filter_btn.firstChild.lastChild.style.stroke = "#7D7B84";
+      } else {
+        filter_btn.classList.add("active");
+        // filter_content.classList.add("active");
+        element.style.width = "70%";
+        // filter_field.style.width = "30%";
+        filter_btn.firstChild.firstChild.style.stroke = "#9B42F5";
+        filter_btn.firstChild.lastChild.style.stroke = "#9B42F5";
+      }
+    },
+    /*
+    openFilter() {
+      this.$emit("showFilter", this.showFilter);
+      // this.show_filter = !this.show_filter;
+      /*
       const filter_btn = document.getElementById("filter-btn");
       const element = document.getElementById("main-area").children[0];
       const filter_content = document.getElementById("myDropdown");
@@ -105,6 +150,7 @@ export default {
         filter_btn.firstChild.lastChild.style.stroke = "#9B42F5";
       }
     },
+    */
     openSettings() {
       /*
       const settings_btn = document.getElementById("settings");
@@ -122,6 +168,17 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.slide-fade-enter-active {
+  transition: all 0.8s ease;
+}
+.slide-fade-leave-active {
+  transition: all 0.3s ease;
+}
+.slide-fade-enter,
+.slide-fade-leave-to {
+  transform: translateX(10px);
+  opacity: 0;
+}
 .header-page {
   &__search {
     display: flex;

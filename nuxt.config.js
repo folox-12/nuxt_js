@@ -1,3 +1,4 @@
+
 export default {
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
@@ -18,7 +19,7 @@ export default {
   css: [],
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
-  plugins: [],
+  plugins: ["~plugins/filters/localization.filter.js"],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
   components: true,
@@ -27,7 +28,40 @@ export default {
   buildModules: [],
 
   // Modules: https://go.nuxtjs.dev/config-modules
-  modules: [],
+  modules: [
+    [
+      "@nuxtjs/i18n",
+      {
+        locales: [
+          {
+            code: "en",
+            file: "en.json",
+          },
+          {
+            code: "ru",
+            file: "ru.json",
+          },
+        ],
+        lazy: true,
+        langDir: "locales/",
+        defaultLocale: "ru",
+        // strategy: "prefix",
+        /*
+        vueI18n: {
+          fallbackLocale: "en",
+          messages: {
+            en: {
+              test: "Hello",
+            },
+            ru: {
+              test: "Привет",
+            },
+          },
+        },
+        */
+      },
+    ],
+  ],
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {},

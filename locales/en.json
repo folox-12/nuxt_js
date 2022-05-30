@@ -1,0 +1,110 @@
+{
+  "landing-areas-list-title-header": "Pads list",
+  "platforms-title": "Platforms",
+  "test-title": "Test",
+
+  "landing-areas-list-title-page": "Landing areas list",
+  "edit-message": "Edit",
+
+  "search-by-address": "Search by address",
+
+  "no-table-title": "№",
+  "address-table-title": "Address",
+  "droneport-table-title": "Droneport",
+  "postamat-table-title": "Postamat",
+  "counter-table": "Total found: ",
+
+  "platform-title-page": "Landing area №3",
+  "platform-title": "Platfrom",
+
+  "adress-table-card": "Address",
+  "registration-num-table-card": "Registration number",
+  "creation-date-table-card": "Creation date",
+  "dimensions-table-card-meters": "Dimensions(m)",
+  "alowable-temp-table-card": "Alowable temptature(C°)",
+  "operating-mode-table-card": "Operating mode",
+
+  "left-view-modal-img": "Left view",
+  "top-view-modal-img": "Top view",
+  "right-view-modal-img": "Right view",
+
+  "infrastructure-title": "Infrastructure",
+  "infrastructure-type": "Infrastructure type",
+  "infrastructure-manufacturer": "Manufacturer",
+  "infrastructure-model": "Model",
+  "infrastructure-num": "Inventory number",
+
+  "open-btn": "Open",
+  "add-btn-edit-platform": "+ Add",
+  "accept-edit-btn": "Accept",
+
+  "droneport": "Droneport",
+  "camera": "Camera",
+  "motion-sensors": "Motion sensors",
+  "protection": "Protection",
+  "lights": "Lights",
+  "postamat": "Postamat",
+
+  "droneport-title-page": "Droneport - Drone Port Hive M300",
+  "dimensions-table-card-mm": "Dimensions (mm)",
+  "voltage-table-card": "Voltge (V)",
+  "energy-consumption-table-card": "Energy consumption (kV/h)",
+  "weight-table-card": "Weight (kg)",
+  "battery-table-card": "Battery charging time (minutes)",
+  "wind-speed-table-card": "Maximum wind speed (m/s)",
+  "maintence-time-table-card": "Drone maintenance time (min.)",
+
+  "equipment": "Equipment",
+  "equipment-name": "Name",
+  "equipment-type": "Type",
+
+  "show-all-btn": "Show all",
+  "hide-all-btn": "Hide",
+
+  "you-can-add-photo": "You can add a photo",
+  "no-photo": "No photo",
+  "no-info": "No data",
+  "serviced-drones": "Serviced drones",
+
+  "user-information-title": "Main information",
+  "user-profile-title-page": "Profile",
+  "name-table-card": "Name",
+  "surname-table-card": "Surname",
+  "birth-date-table-card": "Birth date",
+
+  "camera-title-page": "Camera - AHD M300",
+  "viewing-angle-table-card": "Viewing angle (°)",
+  "camera-info-title": "Camera information",
+  "camera-resolution": "Video quantity (p)",
+  "focal-length": "Focal length",
+  "number-of-inputs-outputs": "Number of inputs-outputs",
+
+  "motions-sensors-title": "Motion sensors",
+  "motion-sensor-title-page": "Motion Sensor - Ajax Motion Protect",
+  "motion-sensor-speed-table-card": "Motion speed (м/с)",
+  "detection-range-table-card": "Detection range (m)",
+
+  "lights-title-page": "Lights",
+  "temp-color-table-card": "Tempretare color(K)",
+  "luminous-flux-table-card": "Luminous flux, Lm",
+  "led-type-table-card": "LED type",
+
+  "front-view-table-card": "Front view",
+  "back-view-table-card": "Back view",
+  "left-view-table-card": "Left view",
+  "top-view-table-card": "Top view",
+  "right-view-table-card": "Right view",
+
+  "light-title": "Lights - Feron SP3040",
+
+  "postamat-title-page": "Postamat",
+  "postamat-title": "Postamat - OZON Box",
+
+  "wall-title": "Wall",
+  "height-table-card": "Height (mm)",
+
+  "wall-desc-title": "Grid galvanized \"Рабица\"",
+  "cell-dimensions-table-card": "Cell dimensions (LxW) (mm)",
+  "time-order-table-card": "Time of issue of the order (min.)",
+  "degree-protection-table-card": "Degree of protection IP"
+}
