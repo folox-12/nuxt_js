@@ -77,15 +77,15 @@ export default {
   },
   methods: {
     addImage($event) {
-     let agree =  confirm('Добавить фото?')
-     if(agree == true){
-       const image = $event.target.files[0];
-                const reader = new FileReader();
-                reader.readAsDataURL(image);
-                reader.onload = $event =>{
-                    this.img = $event.target.result;
-                }
-      };
+      let agree = confirm("Добавить фото?");
+      if (agree == true) {
+        const image = $event.target.files[0];
+        const reader = new FileReader();
+        reader.readAsDataURL(image);
+        reader.onload = ($event) => {
+          this.img = $event.target.result;
+        };
+      }
     },
   },
 };
@@ -158,6 +158,10 @@ export default {
     &-image {
       margin-top: 30px;
       img {
+        border-radius: 3rem;
+        border: rgba(0, 0, 0, 0.05) 1px solid;
+        box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+
         width: 450px;
         height: 450px;
       }
