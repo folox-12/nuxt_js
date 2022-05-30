@@ -20,6 +20,7 @@ import HeaderPageNavigation from "../components/HeaderPageNavigation.vue";
 import TitleOfPage from "../components/TitleOfPage.vue";
 import Breadcrumbs from "../components/Breadcrumbs.vue";
 import Loop from "../components/icons/Loop.vue";
+
 export default {
   components: {
     Header,
