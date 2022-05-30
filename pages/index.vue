@@ -183,7 +183,7 @@ export default {
   },
   data() {
     return {
-      // placeHolder: "алё",
+      placeHolder: "алё",
       showModal: false,
     };
   },
