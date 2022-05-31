@@ -187,14 +187,15 @@ export default {
   width: 100%;
   display: flex;
   gap: 15px;
+  flex-direction: row;
 }
-.filter-content :first-child() {
-  flex: 1 1 63%;
+.filter-content > :nth-child(1) {
+  flex: 1 1;
+  width: 750px;
 }
 
-.filter-content :last-child() {
-  flex: 0 0 35%;
-  opacity: 0;
+.filter-content > :nth-child(2) {
+  flex: 0 0 400px;
 }
 .header-page {
   &__search {
