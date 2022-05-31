@@ -4,53 +4,53 @@ export default {
       {
         numerical: "no-table-title",
         address: "address-table-title",
-        dronopot: "droneport-table-title",
+        dronoport: "droneport-table-title",
         postamat: "postamat-table-title",
       },
       [
         {
           address: "г. Одинцово, ул. Северная, 5",
-          dronopot: 2,
+          dronoport: 2,
           postamat: 2,
         },
         {
           address: "г. Одинцово, ул. Северная, 4",
-          dronopot: 4,
+          dronoport: 4,
           postamat: 1,
         },
         {
           address: "г. Одинцово, ул. Северная, 3",
-          dronopot: 4,
+          dronoport: 4,
           postamat: 1,
         },
         {
           address: "г. Москва, ул. Северная, 44",
-          dronopot: 4,
+          dronoport: 4,
           postamat: 2,
         },
         {
           address: "г. Одинцово, ул. Северная, 42",
-          dronopot: 4,
+          dronoport: 4,
           postamat: 1,
         },
         {
           address: "г. Одинцово, ул. Северная, 41",
-          dronopot: 4,
+          dronoport: 4,
           postamat: 1,
         },
         {
           address: "г. Одинцово, ул. Северная, 40",
-          dronopot: 4,
+          dronoport: 4,
           postamat: 1,
         },
         {
           address: "г. Одинцово, ул. Южная, 39",
-          dronopot: 4,
+          dronoport: 4,
           postamat: 1,
         },
         {
           address: "г. Москва, ул. Северная, 38",
-          dronopot: 4,
+          dronoport: 4,
           postamat: 1,
         },
       ],
