@@ -27,6 +27,7 @@
       :custom="true"
     ></radioButton>
     <tableView></tableView>
+    <fdButton />
   </div>
 </template>
 <script>
@@ -34,6 +35,7 @@ import selectComponent from "../components/selectComponent.vue";
 import spoiler from "../components/UI/spoiler.vue";
 import radioButton from "../components/UI/radio-button.vue";
 import tableView from "../components/table-view.vue";
+import fdButton from "../components/UI/fd-button.vue";
 export default {
   data() {
     return {
@@ -45,6 +47,7 @@ export default {
     spoiler,
     radioButton,
     tableView,
+    fdButton,
   },
   created() {},
   methods: {
