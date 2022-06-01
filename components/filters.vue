@@ -184,18 +184,17 @@ export default {
 
 <style lang="scss" scoped>
 .filter-content {
-  width: 100%;
   display: flex;
   gap: 15px;
   flex-direction: row;
 }
 .filter-content > :nth-child(1) {
-  flex: 1 1;
-  width: 750px;
+  flex: 1 1 auto;
+  min-width: 325px;
 }
 
 .filter-content > :nth-child(2) {
-  flex: 0 0 400px;
+  flex: 0 0 35%;
 }
 .header-page {
   &__search {
