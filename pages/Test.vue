@@ -27,7 +27,7 @@
       :custom="true"
     ></radioButton>
     <tableView></tableView>
-    <fdButton />
+    <fdButton :text="'Отправить'" :type="'white'" @click="someFunction" />
   </div>
 </template>
 <script>
@@ -53,6 +53,9 @@ export default {
   methods: {
     select(value) {
       this.selectValue = value;
+    },
+    someFunction() {
+      alert("yep");
     },
   },
 };
