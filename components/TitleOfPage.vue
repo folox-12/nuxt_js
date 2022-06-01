@@ -5,20 +5,7 @@
         <div class="header-page__title">
           <h1>{{ $t(headerData.title) }}</h1>
           <div class="header-page__button">
-            <button
-              v-if="this.$store.getters['GetChangestatus'] == false"
-              @click="click"
-              class="btn"
-            >
-              {{ $t("edit-message") }}
-            </button>
-            <button
-              v-else-if="this.$store.getters['GetChangestatus'] == true"
-              @click="click"
-              class="btn"
-            >
-              {{ $t("accept-edit-btn") }}
-            </button>
+            <fdButton @click="click" :text="$t(checkStore)" />
           </div>
         </div>
       </div>
@@ -27,18 +14,29 @@
 </template>
 
 <script>
+import fdButton from "./UI/fd-button.vue";
 export default {
+  components: {
+    fdButton,
+  },
   props: {
     headerData: {
       type: Function,
       required: true,
-      default: "Page"
+      default: "Page",
     },
   },
   data() {
     return {
       status: this.$store.getters["GetChangestatus"],
     };
+  },
+  computed: {
+    checkStore() {
+      return this.$store.getters["GetChangestatus"]
+        ? "accept-edit-btn"
+        : "edit-message";
+    },
   },
   methods: {
     click() {
@@ -62,26 +60,6 @@ export default {
       color: #141029;
     }
   }
-
-  &__button {
-    button {
-      background: linear-gradient(90deg, #0094ff 3.2%, #9b42f5 73.28%);
-      color: white;
-      height: 48px;
-      min-width: 200px;
-      font-family: "Montserrat", serif;
-      border: none;
-      border-radius: 10px;
-      cursor: pointer;
-      -webkit-transition: 0.5s;
-      transition: all 0.2s;
-    }
-    button:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
-      color: rgba(255, 255, 255, 0.6);
-    }
-  }
 }
 @media (max-width: 667px) {
   .header-page {
@@ -97,20 +75,20 @@ export default {
         color: #141029;
       }
     }
-    &__button {
-      button {
-        background: linear-gradient(90deg, #0094ff 3.2%, #9b42f5 73.28%);
-        color: white;
-        height: 38px;
-        min-width: 150px;
-        font-family: "Montserrat", serif;
-        border: none;
-        border-radius: 10px;
-        cursor: pointer;
-        -webkit-transition: 0.5s;
-        transition: all 0.2s;
-      }
-    }
+    // &__button {
+    //   button {
+    //     background: linear-gradient(90deg, #0094ff 3.2%, #9b42f5 73.28%);
+    //     color: white;
+    //     height: 38px;
+    //     min-width: 150px;
+    //     font-family: "Montserrat", serif;
+    //     border: none;
+    //     border-radius: 10px;
+    //     cursor: pointer;
+    //     -webkit-transition: 0.5s;
+    //     transition: all 0.2s;
+    //   }
+    // }
   }
 }
 </style>
