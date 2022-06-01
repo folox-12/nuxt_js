@@ -1,12 +1,16 @@
 <template>
   <div class="page">
     <div class="card">
-      <Imagecard  :img="img" :titleImg="titleImg" @DeleteImg="DeleteImg"></Imagecard>
-     
+      <Imagecard
+        :img="img"
+        :titleImg="titleImg"
+        @DeleteImg="DeleteImg"
+      ></Imagecard>
+
       <hr />
       <div class="card__main card-main">
         <div class="card-main__title">
-          <h2>{{ $t("platform-title") }}</h2>
+          <h2>{{ $t("platform-title") + $route.params.platform }}</h2>
         </div>
 
         <Tablecard
@@ -14,7 +18,7 @@
           :description="description"
           :type="type"
           @changeInfo="changeData"
-          @clearInput='clearInput'
+          @clearInput="clearInput"
         ></Tablecard>
 
         <div class="card__infrastructure card-infrastructure">
@@ -54,7 +58,8 @@
                 <td>
                   <OpenCard
                     v-if="$store.getters['GetChangestatus'] == false"
-                    :link="item.link"
+                    :link="'/' + $route.params.platform + item.link"
+                    :id="$route.params.platform"
                   ></OpenCard>
                   <EditCard v-else></EditCard>
                 </td>
@@ -100,6 +105,7 @@ export default {
   },
 
   data() {
+    // index_of_platform = $route.params.platform;
     return {
       infrastructure: [
         {
@@ -107,42 +113,42 @@ export default {
           company: "Hive",
           type: "М300",
           id: "312312414",
-          link: "/Platform/Droneport",
+          link: "/Droneport",
         },
         {
           name: "camera",
           company: "AHD",
           type: "C201HD",
           id: "312312414",
-          link: "/Platform/Camera",
+          link: "/Camera",
         },
         {
           name: "motion-sensors",
           company: "Ajax",
           type: "MonionProtect",
           id: "312312414",
-          link: "/Platform/Sensor",
+          link: "/Sensor",
         },
         {
           name: "protection",
           company: "Wall",
           type: "WallOne",
           id: "312312414",
-          link: "/Platform/Wall",
+          link: "/Wall",
         },
         {
           name: "lights",
           company: "FERON",
           type: "SP3040",
           id: "312312414",
-          link: "/Platform/Light",
+          link: "/Light",
         },
         {
           name: "postamat",
           company: "Ozon",
           type: "Box",
           id: "312312414",
-          link: "/Platform/Postamat",
+          link: "/Postamat",
         },
       ],
 
@@ -173,14 +179,14 @@ export default {
         "24/7",
         "",
       ],
-      type:[
-        'addres',
-        'text',
-        'date',
-        'two quantity',
-        'two quantity',
-        'select',
-      ]
+      type: [
+        "addres",
+        "text",
+        "date",
+        "two quantity",
+        "two quantity",
+        "select",
+      ],
     };
   },
   headerData: {
@@ -190,12 +196,12 @@ export default {
     changeData(number, value) {
       this.description[number] = value;
     },
-    DeleteImg(index){
-      this.img.splice(index, 1)
+    DeleteImg(index) {
+      this.img.splice(index, 1);
     },
-    clearInput(index){
-      this.description[index] = ''
-    }
+    clearInput(index) {
+      this.description[index] = "";
+    },
   },
 };
 </script>
