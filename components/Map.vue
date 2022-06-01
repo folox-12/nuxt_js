@@ -94,12 +94,16 @@
       </div>
     </div>
     <div class="Layout">
-      <img
-        src="../assets/img/mapPreview.jpg"
-        width="1100px"
-        height="700px"
-        alt="Eror"
-      />
+      <div id="map-wraper" style="height: 55vh; width:52vh">
+      <client-only>
+      <l-map :zoom="zoom" :center="[55.673,37.2733]" :max-zoom="MaxZoom" :min-zoom="MinZoom">
+      <l-tile-layer url="http://{s}.tile.osm.org/{z}/{x}/{y}.png"></l-tile-layer>
+      <l-marker :lat-lng="[55.668,37.2790]"></l-marker>
+      <l-marker :lat-lng="[55.678,37.2413]"></l-marker>
+      <l-marker :lat-lng="[55.686,37.2840]"></l-marker>
+      </l-map>
+      </client-only>
+      </div>
     </div>
     <div class="RightShelf">
       <div class="RightShelf-items">
@@ -146,17 +150,26 @@
 </template>
 
 <script>
+
 export default {
   layout: "map",
+  
   data() {
+    
     return {
+      iconURL:'../assets/img/FDmarker.png',
+      zoom:13,
+      MaxZoom:18,
+      MinZoom:10,
       showDescr: false,
+      
     };
   },
-  headerData: {
-    title: "Карта",
+  headerData:{
+      title: "Карта",
   },
   methods: {
+    
     hideDescr() {
       this.showDescr = false;
     },
@@ -166,6 +179,7 @@ export default {
 
 <style lang="scss" scoped>
 @import "../assets/scss/fonts";
+
 h1 {
   margin-top: 15px;
   font-size: 18px;
@@ -176,19 +190,17 @@ h1 {
   background-color: $white;
   width: 100%;
   height: 780px;
-  position: relative;
+  margin-top: 30px;
 }
 
 svg {
   fill: rgba(20, 16, 41, 0.6);
 }
-.TopShelf {
-  position: relative;
-}
+
 .TopShelf__descr {
   display: flex;
   align-items: center;
-  margin: 0 15px 15px;
+  margin: 15px;
   button {
     display: flex;
     align-items: center;
@@ -200,20 +212,44 @@ svg {
   }
 }
 
+.RightShelf-items__buttons {
+  position: absolute;
+  left: 1;
+  margin-left: 30px;
+  bottom: 150px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  z-index: 2;
+  button {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #fff;
+    border-radius: 5px;
+    padding: 10px;
+    font-size: 30px;
+    &:hover {
+      background-color: rgb(246, 246, 246);
+      svg {
+        fill: blueviolet;
+      }
+    }
+  }
+}
+
 .TopShelf-items {
   position: absolute;
-  margin-left: 15px;
+  margin-top: 10px;
+  left: 1;
+  margin-left: 60px;
   display: flex;
-  width: 100%;
-  height: 100%;
-  left: 0;
-  top: 40px;
-  flex-wrap: wrap;
-  z-index: 999;
   align-items: center;
+  z-index:2;
+
   &__input {
-    margin: 15px;
-    position: relative;
     :hover {
       border: 1px solid #9c42f5;
       transition: 0.15s;
@@ -225,10 +261,11 @@ svg {
       transition: 0.4s;
     }
     input {
+      z-index: 2;
       border-radius: 10px;
       padding: 15px;
       height: 48px;
-      width: 600px;
+      width: 300px;
       box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
       right: 0;
     }
@@ -243,7 +280,7 @@ svg {
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-left: 220px;
+    margin-left: 100px;
     span {
       font-size: 17px;
     }
@@ -265,50 +302,18 @@ svg {
 }
 
 .Layout {
-  margin: 15px 15px 15px 15px;
+  margin: 15px 15px 20px 15px;
+  position: relative;
+  z-index: 1;
+
 }
 
-.RightShelf-items__buttons {
-  right: 30px;
-  bottom: 40px;
-  display: flex;
-  flex-direction: column;
-  position: absolute;
-  margin-right: 0;
-  gap: 10px;
-  button {
-    width: 40px;
-    height: 40px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: #fff;
-    border-radius: 5px;
-    padding: 10px;
-    font-size: 30px;
-    &:hover {
-      background-color: rgb(246, 246, 246);
-      svg {
-        fill: blueviolet;
-      }
-    }
-  }
-}
-.Layout {
-  position: relative;
-  height: 100%;
-  img {
-    position: absolute;
-    top: 0;
-    left: 0;
-    height: 100%;
-    width: 100%;
-    object-fit: cover;
-  }
-}
+
+
 .Modal_descr {
   position: absolute;
   margin-left: 50px;
+  z-index: 3;
   &-figure {
     z-index: 2;
     display: flex;
@@ -317,7 +322,6 @@ svg {
     height: 100px;
     margin-left: 26px;
     background: rgb(0, 0, 0, 0.8);
-    position: relative;
     border-radius: 10px;
     color: #fff;
     background-color: rgba(0, 0, 0, 0.8);
