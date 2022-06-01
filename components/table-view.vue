@@ -120,6 +120,7 @@ export default {
   table.table__data {
     color: #413e53;
     cursor: pointer;
+    margin-bottom: 15px;
     min-width: 1140px;
     width: 100%;
     border-collapse: collapse;
@@ -162,12 +163,21 @@ export default {
     td.dronoport,
     td.postamat {
       text-align: center;
+      width: fit-content;
     }
     td.null {
     }
-    tr:hover td {
-      color: #292c33;
-      background-color: #ececec;
+    tr {
+      & > :first-child {
+        padding-left: 30px;
+      }
+      & > :last-child {
+        padding-right: 30px;
+      }
+      &:hover td {
+        color: #292c33;
+        background-color: #ececec;
+      }
     }
   }
 }
