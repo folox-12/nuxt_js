@@ -51,10 +51,11 @@
             <td v-for="(key, value) in index" :class="value" :key="key.id">
               <span>{{ key }}</span>
             </td>
-            <td class="null"></td>
-            <nuxt-link :to="localePath('/Platform' + (row + 1))"
-              >link{{ row + 1 }}</nuxt-link
-            >
+            <td class="null">
+              <nuxt-link :to="localePath('/Platform' + (row + 1))"
+                >link{{ row + 1 }}</nuxt-link
+              >
+            </td>
           </tr>
         </tbody>
       </table>
