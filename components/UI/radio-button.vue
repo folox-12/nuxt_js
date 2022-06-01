@@ -16,23 +16,25 @@
         {{ index }}
       </label>
     </div>
-    <input
-      type="number"
-      v-if="radioValue === 'custom'"
+    <fd-input
       v-model="inputValue"
       class="custom"
-      max="20"
+      v-if="radioValue === 'custom'"
     />
   </div>
 </template>
 
 <script>
+import fdInput from "./fd-input.vue";
 export default {
   data() {
     return {
       radioValue: "",
       inputValue: "",
     };
+  },
+  components: {
+    fdInput,
   },
   props: {
     valuesRadio: {

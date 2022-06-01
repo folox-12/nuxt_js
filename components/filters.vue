@@ -2,18 +2,10 @@
   <keep-alive>
     <div class="filters">
       <div class="header-page__search header-page-search">
-        <div class="header-page-search__input">
-          <img src="../assets/img/ico/search.svg" alt="" class="search-icon" />
-          <input
-            type="search"
-            v-model="inputValue"
-            :placeholder="$t('search-by-address')"
-            id="input-main"
-          />
-          <button class="clear-input" id="clear-input" @click="clearInput()">
-            <img src="../assets/img/ico/close.svg" alt="" />
-          </button>
-        </div>
+        <fd-input
+          v-model="inputValue"
+          :placeholder="$t('search-by-address')"
+        ></fd-input>
         <div class="header-page-search__buttons">
           <button
             v-for="key in sortedRightSideViews"
@@ -48,6 +40,7 @@
 </template>
 
 <script>
+import fdInput from "./UI/fd-input.vue";
 export default {
   data() {
     return {
@@ -61,7 +54,9 @@ export default {
       sortFlag: "",
     };
   },
-  components: {},
+  components: {
+    fdInput,
+  },
   props: {
     rightSideView: {
       type: Array,

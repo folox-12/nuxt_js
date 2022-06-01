@@ -163,7 +163,6 @@ import pagination from "../components/pagination.vue";
 
 import spoiler from "../components/UI/spoiler.vue";
 import radioButton from "../components/UI/radio-button.vue";
-
 import { mapGetters } from "vuex";
 export default {
   components: {

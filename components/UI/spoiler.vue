@@ -32,6 +32,7 @@ export default {
       showContent: false,
     };
   },
+  components: {},
   props: {
     title: {
       type: String,

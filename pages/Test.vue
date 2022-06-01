@@ -26,8 +26,9 @@
       :valuesRadio="{ 1: 1, 2: 2, Все: 21 }"
       :custom="true"
     ></radioButton>
-    <tableView></tableView>
+    <!-- <tableView></tableView>
     <fdButton :text="'Отправить'" :type="'white'" @click="someFunction" />
+    <fdInput v-model="value" /> -->
   </div>
 </template>
 <script>
@@ -36,10 +37,12 @@ import spoiler from "../components/UI/spoiler.vue";
 import radioButton from "../components/UI/radio-button.vue";
 import tableView from "../components/table-view.vue";
 import fdButton from "../components/UI/fd-button.vue";
+import fdInput from "../components/UI/fd-input.vue";
 export default {
   data() {
     return {
       mySelectedValues: "",
+      value: "",
     };
   },
   components: {
@@ -48,6 +51,7 @@ export default {
     radioButton,
     tableView,
     fdButton,
+    fdInput,
   },
   created() {},
   methods: {
