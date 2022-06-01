@@ -52,6 +52,9 @@
               <span>{{ key }}</span>
             </td>
             <td class="null"></td>
+            <nuxt-link :to="localePath('/Platform' + (row + 1))"
+              >link{{ row + 1 }}</nuxt-link
+            >
           </tr>
         </tbody>
       </table>

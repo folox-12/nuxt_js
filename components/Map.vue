@@ -94,7 +94,7 @@
       </div>
     </div>
     <div class="Layout">
-      <div id="map-wraper" style="height: 55vh; width:65vh">
+      <div id="map-wraper" style="height: 55vh; width:52vh">
       <client-only>
       <l-map :zoom="zoom" :center="[55.673,37.2733]" :max-zoom="MaxZoom" :min-zoom="MinZoom">
       <l-tile-layer url="http://{s}.tile.osm.org/{z}/{x}/{y}.png"></l-tile-layer>
@@ -265,7 +265,7 @@ svg {
       border-radius: 10px;
       padding: 15px;
       height: 48px;
-      width: 400px;
+      width: 300px;
       box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
       right: 0;
     }
@@ -280,7 +280,7 @@ svg {
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-left: 170px;
+    margin-left: 100px;
     span {
       font-size: 17px;
     }
@@ -305,7 +305,7 @@ svg {
   margin: 15px 15px 20px 15px;
   position: relative;
   z-index: 1;
-  width: f;
+
 }
 
 
