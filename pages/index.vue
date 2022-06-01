@@ -51,7 +51,6 @@
           <rightSide
             v-if="showRightSide"
             class="option"
-            style="background-color: #fff display: flex; flex-wrap: wrap; gap: 10px"
             :title="typeViewOfRightSide"
             @changeViewFormat="switchTypeOfView"
           >
