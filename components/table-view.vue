@@ -7,6 +7,7 @@
             <th
               v-for="(name, value) in tableTitle"
               :key="value"
+              :class="value"
               @click="getNameForSort(value)"
             >
               <div>
@@ -102,13 +103,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-svg {
-  transition: all 0.8s ease;
-}
-svg.reverse {
-  transform: rotate(180deg);
-}
-
 .table {
   transition: all 0.5s ease;
   max-width: 1140px;
@@ -125,34 +119,55 @@ svg.reverse {
   }
   table.table__data {
     color: #413e53;
+    cursor: pointer;
     min-width: 1140px;
     width: 100%;
     border-collapse: collapse;
+    table-layout: auto;
     td,
     th {
       padding: 12px;
     }
     th {
-      text-align: left;
       div {
+        text-align: center;
         width: fit-content;
         margin-right: 15px;
         position: relative;
         svg {
           position: absolute;
-          top: 0;
+          top: 50%;
+          transform: translate(0, -50%);
           right: -15px;
           width: 11px;
           height: 11px;
+          transition: all 0.8s ease;
+          &.reverse {
+            transform: translate(0, -50%) rotate(180deg);
+          }
         }
       }
     }
     td {
       vertical-align: middle;
       word-break: break-all;
+      width: fit-content;
     }
-
+    th.dronoport,
+    th.postamat {
+      div {
+        margin: auto;
+      }
+    }
+    td.dronoport,
+    td.postamat {
+      text-align: center;
+    }
     td.null {
+    }
+    tr:hover td {
+      color: #292c33;
+      background-color: #ececec;
     }
   }
 }
