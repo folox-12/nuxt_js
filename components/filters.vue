@@ -5,6 +5,7 @@
         <fd-input
           v-model="inputValue"
           :placeholder="$t('search-by-address')"
+          :icon="icon"
         ></fd-input>
         <div class="header-page-search__buttons">
           <button
@@ -78,6 +79,10 @@ export default {
       type: String,
       default: "Поиск по адресу",
     },
+    icon: {
+      type: String,
+      default: "",
+    },
   },
   computed: {
     sortedRightSideViews() {
@@ -112,9 +117,6 @@ export default {
   },
 
   methods: {
-    changeInputValue() {
-      this.inputValue = inputValue;
-    },
     toggleShowRightSide(value) {
       if (value == this.typeViewOfRightSide) {
         this.showRightSide = !this.showRightSide;

@@ -4,6 +4,7 @@
       :view-format="'table'"
       :data="dataAboutDronoport"
       :itemsOnPage="5"
+      :icon="'ico/search.svg'"
       :placeHolder="placeHolder"
       :rightSideView="[
         { name: 'Filters', img: 'ico/filter.svg' },

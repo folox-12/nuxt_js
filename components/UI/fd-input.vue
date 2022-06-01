@@ -1,6 +1,6 @@
 <template>
   <div class="fd-input">
-    <img src="../../assets/img/ico/search.svg" alt="" class="search-icon" />
+    <img v-if="icon" :src="icon" alt="" class="search-icon" />
     <input
       type="search"
       :value="value"
@@ -8,17 +8,20 @@
       :placeholder="$t('search-by-address')"
     />
     <button class="clear-input" id="clear-input" @click="clearInput()">
-      <img src="../../assets/img/ico/close.svg" alt="" />
+      <img src="/ico/close.svg" alt="" />
     </button>
   </div>
 </template>
 
 <script>
 export default {
-  name: "fd-input",
   props: {
     value: {
       type: [String, Number],
+      default: "",
+    },
+    icon: {
+      type: "String",
       default: "",
     },
   },
@@ -37,7 +40,6 @@ export default {
 
 <style lang="scss">
 .fd-input {
-  background-color: #fff;
   position: relative;
   display: flex;
   width: 100%;
@@ -48,7 +50,7 @@ export default {
   filter: drop-shadow(2px 4px 20px rgba(3, 3, 3, 0.1));
   .search-icon {
     position: absolute;
-    left: 0px;
+    left: -2px;
     pointer-events: none;
     opacity: 0.5;
     padding-left: 18px;
@@ -58,7 +60,7 @@ export default {
     height: 100%;
     width: 100%;
     background-color: #f7f7f9;
-    padding: 10px 0px 10px 55px;
+    padding: 10px 45px 10px 45px;
     border-radius: 10px;
   }
   input:focus {
@@ -71,8 +73,8 @@ export default {
     transition: 0.15s;
   }
   button {
-    padding-right: 15px;
     position: absolute;
+    right: 15px;
     display: flex;
     background-color: transparent;
     cursor: pointer;
