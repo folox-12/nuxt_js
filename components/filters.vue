@@ -4,14 +4,14 @@
       <div class="header-page__search header-page-search">
         <fd-input
           v-model="inputValue"
-          :placeholder="$t('search-by-address')"
+          :placeholder="placeHolder"
           :icon="icon"
         ></fd-input>
         <div class="header-page-search__buttons">
           <button
             v-for="key in sortedRightSideViews"
             :key="key.name"
-            v-on:click="toggleShowRightSide(key.name)"
+            @click="toggleShowRightSide(key.name)"
             :class="isBtnActive(key.name)"
           >
             <img :src="key.img" alt="#" />

@@ -20,6 +20,8 @@
       v-model="inputValue"
       class="custom"
       v-if="radioValue === 'custom'"
+      :closeIcon="closeIconForInput"
+      :placeholder="'Введите значение'"
     />
   </div>
 </template>
@@ -41,6 +43,10 @@ export default {
       required: true,
     },
     custom: {
+      type: Boolean,
+      default: false,
+    },
+    closeIconForInput: {
       type: Boolean,
       default: false,
     },

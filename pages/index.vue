@@ -179,7 +179,7 @@ export default {
   },
   data() {
     return {
-      placeHolder: "алё",
+      placeHolder: "Введите адрес",
       showModal: false,
     };
   },

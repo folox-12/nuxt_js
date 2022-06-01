@@ -1,13 +1,26 @@
 <template>
   <div class="fd-input">
-    <img v-if="icon" :src="icon" alt="" class="search-icon" />
+    <img
+      v-if="icon"
+      :src="icon"
+      alt=""
+      class="search-icon"
+      :class="{ focus: focus }"
+    />
     <input
       type="search"
       :value="value"
       @input="input"
-      :placeholder="$t('search-by-address')"
+      @focus="toggleLeftIcon"
+      @blur="toggleLeftIcon"
+      :placeholder="placeholder"
     />
-    <button class="clear-input" id="clear-input" @click="clearInput()">
+    <button
+      v-if="closeIcon"
+      class="clear-input"
+      id="clear-input"
+      @click="clearInput()"
+    >
       <img src="/ico/close.svg" alt="" />
     </button>
   </div>
@@ -15,17 +28,34 @@
 
 <script>
 export default {
+  data() {
+    return {
+      focus: false,
+    };
+  },
   props: {
     value: {
-      type: [String, Number],
+      type: String,
       default: "",
     },
     icon: {
       type: "String",
       default: "",
     },
+    closeIcon: {
+      type: Boolean,
+      default: true,
+    },
+    placeholder: {
+      type: String,
+      default: "",
+    },
   },
   methods: {
+    toggleLeftIcon() {
+      this.focus = !this.focus;
+    },
+
     input(e) {
       let value = e.target.value;
       this.$emit("input", value);
@@ -55,6 +85,9 @@ export default {
     opacity: 0.5;
     padding-left: 18px;
     height: 30%;
+    &.focus {
+      display: none;
+    }
   }
   input {
     height: 100%;
@@ -67,6 +100,7 @@ export default {
     outline: 1px solid #9c42f5;
     box-shadow: 0 0 0 4px rgba(156, 66, 245, 0.12);
     transition: 0.4s;
+    padding-left: 10px;
   }
   input:hover {
     outline: 1px solid #9c42f5;
