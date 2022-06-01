@@ -32,6 +32,7 @@ export default {
     headerData: {
       type: Function,
       required: true,
+      default: "Page"
     },
   },
   data() {
