@@ -64,14 +64,24 @@
                   <EditCard v-else></EditCard>
                 </td>
               </tr>
+              <tr><td colspan="5"> <AddCard v-show="addcardParam" :LengthInput="4"></AddCard></td></tr>
             </table>
+            
           </div>
           <div class="card-infrastructure__button">
             <button
-              v-if="$store.getters['GetChangestatus'] == true"
+              v-if="$store.getters['GetChangestatus'] == true && addcardParam == false"
               class="spoiler__reset_button"
+              @click="addcardParam = true"
             >
               {{ $t("add-btn-edit-platform") }}
+            </button>
+             <button
+              v-else-if="$store.getters['GetChangestatus'] == true && addcardParam == true"
+              class="spoiler__reset_button"
+              @click="addcardParam = false"
+            >
+              {{ $t("add-btn-exit-platform") }}
             </button>
           </div>
         </div>
@@ -86,6 +96,7 @@ import Tablecard from "@/components/TableCard/TableCard.vue";
 import ModalWindow from "@/components/ModalWindow.vue";
 import OpenCard from "@/components/buttonCardOpen.vue";
 import EditCard from "@/components/buttonCardEditing.vue";
+import AddCard from "@/components/formAddTable.vue"
 export default {
   /*
   async asyncData({ store }) {
@@ -102,11 +113,13 @@ export default {
     ModalWindow,
     OpenCard,
     EditCard,
+    AddCard,
   },
 
   data() {
     // index_of_platform = $route.params.platform;
     return {
+      addcardParam: false,
       infrastructure: [
         {
           name: "droneport",

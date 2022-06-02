@@ -108,5 +108,6 @@
   "wall-desc-title": "Сетка оцинкованная «Рабица»",
   "cell-dimensions-table-card": "Размеры ячейки (ДxШ) (мм)",
   "time-order-table-card": "Время выдачи заказа (мин.)",
-  "degree-protection-table-card": "Степень защиты IP"
+  "degree-protection-table-card": "Степень защиты IP",
+  "add-btn-exit-platform": "Отменить"
 }
