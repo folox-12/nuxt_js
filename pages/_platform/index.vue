@@ -10,7 +10,7 @@
       <hr />
       <div class="card__main card-main">
         <div class="card-main__title">
-          <h2>{{ $t("platform-title") }}</h2>
+          <h2>{{ $t("platform-title") + splitPlatformId }}</h2>
         </div>
 
         <Tablecard
@@ -51,7 +51,9 @@
                 <th></th>
               </tr>
               <tr
-                v-for="(item, index) in this.getInfrByPlatformId(1)"
+                v-for="(item, index) in this.getInfrByPlatformId(
+                  parseInt(splitPlatformId)
+                )"
                 v-bind:key="index"
               >
                 <td>{{ $t(item.name) }}</td>
@@ -62,7 +64,6 @@
                   <OpenCard
                     v-if="$store.getters['GetChangestatus'] == false"
                     :link="'/' + $route.params.platform + item.link"
-                    :id="$route.params.platform"
                   ></OpenCard>
                   <EditCard v-else></EditCard>
                 </td>
@@ -111,51 +112,6 @@ export default {
   data() {
     // index_of_platform = $route.params.platform;
     return {
-      infrastructure: [
-        {
-          name: "droneport",
-          company: "Hive",
-          type: "М300",
-          id: "312312414",
-          link: "/Droneport",
-        },
-        {
-          name: "camera",
-          company: "AHD",
-          type: "C201HD",
-          id: "312312414",
-          link: "/Camera",
-        },
-        {
-          name: "motion-sensors",
-          company: "Ajax",
-          type: "MonionProtect",
-          id: "312312414",
-          link: "/Sensor",
-        },
-        {
-          name: "protection",
-          company: "Wall",
-          type: "WallOne",
-          id: "312312414",
-          link: "/Wall",
-        },
-        {
-          name: "lights",
-          company: "FERON",
-          type: "SP3040",
-          id: "312312414",
-          link: "/Light",
-        },
-        {
-          name: "postamat",
-          company: "Ozon",
-          type: "Box",
-          id: "312312414",
-          link: "/Postamat",
-        },
-      ],
-
       img: [
         require("@/assets/img/platform1.jpg"),
         require("@/assets/img/platform2.jpg"),
@@ -209,6 +165,9 @@ export default {
   },
   computed: {
     ...mapGetters("dronoports", ["getInfrByPlatformId"]),
+    splitPlatformId() {
+      return this.$route.params.platform.match(/\d/g);
+    },
   },
 };
 </script>
