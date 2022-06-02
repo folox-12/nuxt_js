@@ -10,7 +10,7 @@
       <hr />
       <div class="card__main card-main">
         <div class="card-main__title">
-          <h2>{{ $t("platform-title") + $route.params.platform }}</h2>
+          <h2>{{ $t("platform-title") }}</h2>
         </div>
 
         <Tablecard
@@ -50,7 +50,10 @@
                 <th align="right">{{ $t("infrastructure-num") }}</th>
                 <th></th>
               </tr>
-              <tr v-for="(item, index) in infrastructure" v-bind:key="index">
+              <tr
+                v-for="(item, index) in this.getInfrByPlatformId(1)"
+                v-bind:key="index"
+              >
                 <td>{{ $t(item.name) }}</td>
                 <td>{{ item.company }}</td>
                 <td>{{ item.type }}</td>
@@ -81,6 +84,7 @@
 </template>
 
 <script>
+import { mapGetters, mapMutations } from "vuex";
 import Imagecard from "@/components/ImgCard.vue";
 import Tablecard from "@/components/TableCard/TableCard.vue";
 import ModalWindow from "@/components/ModalWindow.vue";
@@ -202,6 +206,9 @@ export default {
     clearInput(index) {
       this.description[index] = "";
     },
+  },
+  computed: {
+    ...mapGetters("dronoports", ["getInfrByPlatformId"]),
   },
 };
 </script>
