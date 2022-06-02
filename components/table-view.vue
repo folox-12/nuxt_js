@@ -47,13 +47,21 @@
           >
             <td class="numerical">
               <span>{{ row + indexForNumberOfRow }}</span>
+              <!-- <span>{{ index }}</span> -->
             </td>
-            <td v-for="(key, value) in index" :class="value" :key="key.id">
+            <td
+              v-for="(key, value) in removeObjProperty(
+                removeObjProperty(index, 'id'),
+                'infrastructure'
+              )"
+              :class="value"
+              :key="key.id"
+            >
               <span>{{ key }}</span>
             </td>
             <td class="null">
-              <nuxt-link :to="localePath('/Platform' + (row + 1))"
-                >link{{ row + 1 }}</nuxt-link
+              <nuxt-link :to="localePath('/Platform' + index.id)"
+                >link{{ index.id }}</nuxt-link
               >
             </td>
           </tr>
@@ -89,6 +97,15 @@ export default {
     },
   },
   methods: {
+    removeObjProperty(obj, prop_name) {
+      const arr = Object.entries(obj);
+      const filtered_arr = arr.filter(function ([key, value]) {
+        return key != prop_name;
+      });
+      const filteredObj = Object.fromEntries(filtered_arr);
+      // console.log(filteredObj);
+      return filteredObj;
+    },
     UpdatedPageNumber(value) {
       this.pageNumber = value;
     },
@@ -99,7 +116,6 @@ export default {
         this.sortedFlag = value;
         this.flagDirection = true;
       }
-
       setTimeout(() => this.$emit("onSorted", value, this.flagDirection), 500);
     },
   },

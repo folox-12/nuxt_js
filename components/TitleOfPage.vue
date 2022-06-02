@@ -37,6 +37,9 @@ export default {
         ? "accept-edit-btn"
         : "edit-message";
     },
+    splitPlatformId() {
+      return this.$route.query.page;
+    },
   },
   methods: {
     click() {

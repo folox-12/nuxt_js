@@ -10,7 +10,7 @@
       <hr />
       <div class="card__main card-main">
         <div class="card-main__title">
-          <h2>{{ $t("platform-title") + $route.params.platform }}</h2>
+          <h2>{{ $t("platform-title") + splitPlatformId }}</h2>
         </div>
 
         <Tablecard
@@ -50,7 +50,12 @@
                 <th align="right">{{ $t("infrastructure-num") }}</th>
                 <th></th>
               </tr>
-              <tr v-for="(item, index) in infrastructure" v-bind:key="index">
+              <tr
+                v-for="(item, index) in this.getInfrByPlatformId(
+                  parseInt(splitPlatformId)
+                )"
+                v-bind:key="index"
+              >
                 <td>{{ $t(item.name) }}</td>
                 <td>{{ item.company }}</td>
                 <td>{{ item.type }}</td>
@@ -59,7 +64,6 @@
                   <OpenCard
                     v-if="$store.getters['GetChangestatus'] == false"
                     :link="'/' + $route.params.platform + item.link"
-                    :id="$route.params.platform"
                   ></OpenCard>
                   <EditCard v-else></EditCard>
                 </td>
@@ -91,6 +95,7 @@
 </template>
 
 <script>
+import { mapGetters, mapMutations } from "vuex";
 import Imagecard from "@/components/ImgCard.vue";
 import Tablecard from "@/components/TableCard/TableCard.vue";
 import ModalWindow from "@/components/ModalWindow.vue";
@@ -119,6 +124,7 @@ export default {
   data() {
     // index_of_platform = $route.params.platform;
     return {
+
       addcardParam: false,
       infrastructure: [
         {
@@ -164,6 +170,7 @@ export default {
           link: "/Postamat",
         },
       ],
+
 
       img: [
         require("@/assets/img/platform1.jpg"),
@@ -214,6 +221,12 @@ export default {
     },
     clearInput(index) {
       this.description[index] = "";
+    },
+  },
+  computed: {
+    ...mapGetters("dronoports", ["getInfrByPlatformId"]),
+    splitPlatformId() {
+      return this.$route.params.platform.match(/\d/g);
     },
   },
 };
