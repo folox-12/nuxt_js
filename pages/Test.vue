@@ -26,9 +26,9 @@
       :valuesRadio="{ 1: 1, 2: 2, Все: 21 }"
       :custom="true"
     ></radioButton>
-    <!-- <tableView></tableView>
-    <fdButton :text="'Отправить'" :type="'white'" @click="someFunction" />
-    <fdInput v-model="value" /> -->
+    <tableView></tableView>
+    <fdButton :text="'при'" :type="'primary'" @click="someFunction" />
+    <fdInput v-model="value" />
   </div>
 </template>
 <script>
@@ -38,6 +38,7 @@ import radioButton from "../components/UI/radio-button.vue";
 import tableView from "../components/table-view.vue";
 import fdButton from "../components/UI/fd-button.vue";
 import fdInput from "../components/UI/fd-input.vue";
+import {mapGetters} from "vuex";
 export default {
   data() {
     return {
@@ -62,6 +63,13 @@ export default {
       alert("yep");
     },
   },
+  computed:{
+    ...mapGetters("Map", ["getCoordinate"]),
+    Coordinate(){
+      return this.getCoordinate[inputValue]
+    }
+  },
+
 };
 </script>
 

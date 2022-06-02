@@ -78,9 +78,6 @@ export default {
   gap: 15px;
   &__item {
     cursor: pointer;
-    &:hover {
-      // background-color: grey;
-    }
   }
 }
 

@@ -31,6 +31,8 @@
       <div class="TopShelf-items">
         <div class="TopShelf-items__input">
           <input
+            v-model="valueInput"
+            @input="ChangeCenter"
             type="text"
             placeholder="Найти населенный пункт для полета"
             class="Search"
@@ -94,13 +96,53 @@
       </div>
     </div>
     <div class="Layout">
-      <div id="map-wraper" style="height: 55vh; width:52vh">
+      <div class="Map" id="map-wraper" style="height: 100%; width:100%">
       <client-only>
-      <l-map :zoom="zoom" :center="[55.673,37.2733]" :max-zoom="MaxZoom" :min-zoom="MinZoom">
+      <l-map 
+      :zoom="MapOptions[0].zoom" 
+      :center="MapOptions[3].Center" 
+      :max-zoom="MapOptions[1].MaxZoom" 
+      :min-zoom="MapOptions[2].MinZoom">
       <l-tile-layer url="http://{s}.tile.osm.org/{z}/{x}/{y}.png"></l-tile-layer>
-      <l-marker :lat-lng="[55.668,37.2790]"></l-marker>
-      <l-marker :lat-lng="[55.678,37.2413]"></l-marker>
-      <l-marker :lat-lng="[55.686,37.2840]"></l-marker>
+
+      <div class="Markers-area">
+
+        <div class="Marker-container">
+          <nuxt-link
+                no-prefetch
+                :to="localePath('/Platform1')">
+                <ButtonLink v-if="showButtonLink"></ButtonLink>
+                </nuxt-link>
+          <l-marker 
+            @click="showButtonLink = true"
+            v-on:click="hideButtonLink()"
+            :lat-lng="[55.668,37.2790]"
+            class="Marker-container__marker">
+          </l-marker>
+        </div>
+        
+        <div class="Marker-container">
+          
+          <l-marker
+            @click="showButtonLink = true" 
+            v-on:click="hideButtonLink()"
+            :lat-lng="[55.678,37.2413]"
+            class="Marker-container__marker">
+          </l-marker>
+        </div>
+
+        <div class="Marker-container">
+
+          <l-marker 
+            @click="showButtonLink = true" 
+            v-on:click="hideButtonLink()"
+            :lat-lng="[55.686,37.2840]" 
+            class="Marker-container__marker">
+          </l-marker>
+        </div>
+      
+      </div>
+
       </l-map>
       </client-only>
       </div>
@@ -139,37 +181,89 @@
               </g>
             </svg>
           </button>
-
-          <button class="Plus">+</button>
-
-          <button class="Minus">-</button>
+          <button class="Plus" @click="MaxZoomPlus()">+</button>
+          <button class="Minus" @click="MaxZoomMinus()">-</button>
         </div>
       </div>
     </div>
+    <button @click="ChangeCenter()">Москва</button>
+    <button>test</button>
+    <div class="test" >
+      <input type="text">
+      <p v-for = "Sity in Sitys" :key="Sity.id">{{Sity.adress}}</p>
+    </div>
+    <p>123: {{valueInput}}</p>
   </div>
 </template>
 
 <script>
 
+import ButtonLink from "../components/Map/ButtonLink.vue";
+import {mapGetters} from "vuex";
+
+
 export default {
   layout: "map",
   
+  components:{
+    ButtonLink 
+  },
+
+
+
   data() {
-    
+
     return {
-      iconURL:'../assets/img/FDmarker.png',
-      zoom:13,
-      MaxZoom:18,
-      MinZoom:10,
+
+      valueInput: "Odi",
+
+      showButtonLink : false,
       showDescr: false,
       
+      MapOptions:[
+      {id:"Zoom",zoom:13,},
+      {id:"MaxZoom",MaxZoom:18},
+      {id:"MinZoom",MinZoom:10},
+      {id:"Center",Center:[55.673,37.2733]},
+      ],
+      
+
+      Sitys:[
+        {adress:"Москва"},
+        {adress:"Кубинка"},
+        {adress:"Одинцово"},
+      ]
     };
   },
+
   headerData:{
-      title: "Карта",
+    title: "Карта",
   },
+
+    computed:{
+    ...mapGetters("Map", ["getCoordinate"]),
+    Coordinate(){
+      return this.getCoordinate[this.valueInput]
+    }
+  },
+
   methods: {
+
+    ChangeCenter(){
+      this.MapOptions[3].Center = this.Coordinate;
+    },
+
+    MaxZoomPlus(){
+      this.MapOptions[0].zoom+=1
+    },
+    MaxZoomMinus(){
+      this.MapOptions[0].zoom-=1
+    },
     
+    hideButtonLink() {
+
+    },
+
     hideDescr() {
       this.showDescr = false;
     },
@@ -179,6 +273,15 @@ export default {
 
 <style lang="scss" scoped>
 @import "../assets/scss/fonts";
+
+.Marker-container{
+  position: relative;
+}
+
+.ModalButton{
+  width: 100px;
+  height: 48px;
+}
 
 h1 {
   margin-top: 15px;
@@ -190,8 +293,8 @@ h1 {
   background-color: $white;
   width: 100%;
   height: 780px;
-  margin-top: 30px;
-}
+  // margin-top: 30px;
+  }
 
 svg {
   fill: rgba(20, 16, 41, 0.6);
@@ -200,7 +303,8 @@ svg {
 .TopShelf__descr {
   display: flex;
   align-items: center;
-  margin: 15px;
+  
+  margin: 0 15px 15px;
   button {
     display: flex;
     align-items: center;
@@ -304,15 +408,25 @@ svg {
 .Layout {
   margin: 15px 15px 20px 15px;
   position: relative;
+  width: 100%;
+  height: 100%;
   z-index: 1;
-
+  .Map{
+    width: 100%;
+    height: 100%;
+    padding: 0 25px 60px 0;
+  }
 }
 
 
 
 .Modal_descr {
   position: absolute;
+  width: 100%;
+  height: 100%;
   margin-left: 50px;
+  top: 0;
+  left: 0;
   z-index: 3;
   &-figure {
     z-index: 2;

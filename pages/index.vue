@@ -28,7 +28,6 @@
           updateItemsOnPage,
         }"
       >
-        <transition name="slide-fade">
           <tableView
             v-if="viewFormat === 'table'"
             :tableDescription="tableDescription"
@@ -47,8 +46,6 @@
           <div v-else-if="viewFormat === 'map'">
             <Map></Map>
           </div>
-        </transition>
-        <Transition name="slide-fade">
           <rightSide
             v-if="showRightSide"
             class="option"
@@ -135,6 +132,7 @@
                     2: 2,
                     Все: 21,
                   }"
+                  :closeIconForInput="true "
                   :custom="true"
                 />
               </spoiler>
@@ -147,7 +145,6 @@
               </spoiler>
             </div>
           </rightSide>
-        </Transition>
       </template>
     </filters>
   </div>
