@@ -10,7 +10,7 @@
       <hr />
       <div class="card__main card-main">
         <div class="card-main__title">
-          <h2>{{ $t("platform-title") + $route.params.platform }}</h2>
+          <h2>{{ $t("platform-title") + splitPlatformId }}</h2>
         </div>
 
         <Tablecard
@@ -50,7 +50,12 @@
                 <th align="right">{{ $t("infrastructure-num") }}</th>
                 <th></th>
               </tr>
-              <tr v-for="(item, index) in infrastructure" v-bind:key="index">
+              <tr
+                v-for="(item, index) in this.getInfrByPlatformId(
+                  parseInt(splitPlatformId)
+                )"
+                v-bind:key="index"
+              >
                 <td>{{ $t(item.name) }}</td>
                 <td>{{ item.company }}</td>
                 <td>{{ item.type }}</td>
@@ -59,19 +64,28 @@
                   <OpenCard
                     v-if="$store.getters['GetChangestatus'] == false"
                     :link="'/' + $route.params.platform + item.link"
-                    :id="$route.params.platform"
                   ></OpenCard>
                   <EditCard v-else></EditCard>
                 </td>
               </tr>
+              <tr><td colspan="5"> <AddCard v-show="addcardParam" :LengthInput="4"></AddCard></td></tr>
             </table>
+            
           </div>
           <div class="card-infrastructure__button">
             <button
-              v-if="$store.getters['GetChangestatus'] == true"
+              v-if="$store.getters['GetChangestatus'] == true && addcardParam == false"
               class="spoiler__reset_button"
+              @click="addcardParam = true"
             >
               {{ $t("add-btn-edit-platform") }}
+            </button>
+             <button
+              v-else-if="$store.getters['GetChangestatus'] == true && addcardParam == true"
+              class="spoiler__reset_button"
+              @click="addcardParam = false"
+            >
+              {{ $t("add-btn-exit-platform") }}
             </button>
           </div>
         </div>
@@ -81,11 +95,13 @@
 </template>
 
 <script>
+import { mapGetters, mapMutations } from "vuex";
 import Imagecard from "@/components/ImgCard.vue";
 import Tablecard from "@/components/TableCard/TableCard.vue";
 import ModalWindow from "@/components/ModalWindow.vue";
 import OpenCard from "@/components/buttonCardOpen.vue";
 import EditCard from "@/components/buttonCardEditing.vue";
+import AddCard from "@/components/formAddTable.vue"
 export default {
   /*
   async asyncData({ store }) {
@@ -102,11 +118,14 @@ export default {
     ModalWindow,
     OpenCard,
     EditCard,
+    AddCard,
   },
 
   data() {
     // index_of_platform = $route.params.platform;
     return {
+
+      addcardParam: false,
       infrastructure: [
         {
           name: "droneport",
@@ -151,6 +170,7 @@ export default {
           link: "/Postamat",
         },
       ],
+
 
       img: [
         require("@/assets/img/platform1.jpg"),
@@ -201,6 +221,12 @@ export default {
     },
     clearInput(index) {
       this.description[index] = "";
+    },
+  },
+  computed: {
+    ...mapGetters("dronoports", ["getInfrByPlatformId"]),
+    splitPlatformId() {
+      return this.$route.params.platform.match(/\d/g);
     },
   },
 };

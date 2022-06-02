@@ -34,6 +34,7 @@
               <td>{{ equipment.by }}</td>
               <td>{{ equipment.name }}</td>
             </tr>
+            <tr><td colspan="5"> <AddCard v-show="addcardParam1" :LengthInput="3"></AddCard></td></tr>
           </table>
           <div v-if="$store.getters['GetChangestatus'] == false">
             <button
@@ -47,13 +48,23 @@
               {{ $t("hide-all-btn") }}
             </button>
           </div>
-          <button
-            v-onload="(this.limit = null)"
-            v-if="$store.getters['GetChangestatus'] == true"
-            class="spoiler__reset_button"
-          >
-            {{ $t("add-btn-edit-platform") }}
-          </button>
+         
+           <button
+           v-onload="(this.limit = null)"
+              v-if="$store.getters['GetChangestatus'] == true && addcardParam1 == false"
+              class="spoiler__reset_button"
+              @click="addcardParam1 = true"
+            >
+              {{ $t("add-btn-edit-platform") }}
+            </button>
+             <button
+             v-onload="(this.limit = null)"
+              v-else-if="$store.getters['GetChangestatus'] == true && addcardParam1 == true"
+              class="spoiler__reset_button"
+              @click="addcardParam1 = false"
+            >
+              {{ $t("add-btn-exit-platform") }}
+            </button>
         </div>
       </div>
     </div>
@@ -78,13 +89,22 @@
               <td>Matrice 300 RTK</td>
               <td><OpenCard></OpenCard></td>
             </tr>
+            <tr><td colspan="5"> <AddCard v-show="addcardParam" :LengthInput="2"></AddCard></td></tr>
           </table>
           <button
-            v-if="$store.getters['GetChangestatus'] == true"
-            class="spoiler__reset_button"
-          >
-            {{ $t("add-btn-edit-platform") }}
-          </button>
+              v-if="$store.getters['GetChangestatus'] == true && addcardParam == false"
+              class="spoiler__reset_button"
+              @click="addcardParam = true"
+            >
+              {{ $t("add-btn-edit-platform") }}
+            </button>
+             <button
+              v-else-if="$store.getters['GetChangestatus'] == true && addcardParam == true"
+              class="spoiler__reset_button"
+              @click="addcardParam = false"
+            >
+              {{ $t("add-btn-exit-platform") }}
+            </button>
         </div>
       </div>
     </div>
@@ -95,6 +115,7 @@ import Imagecard from "../../../components/ImgCard.vue";
 import Tablecard from "../../../components/TableCard/TableCard.vue";
 import ModalWindow from "../../../components/ModalWindow.vue";
 import OpenCard from "../../../components/buttonCardOpen.vue";
+import AddCard from "@/components/formAddTable.vue"
 export default {
   layout: "card",
   components: {
@@ -102,9 +123,14 @@ export default {
     Tablecard,
     ModalWindow,
     OpenCard,
+    AddCard
   },
   data() {
+    
+
     return {
+      addcardParam1 : false,
+      addcardParam : false,
       equipments: [
         { id: "1", name: "Метеостанция", by: "DJI" },
         { id: "2", name: "Модуль WIFI", by: "DJI" },

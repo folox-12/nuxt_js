@@ -291,7 +291,9 @@ export default {
   directives: {mask},
   data() {
 
-    return {};
+    return {
+      
+    };
 
   },
   props: {
