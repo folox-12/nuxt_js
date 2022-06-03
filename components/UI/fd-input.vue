@@ -50,6 +50,9 @@ export default {
       type: String,
       default: "",
     },
+    id:{
+      type: Number,
+    }
   },
   methods: {
     toggleLeftIcon() {
@@ -58,7 +61,7 @@ export default {
 
     input(e) {
       let value = e.target.value;
-      this.$emit("input", value);
+      this.$emit("input", value, this.id);
     },
     clearInput() {
       this.value = "";

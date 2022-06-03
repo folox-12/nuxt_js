@@ -2,8 +2,8 @@
 <div  v-if="$store.getters['GetChangestatus'] == true" class = "inputForm">
 
     <InputForm v-for="n in LengthInput"
-        :key="n" @input="input"></InputForm>
-        <button class="addBtn">
+        :key="n" @input="input" :id='n-1'></InputForm>
+        <button @click="$emit('addInfo', info)" class="addBtn">
    <svg width="24" height="24" viewBox="0 0 100 102" fill="none" xmlns="http://www.w3.org/2000/svg">
 <path d="M50 0C77.6125 0 100 22.8353 100 51C100 79.1647 77.6125 102 50 102C22.3875 102 0 79.1647 0 51C0 22.8353 22.3875 0 50 0ZM50 6.375C25.8375 6.375 6.25 26.3543 6.25 51C6.25 75.6457 25.8375 95.625 50 95.625C74.1625 95.625 93.75 75.6457 93.75 51C93.75 26.3543 74.1625 6.375 50 6.375ZM50 25.5C50.8288 25.5 51.6237 25.8358 52.2097 26.4336C52.7958 27.0314 53.125 27.8421 53.125 28.6875V47.8125H71.875C72.7038 47.8125 73.4987 48.1483 74.0847 48.7461C74.6708 49.3439 75 50.1546 75 51C75 51.8454 74.6708 52.6561 74.0847 53.2539C73.4987 53.8517 72.7038 54.1875 71.875 54.1875H53.125V73.3125C53.125 74.1579 52.7958 74.9686 52.2097 75.5664C51.6237 76.1642 50.8288 76.5 50 76.5C49.1712 76.5 48.3763 76.1642 47.7903 75.5664C47.2042 74.9686 46.875 74.1579 46.875 73.3125V54.1875H28.125C27.2962 54.1875 26.5013 53.8517 25.9153 53.2539C25.3292 52.6561 25 51.8454 25 51C25 50.1546 25.3292 49.3439 25.9153 48.7461C26.5013 48.1483 27.2962 47.8125 28.125 47.8125H46.875V28.6875C46.875 27.8421 47.2042 27.0314 47.7903 26.4336C48.3763 25.8358 49.1712 25.5 50 25.5V25.5Z" fill="black" fill-opacity="0.8"/>
 </svg>
@@ -15,6 +15,7 @@
 <script>
 
 import InputForm from "@/components/UI/fd-input.vue"
+import Vue from "Vue"
 export default {
     components:{
         InputForm,
@@ -23,6 +24,13 @@ export default {
     data() {
 
     return {
+        info:[
+            "",
+            "",
+            "",
+            "",
+           
+        ]
       
     };
 
@@ -36,7 +44,8 @@ export default {
 },
 methods:{
     input(value,n){
-        console.log(n,'-', value)
+     Vue.set(this.info, n, value)
+     console.log(this.info)
     }
 }
 }
@@ -47,6 +56,7 @@ methods:{
 .inputForm{
     display: flex;
     gap:20px;
+    margin-right:15px;
 }
 .addBtn{
     align-items: center;

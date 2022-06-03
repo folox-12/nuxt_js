@@ -214,7 +214,7 @@ export default {
   data() {
 
     return {
-
+      
       valueInput: "Odi",
 
       showButtonLink : false,

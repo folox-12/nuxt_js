@@ -7,7 +7,7 @@
     "
   >
     <div v-for="(item, index) in img" :key="item" class="card-images__image">
-      <img :src="img[index]" />
+      <img class = "sizePhoto" :src="img[index]" />
       <button
         v-if="$store.getters['GetChangestatus'] == false"
         @click="
@@ -49,6 +49,8 @@
       @close-modal="showModal = false"
       :image="image"
       :titleImage="titleImage"
+      @addPhoto="addPhoto"
+      
     />
   </div>
 </template>
@@ -81,8 +83,18 @@ export default {
       this.image = data;
       this.titleImage = date;
     },
+    addPhoto(value){
+    this.$emit('addPhoto', value);
+    
+  }
   },
+  
 };
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.sizePhoto{
+  width:242px;
+  height: 242px;
+}
+  </style>
