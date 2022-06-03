@@ -95,58 +95,6 @@
         </div>
       </div>
     </div>
-    <div class="Layout">
-      <div class="Map" id="map-wraper" style="height: 100%; width:100%">
-      <client-only>
-      <l-map 
-      :zoom="MapOptions[0].zoom" 
-      :center="MapOptions[3].Center" 
-      :max-zoom="MapOptions[1].MaxZoom" 
-      :min-zoom="MapOptions[2].MinZoom">
-      <l-tile-layer url="http://{s}.tile.osm.org/{z}/{x}/{y}.png"></l-tile-layer>
-
-      <div class="Markers-area">
-
-        <div class="Marker-container">
-          <nuxt-link
-                no-prefetch
-                :to="localePath('/Platform1')">
-                <ButtonLink v-if="showButtonLink"></ButtonLink>
-                </nuxt-link>
-          <l-marker 
-            @click="showButtonLink = true"
-            v-on:click="hideButtonLink()"
-            :lat-lng="[55.668,37.2790]"
-            class="Marker-container__marker">
-          </l-marker>
-        </div>
-        
-        <div class="Marker-container">
-          
-          <l-marker
-            @click="showButtonLink = true" 
-            v-on:click="hideButtonLink()"
-            :lat-lng="[55.678,37.2413]"
-            class="Marker-container__marker">
-          </l-marker>
-        </div>
-
-        <div class="Marker-container">
-
-          <l-marker 
-            @click="showButtonLink = true" 
-            v-on:click="hideButtonLink()"
-            :lat-lng="[55.686,37.2840]" 
-            class="Marker-container__marker">
-          </l-marker>
-        </div>
-      
-      </div>
-
-      </l-map>
-      </client-only>
-      </div>
-    </div>
     <div class="RightShelf">
       <div class="RightShelf-items">
         <div class="RightShelf-items__buttons">
@@ -186,13 +134,41 @@
         </div>
       </div>
     </div>
-    <button @click="ChangeCenter()">Москва</button>
-    <button>test</button>
-    <div class="test" >
-      <input type="text">
-      <p v-for = "Sity in Sitys" :key="Sity.id">{{Sity.adress}}</p>
+    <div class="Layout">
+      <div class="Map" id="map-wraper" style="height: 100%; width:100%">
+      <client-only>
+      <l-map 
+      :zoom="MapOptions[0].zoom" 
+      :center="MapOptions[3].Center" 
+      :max-zoom="MapOptions[1].MaxZoom" 
+      :min-zoom="MapOptions[2].MinZoom">
+      <l-tile-layer url="http://{s}.tile.osm.org/{z}/{x}/{y}.png"></l-tile-layer>
+
+      <div class="Markers-area">
+            <nuxt-link
+            no-prefetch
+            :to="localePath('/Platform1')">
+          <ButtonLink v-if="showButtonLink"></ButtonLink>
+          </nuxt-link>
+        <div class="Marker-container" >
+          <CustomMapMarker :Adres = [55.668,37.2790]></CustomMapMarker>
+        </div>
+        <div class="Marker-container">
+          <CustomMapMarker :Adres = [55.678,37.2413]></CustomMapMarker>
+        </div>
+        <div class="Marker-container">
+           <CustomMapMarker :Adres = [55.686,37.2840]></CustomMapMarker>
+        </div>
+      </div>
+
+      </l-map>
+      </client-only>
+      </div>
     </div>
-    <p>123: {{valueInput}}</p>
+    
+
+
+
   </div>
 </template>
 
@@ -200,6 +176,7 @@
 
 import ButtonLink from "../components/Map/ButtonLink.vue";
 import {mapGetters} from "vuex";
+
 
 
 export default {
@@ -213,9 +190,16 @@ export default {
 
   data() {
 
+
+
     return {
-      
-      valueInput: "Odi",
+      // longitude =  55.686,
+      // latitude =  37.2840,
+      UserCoord:false,
+      cood:[55.686, 37.2840],
+      iconUrlCustom: require('../assets/img/Marker.png'),
+      valueInput: "Odintsovo",
+
 
       showButtonLink : false,
       showDescr: false,
@@ -228,11 +212,7 @@ export default {
       ],
       
 
-      Sitys:[
-        {adress:"Москва"},
-        {adress:"Кубинка"},
-        {adress:"Одинцово"},
-      ]
+
     };
   },
 
@@ -249,6 +229,9 @@ export default {
 
   methods: {
 
+    Test(){
+      this.showButtonLink =true;
+    },
     ChangeCenter(){
       this.MapOptions[3].Center = this.Coordinate;
     },
@@ -258,10 +241,6 @@ export default {
     },
     MaxZoomMinus(){
       this.MapOptions[0].zoom-=1
-    },
-    
-    hideButtonLink() {
-
     },
 
     hideDescr() {
@@ -318,9 +297,9 @@ svg {
 
 .RightShelf-items__buttons {
   position: absolute;
-  left: 1;
+  bottom: 1;
+  margin-top: 100px;
   margin-left: 30px;
-  bottom: 150px;
   display: flex;
   flex-direction: column;
   gap: 10px;
