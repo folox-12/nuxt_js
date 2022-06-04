@@ -14,6 +14,7 @@
       @focus="toggleLeftIcon"
       @blur="toggleLeftIcon"
       :placeholder="placeholder"
+      :class="{ icon: icon }"
     />
     <button
       v-if="closeIcon"
@@ -39,7 +40,7 @@ export default {
       default: "",
     },
     icon: {
-      type: "String",
+      type: String,
       default: "",
     },
     closeIcon: {
@@ -50,9 +51,9 @@ export default {
       type: String,
       default: "",
     },
-    id:{
+    id: {
       type: Number,
-    }
+    },
   },
   methods: {
     toggleLeftIcon() {
@@ -96,21 +97,26 @@ export default {
     height: 100%;
     width: 100%;
     background-color: #f7f7f9;
-    padding: 10px 45px 10px 45px;
+    padding: 10px 15px 10px 15px;
     border-radius: 10px;
-  }
-  input:focus {
-    outline: 1px solid #9c42f5;
-    box-shadow: 0 0 0 4px rgba(156, 66, 245, 0.12);
-    transition: 0.4s;
-    padding-left: 10px;
-    color: #292c33;
-  }
-  input:hover {
-    outline: 1px solid #9c42f5;
-    transition: 0.15s;
+    &:focus {
+      outline: 1px solid #9c42f5;
+      box-shadow: 0 0 0 4px rgba(156, 66, 245, 0.12);
+      transition: 0.4s;
+      color: #292c33;
+    }
+    &:hover {
+      outline: 1px solid #9c42f5;
+      transition: 0.15s;
 
-    color: #292c33;
+      color: #292c33;
+    }
+    &.icon {
+      padding: 10px 45px 10px 45px;
+      &:focus {
+        padding-left: 10px;
+      }
+    }
   }
   button {
     position: absolute;
