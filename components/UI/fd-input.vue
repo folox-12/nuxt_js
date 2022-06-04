@@ -1,5 +1,5 @@
 <template>
-  <div class="fd-input">
+  <div class="fd-input" :class="type" :style="style">
     <img
       v-if="icon"
       :src="icon"
@@ -51,8 +51,15 @@ export default {
       type: String,
       default: "",
     },
+    type: {
+      type: String,
+      default: "primary",
+    },
     id: {
       type: Number,
+    },
+    style: {
+      type: Object,
     },
   },
   methods: {
@@ -93,28 +100,49 @@ export default {
       display: none;
     }
   }
-  input {
-    height: 100%;
-    width: 100%;
-    background-color: #f7f7f9;
-    padding: 10px 15px 10px 15px;
-    border-radius: 10px;
-    &:focus {
-      outline: 1px solid #9c42f5;
-      box-shadow: 0 0 0 4px rgba(156, 66, 245, 0.12);
-      transition: 0.4s;
-      color: #292c33;
-    }
-    &:hover {
-      outline: 1px solid #9c42f5;
-      transition: 0.15s;
-
-      color: #292c33;
-    }
-    &.icon {
-      padding: 10px 45px 10px 45px;
+  &.primary {
+    input {
+      height: 100%;
+      width: 100%;
+      background-color: #fff;
+      padding: 10px 15px 10px 15px;
+      border-radius: 10px;
       &:focus {
-        padding-left: 10px;
+        outline: 1px solid #9c42f5;
+        box-shadow: 0 0 0 4px rgba(156, 66, 245, 0.12);
+        transition: 0.4s;
+        color: #292c33;
+      }
+      &:hover {
+        outline: 1px solid #9c42f5;
+        transition: 0.15s;
+
+        color: #292c33;
+      }
+      &.icon {
+        padding: 10px 45px 10px 45px;
+        &:focus {
+          padding-left: 10px;
+        }
+      }
+    }
+  }
+  &.edit {
+    input {
+      height: 100%;
+      width: 100%;
+      min-width: 66px;
+      background: #f7f7f9;
+      line-height: 100%;
+      padding: 19px 20px 19px 8px;
+      &:focus {
+      }
+      &:hover {
+      }
+      &.icon {
+        padding: 10px 45px 10px 45px;
+        &:focus {
+        }
       }
     }
   }
