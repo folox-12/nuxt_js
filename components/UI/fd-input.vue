@@ -101,10 +101,13 @@ export default {
     box-shadow: 0 0 0 4px rgba(156, 66, 245, 0.12);
     transition: 0.4s;
     padding-left: 10px;
+    color: #292c33;
   }
   input:hover {
     outline: 1px solid #9c42f5;
     transition: 0.15s;
+
+    color: #292c33;
   }
   button {
     position: absolute;

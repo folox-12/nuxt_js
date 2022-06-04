@@ -45,6 +45,7 @@ import fdInput from "./UI/fd-input.vue";
 export default {
   data() {
     return {
+      filters: { postamat: [1] },
       sortName: "",
       inputValue: "",
       to: this.itemsOnPage,
@@ -111,8 +112,20 @@ export default {
           .includes(querySearch, 0);
       });
     },
+    filteredData() {
+      let filters = this.filters;
+      let filterKeys = Object.keys(filters);
+      return this.tableDataSearched.filter(function (eachObj) {
+        return filterKeys.every(function (eachKey) {
+          if (!filters[eachKey].length) {
+            return true;
+          }
+          return filters[eachKey] <= eachObj[eachKey];
+        });
+      });
+    },
     tableDataPaginated() {
-      return this.tableDataSearched.slice(this.from, this.to);
+      return this.filteredData.slice(this.from, this.to);
     },
   },
 
@@ -141,27 +154,6 @@ export default {
     switchTypeOfView(value) {
       this.viewFormat = value;
     },
-    // searchedDataDescription(filters) {
-    //   if (!filters) {
-    //     return tableData[1];
-    //   }
-    //   let data = tableData[1];
-    //   return data.filter((elem) => {
-    //     for (const [key, value] of Object.entries(filters)) {
-    //       return elem[key]
-    //         .toLowerCase()
-    //         .replace(/[\s.,\s]/g, "")
-    //         .includes(
-    //           value
-    //             .trim()
-    //             .toLowerCase()
-    //             .replace(/[\s.,\s]/g, ""),
-    //           0
-    //         );
-    //     }
-    //   });
-    // },
-
     sortByName(value, arrowDirection) {
       this.sortName = value;
       this.sortFlag = arrowDirection;
