@@ -67,6 +67,7 @@ export default {
       } else {
         this.radioValue = value;
       }
+      this.$emit("radioValue", this.radioValue);
     },
   },
 };

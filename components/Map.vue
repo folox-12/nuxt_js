@@ -135,112 +135,102 @@
       </div>
     </div>
     <div class="Layout">
-      <div class="Map" id="map-wraper" style="height: 100%; width:100%">
-      <client-only>
-      <l-map 
-      :zoom="MapOptions[0].zoom" 
-      :center="MapOptions[3].Center" 
-      :max-zoom="MapOptions[1].MaxZoom" 
-      :min-zoom="MapOptions[2].MinZoom">
-      <l-tile-layer url="http://{s}.tile.osm.org/{z}/{x}/{y}.png"></l-tile-layer>
+      <div class="Map" id="map-wraper" style="height: 100%; width: 100%">
+        <client-only>
+          <l-map
+            :zoom="MapOptions[0].zoom"
+            :center="MapOptions[3].Center"
+            :max-zoom="MapOptions[1].MaxZoom"
+            :min-zoom="MapOptions[2].MinZoom"
+          >
+            <l-tile-layer
+              url="http://{s}.tile.osm.org/{z}/{x}/{y}.png"
+            ></l-tile-layer>
 
-      <div class="Markers-area">
-            <nuxt-link
-            no-prefetch
-            :to="localePath('/Platform1')">
-          <ButtonLink v-if="showButtonLink"></ButtonLink>
-          </nuxt-link>
-        <div class="Marker-container" >
-          <CustomMapMarker :Adres = [55.668,37.2790]></CustomMapMarker>
-        </div>
-        <div class="Marker-container">
-          <CustomMapMarker :Adres = [55.678,37.2413]></CustomMapMarker>
-        </div>
-        <div class="Marker-container">
-           <CustomMapMarker :Adres = [55.686,37.2840]></CustomMapMarker>
-        </div>
-      </div>
-
-      </l-map>
-      </client-only>
+            <div class="Markers-area">
+              <nuxt-link no-prefetch :to="localePath('/Platform1')">
+                <ButtonLink v-if="showButtonLink"></ButtonLink>
+              </nuxt-link>
+              <div class="Marker-container">
+                <CustomMapMarker :Adres="[55.668, 37.279]"></CustomMapMarker>
+              </div>
+              <div class="Marker-container">
+                <CustomMapMarker :Adres="[55.678, 37.2413]"></CustomMapMarker>
+              </div>
+              <div class="Marker-container">
+                <CustomMapMarker :Adres="[55.686, 37.284]"></CustomMapMarker>
+              </div>
+            </div>
+          </l-map>
+        </client-only>
       </div>
     </div>
-    
-
-
-
   </div>
 </template>
 
 <script>
-
 import ButtonLink from "../components/Map/ButtonLink.vue";
-import {mapGetters} from "vuex";
-
-
+import { mapGetters } from "vuex";
 
 export default {
   layout: "map",
-  
-  components:{
-    ButtonLink 
+
+  components: {
+    ButtonLink,
   },
 
-
-
   data() {
-
-
-
     return {
       // longitude =  55.686,
       // latitude =  37.2840,
-      UserCoord:false,
-      cood:[55.686, 37.2840],
-      iconUrlCustom: require('../assets/img/Marker.png'),
-      valueInput: "Odintsovo",
+      UserCoord: false,
+      cood: [55.686, 37.284],
+      iconUrlCustom: require("../assets/img/Marker.png"),
+      valueInput: "",
 
-
-      showButtonLink : false,
+      showButtonLink: false,
       showDescr: false,
-      
-      MapOptions:[
-      {id:"Zoom",zoom:13,},
-      {id:"MaxZoom",MaxZoom:18},
-      {id:"MinZoom",MinZoom:10},
-      {id:"Center",Center:[55.673,37.2733]},
+
+      MapOptions: [
+        { id: "Zoom", zoom: 13 },
+        { id: "MaxZoom", MaxZoom: 18 },
+        { id: "MinZoom", MinZoom: 10 },
+        { id: "Center", Center: [55.673, 37.2733] },
       ],
-      
-
-
     };
   },
 
-  headerData:{
-    title: "Карта",
+  props: {
+    coordinate: {
+      type: Array,
+      default: [55.673, 37.2733],
+    },
   },
-
-    computed:{
+  computed: {
     ...mapGetters("Map", ["getCoordinate"]),
-    Coordinate(){
-      return this.getCoordinate[this.valueInput]
-    }
+    Coordinate() {
+      return this.getCoordinate[this.valueInput];
+    },
+    selectedCenterFromRadioButton() {
+      if (this.coordinate) {
+        return (this.MapOptions[3].Center = this.coordinate);
+      }
+    },
   },
 
   methods: {
-
-    Test(){
-      this.showButtonLink =true;
+    Test() {
+      this.showButtonLink = true;
     },
-    ChangeCenter(){
+    ChangeCenter() {
       this.MapOptions[3].Center = this.Coordinate;
     },
 
-    MaxZoomPlus(){
-      this.MapOptions[0].zoom+=1
+    MaxZoomPlus() {
+      this.MapOptions[0].zoom += 1;
     },
-    MaxZoomMinus(){
-      this.MapOptions[0].zoom-=1
+    MaxZoomMinus() {
+      this.MapOptions[0].zoom -= 1;
     },
 
     hideDescr() {
@@ -253,11 +243,11 @@ export default {
 <style lang="scss" scoped>
 @import "../assets/scss/fonts";
 
-.Marker-container{
+.Marker-container {
   position: relative;
 }
 
-.ModalButton{
+.ModalButton {
   width: 100px;
   height: 48px;
 }
@@ -273,7 +263,7 @@ h1 {
   width: 100%;
   height: 780px;
   // margin-top: 30px;
-  }
+}
 
 svg {
   fill: rgba(20, 16, 41, 0.6);
@@ -282,7 +272,7 @@ svg {
 .TopShelf__descr {
   display: flex;
   align-items: center;
-  
+
   margin: 0 15px 15px;
   button {
     display: flex;
@@ -330,7 +320,7 @@ svg {
   margin-left: 60px;
   display: flex;
   align-items: center;
-  z-index:2;
+  z-index: 2;
 
   &__input {
     :hover {
@@ -390,14 +380,12 @@ svg {
   width: 100%;
   height: 100%;
   z-index: 1;
-  .Map{
+  .Map {
     width: 100%;
     height: 100%;
     padding: 0 25px 60px 0;
   }
 }
-
-
 
 .Modal_descr {
   position: absolute;

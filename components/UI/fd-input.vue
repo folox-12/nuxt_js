@@ -8,7 +8,7 @@
       :class="{ focus: focus }"
     />
     <input
-      type="search"
+      type="text"
       :value="value"
       @input="input"
       @focus="toggleLeftIcon"

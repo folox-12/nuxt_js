@@ -1,7 +1,7 @@
 <template>
   <div class="Test">
     <filters
-      :view-format="'table'"
+      :view-format="'map'"
       :data="dataAboutDronoport"
       :itemsOnPage="5"
       :icon="'ico/search.svg'"
@@ -44,7 +44,7 @@
           />
         </tableView>
         <div v-else-if="viewFormat === 'map'">
-          <Map></Map>
+          <Map :coordinate="Coordinate"></Map>
         </div>
         <rightSide
           v-if="showRightSide"
@@ -149,11 +149,8 @@
             <spoiler :title="'Город'" v-if="viewFormat === 'map'">
               <radioButton
                 @click="GetValueCheckbox()"
-                :valuesRadio="{
-                  Moscow: 1,
-                  Odintsovo: 2,
-                  Kubinka: 3,
-                }"
+                :valuesRadio="getCoordinate"
+                @radioValue="get"
               />
             </spoiler>
           </div>
@@ -192,8 +189,10 @@ export default {
       getCheckboxValue: "",
       placeHolder: "Введите адрес",
       showModal: false,
+      Coordinate: "",
     };
   },
+
   headerData: {
     title: "landing-areas-list-title-page",
   },
@@ -202,10 +201,14 @@ export default {
     ...mapGetters("dronoports", {
       dataAboutDronoport: "getAllDronoport",
     }),
+    ...mapGetters("Map", ["getCoordinate"]),
   },
   methods: {
     GetValueCheckbox() {
       alert("hello");
+    },
+    get(value) {
+      this.Coordinate = value;
     },
   },
 };
