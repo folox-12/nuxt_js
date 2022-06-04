@@ -103,7 +103,7 @@
                     <span>Таблица</span>
                   </div>
                 </spoiler>
-                <spoiler :title="'Настройка представления'">
+                <spoiler :title="'Настройка представления'" v-if="viewFormat === 'table'" > 
                   <button
                     class="count"
                     @click="updateItemsOnPage(5)"
@@ -119,6 +119,15 @@
                     10
                   </button>
                 </spoiler>
+                <spoiler :title="'Город'" v-if="viewFormat === 'map'" > 
+                <radioButton   @click="GetValueCheckbox()" 
+                  :valuesRadio ="{
+                    Moscow: 1 ,
+                    Odintsovo: 2,
+                    Kubinka: 3 
+                    }"
+                />
+                </spoiler>
               </div>
             </div>
             <div
@@ -126,7 +135,7 @@
               v-else-if="typeViewOfRightSide === 'Filters'"
             >
               <spoiler :title="'Дронопорт'">
-                <radioButton
+                <radioButton 
                   :valuesRadio="{
                     1: 1,
                     2: 2,
@@ -175,7 +184,9 @@ export default {
     radioButton,
   },
   data() {
+    
     return {
+      getCheckboxValue:"",
       placeHolder: "Введите адрес",
       showModal: false,
     };
@@ -189,7 +200,11 @@ export default {
       dataAboutDronoport: "getAllDronoport",
     }),
   },
-  methods: {},
+  methods: {
+    GetValueCheckbox(){
+      alert('hello')
+    },
+  },
 };
 </script>
 

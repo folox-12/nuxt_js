@@ -46,8 +46,9 @@
             type="file"
             name="avatar"
             id="uppic"
+            ref="file"
             accept="image/gif,image/jpeg,image/jpg,image/png"
-            @change="addImage($event)"
+            @change="addImage()"
             class="uppic"
           />
         </div>
@@ -61,6 +62,7 @@ export default {
   data() {
     return {
       img: require("../assets/img/ico/addphoto.svg"),
+      example: null
     };
   },
   props: {
@@ -76,15 +78,17 @@ export default {
     },
   },
   methods: {
-    addImage($event) {
+    addImage() {
+      
+      this.example = this.$refs.file.files[0]
+       this.img = URL.createObjectURL(this.example);
       let agree = confirm("Добавить фото?");
       if (agree == true) {
-        const image = $event.target.files[0];
-        const reader = new FileReader();
-        reader.readAsDataURL(image);
-        reader.onload = ($event) => {
-          this.img = $event.target.result;
-        };
+      this.$emit('addPhoto',  URL.createObjectURL(this.example))
+      
+      
+      
+    
       }
     },
   },

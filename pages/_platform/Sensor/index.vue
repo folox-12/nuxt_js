@@ -5,6 +5,7 @@
         :img="img"
         :titleImg="titleImg"
         :type="type"
+        @addPhoto="addPhoto"
         @DeleteImg="DeleteImg"
       ></Imagecard>
       <hr />
@@ -91,6 +92,9 @@ export default {
     },
     clearInput(index){
       this.description[index] = ''
+    },
+     addPhoto(value){
+      this.img.push(value)
     }
 
   },

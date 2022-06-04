@@ -5,6 +5,7 @@
         :img="img"
         :titleImg="titleImg"
         @DeleteImg="DeleteImg"
+        @addPhoto="addPhoto"
       ></Imagecard>
       <hr />
       <div class="card__main card-main">
@@ -97,6 +98,9 @@ export default {
     clearInput(index) {
       this.description[index] = "";
     },
+     addPhoto(value){
+      this.img.push(value)
+    }
   },
 };
 </script>

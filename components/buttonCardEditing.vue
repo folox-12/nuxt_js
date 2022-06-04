@@ -44,7 +44,7 @@
             </svg>
           </button>
           <hr />
-          <button>
+          <button @click="deletePoint">
             <svg
               width="22"
               height="22"
@@ -122,7 +122,14 @@ export default {
     return {
       showModal: false,
       showButton: false,
+      id: 0
     };
+    
+  },
+  props:{
+    propid:{
+      type: Number
+    }
   },
 
   methods: {
@@ -140,7 +147,15 @@ export default {
         }
       });
     },
+   deletePoint() { 
+      this.$emit("deletePoint", this.propid);
+    }
   },
+   watch :{ 
+      propid: function(new_value) { 
+        this.init()
+      }
+    },
 };
 </script>
 

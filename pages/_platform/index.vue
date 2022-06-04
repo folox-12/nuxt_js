@@ -5,6 +5,7 @@
         :img="img"
         :titleImg="titleImg"
         @DeleteImg="DeleteImg"
+        @addPhoto="addPhoto"
       ></Imagecard>
 
       <hr />
@@ -51,9 +52,7 @@
                 <th></th>
               </tr>
               <tr
-                v-for="(item, index) in this.getInfrByPlatformId(
-                  parseInt(splitPlatformId)
-                )"
+                v-for="(item, index) in this.infrastructure"
                 v-bind:key="index"
               >
                 <td>{{ $t(item.name) }}</td>
@@ -65,10 +64,10 @@
                     v-if="$store.getters['GetChangestatus'] == false"
                     :link="'/' + $route.params.platform + item.link"
                   ></OpenCard>
-                  <EditCard v-else></EditCard>
+                  <EditCard v-else :propid='index' @deletePoint="deletePoint"></EditCard>
                 </td>
               </tr>
-              <tr><td colspan="5"> <AddCard v-show="addcardParam" :LengthInput="4"></AddCard></td></tr>
+              <tr><td colspan="5"> <AddCard v-show="addcardParam" :LengthInput="4" @addInfo='addInfo'></AddCard></td></tr>
             </table>
             
           </div>
@@ -222,6 +221,16 @@ export default {
     clearInput(index) {
       this.description[index] = "";
     },
+    addInfo(value){
+      var object = {"name": value[0],"company": value[1],"type": value[2],"id": value[3]};
+      this.infrastructure.push(object)
+    },
+    deletePoint(value){
+      this.infrastructure.splice(value,1)
+    },
+    addPhoto(value){
+      this.img.push(value)
+    }
   },
   computed: {
     ...mapGetters("dronoports", ["getInfrByPlatformId"]),

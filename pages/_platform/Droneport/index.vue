@@ -1,7 +1,7 @@
 <template>
   <div class="page">
     <div class="card">
-      <Imagecard :img="img" :titleImg="titleImg" @DeleteImg="DeleteImg"></Imagecard>
+      <Imagecard :img="img" :titleImg="titleImg" @DeleteImg="DeleteImg" @addPhoto="addPhoto"></Imagecard>
       <hr />
       <div class="card__main card-main">
         <div class="card-main__title">
@@ -34,7 +34,7 @@
               <td>{{ equipment.by }}</td>
               <td>{{ equipment.name }}</td>
             </tr>
-            <tr><td colspan="5"> <AddCard v-show="addcardParam1" :LengthInput="3"></AddCard></td></tr>
+            <tr><td colspan="5"> <AddCard v-show="addcardParam1" :LengthInput="3" @addInfo='addInfo'></AddCard></td></tr>
           </table>
           <div v-if="$store.getters['GetChangestatus'] == false">
             <button
@@ -89,7 +89,7 @@
               <td>Matrice 300 RTK</td>
               <td><OpenCard></OpenCard></td>
             </tr>
-            <tr><td colspan="5"> <AddCard v-show="addcardParam" :LengthInput="2"></AddCard></td></tr>
+            <tr><td colspan="5"> <AddCard v-show="addcardParam" :LengthInput="2" @addInfo='addInfo1'></AddCard></td></tr>
           </table>
           <button
               v-if="$store.getters['GetChangestatus'] == true && addcardParam == false"
@@ -210,7 +210,14 @@ export default {
     },
     clearInput(index){
       this.description[index] = ''
-    }
+    },
+     addPhoto(value){
+      this.img.push(value)
+    },
+    addInfo(value){
+      var object = {"id": value[0],"name": value[1],"by": value[2],};
+      this.equipments.push(object)
+    },
   },
 };
 </script>
