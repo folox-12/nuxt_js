@@ -224,7 +224,7 @@ export default {
       this.showButtonLink = true;
     },
     ChangeCenter() {
-      if (this.Coordinate != "") {
+      if (this.Coordinate) {
         this.MapOptions[3].Center = this.Coordinate;
       } else {
         this.MapOptions[3].Center = this.coordinate;
