@@ -1,5 +1,5 @@
 <template>
-  <div class="fd-input" :class="type" :style="style">
+  <div class="fd-input" :class="type">
     <img
       v-if="icon"
       :src="icon"
@@ -8,6 +8,7 @@
       :class="{ focus: focus }"
     />
     <input
+      :style="style"
       type="text"
       :value="value"
       @input="input"
@@ -60,6 +61,7 @@ export default {
     },
     style: {
       type: Object,
+      defautl: {},
     },
   },
   methods: {

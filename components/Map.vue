@@ -182,11 +182,7 @@ export default {
 
   data() {
     return {
-      // longitude =  55.686,
-      // latitude =  37.2840,
       UserCoord: false,
-      cood: [55.686, 37.284],
-      zoomControl: false,
       iconUrlCustom: require("../assets/img/Marker.png"),
       valueInput: "",
 
@@ -208,15 +204,18 @@ export default {
       default: [55.673, 37.2733],
     },
   },
+  mounted() {},
+  watch: {
+    coordinate() {
+      if (this.coordinate) {
+        return (this.MapOptions[3].Center = this.coordinate);
+      }
+    },
+  },
   computed: {
     ...mapGetters("Map", ["getCoordinate"]),
     Coordinate() {
       return this.getCoordinate[this.valueInput];
-    },
-    selectedCenterFromRadioButton() {
-      if (this.coordinate) {
-        return (this.MapOptions[3].Center = this.coordinate);
-      }
     },
   },
 
@@ -225,7 +224,11 @@ export default {
       this.showButtonLink = true;
     },
     ChangeCenter() {
-      this.MapOptions[3].Center = this.Coordinate;
+      if (this.Coordinate != "") {
+        this.MapOptions[3].Center = this.Coordinate;
+      } else {
+        this.MapOptions[3].Center = this.coordinate;
+      }
     },
 
     MaxZoomPlus() {

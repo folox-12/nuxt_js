@@ -189,7 +189,7 @@ export default {
       getCheckboxValue: "",
       placeHolder: "Введите адрес",
       showModal: false,
-      Coordinate: "",
+      Coordinate: [55.673, 37.2733],
     };
   },
 

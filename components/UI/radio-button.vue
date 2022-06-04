@@ -3,7 +3,7 @@
     <div
       class="radio-button__item"
       v-for="(item, index) in allRadioInput"
-      :key="item"
+      :key="index"
       @click="checkButton(item)"
     >
       <input
@@ -67,7 +67,9 @@ export default {
       } else {
         this.radioValue = value;
       }
-      this.$emit("radioValue", this.radioValue);
+      if (this.radioValue) {
+        this.$emit("radioValue", this.radioValue);
+      }
     },
   },
 };
