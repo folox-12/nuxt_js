@@ -71,7 +71,7 @@
               </tr>
               <tr><td colspan="5"> <AddCard v-show="addcardParam" :LengthInput="4" @addInfo='addInfo'></AddCard></td></tr>
             </table>
-            
+            <WarningMessage v-show="this.modalError"></WarningMessage>
           </div>
           <div class="card-infrastructure__button">
             <button
@@ -103,7 +103,7 @@ import ModalWindow from "@/components/ModalWindow.vue";
 import OpenCard from "@/components/buttonCardOpen.vue";
 import EditCard from "@/components/buttonCardEditing.vue";
 import AddCard from "@/components/formAddTable.vue"
-
+import WarningMessage from "@/components/modalErrorInput.vue"
 export default {
   /*
   async asyncData({ store }) {
@@ -121,12 +121,13 @@ export default {
     OpenCard,
     EditCard,
     AddCard,
+    WarningMessage,
   },
 
   data() {
     // index_of_platform = $route.params.platform;
     return {
-
+      modalError: false,
       addcardParam: false,
       infrastructure: [
         {
@@ -226,9 +227,19 @@ export default {
     },
     ...mapActions("dronoports", ["addInfo1","deletePoint1",]),
     addInfo(value){
+      if((value[0] && value[1] && value[2] && value[3]) == ('' || ' ', '  ', '   ')){
       var object = {"name": value[0],"company": value[1], "link" : '/', "type": value[2],"id": value[3]};
       let id = parseInt(this.splitPlatformId)
       this.addInfo1([id,object])
+      }
+      else{
+        this.modalError = true
+        console.log( this.modalError)
+        setTimeout(() => {
+        this.modalError = false
+        console.log( this.modalError)
+    }, 2000);
+      }
     },
     
     deletePoint(value){
