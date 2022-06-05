@@ -8,7 +8,6 @@
       :class="{ focus: focus }"
     />
     <input
-      :style="style"
       type="text"
       :value="value"
       @input="input"
@@ -58,10 +57,6 @@ export default {
     },
     id: {
       type: Number,
-    },
-    style: {
-      type: Object,
-      defautl: {},
     },
   },
   methods: {
