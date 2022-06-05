@@ -1,5 +1,5 @@
 <template>
-  <div class="fd-input">
+  <div class="fd-input" :class="type">
     <img
       v-if="icon"
       :src="icon"
@@ -8,12 +8,14 @@
       :class="{ focus: focus }"
     />
     <input
-      type="search"
+      :style="style"
+      type="text"
       :value="value"
       @input="input"
       @focus="toggleLeftIcon"
       @blur="toggleLeftIcon"
       :placeholder="placeholder"
+      :class="{ icon: icon }"
     />
     <button
       v-if="closeIcon"
@@ -39,7 +41,7 @@ export default {
       default: "",
     },
     icon: {
-      type: "String",
+      type: String,
       default: "",
     },
     closeIcon: {
@@ -50,9 +52,17 @@ export default {
       type: String,
       default: "",
     },
-    id:{
+    type: {
+      type: String,
+      default: "primary",
+    },
+    id: {
       type: Number,
-    }
+    },
+    style: {
+      type: Object,
+      defautl: {},
+    },
   },
   methods: {
     toggleLeftIcon() {
@@ -92,22 +102,51 @@ export default {
       display: none;
     }
   }
-  input {
-    height: 100%;
-    width: 100%;
-    background-color: #f7f7f9;
-    padding: 10px 45px 10px 45px;
-    border-radius: 10px;
+  &.primary {
+    input {
+      height: 100%;
+      width: 100%;
+      background-color: #fff;
+      padding: 10px 15px 10px 15px;
+      border-radius: 10px;
+      &:focus {
+        outline: 1px solid #9c42f5;
+        box-shadow: 0 0 0 4px rgba(156, 66, 245, 0.12);
+        transition: 0.4s;
+        color: #292c33;
+      }
+      &:hover {
+        outline: 1px solid #9c42f5;
+        transition: 0.15s;
+
+        color: #292c33;
+      }
+      &.icon {
+        padding: 10px 45px 10px 45px;
+        &:focus {
+          padding-left: 10px;
+        }
+      }
+    }
   }
-  input:focus {
-    outline: 1px solid #9c42f5;
-    box-shadow: 0 0 0 4px rgba(156, 66, 245, 0.12);
-    transition: 0.4s;
-    padding-left: 10px;
-  }
-  input:hover {
-    outline: 1px solid #9c42f5;
-    transition: 0.15s;
+  &.edit {
+    input {
+      height: 100%;
+      width: 100%;
+      min-width: 66px;
+      background: #f7f7f9;
+      line-height: 100%;
+      padding: 19px 20px 19px 8px;
+      &:focus {
+      }
+      &:hover {
+      }
+      &.icon {
+        padding: 10px 45px 10px 45px;
+        &:focus {
+        }
+      }
+    }
   }
   button {
     position: absolute;

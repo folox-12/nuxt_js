@@ -3,7 +3,7 @@
     <div
       class="radio-button__item"
       v-for="(item, index) in allRadioInput"
-      :key="item"
+      :key="index"
       @click="checkButton(item)"
     >
       <input
@@ -39,6 +39,9 @@ export default {
     fdInput,
   },
   props: {
+    name: {
+      type: String,
+    },
     valuesRadio: {
       required: true,
     },
@@ -64,9 +67,11 @@ export default {
     checkButton(value) {
       if (this.radioValue == value) {
         this.radioValue = "";
+        value = null;
       } else {
         this.radioValue = value;
       }
+      this.$emit("radioValue", value, this.name);
     },
   },
 };

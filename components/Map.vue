@@ -30,12 +30,10 @@
       </div>
       <div class="TopShelf-items">
         <div class="TopShelf-items__input">
-          <input
+          <fd-input
             v-model="valueInput"
             @input="ChangeCenter"
-            type="text"
-            placeholder="Найти населенный пункт для полета"
-            class="Search"
+            :placeholder="'Найти населенный пункт для полета'"
           />
         </div>
         <div class="TopShelf-items__filters">
@@ -135,112 +133,109 @@
       </div>
     </div>
     <div class="Layout">
-      <div class="Map" id="map-wraper" style="height: 100%; width:100%">
-      <client-only>
-      <l-map 
-      :zoom="MapOptions[0].zoom" 
-      :center="MapOptions[3].Center" 
-      :max-zoom="MapOptions[1].MaxZoom" 
-      :min-zoom="MapOptions[2].MinZoom">
-      <l-tile-layer url="http://{s}.tile.osm.org/{z}/{x}/{y}.png"></l-tile-layer>
+      <div class="Map" id="map-wraper" style="height: 100%; width: 100%">
+        <client-only>
+          <l-map
+            :options="{ zoomControl: false }"
+            :zoom="MapOptions[0].zoom"
+            :center="MapOptions[3].Center"
+            :max-zoom="MapOptions[1].MaxZoom"
+            :min-zoom="MapOptions[2].MinZoom"
+          >
+            <l-tile-layer
+              url="http://{s}.tile.osm.org/{z}/{x}/{y}.png"
+            ></l-tile-layer>
 
-      <div class="Markers-area">
-            <nuxt-link
-            no-prefetch
-            :to="localePath('/Platform1')">
-          <ButtonLink v-if="showButtonLink"></ButtonLink>
-          </nuxt-link>
-        <div class="Marker-container" >
-          <CustomMapMarker :Adres = [55.668,37.2790]></CustomMapMarker>
-        </div>
-        <div class="Marker-container">
-          <CustomMapMarker :Adres = [55.678,37.2413]></CustomMapMarker>
-        </div>
-        <div class="Marker-container">
-           <CustomMapMarker :Adres = [55.686,37.2840]></CustomMapMarker>
-        </div>
-      </div>
-
-      </l-map>
-      </client-only>
+            <div class="Markers-area">
+              <nuxt-link no-prefetch :to="localePath('/Platform1')">
+                <ButtonLink v-if="showButtonLink"></ButtonLink>
+              </nuxt-link>
+              <div class="Marker-container">
+                <CustomMapMarker :Adres="[55.668, 37.279]"></CustomMapMarker>
+              </div>
+              <div class="Marker-container">
+                <CustomMapMarker :Adres="[55.678, 37.2413]"></CustomMapMarker>
+              </div>
+              <div class="Marker-container">
+                <CustomMapMarker :Adres="[55.686, 37.284]"></CustomMapMarker>
+              </div>
+            </div>
+          </l-map>
+        </client-only>
       </div>
     </div>
-    
-
-
-
   </div>
 </template>
 
 <script>
-
 import ButtonLink from "../components/Map/ButtonLink.vue";
-import {mapGetters} from "vuex";
-
-
+import fdInput from "../components/UI/fd-input.vue";
+import { mapGetters } from "vuex";
 
 export default {
   layout: "map",
-  
-  components:{
-    ButtonLink 
+
+  components: {
+    ButtonLink,
+    fdInput,
   },
 
-
-
   data() {
-
-
-
     return {
-      // longitude =  55.686,
-      // latitude =  37.2840,
-      UserCoord:false,
-      cood:[55.686, 37.2840],
-      iconUrlCustom: require('../assets/img/Marker.png'),
-      valueInput: "Odintsovo",
+      UserCoord: false,
+      iconUrlCustom: require("../assets/img/Marker.png"),
+      valueInput: "",
 
-
-      showButtonLink : false,
+      showButtonLink: false,
       showDescr: false,
-      
-      MapOptions:[
-      {id:"Zoom",zoom:13,},
-      {id:"MaxZoom",MaxZoom:18},
-      {id:"MinZoom",MinZoom:10},
-      {id:"Center",Center:[55.673,37.2733]},
+
+      MapOptions: [
+        { id: "Zoom", zoom: 13 },
+        { id: "MaxZoom", MaxZoom: 18 },
+        { id: "MinZoom", MinZoom: 10 },
+        { id: "Center", Center: [55.673, 37.2733] },
       ],
-      
-
-
     };
   },
 
-  headerData:{
-    title: "Карта",
+  props: {
+    coordinate: {
+      type: Array,
+      default: [55.673, 37.2733],
+    },
   },
-
-    computed:{
+  mounted() {},
+  watch: {
+    coordinate() {
+      if (this.coordinate) {
+        return (this.MapOptions[3].Center = this.coordinate);
+      }
+    },
+  },
+  computed: {
     ...mapGetters("Map", ["getCoordinate"]),
-    Coordinate(){
-      return this.getCoordinate[this.valueInput]
-    }
+    Coordinate() {
+      return this.getCoordinate[this.valueInput];
+    },
   },
 
   methods: {
+    Test() {
+      this.showButtonLink = true;
+    },
+    ChangeCenter() {
+      if (this.Coordinate) {
+        this.MapOptions[3].Center = this.Coordinate;
+      } else {
+        this.MapOptions[3].Center = this.coordinate;
+      }
+    },
 
-    Test(){
-      this.showButtonLink =true;
+    MaxZoomPlus() {
+      this.MapOptions[0].zoom += 1;
     },
-    ChangeCenter(){
-      this.MapOptions[3].Center = this.Coordinate;
-    },
-
-    MaxZoomPlus(){
-      this.MapOptions[0].zoom+=1
-    },
-    MaxZoomMinus(){
-      this.MapOptions[0].zoom-=1
+    MaxZoomMinus() {
+      this.MapOptions[0].zoom -= 1;
     },
 
     hideDescr() {
@@ -253,11 +248,11 @@ export default {
 <style lang="scss" scoped>
 @import "../assets/scss/fonts";
 
-.Marker-container{
+.Marker-container {
   position: relative;
 }
 
-.ModalButton{
+.ModalButton {
   width: 100px;
   height: 48px;
 }
@@ -271,9 +266,10 @@ h1 {
 .map {
   background-color: $white;
   width: 100%;
+  position: relative;
   height: 780px;
   // margin-top: 30px;
-  }
+}
 
 svg {
   fill: rgba(20, 16, 41, 0.6);
@@ -282,7 +278,7 @@ svg {
 .TopShelf__descr {
   display: flex;
   align-items: center;
-  
+  position: relative;
   margin: 0 15px 15px;
   button {
     display: flex;
@@ -326,32 +322,15 @@ svg {
 .TopShelf-items {
   position: absolute;
   margin-top: 10px;
-  left: 1;
-  margin-left: 60px;
+  width: 100%;
   display: flex;
+  padding: 0 15px;
   align-items: center;
-  z-index:2;
+  justify-content: space-between;
+  z-index: 2;
 
   &__input {
-    :hover {
-      border: 1px solid #9c42f5;
-      transition: 0.15s;
-      padding: 14px;
-    }
-    :focus {
-      border: 1px solid #9c42f5;
-      box-shadow: 0 0 0 4px rgba(156, 66, 245, 0.12);
-      transition: 0.4s;
-    }
-    input {
-      z-index: 2;
-      border-radius: 10px;
-      padding: 15px;
-      height: 48px;
-      width: 300px;
-      box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-      right: 0;
-    }
+    width: 100%;
   }
   &__filters {
     background-color: rgb(255, 255, 255);
@@ -385,25 +364,21 @@ svg {
 }
 
 .Layout {
-  margin: 15px 15px 20px 15px;
   position: relative;
   width: 100%;
   height: 100%;
   z-index: 1;
-  .Map{
+  .Map {
     width: 100%;
     height: 100%;
-    padding: 0 25px 60px 0;
+    position: relative;
   }
 }
-
-
 
 .Modal_descr {
   position: absolute;
   width: 100%;
   height: 100%;
-  margin-left: 50px;
   top: 0;
   left: 0;
   z-index: 3;

@@ -33,6 +33,7 @@
           :typeViewOfRightSide="typeViewOfRightSide"
           :getNameForSort="sortByName"
           :updateItemsOnPage="updateItemsOnPage"
+          :updateFilter="updateFilter"
         >
         </slot>
       </div>
@@ -45,6 +46,8 @@ import fdInput from "./UI/fd-input.vue";
 export default {
   data() {
     return {
+      filters: {},
+      filteredData: [],
       sortName: "",
       inputValue: "",
       to: this.itemsOnPage,
@@ -104,18 +107,44 @@ export default {
           data = data.sort((a, b) => a[this.sortName] > b[this.sortName]);
         }
       }
-      return data.filter((elem) => {
+      let dataForFilter = data.filter((elem) => {
         return elem.address
           .toLowerCase()
           .replace(/[\s.,\s]/g, "")
           .includes(querySearch, 0);
+      });
+      let filters = { ...this.filters };
+      let filterKeys = Object.keys(filters);
+      return dataForFilter.filter(function (eachObj) {
+        return filterKeys.every(function (eachKey) {
+          if (!filters[eachKey].length) {
+            return true;
+          }
+          return filters[eachKey] <= eachObj[eachKey];
+        });
       });
     },
     tableDataPaginated() {
       return this.tableDataSearched.slice(this.from, this.to);
     },
   },
-
+  watch: {
+    filters() {
+      let data = [...this.tableDataSearched];
+      let filters = { ...this.filters };
+      console.log(filters);
+      let filterKeys = Object.keys(filters);
+      console.log(filterKeys);
+      return (this.filteredData = data.filter(function (eachObj) {
+        return filterKeys.every(function (eachKey) {
+          if (!filters[eachKey].length) {
+            return true;
+          }
+          return filters[eachKey] <= eachObj[eachKey];
+        });
+      }));
+    },
+  },
   methods: {
     toggleShowRightSide(value) {
       if (value == this.typeViewOfRightSide) {
@@ -135,33 +164,15 @@ export default {
     updatedIndexRow(value) {
       this.pageNumber = value;
     },
+    updateFilter(value, key) {
+      this.$set(this.filters, key, [value]);
+    },
     clearInput() {
       this.inputValue = "";
     },
     switchTypeOfView(value) {
       this.viewFormat = value;
     },
-    // searchedDataDescription(filters) {
-    //   if (!filters) {
-    //     return tableData[1];
-    //   }
-    //   let data = tableData[1];
-    //   return data.filter((elem) => {
-    //     for (const [key, value] of Object.entries(filters)) {
-    //       return elem[key]
-    //         .toLowerCase()
-    //         .replace(/[\s.,\s]/g, "")
-    //         .includes(
-    //           value
-    //             .trim()
-    //             .toLowerCase()
-    //             .replace(/[\s.,\s]/g, ""),
-    //           0
-    //         );
-    //     }
-    //   });
-    // },
-
     sortByName(value, arrowDirection) {
       this.sortName = value;
       this.sortFlag = arrowDirection;

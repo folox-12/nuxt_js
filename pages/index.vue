@@ -26,26 +26,26 @@
           pageNumber,
           getNameForSort,
           updateItemsOnPage,
+          updateFilter,
         }"
       >
-          <tableView
-            v-if="viewFormat === 'table'"
-            :tableDescription="tableDescription"
-            :tableTitle="tableTitle"
-            :pageNumber="pageNumber"
+        <tableView
+          v-if="viewFormat === 'table'"
+          :tableDescription="tableDescription"
+          :tableTitle="tableTitle"
+          :pageNumber="pageNumber"
+          :itemsOnPage="itemsOnPage"
+          @onSorted="getNameForSort"
+        >
+          <pagination
             :itemsOnPage="itemsOnPage"
-            @onSorted="getNameForSort"
-          >
-            <pagination
-              :itemsOnPage="itemsOnPage"
-              :countOfallDronoport="lenghtSearchedData"
-              @UpdatedPageSlice="onChangePage"
-              @UpdatedPageNumber="UpdatedPageNumber"
-            />
-          </tableView>
-          <div v-else-if="viewFormat === 'map'">
-            <Map></Map>
-          </div>
+            :countOfallDronoport="lenghtSearchedData"
+            @UpdatedPageSlice="onChangePage"
+            @UpdatedPageNumber="UpdatedPageNumber"
+          />
+        </tableView>
+        <Map v-else-if="viewFormat === 'map'" :coordinate="Coordinate"></Map>
+        <keep-alive>
           <rightSide
             v-if="showRightSide"
             class="option"
@@ -54,7 +54,7 @@
           >
             <div
               class="right-side__option right-side-option"
-              v-if="typeViewOfRightSide === 'Options'"
+              v-show="typeViewOfRightSide === 'Options'"
             >
               <div class="right-side-option__content">
                 <spoiler :title="'Вид представления'">
@@ -103,7 +103,10 @@
                     <span>Таблица</span>
                   </div>
                 </spoiler>
-                <spoiler :title="'Настройка представления'" v-if="viewFormat === 'table'" > 
+                <spoiler
+                  :title="'Настройка представления'"
+                  v-if="viewFormat === 'table'"
+                >
                   <button
                     class="count"
                     @click="updateItemsOnPage(5)"
@@ -119,41 +122,43 @@
                     10
                   </button>
                 </spoiler>
-                <spoiler :title="'Город'" v-if="viewFormat === 'map'" > 
-                <radioButton   @click="GetValueCheckbox()" 
-                  :valuesRadio ="{
-                    Moscow: 1 ,
-                    Odintsovo: 2,
-                    Kubinka: 3 
-                    }"
-                />
-                </spoiler>
               </div>
             </div>
             <div
               class="right-side__filter"
-              v-else-if="typeViewOfRightSide === 'Filters'"
+              v-show="typeViewOfRightSide === 'Filters'"
             >
               <spoiler :title="'Дронопорт'">
-                <radioButton 
+                <radioButton
                   :valuesRadio="{
                     1: 1,
-                    2: 2,
-                    Все: 21,
+                    5: 5,
                   }"
-                  :closeIconForInput="true "
+                  :name="'dronoport'"
+                  :closeIconForInput="true"
                   :custom="true"
+                  @radioValue="updateFilter"
                 />
               </spoiler>
               <spoiler :title="'Обслуживаемые дроны'"></spoiler>
               <spoiler :title="'Постамат'">
                 <radioButton
-                  :valuesRadio="{ 1: 1, 2: 2, Все: 21 }"
+                  :valuesRadio="{ 1: 1, 2: 2 }"
                   :custom="true"
+                  :name="'postamat'"
+                  @radioValue="updateFilter"
+                />
+              </spoiler>
+              <spoiler :title="'Город'" v-if="viewFormat === 'map'">
+                <radioButton
+                  @click="GetValueCheckbox()"
+                  :valuesRadio="getCoordinate"
+                  @radioValue="getFilterForMapCity"
                 />
               </spoiler>
             </div>
           </rightSide>
+        </keep-alive>
       </template>
     </filters>
   </div>
@@ -184,13 +189,14 @@ export default {
     radioButton,
   },
   data() {
-    
     return {
-      getCheckboxValue:"",
+      getCheckboxValue: "",
       placeHolder: "Введите адрес",
       showModal: false,
+      Coordinate: [55.673, 37.2733],
     };
   },
+
   headerData: {
     title: "landing-areas-list-title-page",
   },
@@ -199,10 +205,14 @@ export default {
     ...mapGetters("dronoports", {
       dataAboutDronoport: "getAllDronoport",
     }),
+    ...mapGetters("Map", ["getCoordinate"]),
   },
   methods: {
-    GetValueCheckbox(){
-      alert('hello')
+    GetValueCheckbox() {
+      alert("hello");
+    },
+    getFilterForMapCity(value) {
+      this.Coordinate = value;
     },
   },
 };
