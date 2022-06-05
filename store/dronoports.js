@@ -359,8 +359,23 @@ export default {
       ],
     ],
   },
-  action: {},
-  mutation: {},
+  actions: {addInfo1:({commit},array) =>  commit('addInfo2',array),
+deletePoint1:({commit},array) => commit('deletePoint2',array), 
+ },
+  mutations: {
+   
+    addInfo2:(state,array) =>{
+      state.tableData[1][array[0]-1].infrastructure.push(array[1])
+      console.log(array[0])
+      console.log(array[1])
+      console.log(state.tableData[1][array[0]].infrastructure)
+     
+    },
+    deletePoint2:(state,array) => {
+  
+      state.tableData[1][array[0]-1].infrastructure.splice(array[1],1)
+    }
+  },
   getters: {
     getAllDronoport(state) {
       return state.tableData;

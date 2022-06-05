@@ -81,10 +81,11 @@ export default {
     addImage() {
       
       this.example = this.$refs.file.files[0]
-       this.img = URL.createObjectURL(this.example);
+      //  this.img = URL.createObjectURL(this.example);
       let agree = confirm("Добавить фото?");
       if (agree == true) {
       this.$emit('addPhoto',  URL.createObjectURL(this.example))
+      this.$emit('close-modal')
       
       
       

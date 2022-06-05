@@ -52,7 +52,9 @@
                 <th></th>
               </tr>
               <tr
-                v-for="(item, index) in this.infrastructure"
+                v-for="(item, index) in this.getInfrByPlatformId(
+                parseInt(splitPlatformId)
+                )"
                 v-bind:key="index"
               >
                 <td>{{ $t(item.name) }}</td>
@@ -94,13 +96,14 @@
 </template>
 
 <script>
-import { mapGetters, mapMutations } from "vuex";
+import { mapGetters, mapMutations, mapActions } from "vuex";
 import Imagecard from "@/components/ImgCard.vue";
 import Tablecard from "@/components/TableCard/TableCard.vue";
 import ModalWindow from "@/components/ModalWindow.vue";
 import OpenCard from "@/components/buttonCardOpen.vue";
 import EditCard from "@/components/buttonCardEditing.vue";
 import AddCard from "@/components/formAddTable.vue"
+
 export default {
   /*
   async asyncData({ store }) {
@@ -221,12 +224,16 @@ export default {
     clearInput(index) {
       this.description[index] = "";
     },
+    ...mapActions("dronoports", ["addInfo1","deletePoint1",]),
     addInfo(value){
-      var object = {"name": value[0],"company": value[1],"type": value[2],"id": value[3]};
-      this.infrastructure.push(object)
+      var object = {"name": value[0],"company": value[1], "link" : '/', "type": value[2],"id": value[3]};
+      let id = parseInt(this.splitPlatformId)
+      this.addInfo1([id,object])
     },
+    
     deletePoint(value){
-      this.infrastructure.splice(value,1)
+       var id = parseInt(this.splitPlatformId)
+      this.deletePoint1([id,value])
     },
     addPhoto(value){
       this.img.push(value)
