@@ -1,7 +1,7 @@
 <template>
   <div class="Test">
     <filters
-      :view-format="'table'"
+      :view-format="'map'"
       :data="dataAboutDronoport"
       :itemsOnPage="5"
       :icon="'ico/search.svg'"

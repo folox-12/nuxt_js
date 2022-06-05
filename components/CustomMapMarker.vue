@@ -1,6 +1,9 @@
 <template>
-  <div class="test">
-    <l-marker :lat-lng="this.Adres" class="Marker-container__marker">
+  <div class="Marker">
+    <l-marker 
+    :center = "this.Adres"
+    :lat-lng="this.Adres" 
+    class="Marker-container__marker">
       <div class="test2">
         <l-icon>
           <svg
@@ -33,16 +36,40 @@
           </svg>
         </l-icon>
       </div>
+      <l-popup>
+        <!-- <nuxt-link no-prefetch :to="localePath('/Platform1')"> -->
+          <fdButton :text="'Открыть'" class="white" ></fdButton>
+        <!-- </nuxt-link> -->
+      </l-popup>
     </l-marker>
+
+
+    <l-circle v-if ="showCircle"
+    :lat-lng="this.Adres"
+    :radius="1000"
+    :fillColor = "'#DA70D6'"
+    :color = "'#800080'"
+    />
   </div>
 </template>
 
 <script>
+import fdButton from "../components/UI/fd-button.vue";
+
 export default {
+  components: {
+    fdButton,
+    },
   props: {
     Adres: {
       type: Array,
     },
+    Radius:{
+      type: String,
+    },
+    showRadius:{
+      type: Boolean,
+    }
   },
 };
 </script>
