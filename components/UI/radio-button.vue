@@ -71,12 +71,13 @@ export default {
       } else {
         this.radioValue = value;
       }
+
       this.$emit("radioValue", value, this.name);
     },
   },
 };
 </script>
-<style lang="scss">
+<style lang="scss" scoped>
 .radio-button {
   display: flex;
   flex-direction: column;
