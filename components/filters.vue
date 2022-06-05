@@ -33,6 +33,7 @@
           :typeViewOfRightSide="typeViewOfRightSide"
           :getNameForSort="sortByName"
           :updateItemsOnPage="updateItemsOnPage"
+          :updateFilter="updateFilter"
         >
         </slot>
       </div>
@@ -45,7 +46,8 @@ import fdInput from "./UI/fd-input.vue";
 export default {
   data() {
     return {
-      filters: { postamat: [1] },
+      filters: {},
+      filteredData: [],
       sortName: "",
       inputValue: "",
       to: this.itemsOnPage,
@@ -105,17 +107,15 @@ export default {
           data = data.sort((a, b) => a[this.sortName] > b[this.sortName]);
         }
       }
-      return data.filter((elem) => {
+      let dataForFilter = data.filter((elem) => {
         return elem.address
           .toLowerCase()
           .replace(/[\s.,\s]/g, "")
           .includes(querySearch, 0);
       });
-    },
-    filteredData() {
-      let filters = this.filters;
+      let filters = { ...this.filters };
       let filterKeys = Object.keys(filters);
-      return this.tableDataSearched.filter(function (eachObj) {
+      return dataForFilter.filter(function (eachObj) {
         return filterKeys.every(function (eachKey) {
           if (!filters[eachKey].length) {
             return true;
@@ -125,10 +125,26 @@ export default {
       });
     },
     tableDataPaginated() {
-      return this.filteredData.slice(this.from, this.to);
+      return this.tableDataSearched.slice(this.from, this.to);
     },
   },
-
+  watch: {
+    filters() {
+      let data = [...this.tableDataSearched];
+      let filters = { ...this.filters };
+      console.log(filters);
+      let filterKeys = Object.keys(filters);
+      console.log(filterKeys);
+      return (this.filteredData = data.filter(function (eachObj) {
+        return filterKeys.every(function (eachKey) {
+          if (!filters[eachKey].length) {
+            return true;
+          }
+          return filters[eachKey] <= eachObj[eachKey];
+        });
+      }));
+    },
+  },
   methods: {
     toggleShowRightSide(value) {
       if (value == this.typeViewOfRightSide) {
@@ -147,6 +163,9 @@ export default {
     },
     updatedIndexRow(value) {
       this.pageNumber = value;
+    },
+    updateFilter(value, key) {
+      this.$set(this.filters, key, [value]);
     },
     clearInput() {
       this.inputValue = "";

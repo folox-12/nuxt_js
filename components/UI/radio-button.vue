@@ -39,6 +39,9 @@ export default {
     fdInput,
   },
   props: {
+    name: {
+      type: String,
+    },
     valuesRadio: {
       required: true,
     },
@@ -64,12 +67,11 @@ export default {
     checkButton(value) {
       if (this.radioValue == value) {
         this.radioValue = "";
+        value = null;
       } else {
         this.radioValue = value;
       }
-      if (this.radioValue) {
-        this.$emit("radioValue", this.radioValue);
-      }
+      this.$emit("radioValue", value, this.name);
     },
   },
 };

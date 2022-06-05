@@ -1,7 +1,7 @@
 <template>
   <div class="Test">
     <filters
-      :view-format="'map'"
+      :view-format="'table'"
       :data="dataAboutDronoport"
       :itemsOnPage="5"
       :icon="'ico/search.svg'"
@@ -26,6 +26,7 @@
           pageNumber,
           getNameForSort,
           updateItemsOnPage,
+          updateFilter,
         }"
       >
         <tableView
@@ -132,25 +133,28 @@
               <radioButton
                 :valuesRadio="{
                   1: 1,
-                  2: 2,
-                  Все: 21,
+                  5: 5,
                 }"
+                :name="'dronoport'"
                 :closeIconForInput="true"
                 :custom="true"
+                @radioValue="updateFilter"
               />
             </spoiler>
             <spoiler :title="'Обслуживаемые дроны'"></spoiler>
             <spoiler :title="'Постамат'">
               <radioButton
-                :valuesRadio="{ 1: 1, 2: 2, Все: 21 }"
+                :valuesRadio="{ 1: 1, 2: 2 }"
                 :custom="true"
+                :name="'postamat'"
+                @radioValue="updateFilter"
               />
             </spoiler>
             <spoiler :title="'Город'" v-if="viewFormat === 'map'">
               <radioButton
                 @click="GetValueCheckbox()"
                 :valuesRadio="getCoordinate"
-                @radioValue="get"
+                @radioValue="getFilterForMapCity"
               />
             </spoiler>
           </div>
@@ -207,7 +211,7 @@ export default {
     GetValueCheckbox() {
       alert("hello");
     },
-    get(value) {
+    getFilterForMapCity(value) {
       this.Coordinate = value;
     },
   },
