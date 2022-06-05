@@ -128,23 +128,7 @@ export default {
       return this.tableDataSearched.slice(this.from, this.to);
     },
   },
-  watch: {
-    filters() {
-      let data = [...this.tableDataSearched];
-      let filters = { ...this.filters };
-      console.log(filters);
-      let filterKeys = Object.keys(filters);
-      console.log(filterKeys);
-      return (this.filteredData = data.filter(function (eachObj) {
-        return filterKeys.every(function (eachKey) {
-          if (!filters[eachKey].length) {
-            return true;
-          }
-          return filters[eachKey] <= eachObj[eachKey];
-        });
-      }));
-    },
-  },
+  watch: {},
   methods: {
     toggleShowRightSide(value) {
       if (value == this.typeViewOfRightSide) {
