@@ -10,18 +10,8 @@
       :key="crumb"
     >
       <div class="header-page-navigation__link">
-        <nuxt-link
-          :to="localePath(createLink(getAllRoute.slice(0, ci + 1)))"
-          v-if="$i18n.locale !== 'en'"
-        >
-          {{ translateToRus(checkIndex(crumb)) + pageNumber }}
-        </nuxt-link>
-
-        <nuxt-link
-          :to="localePath(createLink(getAllRoute.slice(0, ci + 1)))"
-          v-if="$i18n.locale == 'en'"
-        >
-          {{ checkIndex(normalize(crumb)) + pageNumber }}
+        <nuxt-link :to="localePath(createLink(getAllRoute.slice(0, ci + 1)))">
+          {{ $t(checkIndex(crumb)) + pageNumber }}
         </nuxt-link>
       </div>
       <div class="header-page-navigation__splitter">></div>
@@ -42,13 +32,10 @@ export default {
   },
   computed: {
     getAllRoute() {
-      // console.log(this.crumbs);
       let crumbs = this.crumbs.slice(1).split("/");
-      console.log(this.crumbs);
-      if (crumbs[0] == "en") {
+      if (crumbs[0] == "en" || crumbs[0] == "") {
         crumbs.splice(0, 1);
       }
-      // console.log(crumbs);
       if (crumbs.length == 0) {
         return ["Main"];
       } else {
@@ -57,51 +44,6 @@ export default {
     },
   },
   methods: {
-    translateToRus(item) {
-      // if () return item;
-      switch (item) {
-        case "": {
-          return "Главная";
-        }
-        case "Test": {
-          return "Тест";
-        }
-        case "Infrastructure": {
-          return "Инфраструктура";
-        }
-        case "Map": {
-          return "Карта";
-        }
-        case "Platform": {
-          return "Платформа";
-        }
-        case "Postamat": {
-          return "Постамат";
-        }
-        case "Camera": {
-          return "Камера";
-        }
-        case "Light": {
-          return "Освещение";
-        }
-        case "Wall": {
-          return "Ограждение";
-        }
-        case "Sensor": {
-          return "Датчик движения";
-        }
-        case "Droneport": {
-          return "Дронопорт";
-        }
-        default: {
-          return item;
-        }
-      }
-    },
-    normalize(item) {
-      if (item == "") return "Main";
-      else return item;
-    },
     checkIndex(crumb) {
       if (!isNaN(parseInt(crumb.slice(-1)))) {
         this.pageNumber = " №" + crumb.slice(-1);

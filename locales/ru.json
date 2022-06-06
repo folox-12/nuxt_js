@@ -113,5 +113,27 @@
 
   "Test": "Тест",
   "Infrastructure": "Инфраструктура",
-  "Map": "Карта"
+  "Map": "Карта",
+  "Platform": "Платформа",
+  "Postamat": "Постамат",
+  "Camera": "Камера",
+  "Light": "Освещение",
+  "Wall": "Ограждение",
+  "Sensor": "Датчик движения",
+  "Droneport": "Дронопорт",
+  "Main": "Главная",
+  "Table": "Таблица",
+
+  "representation-type": "Вид представления",
+  "representation-settings": "Настройки представления",
+  "city-filter": "Город",
+  "several-filter": "Несколько",
+  "enter-value": "Введите значение",
+
+  "nothing-found": "Ничего не найдено",
+  "Filters": "Фильтры",
+  "Options": "Настройки",
+
+  "flight-route": "Маршрут/район полета",
+  "flight-location-search": "Найти населенный пункт для полета"
 }

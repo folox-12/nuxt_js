@@ -13,7 +13,7 @@
         :class="{ checked: item === radioValue }"
       />
       <label for="radio">
-        {{ index }}
+        {{ $t(index) }}
       </label>
     </div>
     <fd-input
@@ -21,7 +21,7 @@
       class="custom"
       v-if="radioValue === 'custom'"
       :closeIcon="closeIconForInput"
-      :placeholder="'Введите значение'"
+      :placeholder="$t('enter-value')"
     />
   </div>
 </template>
@@ -59,7 +59,7 @@ export default {
     allRadioInput() {
       let obj = { ...this.valuesRadio };
       if (this.custom) {
-        obj["Несколько"] = "custom";
+        obj["several-filter"] = "custom";
       }
       return obj;
     },
@@ -85,7 +85,7 @@ export default {
   gap: 15px;
   &__item {
     cursor: pointer;
-    &:hover{
+    &:hover {
       color: #9b42f2;
     }
   }

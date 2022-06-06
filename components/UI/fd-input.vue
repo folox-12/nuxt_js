@@ -13,7 +13,7 @@
       @input="input"
       @focus="toggleLeftIcon"
       @blur="toggleLeftIcon"
-      :placeholder="placeholder"
+      :placeholder="$t(placeholder)"
       :class="{ icon: icon }"
     />
     <button

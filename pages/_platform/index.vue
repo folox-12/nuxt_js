@@ -11,7 +11,7 @@
       <hr />
       <div class="card__main card-main">
         <div class="card-main__title">
-          <h2>{{ $t("platform-title") + splitPlatformId }}</h2>
+          <h2>{{ $t("platform-title") }}</h2>
         </div>
 
         <Tablecard
@@ -53,7 +53,7 @@
               </tr>
               <tr
                 v-for="(item, index) in this.getInfrByPlatformId(
-                parseInt(splitPlatformId)
+                  parseInt(splitPlatformId)
                 )"
                 v-bind:key="index"
               >
@@ -66,23 +66,41 @@
                     v-if="$store.getters['GetChangestatus'] == false"
                     :link="'/' + $route.params.platform + item.link"
                   ></OpenCard>
-                  <EditCard v-else :propid='index' @deletePoint="deletePoint"></EditCard>
+                  <EditCard
+                    v-else
+                    :propid="index"
+                    @deletePoint="deletePoint"
+                  ></EditCard>
                 </td>
               </tr>
-              <tr><td colspan="5"> <AddCard v-show="addcardParam" :LengthInput="4" @addInfo='addInfo'></AddCard></td></tr>
+              <tr>
+                <td colspan="5">
+                  <AddCard
+                    v-show="addcardParam"
+                    :LengthInput="4"
+                    @addInfo="addInfo"
+                  ></AddCard>
+                </td>
+              </tr>
             </table>
             <WarningMessage v-show="this.modalError"></WarningMessage>
           </div>
           <div class="card-infrastructure__button">
             <button
-              v-if="$store.getters['GetChangestatus'] == true && addcardParam == false"
+              v-if="
+                $store.getters['GetChangestatus'] == true &&
+                addcardParam == false
+              "
               class="spoiler__reset_button"
               @click="addcardParam = true"
             >
               {{ $t("add-btn-edit-platform") }}
             </button>
-             <button
-              v-else-if="$store.getters['GetChangestatus'] == true && addcardParam == true"
+            <button
+              v-else-if="
+                $store.getters['GetChangestatus'] == true &&
+                addcardParam == true
+              "
               class="spoiler__reset_button"
               @click="addcardParam = false"
             >
@@ -96,23 +114,15 @@
 </template>
 
 <script>
-import { mapGetters, mapMutations, mapActions } from "vuex";
+import { mapGetters, mapActions } from "vuex";
 import Imagecard from "@/components/ImgCard.vue";
 import Tablecard from "@/components/TableCard/TableCard.vue";
 import ModalWindow from "@/components/ModalWindow.vue";
 import OpenCard from "@/components/buttonCardOpen.vue";
 import EditCard from "@/components/buttonCardEditing.vue";
-import AddCard from "@/components/formAddTable.vue"
-import WarningMessage from "@/components/modalErrorInput.vue"
+import AddCard from "@/components/formAddTable.vue";
+import WarningMessage from "@/components/modalErrorInput.vue";
 export default {
-  /*
-  async asyncData({ store }) {
-    await store.dispatch("i18n/setRouteParams", {
-      en: { postId: "my-post" },
-      ru: { Platform: "" },
-    });
-  },
-  */
   layout: "card",
   components: {
     Imagecard,
@@ -125,7 +135,6 @@ export default {
   },
 
   data() {
-    // index_of_platform = $route.params.platform;
     return {
       modalError: false,
       addcardParam: false,
@@ -173,7 +182,6 @@ export default {
           link: "/Postamat",
         },
       ],
-
 
       img: [
         require("@/assets/img/platform1.jpg"),
@@ -225,30 +233,42 @@ export default {
     clearInput(index) {
       this.description[index] = "";
     },
-    ...mapActions("dronoports", ["addInfo1","deletePoint1",]),
-    addInfo(value){
-      if((value[0] && value[1] && value[2] && value[3]) == ('' || ' ', '  ', '   ')){
-      var object = {"name": value[0],"company": value[1], "link" : '/', "type": value[2],"id": value[3]};
-      let id = parseInt(this.splitPlatformId)
-      this.addInfo1([id,object])
-      }
-      else{
-        this.modalError = true
-        console.log( this.modalError)
+
+    ...mapActions("dronoports", ["addInfo1", "deletePoint1"]),
+    addInfo(value) {
+      if (
+        value[0] == "" ||
+        value[1] == "" ||
+        value[2] == "" ||
+        value[3] == ""
+      ) {
+        console.log(value);
+        this.modalError = true;
+        console.log(this.modalError);
         setTimeout(() => {
-        this.modalError = false
-        console.log( this.modalError)
-    }, 2000);
+          this.modalError = false;
+          console.log(this.modalError);
+        }, 2000);
+      } else {
+        var object = {
+          name: value[0],
+          company: value[1],
+          link: "/",
+          type: value[2],
+          id: value[3],
+        };
+        let id = parseInt(this.splitPlatformId);
+        this.addInfo1([id, object]);
       }
     },
-    
-    deletePoint(value){
-       var id = parseInt(this.splitPlatformId)
-      this.deletePoint1([id,value])
+
+    deletePoint(value) {
+      var id = parseInt(this.splitPlatformId);
+      this.deletePoint1([id, value]);
     },
-    addPhoto(value){
-      this.img.push(value)
-    }
+    addPhoto(value) {
+      this.img.push(value);
+    },
   },
   computed: {
     ...mapGetters("dronoports", ["getInfrByPlatformId"]),
