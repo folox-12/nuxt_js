@@ -119,5 +119,19 @@
   "Wall": "Wall",
   "Sensor": "Sensor",
   "Droneport": "Droneport",
-  "Main": "Main"
+  "Main": "Main",
+  "Table": "Table",
+
+  "representation-type": "Representation type",
+  "representation-settings": "Representation settings",
+  "city-filter": "City",
+  "several-filter": "Several",
+  "enter-value": "Enter value",
+
+  "nothing-found": "Nothing found",
+  "Filters": "Filters",
+  "Options": "Options",
+
+  "flight-route": "Flight route/area",
+  "flight-location-search": "Find a location to fly"
 }

@@ -80,7 +80,7 @@ export default {
     },
     placeHolder: {
       type: String,
-      default: "Поиск по адресу",
+      // default: "Поиск по адресу",
     },
     icon: {
       type: String,

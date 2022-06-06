@@ -57,7 +57,7 @@
               v-show="typeViewOfRightSide === 'Options'"
             >
               <div class="right-side-option__content">
-                <spoiler :title="'Вид представления'">
+                <spoiler :title="$t('representation-type')">
                   <div
                     class="right-side-option__item"
                     :class="{
@@ -78,7 +78,7 @@
                         />
                       </svg>
                     </button>
-                    <span>Карта</span>
+                    <span>{{ $t("Map") }}</span>
                   </div>
                   <div
                     class="right-side-option__item"
@@ -100,11 +100,11 @@
                         />
                       </svg>
                     </button>
-                    <span>Таблица</span>
+                    <span>{{ $t("Table") }}</span>
                   </div>
                 </spoiler>
                 <spoiler
-                  :title="'Настройка представления'"
+                  :title="$t('representation-settings')"
                   v-if="viewFormat === 'table'"
                 >
                   <button
@@ -128,7 +128,7 @@
               class="right-side__filter"
               v-show="typeViewOfRightSide === 'Filters'"
             >
-              <spoiler :title="'Дронопорт'">
+              <spoiler :title="$t('droneport-table-title')">
                 <radioButton
                   :valuesRadio="{
                     1: 1,
@@ -140,8 +140,8 @@
                   @radioValue="updateFilter"
                 />
               </spoiler>
-              <spoiler :title="'Обслуживаемые дроны'"></spoiler>
-              <spoiler :title="'Постамат'">
+              <spoiler :title="$t('serviced-drones')"></spoiler>
+              <spoiler :title="$t('postamat-title-page')">
                 <radioButton
                   :valuesRadio="{ 1: 1, 2: 2 }"
                   :custom="true"
@@ -149,7 +149,7 @@
                   @radioValue="updateFilter"
                 />
               </spoiler>
-              <spoiler :title="'Город'" v-if="viewFormat === 'map'">
+              <spoiler :title="$t('city-filter')" v-if="viewFormat === 'map'">
                 <radioButton
                   @click="GetValueCheckbox()"
                   :valuesRadio="getCoordinate"
@@ -191,7 +191,7 @@ export default {
   data() {
     return {
       getCheckboxValue: "",
-      placeHolder: "Введите адрес",
+      placeHolder: "search-by-address",
       showModal: false,
       Coordinate: [55.673, 37.2733],
     };

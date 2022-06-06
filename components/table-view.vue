@@ -37,7 +37,7 @@
         <tbody>
           <tr v-if="!countOfAllDronoport" class="empty">
             <td colspan="4" style="text-align: center; font-size: 1.5rem">
-              Ничего не найдено
+              {{ $t("nothing-found") }}
             </td>
           </tr>
           <tr

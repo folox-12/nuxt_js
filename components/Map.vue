@@ -2,7 +2,7 @@
   <div class="map">
     <div class="TopShelf">
       <div class="TopShelf__descr">
-        <h1>Маршрут/район полета</h1>
+        <h1>{{ $t("flight-route") }}</h1>
         <button
           class="ModalDescrButton"
           @mouseleave="hideDescr()"
@@ -33,7 +33,7 @@
           <fd-input
             v-model="valueInput"
             @input="ChangeCenter"
-            :placeholder="'Найти населенный пункт для полета'"
+            :placeholder="$t('flight-location-search')"
           />
         </div>
         <div class="TopShelf-items__filters">
@@ -53,7 +53,7 @@
             </svg>
           </button>
 
-          <button class="FigureBuild" >
+          <button class="FigureBuild">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="24"
@@ -96,13 +96,13 @@
             <radioButton
               @radioValue="getTileValue"
               :valuesRadio="{
-                  OSM: 0,
-                  Спутник: 1,
-                  Светлая: 2,
-                  Темная:3,
-                }"
+                OSM: 0,
+                Спутник: 1,
+                Светлая: 2,
+                Темная: 3,
+              }"
               :name="'TileRadio'"
-                />
+            />
           </div>
         </div>
       </div>
@@ -156,9 +156,7 @@
             :max-zoom="MapOptions[1].MaxZoom"
             :min-zoom="MapOptions[2].MinZoom"
           >
-            <l-tile-layer
-              :url= MapOptions[4].Url
-            ></l-tile-layer>
+            <l-tile-layer :url="MapOptions[4].Url"></l-tile-layer>
 
             <l-polygon
               :lat-lngs="polygon.latlngs"
@@ -173,15 +171,14 @@
                   :Adres="item"
                   :showRadius="showRadius"
                 ></CustomMapMarker>
-                 <!-- <l-marker  :lat-lng="[lat, long]"></l-marker> -->
+                <!-- <l-marker  :lat-lng="[lat, long]"></l-marker> -->
               </div>
             </div>
-
           </l-map>
         </client-only>
       </div>
     </div>
-    
+
     <fd-button
       @click="showRadius = !showRadius"
       :text="'Показать'"
@@ -194,9 +191,6 @@
 </template>
 
 <script>
-
-
-
 import fdInput from "../components/UI/fd-input.vue";
 import { mapGetters } from "vuex";
 import fdButton from "../components/UI/fd-button.vue";
@@ -211,28 +205,27 @@ export default {
     radioButton,
   },
 
-methods: {
+  methods: {
+    createUserMarker() {
+      navigator.geolocation.getCurrentPosition(showPosition);
+      function showPosition(position) {
+        // alert("Широта: " + position.coords.latitude);
+        // alert("Долгота: " + position.coords.longitude);
+        let laa = position.coords.latitude;
+        let loo = position.coords.longitude;
 
-  createUserMarker(){
-    navigator.geolocation.getCurrentPosition(showPosition); 
-    function showPosition(position) {
-    // alert("Широта: " + position.coords.latitude);
-    // alert("Долгота: " + position.coords.longitude);
-    let laa = position.coords.latitude
-    let loo = position.coords.longitude
-
-    return{
-      laa,
-      loo
-    }
-  }
-  },
+        return {
+          laa,
+          loo,
+        };
+      }
+    },
     getTileValue(value) {
       this.TileValue = value;
-      if(this.TileValue ){
-        this.MapOptions[4].Url = this.tile[this.TileValue].Tile
-      }else{
-        this.MapOptions[4].Url = 'http://{s}.tile.osm.org/{z}/{x}/{y}.png'
+      if (this.TileValue) {
+        this.MapOptions[4].Url = this.tile[this.TileValue].Tile;
+      } else {
+        this.MapOptions[4].Url = "http://{s}.tile.osm.org/{z}/{x}/{y}.png";
       }
     },
 
@@ -253,17 +246,18 @@ methods: {
     hideDescr() {
       this.showDescr = false;
     },
-    res(){
-      this.MapOptions[4].Url = 'https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}'
-    }
+    res() {
+      this.MapOptions[4].Url =
+        "https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}";
+    },
   },
 
   data() {
     return {
-      latt : "",
-      longg : "",
+      latt: "",
+      longg: "",
 
-      TileValue:"",
+      TileValue: "",
       UserCoord: false,
       iconUrlCustom: require("../assets/img/Marker.png"),
       valueInput: "",
@@ -273,26 +267,29 @@ methods: {
         [55.686, 37.284],
       ],
 
-
       showDescr: false,
-      showSettings:false,
+      showSettings: false,
       showRadius: false,
 
-   
-
       MapOptions: [
-        {  zoom: 13 },
-        {  MaxZoom: 22 },
-        {  MinZoom: 10 },
-        {  Center: [55.673, 37.2733] },
-        {  Url:"http://{s}.tile.osm.org/{z}/{x}/{y}.png"},
+        { zoom: 13 },
+        { MaxZoom: 22 },
+        { MinZoom: 10 },
+        { Center: [55.673, 37.2733] },
+        { Url: "http://{s}.tile.osm.org/{z}/{x}/{y}.png" },
       ],
 
-      tile:[
-        {Tile: 'http://{s}.tile.osm.org/{z}/{x}/{y}.png'},//OSM
-        {Tile: 'https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}'},//Satellite
-        {Tile:"https://tiles.stadiamaps.com/tiles/osm_bright/{z}/{x}/{y}{r}.png"},//StadiamapsBright
-        {Tile: 'https://tiles.stadiamaps.com/tiles/alidade_smooth_dark/{z}/{x}/{y}{r}.png'},//Dark
+      tile: [
+        { Tile: "http://{s}.tile.osm.org/{z}/{x}/{y}.png" }, //OSM
+        {
+          Tile: "https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}",
+        }, //Satellite
+        {
+          Tile: "https://tiles.stadiamaps.com/tiles/osm_bright/{z}/{x}/{y}{r}.png",
+        }, //StadiamapsBright
+        {
+          Tile: "https://tiles.stadiamaps.com/tiles/alidade_smooth_dark/{z}/{x}/{y}{r}.png",
+        }, //Dark
       ],
       polygon: {
         latlngs: [
@@ -514,7 +511,6 @@ methods: {
         ],
         color: "#1E90FF",
       },
-      
     };
   },
 
@@ -539,16 +535,13 @@ methods: {
       return this.getCoordinate[this.valueInput];
     },
   },
-
-  
 };
 </script>
 
 <style lang="scss" scoped>
 @import "../assets/scss/fonts";
 
-
-.SettingsMap{
+.SettingsMap {
   width: 240px;
   height: fit-content;
   background-color: rgb(246, 246, 246);
@@ -562,7 +555,6 @@ methods: {
   padding: 15px;
   border-bottom-left-radius: 20px;
   border-bottom-right-radius: 20px;
-
 }
 
 .Marker-container {
