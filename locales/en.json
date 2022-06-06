@@ -120,6 +120,9 @@
   "Sensor": "Sensor",
   "Droneport": "Droneport",
   "Main": "Main",
+
+  "titleforWarningMessage":"You didn't fill in all the fields",
+
   "Table": "Table",
 
   "representation-type": "Representation type",
@@ -134,4 +137,5 @@
 
   "flight-route": "Flight route/area",
   "flight-location-search": "Find a location to fly"
+
 }

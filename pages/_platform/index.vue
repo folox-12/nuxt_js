@@ -83,7 +83,7 @@
                 </td>
               </tr>
             </table>
-            <WarningMessage v-show="this.modalError"></WarningMessage>
+            <WarningMessage v-show="this.modalError" :title='$t("titleforWarningMessage")'></WarningMessage>
           </div>
           <div class="card-infrastructure__button">
             <button
@@ -138,6 +138,7 @@ export default {
     return {
       modalError: false,
       addcardParam: false,
+      titleforWarningMessage: 'titleforWarningMessage',
       infrastructure: [
         {
           name: "droneport",

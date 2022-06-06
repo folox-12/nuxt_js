@@ -122,6 +122,9 @@
   "Sensor": "Датчик движения",
   "Droneport": "Дронопорт",
   "Main": "Главная",
+
+  "titleforWarningMessage" :"Вы заполнили не все поля",
+
   "Table": "Таблица",
 
   "representation-type": "Вид представления",
@@ -136,4 +139,5 @@
 
   "flight-route": "Маршрут/район полета",
   "flight-location-search": "Найти населенный пункт для полета"
+
 }
