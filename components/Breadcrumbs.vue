@@ -14,14 +14,14 @@
           :to="localePath(createLink(getAllRoute.slice(0, ci + 1)))"
           v-if="$i18n.locale !== 'en'"
         >
-          {{ translateToRus(crumb) }}
+          {{ translateToRus(checkIndex(crumb)) + pageNumber }}
         </nuxt-link>
 
         <nuxt-link
           :to="localePath(createLink(getAllRoute.slice(0, ci + 1)))"
           v-if="$i18n.locale == 'en'"
         >
-          {{ normalize(crumb) }}
+          {{ checkIndex(normalize(crumb)) + pageNumber }}
         </nuxt-link>
       </div>
       <div class="header-page-navigation__splitter">></div>
@@ -32,6 +32,7 @@
 export default {
   data: {
     routerLinks: {},
+    pageNumber: "",
   },
   props: {
     crumbs: {
@@ -100,6 +101,15 @@ export default {
     normalize(item) {
       if (item == "") return "Main";
       else return item;
+    },
+    checkIndex(crumb) {
+      if (!isNaN(parseInt(crumb.slice(-1)))) {
+        this.pageNumber = " №" + crumb.slice(-1);
+        return crumb.slice(0, -1);
+      } else {
+        this.pageNumber = "";
+        return crumb;
+      }
     },
     createLink(crumbs) {
       let _link = "";
