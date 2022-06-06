@@ -37,7 +37,7 @@
           />
         </div>
         <div class="TopShelf-items__filters">
-          <button class="TileShow" @click="showSettings = !showSettings">
+          <button class="TileShow" @click="showSettings = !showSettings" v-click-outside="onClickOutside">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="24"
@@ -92,7 +92,7 @@
           </button>
         </div>
         <div class="SettingsMap" v-if="showSettings">
-          <div class="SettingsMap__Tile">
+          <div class="SettingsMap__Tile" v-if="showTileSettings">
             <radioButton
               @radioValue="getTileValue"
               :valuesRadio="{
@@ -173,7 +173,7 @@
                   :Adres="item"
                   :showRadius="showRadius"
                 ></CustomMapMarker>
-                 <!-- <l-marker  :lat-lng="[lat, long]"></l-marker> -->
+                 <l-marker  :lat-lng="[55.745861263703055,37.62346629101563]"></l-marker>
               </div>
             </div>
 
@@ -201,10 +201,15 @@ import fdInput from "../components/UI/fd-input.vue";
 import { mapGetters } from "vuex";
 import fdButton from "../components/UI/fd-button.vue";
 import radioButton from "../components/UI/radio-button.vue";
+import vClickOutside from 'v-click-outside'
+
 
 export default {
   layout: "map",
 
+  directives: {
+      clickOutside: vClickOutside.directive
+    },
   components: {
     fdInput,
     fdButton,
@@ -216,17 +221,14 @@ methods: {
   createUserMarker(){
     navigator.geolocation.getCurrentPosition(showPosition); 
     function showPosition(position) {
-    // alert("Широта: " + position.coords.latitude);
-    // alert("Долгота: " + position.coords.longitude);
-    let laa = position.coords.latitude
-    let loo = position.coords.longitude
-
-    return{
-      laa,
-      loo
-    }
+    alert("Широта: " + position.coords.latitude + "Долгота: " + position.coords.longitude);
   }
+   
   },
+  onClickOutside (event) {
+      this.showSettings = false
+      },
+
     getTileValue(value) {
       this.TileValue = value;
       if(this.TileValue ){
@@ -260,8 +262,8 @@ methods: {
 
   data() {
     return {
-      latt : "",
-      longg : "",
+      // latt : "",
+      // longg : "",
 
       TileValue:"",
       UserCoord: false,
