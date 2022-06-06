@@ -119,5 +119,6 @@
   "Wall": "Wall",
   "Sensor": "Sensor",
   "Droneport": "Droneport",
-  "Main": "Main"
+  "Main": "Main",
+  "titleforWarningMessage":"You didn't fill in all the fields"
 }
