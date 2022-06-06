@@ -37,7 +37,7 @@
           />
         </div>
         <div class="TopShelf-items__filters">
-          <button class="TileShow" @click="showSettings = !showSettings" v-click-outside="onClickOutside">
+          <button class="TileShow" @click="showSettingsTile = !showSettingsTile">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="24"
@@ -74,7 +74,7 @@
             <span>>1000m</span>
           </button>
 
-          <button class="Settings">
+          <button class="Settings" @click="showSettingsView = !showSettingsView">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="24"
@@ -91,8 +91,8 @@
             </svg>
           </button>
         </div>
-        <div class="SettingsMap" v-if="showSettings">
-          <div class="SettingsMap__Tile" v-if="showTileSettings">
+        <div class="SettingsMap" v-if="showSettingsTile">
+          <div class="SettingsMap__Tile">
             <radioButton
               @radioValue="getTileValue"
               :valuesRadio="{
@@ -105,12 +105,24 @@
                 />
           </div>
         </div>
+        <div class="SettingsMap" v-if="showSettingsView">
+          <div class="SettingsMap__View">
+            <radioButton
+              @radioValue="getTileValue"
+              :valuesRadio="{
+                  Вкл: 0,
+                  Выкл : 1,
+                }"
+              :name="'TileRadio'"
+                />
+          </div>
+        </div>
       </div>
     </div>
     <div class="RightShelf">
       <div class="RightShelf-items">
         <div class="RightShelf-items__buttons">
-          <button calss="Location">
+          <button calss="Location" @click="createUserMarker()">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="24"
@@ -173,7 +185,9 @@
                   :Adres="item"
                   :showRadius="showRadius"
                 ></CustomMapMarker>
-                 <l-marker  :lat-lng="[55.745861263703055,37.62346629101563]"></l-marker>
+                 <l-marker  :lat-lng="[latt,longg]" v-if = "showUserPos">
+                   <l-popup>Вы здесь</l-popup>
+                 </l-marker>
               </div>
             </div>
 
@@ -188,8 +202,6 @@
       :type="'white'"
       :style="{ 'box-shadow': 'none' }"
     />
-    <button @click="res()">другой слой</button>
-    <button @click="createUserMarker()">Вы тут</button>
   </div>
 </template>
 
@@ -218,16 +230,12 @@ export default {
 
 methods: {
 
-  createUserMarker(){
-    navigator.geolocation.getCurrentPosition(showPosition); 
-    function showPosition(position) {
-    alert("Широта: " + position.coords.latitude + "Долгота: " + position.coords.longitude);
-  }
-   
+  createUserMarker(){navigator.geolocation.getCurrentPosition(this.showPosition)},
+    showPosition(position) {
+    this.latt = position.coords.latitude
+    this.longg= position.coords.longitude;
+    this.showUserPos = !this.showUserPos
   },
-  onClickOutside (event) {
-      this.showSettings = false
-      },
 
     getTileValue(value) {
       this.TileValue = value;
@@ -255,15 +263,13 @@ methods: {
     hideDescr() {
       this.showDescr = false;
     },
-    res(){
-      this.MapOptions[4].Url = 'https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}'
-    }
+
   },
 
   data() {
     return {
-      // latt : "",
-      // longg : "",
+      latt : null,
+      longg : null,
 
       TileValue:"",
       UserCoord: false,
@@ -277,8 +283,10 @@ methods: {
 
 
       showDescr: false,
-      showSettings:false,
+      showSettingsTile:false,
       showRadius: false,
+      showSettingsView:false,
+      showUserPos:false,
 
    
 
@@ -551,7 +559,8 @@ methods: {
 
 
 .SettingsMap{
-  width: 240px;
+  max-width: 240px;
+  min-width: 240px;
   height: fit-content;
   background-color: rgb(246, 246, 246);
   position: absolute;
