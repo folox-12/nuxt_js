@@ -26,9 +26,9 @@
       :valuesRadio="{ 1: 1, 2: 2, Все: 21 }"
       :custom="true"
     ></radioButton>
-    <tableView></tableView>
     <fdButton :text="'при'" :type="'white'" @click="someFunction" />
     <fdInput v-model="value" :closeIcon="true" :type="'primary'" />
+    <iconBase :iconType="'search'" @click="foo" />
   </div>
 </template>
 <script>
@@ -38,6 +38,7 @@ import radioButton from "../components/UI/radio-button.vue";
 import tableView from "../components/table-view.vue";
 import fdButton from "../components/UI/fd-button.vue";
 import fdInput from "../components/UI/fd-input.vue";
+import iconBase from "../components/icons/IconBase.vue";
 import { mapGetters } from "vuex";
 export default {
   data() {
@@ -51,11 +52,15 @@ export default {
     spoiler,
     radioButton,
     tableView,
+    iconBase,
     fdButton,
     fdInput,
   },
   created() {},
   methods: {
+    foo() {
+      alert("");
+    },
     select(value) {
       this.selectValue = value;
     },
