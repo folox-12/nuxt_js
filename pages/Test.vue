@@ -28,7 +28,12 @@
     ></radioButton>
     <fdButton :text="'при'" :type="'white'" @click="someFunction" />
     <fdInput v-model="value" :closeIcon="true" :type="'primary'" />
-    <iconBase :iconType="'search'" @click="foo" />
+    <iconBase
+      :iconType="'filter'"
+      @click="foo"
+      :fill="'black'"
+      :backgroundColor="'grey'"
+    />
   </div>
 </template>
 <script>

@@ -1,11 +1,14 @@
 <template>
   <div class="fd-input" :class="type">
-    <img
+    <iconBase
       v-if="icon"
       :src="icon"
       alt=""
       class="search-icon"
       :class="{ focus: focus }"
+      :iconType="'search'"
+      :width="'34px'"
+      :height="'34px'"
     />
     <input
       type="text"
@@ -28,11 +31,15 @@
 </template>
 
 <script>
+import iconBase from "../icons/IconBase.vue";
 export default {
   data() {
     return {
       focus: false,
     };
+  },
+  components: {
+    iconBase,
   },
   props: {
     value: {
