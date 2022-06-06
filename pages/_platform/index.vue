@@ -227,18 +227,19 @@ export default {
     },
     ...mapActions("dronoports", ["addInfo1","deletePoint1",]),
     addInfo(value){
-      if((value[0] && value[1] && value[2] && value[3]) == ('' || ' ', '  ', '   ')){
-      var object = {"name": value[0],"company": value[1], "link" : '/', "type": value[2],"id": value[3]};
-      let id = parseInt(this.splitPlatformId)
-      this.addInfo1([id,object])
-      }
-      else{
-        this.modalError = true
+      if((value[0] ==  '') || (value[1] ==  '') || (value[2] == '') || (value[3] == '' )){
+        console.log(value)
+       this.modalError = true
         console.log( this.modalError)
         setTimeout(() => {
         this.modalError = false
         console.log( this.modalError)
     }, 2000);
+      }
+      else{
+         var object = {"name": value[0],"company": value[1], "link" : '/', "type": value[2],"id": value[3]};
+      let id = parseInt(this.splitPlatformId)
+      this.addInfo1([id,object])
       }
     },
     
