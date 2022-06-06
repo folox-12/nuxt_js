@@ -3,7 +3,7 @@
     <div class="header-page">
       <div class="header-page__mainblok">
         <div class="header-page__title">
-          <h1>{{ $t(headerData.title) }}</h1>
+          <h1>{{ $t(headerData.title) + splitPlatformId }}</h1>
           <div class="header-page__button">
             <fdButton @click="click" :text="$t(checkStore)" />
           </div>
@@ -38,7 +38,9 @@ export default {
         : "edit-message";
     },
     splitPlatformId() {
-      return this.$route.query.page;
+      return this.$route.params.platform === undefined
+        ? ""
+        : this.$route.params.platform.slice(-1);
     },
   },
   methods: {

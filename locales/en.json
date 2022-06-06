@@ -107,5 +107,17 @@
   "cell-dimensions-table-card": "Cell dimensions (LxW) (mm)",
   "time-order-table-card": "Time of issue of the order (min.)",
   "degree-protection-table-card": "Degree of protection IP",
-  "add-btn-exit-platform": "Cancel"
+  "add-btn-exit-platform": "Cancel",
+
+  "Test": "Тест",
+  "Infrastructure": "Infrastructure",
+  "Map": "Map",
+  "Platform": "Platform",
+  "Postamat": "Postamat",
+  "Camera": "Camera",
+  "Light": "Light",
+  "Wall": "Wall",
+  "Sensor": "Sensor",
+  "Droneport": "Droneport",
+  "Main": "Main"
 }
