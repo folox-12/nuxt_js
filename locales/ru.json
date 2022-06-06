@@ -109,5 +109,17 @@
   "cell-dimensions-table-card": "Размеры ячейки (ДxШ) (мм)",
   "time-order-table-card": "Время выдачи заказа (мин.)",
   "degree-protection-table-card": "Степень защиты IP",
-  "add-btn-exit-platform": "Отменить"
+  "add-btn-exit-platform": "Отменить",
+
+  "Test": "Тест",
+  "Infrastructure": "Инфраструктура",
+  "Map": "Карта",
+  "Platform": "Платформа",
+  "Postamat": "Постамат",
+  "Camera": "Камера",
+  "Light": "Освещение",
+  "Wall": "Ограждение",
+  "Sensor": "Датчик движения",
+  "Droneport": "Дронопорт",
+  "Main": "Главная"
 }

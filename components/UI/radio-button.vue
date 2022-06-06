@@ -35,6 +35,7 @@ export default {
       inputValue: "",
     };
   },
+
   components: {
     fdInput,
   },
@@ -84,6 +85,9 @@ export default {
   gap: 15px;
   &__item {
     cursor: pointer;
+    &:hover{
+      color: #9b42f2;
+    }
   }
 }
 

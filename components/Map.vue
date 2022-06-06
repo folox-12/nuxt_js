@@ -37,7 +37,7 @@
           />
         </div>
         <div class="TopShelf-items__filters">
-          <button class="LayoutShow">
+          <button class="TileShow" @click="showSettings = !showSettings">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="24"
@@ -53,7 +53,7 @@
             </svg>
           </button>
 
-          <button class="FigureBuild">
+          <button class="FigureBuild" >
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="24"
@@ -90,6 +90,20 @@
               </g>
             </svg>
           </button>
+        </div>
+        <div class="SettingsMap" v-if="showSettings">
+          <div class="SettingsMap__Tile">
+            <radioButton
+              @radioValue="getTileValue"
+              :valuesRadio="{
+                  OSM: 0,
+                  Спутник: 1,
+                  Светлая: 2,
+                  Темная:3,
+                }"
+              :name="'TileRadio'"
+                />
+          </div>
         </div>
       </div>
     </div>
@@ -143,7 +157,7 @@
             :min-zoom="MapOptions[2].MinZoom"
           >
             <l-tile-layer
-              url="http://{s}.tile.osm.org/{z}/{x}/{y}.png"
+              :url= MapOptions[4].Url
             ></l-tile-layer>
 
             <l-polygon
@@ -159,25 +173,34 @@
                   :Adres="item"
                   :showRadius="showRadius"
                 ></CustomMapMarker>
+                 <!-- <l-marker  :lat-lng="[lat, long]"></l-marker> -->
               </div>
             </div>
+
           </l-map>
         </client-only>
       </div>
     </div>
+    
     <fd-button
       @click="showRadius = !showRadius"
       :text="'Показать'"
       :type="'white'"
       :style="{ 'box-shadow': 'none' }"
     />
+    <button @click="res()">другой слой</button>
+    <button @click="createUserMarker()">Вы тут</button>
   </div>
 </template>
 
 <script>
+
+
+
 import fdInput from "../components/UI/fd-input.vue";
 import { mapGetters } from "vuex";
 import fdButton from "../components/UI/fd-button.vue";
+import radioButton from "../components/UI/radio-button.vue";
 
 export default {
   layout: "map",
@@ -185,10 +208,62 @@ export default {
   components: {
     fdInput,
     fdButton,
+    radioButton,
+  },
+
+methods: {
+
+  createUserMarker(){
+    navigator.geolocation.getCurrentPosition(showPosition); 
+    function showPosition(position) {
+    // alert("Широта: " + position.coords.latitude);
+    // alert("Долгота: " + position.coords.longitude);
+    let laa = position.coords.latitude
+    let loo = position.coords.longitude
+
+    return{
+      laa,
+      loo
+    }
+  }
+  },
+    getTileValue(value) {
+      this.TileValue = value;
+      if(this.TileValue ){
+        this.MapOptions[4].Url = this.tile[this.TileValue].Tile
+      }else{
+        this.MapOptions[4].Url = 'http://{s}.tile.osm.org/{z}/{x}/{y}.png'
+      }
+    },
+
+    ChangeCenter() {
+      if (this.Coordinate) {
+        this.MapOptions[3].Center = this.Coordinate;
+      } else {
+        this.MapOptions[3].Center = this.coordinate;
+      }
+    },
+    MaxZoomPlus() {
+      this.MapOptions[0].zoom += 1;
+    },
+    MaxZoomMinus() {
+      this.MapOptions[0].zoom -= 1;
+    },
+
+    hideDescr() {
+      this.showDescr = false;
+    },
+    res(){
+      this.MapOptions[4].Url = 'https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}'
+    }
   },
 
   data() {
     return {
+      latt : "",
+      longg : "",
+
+      TileValue:"",
       UserCoord: false,
       iconUrlCustom: require("../assets/img/Marker.png"),
       valueInput: "",
@@ -197,16 +272,28 @@ export default {
         [55.668, 37.279],
         [55.686, 37.284],
       ],
+
+
       showDescr: false,
+      showSettings:false,
       showRadius: false,
 
+   
+
       MapOptions: [
-        { id: "Zoom", zoom: 13 },
-        { id: "MaxZoom", MaxZoom: 18 },
-        { id: "MinZoom", MinZoom: 10 },
-        { id: "Center", Center: [55.673, 37.2733] },
+        {  zoom: 13 },
+        {  MaxZoom: 22 },
+        {  MinZoom: 10 },
+        {  Center: [55.673, 37.2733] },
+        {  Url:"http://{s}.tile.osm.org/{z}/{x}/{y}.png"},
       ],
 
+      tile:[
+        {Tile: 'http://{s}.tile.osm.org/{z}/{x}/{y}.png'},//OSM
+        {Tile: 'https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}'},//Satellite
+        {Tile:"https://tiles.stadiamaps.com/tiles/osm_bright/{z}/{x}/{y}{r}.png"},//StadiamapsBright
+        {Tile: 'https://tiles.stadiamaps.com/tiles/alidade_smooth_dark/{z}/{x}/{y}{r}.png'},//Dark
+      ],
       polygon: {
         latlngs: [
           [55.657595, 37.232727],
@@ -427,6 +514,7 @@ export default {
         ],
         color: "#1E90FF",
       },
+      
     };
   },
 
@@ -437,6 +525,7 @@ export default {
     },
   },
   mounted() {},
+
   watch: {
     coordinate() {
       if (this.coordinate) {
@@ -451,30 +540,30 @@ export default {
     },
   },
 
-  methods: {
-    ChangeCenter() {
-      if (this.Coordinate) {
-        this.MapOptions[3].Center = this.Coordinate;
-      } else {
-        this.MapOptions[3].Center = this.coordinate;
-      }
-    },
-    MaxZoomPlus() {
-      this.MapOptions[0].zoom += 1;
-    },
-    MaxZoomMinus() {
-      this.MapOptions[0].zoom -= 1;
-    },
-
-    hideDescr() {
-      this.showDescr = false;
-    },
-  },
+  
 };
 </script>
 
 <style lang="scss" scoped>
 @import "../assets/scss/fonts";
+
+
+.SettingsMap{
+  width: 240px;
+  height: fit-content;
+  background-color: rgb(246, 246, 246);
+  position: absolute;
+  z-index: 30;
+  top: 0;
+  right: 0;
+  margin: 45px 15px;
+  display: flex;
+  align-items: center;
+  padding: 15px;
+  border-bottom-left-radius: 20px;
+  border-bottom-right-radius: 20px;
+
+}
 
 .Marker-container {
   position: relative;
