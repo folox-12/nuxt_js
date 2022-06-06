@@ -114,7 +114,7 @@
 </template>
 
 <script>
-import { mapGetters, mapMutations, mapActions } from "vuex";
+import { mapGetters, mapActions } from "vuex";
 import Imagecard from "@/components/ImgCard.vue";
 import Tablecard from "@/components/TableCard/TableCard.vue";
 import ModalWindow from "@/components/ModalWindow.vue";
@@ -123,14 +123,6 @@ import EditCard from "@/components/buttonCardEditing.vue";
 import AddCard from "@/components/formAddTable.vue";
 import WarningMessage from "@/components/modalErrorInput.vue";
 export default {
-  /*
-  async asyncData({ store }) {
-    await store.dispatch("i18n/setRouteParams", {
-      en: { postId: "my-post" },
-      ru: { Platform: "" },
-    });
-  },
-  */
   layout: "card",
   components: {
     Imagecard,
@@ -143,7 +135,6 @@ export default {
   },
 
   data() {
-    // index_of_platform = $route.params.platform;
     return {
       modalError: false,
       addcardParam: false,
@@ -244,21 +235,31 @@ export default {
       this.description[index] = "";
     },
 
-    ...mapActions("dronoports", ["addInfo1","deletePoint1",]),
-    addInfo(value){
-      if((value[0] ==  '') || (value[1] ==  '') || (value[2] == '') || (value[3] == '' )){
-        console.log(value)
-       this.modalError = true
-        console.log( this.modalError)
+    ...mapActions("dronoports", ["addInfo1", "deletePoint1"]),
+    addInfo(value) {
+      if (
+        value[0] == "" ||
+        value[1] == "" ||
+        value[2] == "" ||
+        value[3] == ""
+      ) {
+        console.log(value);
+        this.modalError = true;
+        console.log(this.modalError);
         setTimeout(() => {
           this.modalError = false;
           console.log(this.modalError);
         }, 2000);
-      }
-      else{
-         var object = {"name": value[0],"company": value[1], "link" : '/', "type": value[2],"id": value[3]};
-      let id = parseInt(this.splitPlatformId)
-      this.addInfo1([id,object])
+      } else {
+        var object = {
+          name: value[0],
+          company: value[1],
+          link: "/",
+          type: value[2],
+          id: value[3],
+        };
+        let id = parseInt(this.splitPlatformId);
+        this.addInfo1([id, object]);
       }
     },
 

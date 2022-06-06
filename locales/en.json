@@ -109,7 +109,7 @@
   "degree-protection-table-card": "Degree of protection IP",
   "add-btn-exit-platform": "Cancel",
 
-  "Test": "Тест",
+  "Test": "Test",
   "Infrastructure": "Infrastructure",
   "Map": "Map",
   "Platform": "Platform",
@@ -120,5 +120,22 @@
   "Sensor": "Sensor",
   "Droneport": "Droneport",
   "Main": "Main",
-  "titleforWarningMessage":"You didn't fill in all the fields"
+
+  "titleforWarningMessage":"You didn't fill in all the fields",
+
+  "Table": "Table",
+
+  "representation-type": "Representation type",
+  "representation-settings": "Representation settings",
+  "city-filter": "City",
+  "several-filter": "Several",
+  "enter-value": "Enter value",
+
+  "nothing-found": "Nothing found",
+  "Filters": "Filters",
+  "Options": "Options",
+
+  "flight-route": "Flight route/area",
+  "flight-location-search": "Find a location to fly"
+
 }

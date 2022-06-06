@@ -122,5 +122,22 @@
   "Sensor": "Датчик движения",
   "Droneport": "Дронопорт",
   "Main": "Главная",
-  "titleforWarningMessage" :"Вы заполнили не все поля"
+
+  "titleforWarningMessage" :"Вы заполнили не все поля",
+
+  "Table": "Таблица",
+
+  "representation-type": "Вид представления",
+  "representation-settings": "Настройки представления",
+  "city-filter": "Город",
+  "several-filter": "Несколько",
+  "enter-value": "Введите значение",
+
+  "nothing-found": "Ничего не найдено",
+  "Filters": "Фильтры",
+  "Options": "Настройки",
+
+  "flight-route": "Маршрут/район полета",
+  "flight-location-search": "Найти населенный пункт для полета"
+
 }

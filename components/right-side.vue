@@ -1,7 +1,7 @@
 <template>
   <div class="right-side">
     <div class="right-side__title">
-      {{ title }}
+      {{ $t(title) }}
     </div>
     <div class="right-side__content">
       <slot></slot>
