@@ -4,15 +4,19 @@
     <main>
       <div class="container">
         <Breadcrumbs :crumbs="getAllRoute" />
-        <TitleOfPage :headerData="headerData" v-if="headerData"></TitleOfPage>
+        <TitleOfPage
+          :headerData="headerData"
+          v-if="headerData"
+          @click="ChangeEditStatus"
+        ></TitleOfPage>
         <nuxt />
       </div>
     </main>
   </div>
 </template>
 <script>
-import Header from "../components/Header.vue";
-import HeaderPageNavigation from "../components/HeaderPageNavigation.vue";
+import Header from "@/components/Header.vue";
+import HeaderPageNavigation from "@/components/HeaderPageNavigation.vue";
 import TitleOfPage from "../components/TitleOfPage.vue";
 import HeaderPageSearch from "../components/HeaderPageSearch.vue";
 import Breadcrumbs from "../components/Breadcrumbs.vue";
@@ -44,6 +48,12 @@ export default {
   methods: {
     openFilter() {
       this.showFilter = !this.showFilter;
+    },
+    ChangeEditStatus() {
+      this.$store.commit(
+        "setChangestatus",
+        !this.$store.getters["GetChangestatus"]
+      );
     },
   },
 };

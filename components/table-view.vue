@@ -60,9 +60,15 @@
               <span>{{ key }}</span>
             </td>
             <td class="null">
-              <nuxt-link :to="localePath('/Platform' + index.id)"
-                >link{{ index.id }}</nuxt-link
-              >
+              <OpenCard
+                v-if="$store.getters['GetChangestatus'] == false"
+                :link="'/Platform' + index.id"
+              ></OpenCard>
+              <EditCard
+                v-else
+                :propid="index"
+                @deletePoint="deletePoint"
+              ></EditCard>
             </td>
           </tr>
         </tbody>
@@ -73,7 +79,16 @@
 </template>
 
 <script>
+import OpenCard from "@/components/buttonCardOpen.vue";
+import EditCard from "@/components/buttonCardEditing.vue";
+
 export default {
+  layout: "default",
+  components: {
+    OpenCard,
+    EditCard,
+  },
+
   data() {
     return {
       to: "",
@@ -81,13 +96,13 @@ export default {
       flagDirection: false,
     };
   },
+
   props: {
     tableTitle: { type: Object, default: {} },
     tableDescription: { type: Array, default: [] },
     pageNumber: { type: Number, default: 1 },
     itemsOnPage: { type: Number, required: true },
   },
-  components: {},
   computed: {
     countOfAllDronoport() {
       return this.tableDescription.length;
