@@ -7,16 +7,14 @@
     "
   >
     <div v-for="(item, index) in img" :key="item" class="card-images__image">
-      <img class = "sizePhoto" :src="img[index]" />
-      <button
-        v-if="$store.getters['GetChangestatus'] == false"
-        @click="
-          (showModal = true),
-            showModal1(img[index],titleImg[index])"
+      <img class="sizePhoto" :src="img[index]" />
+      <iconBase
         class="card-images__loop"
-      >
-        <img src="@/assets/img/ico/loop.svg" alt="" />
-      </button>
+        v-if="$store.getters['GetChangestatus'] == false"
+        @click="(showModal = true), showModal1(img[index], titleImg[index])"
+        :iconType="'search'"
+        :backgroundColor="'#ffffff'"
+      />
       <button
         @click="$emit('DeleteImg', index)"
         v-else
@@ -50,11 +48,11 @@
       :image="image"
       :titleImage="titleImage"
       @addPhoto="addPhoto"
-      
     />
   </div>
 </template>
 <script>
+import IconBase from "./icons/IconBase.vue";
 import ModalWindow from "@/components/ModalWindow.vue";
 export default {
   components: { ModalWindow },
@@ -67,7 +65,9 @@ export default {
       status: this.$store.getters["GetChangestatus"],
     };
   },
-
+  components: {
+    IconBase,
+  },
   props: {
     img: {
       type: Array,
@@ -79,22 +79,23 @@ export default {
     },
   },
   methods: {
-    showModal1(data,date) {
+    showModal1(data, date) {
       this.image = data;
       this.titleImage = date;
     },
-    addPhoto(value){
-    this.$emit('addPhoto', value);
-    
-  }
+    addPhoto(value) {
+      this.$emit("addPhoto", value);
+    },
   },
-  
 };
 </script>
 
 <style lang="scss" scoped>
-.sizePhoto{
-  width:242px;
+.sizePhoto {
+  width: 242px;
   height: 242px;
 }
-  </style>
+
+.card-images__image {
+}
+</style>
