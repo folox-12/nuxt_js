@@ -69,6 +69,7 @@
                   <EditCard
                     v-else
                     :propid="index"
+                    :Type="'icons'"
                     @deletePoint="deletePoint"
                   ></EditCard>
                 </td>

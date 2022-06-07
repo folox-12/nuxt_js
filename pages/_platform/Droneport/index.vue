@@ -35,7 +35,7 @@
               <td>{{ equipment.id }}</td>
               <td>{{ equipment.by }}</td>
               <td>{{ equipment.name }}</td>
-              <td v-if="$store.getters['GetChangestatus'] == true"><EditCard :propid="index" :type="string" @deletePoint="deletePoint"></EditCard></td>
+              <td v-if="$store.getters['GetChangestatus'] == true"><EditCard :propid="index" :Type="'string'" @deletePoint="deletePoint"></EditCard></td>
             </tr>
              <tr><td colspan="3" v-if='computedObj.length == 0'>{{$t("no-info")}}</td></tr>
             <tr><td colspan="3"> <AddCard v-show="addcardParam1" :LengthInput="3" @addInfo='addInfo'></AddCard></td></tr>
@@ -93,7 +93,7 @@
               <td>{{drone.name}}</td>
               <td>{{drone.model}}</td>
               <td v-if="$store.getters['GetChangestatus'] == false"><OpenCard ></OpenCard></td>
-              <td v-else><EditCard :propid="index" :type="string" @deletePoint="deletePoint1"></EditCard></td>
+              <td v-else><EditCard :propid="index" :Type="'string'" @deletePoint="deletePoint1"></EditCard></td>
             </tr>
             <tr><td colspan="3" v-if='drones.length == 0'>{{$t("no-info")}}</td></tr>
             <tr><td colspan="3"> <AddCard v-show="addcardParam" :LengthInput="2" @addInfo='addInfo1'></AddCard></td></tr>

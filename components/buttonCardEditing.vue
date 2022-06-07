@@ -23,12 +23,12 @@
             </svg>
           </button>
         </div>
-        <div v-if='type == string' class="ModalButton-button2" v-show="showButton">
+        <div v-if="Type == 'string'" class="ModalButton-button2" v-show="showButton">
           <button  @click="deletePoint">
             <span>Удалить</span>
           </button>
         </div>
-        <div v-else class="ModalButton-button1" v-show="showButton">
+        <div v-else-if="Type == 'icons'" class="ModalButton-button1" v-show="showButton">
           <button>
             <svg
               id="editing"
@@ -216,8 +216,7 @@ export default {
     flex-direction: column;
     right: -15px;
     top: -20px;
-  }
-  button {
+     button {
       background: transparent;
       padding: 15px 10px 15px 10px;
       span{
@@ -228,5 +227,7 @@ font-size: 16px;
 color: rgba(20, 16, 41, 0.8);
       }
     }
+  }
+ 
 }
 </style>
