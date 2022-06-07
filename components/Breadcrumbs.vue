@@ -45,9 +45,14 @@ export default {
   },
   methods: {
     checkIndex(crumb) {
-      if (!isNaN(parseInt(crumb.slice(-1)))) {
-        this.pageNumber = " №" + crumb.slice(-1);
-        return crumb.slice(0, -1);
+      let lastIndex = 1;
+      for (let i = 1; !isNaN(parseInt(crumb.slice(-i))); i++) {
+        lastIndex = i;
+      }
+
+      if (!isNaN(parseInt(crumb.slice(-lastIndex)))) {
+        this.pageNumber = " №" + crumb.slice(-lastIndex);
+        return crumb.slice(0, -lastIndex);
       } else {
         this.pageNumber = "";
         return crumb;

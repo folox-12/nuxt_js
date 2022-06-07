@@ -83,7 +83,10 @@
                 </td>
               </tr>
             </table>
-            <WarningMessage v-show="this.modalError" :title='$t("titleforWarningMessage")'></WarningMessage>
+            <WarningMessage
+              v-show="this.modalError"
+              :title="$t('titleforWarningMessage')"
+            ></WarningMessage>
           </div>
           <div class="card-infrastructure__button">
             <button
@@ -138,7 +141,7 @@ export default {
     return {
       modalError: false,
       addcardParam: false,
-      titleforWarningMessage: 'titleforWarningMessage',
+      titleforWarningMessage: "titleforWarningMessage",
       infrastructure: [
         {
           name: "droneport",
@@ -235,14 +238,9 @@ export default {
       this.description[index] = "";
     },
 
-    ...mapActions("dronoports", ["addInfo1", "deletePoint1"]),
+    ...mapActions("dronoports", ["addDroneport", "deleteDroneport"]),
     addInfo(value) {
-      if (
-        value[0] == "" ||
-        value[1] == "" ||
-        value[2] == "" ||
-        value[3] == ""
-      ) {
+      if (value.includes(undefined) || value.includes("")) {
         console.log(value);
         this.modalError = true;
         console.log(this.modalError);
@@ -259,13 +257,13 @@ export default {
           id: value[3],
         };
         let id = parseInt(this.splitPlatformId);
-        this.addInfo1([id, object]);
+        this.addDroneport([id, object]);
       }
     },
 
     deletePoint(value) {
       var id = parseInt(this.splitPlatformId);
-      this.deletePoint1([id, value]);
+      this.deleteDroneport([id, value]);
     },
     addPhoto(value) {
       this.img.push(value);
@@ -274,7 +272,8 @@ export default {
   computed: {
     ...mapGetters("dronoports", ["getInfrByPlatformId"]),
     splitPlatformId() {
-      return this.$route.params.platform.match(/\d/g);
+      console.log(this.$route.params.platform.match(/\d+/g));
+      return this.$route.params.platform.match(/\d+/g);
     },
   },
 };

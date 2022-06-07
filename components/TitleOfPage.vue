@@ -40,7 +40,7 @@ export default {
     splitPlatformId() {
       return this.$route.params.platform === undefined
         ? ""
-        : this.$route.params.platform.slice(-1);
+        : this.$route.params.platform.match(/\d+/g);
     },
   },
   methods: {
