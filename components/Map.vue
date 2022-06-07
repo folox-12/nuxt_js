@@ -92,7 +92,7 @@
           </button>
         </div>
         <div class="SettingsMap" v-if="showSettingsTile">
-          <div class="SettingsMap__Tile">
+          <div class="SettingsMap__Tile" v-click-outside="onClickOutsideTile">
             <radioButton
               @radioValue="getTileValue"
               :valuesRadio="{
@@ -101,20 +101,29 @@
                   Светлая: 2,
                   Темная:3,
                 }"
-              :name="'TileRadio'"
                 />
           </div>
         </div>
         <div class="SettingsMap" v-if="showSettingsView">
-          <div class="SettingsMap__View">
-            <radioButton
-              @radioValue="getTileValue"
-              :valuesRadio="{
-                  Вкл: 0,
-                  Выкл : 1,
-                }"
-              :name="'TileRadio'"
-                />
+          <div class="SettingsMap__View SettingsMap-View" v-click-outside="onClickOutsideView">
+            <div class="SettingsMap-View__Layer">
+              <h2>Отображение слоев</h2>
+              <radioButton
+                @radioValue="getViewLayerValue"
+                :valuesRadio="{
+                    Вкл: 1,
+                  }"
+                  />
+            </div>
+            <div class="SettingsMap-View__Rad">
+              <h2>Радиус сигнала</h2>
+              <radioButton
+                @radioValue="getViewRadValue"
+                :valuesRadio="{
+                    Вкл: 1,
+                  }"
+                  />
+            </div>
           </div>
         </div>
       </div>
@@ -172,7 +181,7 @@
               :url= MapOptions[4].Url
             ></l-tile-layer>
 
-            <l-polygon
+            <l-polygon v-if ="showLayer" 
               :lat-lngs="polygon.latlngs"
               :color="polygon.color"
             ></l-polygon>
@@ -196,12 +205,7 @@
       </div>
     </div>
     
-    <fd-button
-      @click="showRadius = !showRadius"
-      :text="'Показать'"
-      :type="'white'"
-      :style="{ 'box-shadow': 'none' }"
-    />
+    
   </div>
 </template>
 
@@ -246,11 +250,31 @@ methods: {
       }
     },
 
+    getViewRadValue(value){
+      this.RadValue = value;
+      if(this.RadValue = 1){
+        this.showRadius = !this.showRadius
+      }
+    },
+
+     getViewLayerValue(value){
+      this.LayValue = value;
+      if(this.LayValue = 1){
+        this.showLayer = !this.showLayer
+      }
+    },
+    
+
     ChangeCenter() {
       if (this.Coordinate) {
         this.MapOptions[3].Center = this.Coordinate;
       } else {
         this.MapOptions[3].Center = this.coordinate;
+      }
+      if(this.valueInput == "Odintsovo"){
+        this.showLayer = true
+      }else{
+        this.showLayer = false
       }
     },
     MaxZoomPlus() {
@@ -264,6 +288,13 @@ methods: {
       this.showDescr = false;
     },
 
+    onClickOutsideTile(event) {
+      this.showSettingsTile =false
+    },
+
+    onClickOutsideView(event) {
+      this.showSettingsView =false
+    },
   },
 
   data() {
@@ -272,7 +303,11 @@ methods: {
       longg : null,
 
       TileValue:"",
+      ViewLayerValue:"",
+      ViewRadValue:"",
       UserCoord: false,
+      RadValue:"",
+
       iconUrlCustom: require("../assets/img/Marker.png"),
       valueInput: "",
       Address: [
@@ -287,6 +322,7 @@ methods: {
       showRadius: false,
       showSettingsView:false,
       showUserPos:false,
+      showLayer:false,
 
    
 
@@ -520,7 +556,7 @@ methods: {
           [55.657934, 37.240209],
           [55.657438, 37.240873],
           [55.656897, 37.240196],
-          [55.657135, 37.238661],
+          [55.657135, 37.238661]
         ],
         color: "#1E90FF",
       },
@@ -548,6 +584,7 @@ methods: {
     Coordinate() {
       return this.getCoordinate[this.valueInput];
     },
+    
   },
 
   
@@ -749,6 +786,18 @@ svg {
 .ModalDescrButton:hover {
   svg {
     fill: blueviolet;
+  }
+}
+
+.SettingsMap-View{
+  display: flex;
+  flex-direction: column;
+  grid-gap: 15px;
+
+  h2{
+    font-size: 16px;
+    font-weight: 500;
+    margin-bottom: 15px;
   }
 }
 </style>
