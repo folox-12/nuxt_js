@@ -99,250 +99,30 @@ export default {
           address: "г. Одинцово, ул. Северная, 3",
           dronoport: 4,
           postamat: 1,
-          infrastructure: [
-            {
-              name: "droneport",
-              company: "Hive",
-              type: "М300",
-              id: "312312414",
-              link: "/Droneport",
-            },
-            {
-              name: "camera",
-              company: "AHD",
-              type: "C201HD",
-              id: "312312414",
-              link: "/Camera",
-            },
-            {
-              name: "motion-sensors",
-              company: "Ajax",
-              type: "MonionProtect",
-              id: "312312414",
-              link: "/Sensor",
-            },
-            {
-              name: "protection",
-              company: "Wall",
-              type: "WallOne",
-              id: "312312414",
-              link: "/Wall",
-            },
-            {
-              name: "lights",
-              company: "FERON",
-              type: "SP3040",
-              id: "312312414",
-              link: "/Light",
-            },
-            {
-              name: "postamat",
-              company: "Ozon",
-              type: "Box",
-              id: "312312414",
-              link: "/Postamat",
-            },
-          ],
         },
         {
           id: 4,
           address: "г. Москва, ул. Северная, 44",
           dronoport: 4,
           postamat: 2,
-          infrastructure: [
-            {
-              name: "droneport",
-              company: "Hive",
-              type: "М300",
-              id: "312312414",
-              link: "/Droneport",
-            },
-            {
-              name: "camera",
-              company: "AHD",
-              type: "C201HD",
-              id: "312312414",
-              link: "/Camera",
-            },
-            {
-              name: "motion-sensors",
-              company: "Ajax",
-              type: "MonionProtect",
-              id: "312312414",
-              link: "/Sensor",
-            },
-            {
-              name: "protection",
-              company: "Wall",
-              type: "WallOne",
-              id: "312312414",
-              link: "/Wall",
-            },
-            {
-              name: "lights",
-              company: "FERON",
-              type: "SP3040",
-              id: "312312414",
-              link: "/Light",
-            },
-            {
-              name: "postamat",
-              company: "Ozon",
-              type: "Box",
-              id: "312312414",
-              link: "/Postamat",
-            },
-          ],
         },
         {
           id: 5,
           address: "г. Одинцово, ул. Северная, 42",
           dronoport: 4,
           postamat: 1,
-          infrastructure: [
-            {
-              name: "droneport",
-              company: "Hive",
-              type: "М300",
-              id: "312312414",
-              link: "/Droneport",
-            },
-            {
-              name: "camera",
-              company: "AHD",
-              type: "C201HD",
-              id: "312312414",
-              link: "/Camera",
-            },
-            {
-              name: "motion-sensors",
-              company: "Ajax",
-              type: "MonionProtect",
-              id: "312312414",
-              link: "/Sensor",
-            },
-            {
-              name: "protection",
-              company: "Wall",
-              type: "WallOne",
-              id: "312312414",
-              link: "/Wall",
-            },
-            {
-              name: "lights",
-              company: "FERON",
-              type: "SP3040",
-              id: "312312414",
-              link: "/Light",
-            },
-            {
-              name: "postamat",
-              company: "Ozon",
-              type: "Box",
-              id: "312312414",
-              link: "/Postamat",
-            },
-          ],
         },
         {
           id: 6,
           address: "г. Одинцово, ул. Северная, 41",
           dronoport: 4,
           postamat: 1,
-          infrastructure: [
-            {
-              name: "droneport",
-              company: "Hive",
-              type: "М300",
-              id: "312312414",
-              link: "/Droneport",
-            },
-            {
-              name: "camera",
-              company: "AHD",
-              type: "C201HD",
-              id: "312312414",
-              link: "/Camera",
-            },
-            {
-              name: "motion-sensors",
-              company: "Ajax",
-              type: "MonionProtect",
-              id: "312312414",
-              link: "/Sensor",
-            },
-            {
-              name: "protection",
-              company: "Wall",
-              type: "WallOne",
-              id: "312312414",
-              link: "/Wall",
-            },
-            {
-              name: "lights",
-              company: "FERON",
-              type: "SP3040",
-              id: "312312414",
-              link: "/Light",
-            },
-            {
-              name: "postamat",
-              company: "Ozon",
-              type: "Box",
-              id: "312312414",
-              link: "/Postamat",
-            },
-          ],
         },
         {
           id: 7,
           address: "г. Одинцово, ул. Северная, 40",
           dronoport: 4,
           postamat: 1,
-          infrastructure: [
-            {
-              name: "droneport",
-              company: "Hive",
-              type: "М300",
-              id: "312312414",
-              link: "/Droneport",
-            },
-            {
-              name: "camera",
-              company: "AHD",
-              type: "C201HD",
-              id: "312312414",
-              link: "/Camera",
-            },
-            {
-              name: "motion-sensors",
-              company: "Ajax",
-              type: "MonionProtect",
-              id: "312312414",
-              link: "/Sensor",
-            },
-            {
-              name: "protection",
-              company: "Wall",
-              type: "WallOne",
-              id: "312312414",
-              link: "/Wall",
-            },
-            {
-              name: "lights",
-              company: "FERON",
-              type: "SP3040",
-              id: "312312414",
-              link: "/Light",
-            },
-            {
-              name: "postamat",
-              company: "Ozon",
-              type: "Box",
-              id: "312312414",
-              link: "/Postamat",
-            },
-          ],
         },
         {
           id: 8,
@@ -360,20 +140,30 @@ export default {
     ],
   },
   actions: {
-    addInfo1: ({ commit }, array) => commit("addInfo2", array),
-    deletePoint1: ({ commit }, array) => commit("deletePoint2", array),
+    addDroneport: ({ commit }, array) => commit("addDroneport", array),
+    addPlatform: ({ commit }, platformData) =>
+      commit("addPlatform", platformData),
+    deleteDroneport: ({ commit }, array) => commit("deleteDroneport", array),
+    deletePlatform: ({ commit }, idPlatform) =>
+      commit("deletePlatform", idPlatform),
   },
   mutations: {
-
-   
-    addInfo2:(state,array) =>{
-      state.tableData[1][array[0]-1].infrastructure.push(array[1])
-     
+    addDroneport: (state, array) => {
+      state.tableData[1][array[0] - 1].infrastructure.push(array[1]);
     },
-    deletePoint2:(state,array) => {
-      state.tableData[1][array[0]-1].infrastructure.splice(array[1],1)
-    }
-
+    addPlatform: (state, platformData) => {
+      state.tableData[1].push(platformData);
+    },
+    deleteDroneport: (state, array) => {
+      state.tableData[1][array[0] - 1].infrastructure.splice(array[1], 1);
+    },
+    deletePlatform: (state, idDelete) => {
+      let platformsData = state.tableData[1];
+      for (let i = 0; i < platformsData.length; i++) {
+        let platform = platformsData[i];
+        if (platform.id == idDelete) platformsData.splice(i, 1);
+      }
+    },
   },
   getters: {
     getAllDronoport(state) {

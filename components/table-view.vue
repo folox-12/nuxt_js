@@ -61,7 +61,7 @@
             </td>
             <td class="null">
               <OpenCard
-                v-if="$store.getters['GetChangestatus'] == false"
+                v-if="!$store.getters['GetChangestatus']"
                 :link="'/Platform' + index.id"
               ></OpenCard>
               <EditCard
@@ -69,6 +69,15 @@
                 :propid="index"
                 @deletePoint="deletePoint"
               ></EditCard>
+            </td>
+          </tr>
+          <tr>
+            <td colspan="5">
+              <AddCard
+                v-show="$store.getters['GetChangestatus']"
+                :LengthInput="3"
+                @addInfo="addInfo"
+              ></AddCard>
             </td>
           </tr>
         </tbody>
@@ -81,12 +90,15 @@
 <script>
 import OpenCard from "@/components/buttonCardOpen.vue";
 import EditCard from "@/components/buttonCardEditing.vue";
+import AddCard from "@/components/formAddTable.vue";
+import { mapActions } from "vuex";
 
 export default {
   layout: "default",
   components: {
     OpenCard,
     EditCard,
+    AddCard,
   },
 
   data() {
@@ -112,6 +124,22 @@ export default {
     },
   },
   methods: {
+    ...mapActions("dronoports", ["addPlatform", "deletePlatform"]),
+    addInfo(value) {
+      let object = {
+        id: 10,
+        address: value[0],
+        dronoport: value[1],
+        postamat: value[2],
+        infrastructure: [],
+      };
+      // console.log("f " + object.address);
+      this.addPlatform(object);
+    },
+    deletePoint(value) {
+      //console.log(value.id);
+      this.deletePlatform(value.id);
+    },
     removeObjProperty(obj, prop_name) {
       const arr = Object.entries(obj);
       const filtered_arr = arr.filter(function ([key, value]) {
@@ -199,8 +227,6 @@ export default {
     td.postamat {
       text-align: center;
       width: fit-content;
-    }
-    td.null {
     }
     tr {
       & > :first-child {

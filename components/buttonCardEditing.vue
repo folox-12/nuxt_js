@@ -122,14 +122,13 @@ export default {
     return {
       showModal: false,
       showButton: false,
-      id: 0
+      id: 0,
     };
-    
   },
-  props:{
-    propid:{
-      type: Number
-    }
+  props: {
+    propid: {
+      type: Number,
+    },
   },
 
   methods: {
@@ -147,15 +146,15 @@ export default {
         }
       });
     },
-   deletePoint() { 
+    deletePoint() {
       this.$emit("deletePoint", this.propid);
-    }
-  },
-   watch :{ 
-      propid: function(new_value) { 
-        this.init()
-      }
     },
+  },
+  watch: {
+    propid: function (new_value) {
+      this.init;
+    },
+  },
 };
 </script>
 
