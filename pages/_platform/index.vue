@@ -69,7 +69,6 @@
                   <EditCard
                     v-else
                     :propid="index"
-                    :Type="'icons'"
                     @deletePoint="deletePoint"
                   ></EditCard>
                 </td>
@@ -239,7 +238,7 @@ export default {
       this.description[index] = "";
     },
 
-    ...mapActions("dronoports", ["addDroneport", "deleteDroneport"]),
+    ...mapActions("dronoports", ["addDroneport", "deleteDroneport","addDroneportStorage"]),
     addInfo(value) {
       if (value.includes(undefined) || value.includes("")) {
         console.log(value);
@@ -259,8 +258,10 @@ export default {
         };
         let id = parseInt(this.splitPlatformId);
         this.addDroneport([id, object]);
+    
       }
     },
+   
 
     deletePoint(value) {
       var id = parseInt(this.splitPlatformId);
@@ -270,6 +271,7 @@ export default {
       this.img.push(value);
     },
   },
+   
   computed: {
     ...mapGetters("dronoports", ["getInfrByPlatformId"]),
     splitPlatformId() {

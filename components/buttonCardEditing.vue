@@ -28,7 +28,7 @@
             <span>Удалить</span>
           </button>
         </div>
-        <div v-else-if="Type == 'icons'" class="ModalButton-button1" v-show="showButton">
+        <div v-else class="ModalButton-button1" v-show="showButton">
           <button>
             <svg
               id="editing"
