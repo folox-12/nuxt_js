@@ -219,11 +219,12 @@ export default {
 methods: {
 
   createUserMarker(){
-    navigator.geolocation.getCurrentPosition(showPosition); 
-    function showPosition(position) {
-    alert("Широта: " + position.coords.latitude + "Долгота: " + position.coords.longitude);
-  }
-   
+    navigator.geolocation.getCurrentPosition(this.showPosition); 
+    
+  },
+  showPosition(position) {
+    this.latt = position.coords.latitude 
+    this.longg= position.coords.longitude;
   },
   onClickOutside (event) {
       this.showSettings = false
@@ -262,8 +263,8 @@ methods: {
 
   data() {
     return {
-      // latt : "",
-      // longg : "",
+      latt : null,
+      longg : null,
 
       TileValue:"",
       UserCoord: false,

@@ -1,5 +1,6 @@
 <template>
   <div class="page">
+    <WarningMessage v-show="this.modalError" :title='$t("titleforWarningMessage")'></WarningMessage>
     <div class="card">
       <Imagecard :img="img" :titleImg="titleImg" @DeleteImg="DeleteImg" @addPhoto="addPhoto"></Imagecard>
       <hr />
@@ -28,13 +29,16 @@
               <th>№</th>
               <th>{{ $t("equipment-name") }}</th>
               <th align="left">{{ $t("equipment-type") }}</th>
+              <th v-if="$store.getters['GetChangestatus'] == true"></th>
             </tr>
             <tr v-for="(equipment, index) in computedObj" v-bind:key="index">
               <td>{{ equipment.id }}</td>
               <td>{{ equipment.by }}</td>
               <td>{{ equipment.name }}</td>
+              <td v-if="$store.getters['GetChangestatus'] == true"><EditCard :propid="index" :type="string" @deletePoint="deletePoint"></EditCard></td>
             </tr>
-            <tr><td colspan="5"> <AddCard v-show="addcardParam1" :LengthInput="3" @addInfo='addInfo'></AddCard></td></tr>
+             <tr><td colspan="3" v-if='computedObj.length == 0'>{{$t("no-info")}}</td></tr>
+            <tr><td colspan="3"> <AddCard v-show="addcardParam1" :LengthInput="3" @addInfo='addInfo'></AddCard></td></tr>
           </table>
           <div v-if="$store.getters['GetChangestatus'] == false">
             <button
@@ -84,12 +88,15 @@
               </th>
               <th style="padding-bottom: 15px"></th>
             </tr>
-            <tr>
-              <td>DJI</td>
-              <td>Matrice 300 RTK</td>
-              <td><OpenCard></OpenCard></td>
+            <tr v-for='(drone,index) in drones'
+            :key="index">
+              <td>{{drone.name}}</td>
+              <td>{{drone.model}}</td>
+              <td v-if="$store.getters['GetChangestatus'] == false"><OpenCard ></OpenCard></td>
+              <td v-else><EditCard :propid="index" :type="string" @deletePoint="deletePoint1"></EditCard></td>
             </tr>
-            <tr><td colspan="5"> <AddCard v-show="addcardParam" :LengthInput="2" @addInfo='addInfo1'></AddCard></td></tr>
+            <tr><td colspan="3" v-if='drones.length == 0'>{{$t("no-info")}}</td></tr>
+            <tr><td colspan="3"> <AddCard v-show="addcardParam" :LengthInput="2" @addInfo='addInfo1'></AddCard></td></tr>
           </table>
           <button
               v-if="$store.getters['GetChangestatus'] == true && addcardParam == false"
@@ -116,6 +123,8 @@ import Tablecard from "../../../components/TableCard/TableCard.vue";
 import ModalWindow from "../../../components/ModalWindow.vue";
 import OpenCard from "../../../components/buttonCardOpen.vue";
 import AddCard from "@/components/formAddTable.vue"
+import EditCard from "@/components/buttonCardEditing.vue";
+import WarningMessage from "@/components/modalErrorInput.vue";
 export default {
   layout: "card",
   components: {
@@ -123,20 +132,27 @@ export default {
     Tablecard,
     ModalWindow,
     OpenCard,
-    AddCard
+    AddCard,
+    EditCard,
+    WarningMessage
   },
   data() {
     
 
     return {
+      modalError: false,
       addcardParam1 : false,
       addcardParam : false,
+      titleforWarningMessage: "titleforWarningMessage",
       equipments: [
         { id: "1", name: "Метеостанция", by: "DJI" },
         { id: "2", name: "Модуль WIFI", by: "DJI" },
         { id: "3", name: "Модуль климат контроля", by: "DJI" },
         { id: "4", name: "Модуль контроля неба", by: "DJI" },
         { id: "5", name: "Модуль посадки", by: "DJI" },
+      ],
+      drones:[
+        {name:'DJI',model:'Matrice 300 RTK'}
       ],
       limit: 3,
       img: [
@@ -215,8 +231,47 @@ export default {
       this.img.push(value)
     },
     addInfo(value){
-      var object = {"id": value[0],"name": value[1],"by": value[2],};
+       if (
+        value[0] == "" ||
+        value[1] == "" ||
+        value[2] == "" 
+      ) {
+        console.log(value);
+        this.modalError = true;
+        console.log(this.modalError);
+        setTimeout(() => {
+          this.modalError = false;
+          console.log(this.modalError);
+        }, 2000)
+      }
+        else{
+      let object = {"id": value[0],"name": value[1],"by": value[2],};
       this.equipments.push(object)
+        }
+    },
+    addInfo1(value){
+      if (
+        value[0] == "" ||
+        value[1] == "" 
+      ) {
+        console.log(value);
+        this.modalError = true;
+        console.log(this.modalError);
+        setTimeout(() => {
+          this.modalError = false;
+          console.log(this.modalError);
+        }, 2000)
+      }
+      else{
+      let object = {"name": value[0],"model": value[1]};
+       this.drones.push(object)
+      }
+    },
+    deletePoint(value){
+      this.equipments.splice(value,1)
+    },
+    deletePoint1(value){
+      this.drones.splice(value,1)
     },
   },
 };

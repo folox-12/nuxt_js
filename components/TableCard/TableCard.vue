@@ -67,7 +67,7 @@
                 class="card-main-list__input"
                 v-bind:value="description[1]"
                 v-mask="[ 'XXXX-XXX-XXXX', 'XXXX-XXXX-XXXX',]"
-                placeholder="длина-ширина-высота"
+               
                 @input="$emit('changeInfo', 1, $event.target.value)"
               /><button @click="clearInput(title[1]), $emit('clearInput', 1)">
                 <img src="@/assets/img/ico/smallClear.svg" alt="" />
@@ -80,6 +80,7 @@
                 type="text"
                 class="card-main-list__input"
                v-mask="['## x ## x ##', '#### x #### x ###', '### x ### x ###', ]"
+                placeholder="длина-ширина-высота"
                 v-model="description[1]"
                 @input="$emit('changeInfo', 1, $event.target.value)"
               />

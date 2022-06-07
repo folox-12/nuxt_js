@@ -23,7 +23,12 @@
             </svg>
           </button>
         </div>
-        <div class="ModalButton-button1" v-show="showButton">
+        <div v-if='type == string' class="ModalButton-button2" v-show="showButton">
+          <button  @click="deletePoint">
+            <span>Удалить</span>
+          </button>
+        </div>
+        <div v-else class="ModalButton-button1" v-show="showButton">
           <button>
             <svg
               id="editing"
@@ -109,13 +114,7 @@
 import ModalWindow from "../components/ModalWindow.vue";
 
 export default {
-  //     props:{
-  //     link:{
-  //       type: String,
-  //       required: true,
-  //       default:"/Platform"
-  // }
-  // },
+  
   layout: "map",
   components: { ModalWindow },
   data() {
@@ -129,6 +128,9 @@ export default {
   props:{
     propid:{
       type: Number
+    },
+    Type:{
+      type: String
     }
   },
 
@@ -201,5 +203,29 @@ export default {
       transform: matrix(1, 0.01, 0, -1, 0, 0);
     }
   }
+  &-button2{
+     width: 117px;
+    height: 55px;
+    background-color: white;
+    box-shadow: 2px 4px 20px rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+    z-index: 9999;
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    right: -15px;
+    top: -20px;
+  }
+  button {
+      background: transparent;
+      padding: 15px 10px 15px 10px;
+      span{
+        font-family: 'Montserrat';
+font-style: normal;
+font-weight: 500;
+font-size: 16px;
+color: rgba(20, 16, 41, 0.8);
+      }
+    }
 }
 </style>
