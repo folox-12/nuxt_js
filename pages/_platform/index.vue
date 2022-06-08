@@ -238,7 +238,11 @@ export default {
       this.description[index] = "";
     },
 
-    ...mapActions("dronoports", ["addDroneport", "deleteDroneport","addDroneportStorage"]),
+    ...mapActions("dronoports", [
+      "addDroneport",
+      "deleteDroneport",
+      "addDroneportStorage",
+    ]),
     addInfo(value) {
       if (value.includes(undefined) || value.includes("")) {
         console.log(value);
@@ -258,10 +262,8 @@ export default {
         };
         let id = parseInt(this.splitPlatformId);
         this.addDroneport([id, object]);
-    
       }
     },
-   
 
     deletePoint(value) {
       var id = parseInt(this.splitPlatformId);
@@ -271,7 +273,7 @@ export default {
       this.img.push(value);
     },
   },
-   
+
   computed: {
     ...mapGetters("dronoports", ["getInfrByPlatformId"]),
     splitPlatformId() {
@@ -282,7 +284,7 @@ export default {
 };
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 @import "@/assets/scss/card-area";
 ::-webkit-scrollbar {
   width: 5px;

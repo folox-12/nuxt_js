@@ -29,9 +29,9 @@
     <fdButton :text="'при'" :type="'white'" @click="someFunction" />
     <fdInput v-model="value" :closeIcon="true" :type="'primary'" />
     <iconBase
-      :iconType="'filter'"
+      :iconType="'plus-circle'"
+      :fill="'red'"
       @click="foo"
-      :fill="'black'"
       :backgroundColor="'grey'"
     />
   </div>
