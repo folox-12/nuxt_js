@@ -19,7 +19,7 @@ t
       </svg>
       <a href="#" @click.prevent>{{ title }}</a>
     </div>
-    <ul class="spoiler__content" v-if="showContent">
+    <ul class="spoiler__content" v-show="showContent">
       <slot></slot>
     </ul>
   </div>

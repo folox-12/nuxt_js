@@ -23,7 +23,7 @@
       sunt numquam, soluta consectetur, quod recusandae consequuntur.
     </div>
     <radioButton
-      :valuesRadio="{ 1: 1, 2: 2, Все: 21 }"
+      :valuesRadio="{ 1: 1, 2: 2, 3: 3, 4: 4, 5: 5, 6: 6, Все: 21 }"
       :custom="true"
     ></radioButton>
     <fdButton :text="'при'" :type="'white'" @click="someFunction" />
