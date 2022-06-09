@@ -2,11 +2,10 @@
   <div class="fd-input" :class="type">
     <iconBase
       v-if="icon"
-      :src="icon"
       alt=""
       class="search-icon"
       :class="{ focus: focus }"
-      :iconType="'search'"
+      :iconType="icon"
       :width="'34px'"
       :height="'34px'"
     />
@@ -25,7 +24,12 @@
       id="clear-input"
       @click="clearInput()"
     >
-      <img src="/ico/close.svg" alt="" />
+      <iconBase
+        :iconType="'close'"
+        :width="'14px'"
+        :height="'14px'"
+        :fill="'grey'"
+      />
     </button>
   </div>
 </template>

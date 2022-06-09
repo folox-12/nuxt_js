@@ -240,7 +240,11 @@ export default {
        localStorage.setItem('DataStationLocal', JSON.stringify( this.description))
     },
 
-    ...mapActions("dronoports", ["addDroneport", "deleteDroneport","addDroneportStorage"]),
+    ...mapActions("dronoports", [
+      "addDroneport",
+      "deleteDroneport",
+      "addDroneportStorage",
+    ]),
     addInfo(value) {
       if (value.includes(undefined) || value.includes("")) {
         this.modalError = true;
@@ -257,10 +261,8 @@ export default {
         };
         let id = parseInt(this.splitPlatformId);
         this.addDroneport([id, object]);
-    
       }
     },
-   
 
     deletePoint(value) {
       var id = parseInt(this.splitPlatformId);
@@ -283,11 +285,13 @@ export default {
   },
 
   },
+
     beforeMount(){
     this.TakeDataFromLocalStation(),
     this.addInfoStorage()
    
      },
+
   computed: {
     ...mapGetters("dronoports", ["getInfrByPlatformId"]),
     splitPlatformId() {
@@ -299,7 +303,7 @@ export default {
 };
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 @import "@/assets/scss/card-area";
 ::-webkit-scrollbar {
   width: 5px;

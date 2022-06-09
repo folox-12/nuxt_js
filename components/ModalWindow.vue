@@ -2,31 +2,7 @@
   <div class="ModalWindow">
     <div class="ModalWindow__container">
       <div class="Close" @click="$emit('close-modal')">
-        <svg
-          width="31"
-          height="29"
-          viewBox="0 0 31 29"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <rect
-            xmlns="http://www.w3.org/2000/svg"
-            x="0.140625"
-            y="18.3906"
-            width="25.4384"
-            height="2.6467"
-            transform="rotate(-45 0.140625 18.3906)"
-            fill="#6D6A7A"
-          />
-          <rect
-            xmlns="http://www.w3.org/2000/svg"
-            x="1.87109"
-            width="25.4384"
-            height="2.6467"
-            transform="rotate(45 1.87109 0)"
-            fill="#6D6A7A"
-          />
-        </svg>
+        <iconBase :iconType="'close'" :width="'32px'" :height="'32px'" />
       </div>
       <div class="ModalWindow__container-description">
         <h6 v-if="$store.getters['GetChangestatus'] == false">
@@ -58,12 +34,16 @@
 </template>
 
 <script>
+import IconBase from "./icons/IconBase.vue";
 export default {
   data() {
     return {
       img: require("../assets/img/ico/addphoto.svg"),
-      example: null
+      example: null,
     };
+  },
+  components: {
+    IconBase,
   },
   props: {
     image: {
@@ -79,17 +59,12 @@ export default {
   },
   methods: {
     addImage() {
-      
-      this.example = this.$refs.file.files[0]
+      this.example = this.$refs.file.files[0];
       //  this.img = URL.createObjectURL(this.example);
       let agree = confirm("Добавить фото?");
       if (agree == true) {
-      this.$emit('addPhoto',  URL.createObjectURL(this.example))
-      this.$emit('close-modal')
-      
-      
-      
-    
+        this.$emit("addPhoto", URL.createObjectURL(this.example));
+        this.$emit("close-modal");
       }
     },
   },
