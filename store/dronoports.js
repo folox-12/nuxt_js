@@ -166,6 +166,7 @@ export default {
     },
     deleteDroneport: (state, array) => {
       state.tableData[1][array[0] - 1].infrastructure.splice(array[1], 1);
+      localStorage.setItem('tableInfrastructure', JSON.stringify(state.tableData[1][array[0] - 1].infrastructure))
     },
     deletePlatform: (state, idDelete) => {
       let platformsData = state.tableData[1];
