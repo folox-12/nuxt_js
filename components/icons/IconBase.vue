@@ -5,6 +5,7 @@
       'background-color': backgroundColor,
       width: width,
       height: height,
+      transform: `rotate(${deg})`,
     }"
     :class="{ pointer: backgroundColor }"
     @click="click"
@@ -85,6 +86,16 @@
         :fill="fill"
       />
     </svg>
+    <svg
+      v-else-if="iconType == 'arrow-down'"
+      viewBox="0 0 14 11"
+      :fill="fill"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        d="M0 8.70009L1.14211 10.1113L7 2.87302L12.8579 10.1113L14 8.70009L7 0.0960608L0 8.70009Z"
+      />
+    </svg>
   </span>
 </template>
 <script>
@@ -113,6 +124,10 @@ export default {
       type: String,
       default: "#000000",
     },
+    deg: {
+      type: String,
+      default: "0deg",
+    },
   },
   methods: {
     mouseover() {
@@ -131,6 +146,7 @@ export default {
 </script>
 <style lang="scss" scoped>
 .icon {
+  transition: all 0.2s;
   display: flex;
   align-items: center;
   justify-content: center;

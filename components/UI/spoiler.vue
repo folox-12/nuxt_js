@@ -6,17 +6,13 @@ t
       @click="showContent = !showContent"
       :class="{ open: showContent }"
     >
-      <svg
-        width="14"
-        height="11"
-        viewBox="0 0 14 11"
-        fill="none"
-        xmlns="http://www.w3.org/2000/svg"
-      >
-        <path
-          d="M0 8.70009L1.14211 10.1113L7 2.87302L12.8579 10.1113L14 8.70009L7 0.0960608L0 8.70009Z"
-        />
-      </svg>
+      <icon-base
+        :width="'1rem'"
+        :height="'1rem'"
+        :iconType="'arrow-down'"
+        :fill="showContent ? '#9b42f2' : 'grey'"
+        :deg="showContent ? '0deg' : '180deg'"
+      />
       <a href="#" @click.prevent>{{ title }}</a>
     </div>
     <ul class="spoiler__content" v-show="showContent">
@@ -26,13 +22,16 @@ t
 </template>
 
 <script>
+import IconBase from "../icons/IconBase.vue";
 export default {
   data() {
     return {
       showContent: false,
     };
   },
-  components: {},
+  components: {
+    IconBase,
+  },
   props: {
     title: {
       type: String,
@@ -49,24 +48,16 @@ export default {
   flex-direction: column;
   cursor: pointer;
   &__title {
+    display: flex;
+    gap: 15px;
     a {
       color: grey;
-    }
-    svg {
-      transition: 0.2s;
-      transform: rotate(180deg);
-      fill: grey;
-      margin-right: 15px;
     }
   }
   &__title.open {
     margin-bottom: 15px;
     a {
       color: #9b42f2;
-    }
-    svg {
-      transform: rotate(0);
-      fill: #9b42f2;
     }
   }
 
