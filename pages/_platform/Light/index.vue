@@ -90,6 +90,7 @@ export default {
   methods: {
     changeData(number, value) {
       this.description[number] = value;
+        localStorage.setItem('DataLightLocal', JSON.stringify(this.description))
     },
 
     DeleteImg(index) {
@@ -100,8 +101,21 @@ export default {
     },
      addPhoto(value){
       this.img.push(value)
+      localStorage.setItem('DataLightLocal', JSON.stringify(this.description))
+    },
+  TakeDataFromLocalLight(){
+       const DataLocalLight = localStorage.getItem('DataLightLocal')
+      if(DataLocalLight != null){
+      this.description = JSON.parse(DataLocalLight)
+     
+      }
     }
+
   },
+  beforeMount(){
+    this.TakeDataFromLocalLight()
+   
+     },
 };
 </script>
 

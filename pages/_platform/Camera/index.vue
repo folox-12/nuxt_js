@@ -87,6 +87,7 @@ export default {
   methods: {
     changeData(number, value) {
       this.description[number] = value;
+      localStorage.setItem('DataCameraLocal', JSON.stringify( this.description))
     },
 
      DeleteImg(index){
@@ -94,12 +95,24 @@ export default {
     },
     clearInput(index){
       this.description[index] = ''
+      localStorage.setItem('DataCameraLocal', JSON.stringify( this.description))
     },
      addPhoto(value){
       this.img.push(value)
+    },
+    TakeDataFromLocalCamera(){
+       const DataLocalCamera = localStorage.getItem('DataCameraLocal')
+      if(DataLocalCamera != null){
+      this.description = JSON.parse(DataLocalCamera)
+     
+      }
     }
 
   },
+  beforeMount(){
+    this.TakeDataFromLocalCamera()
+   
+     },
 };
 </script>
 

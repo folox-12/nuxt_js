@@ -220,12 +220,14 @@ export default {
   methods: {
     changeData(number, value) {
       this.description[number] = value;
+      localStorage.setItem('DataDroneportLocal', JSON.stringify( this.description))
     },
      DeleteImg(index){
       this.img.splice(index, 1)
     },
     clearInput(index){
       this.description[index] = ''
+      localStorage.setItem('DataDroneportLocal', JSON.stringify( this.description))
     },
      addPhoto(value){
       this.img.push(value)
@@ -247,6 +249,7 @@ export default {
         else{
       let object = {"id": value[0],"name": value[1],"by": value[2],};
       this.equipments.push(object)
+       localStorage.setItem('DataDroneportLocaleequipments', JSON.stringify(this.equipments))
         }
     },
     addInfo1(value){
@@ -265,15 +268,45 @@ export default {
       else{
       let object = {"name": value[0],"model": value[1]};
        this.drones.push(object)
+         localStorage.setItem('DataDroneportLocaledrones', JSON.stringify(this.drones))
       }
     },
     deletePoint(value){
       this.equipments.splice(value,1)
+       localStorage.setItem('DataDroneportLocaleequipments', JSON.stringify(this.equipments))
     },
     deletePoint1(value){
       this.drones.splice(value,1)
+      localStorage.setItem('DataDroneportLocaledrones', JSON.stringify(this.drones))
     },
+    TakeDataFromLocalDroneport(){
+    const DataLocalDroneport = localStorage.getItem('DataDroneportLocal')
+      if(DataLocalDroneport != null){
+      this.description = JSON.parse(DataLocalDroneport)
+     
+      }
   },
+   TakeDataFromLocalDroneportquipments(){
+    const DataLocalDroneportquipments = localStorage.getItem('DataDroneportLocaleequipments')
+      if(DataLocalDroneportquipments != null){
+      this.equipments = JSON.parse(DataLocalDroneportquipments)
+     
+      }
+  },
+   TakeDataFromLocalDroneportdrones(){
+    const DataLocalDroneportdrones = localStorage.getItem('DataDroneportLocaledrones')
+      if(DataLocalDroneportdrones != null){
+      this.drones = JSON.parse(DataLocalDroneportdrones)
+     
+      }
+  },
+  },
+  beforeMount(){
+    this.TakeDataFromLocalDroneport(),
+    this.TakeDataFromLocalDroneportquipments(),
+    this.TakeDataFromLocalDroneportdrones()
+   
+     },
 };
 </script>
 

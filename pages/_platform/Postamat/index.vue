@@ -89,18 +89,31 @@ export default {
   methods: {
     changeData(number, value) {
       this.description[number] = value;
+      localStorage.setItem('DataPostamatLocal', JSON.stringify(this.description))
     },
      DeleteImg(index){
       this.img.splice(index, 1)
     },
     clearInput(index){
       this.description[index] = ''
+          localStorage.setItem('DataPostamatLocal', JSON.stringify(this.description))
     },
      addPhoto(value){
       this.img.push(value)
+    },
+ TakeDataFromLocalPostamat(){
+       const DataLocalPostamat = localStorage.getItem('DataPostamatLocal')
+      if(DataLocalPostamat != null){
+      this.description = JSON.parse(DataLocalPostamat)
+     
+      }
     }
 
   },
+  beforeMount(){
+    this.TakeDataFromLocalPostamat()
+   
+     },
 };
 </script>
 
