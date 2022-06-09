@@ -230,23 +230,22 @@ export default {
   methods: {
     changeData(number, value) {
       this.description[number] = value;
+      localStorage.setItem('DataStationLocal', JSON.stringify( this.description))
     },
     DeleteImg(index) {
       this.img.splice(index, 1);
     },
     clearInput(index) {
       this.description[index] = "";
+       localStorage.setItem('DataStationLocal', JSON.stringify( this.description))
     },
 
     ...mapActions("dronoports", ["addDroneport", "deleteDroneport","addDroneportStorage"]),
     addInfo(value) {
       if (value.includes(undefined) || value.includes("")) {
-        console.log(value);
         this.modalError = true;
-        console.log(this.modalError);
         setTimeout(() => {
           this.modalError = false;
-          console.log(this.modalError);
         }, 2000);
       } else {
         var object = {
@@ -267,11 +266,28 @@ export default {
       var id = parseInt(this.splitPlatformId);
       this.deleteDroneport([id, value]);
     },
+    addInfoStorage(){
+       var id = parseInt(this.splitPlatformId);
+      this.addDroneportStorage([id])
+    },
     addPhoto(value) {
       this.img.push(value);
+       localStorage.setItem('imgStationLocal', JSON.stringify(this.img))
     },
+    TakeDataFromLocalStation(){
+    const DataLocalStation = localStorage.getItem('DataStationLocal')
+      if(DataLocalStation != null){
+      this.description = JSON.parse(DataLocalStation)
+     
+      }
   },
+
+  },
+    beforeMount(){
+    this.TakeDataFromLocalStation(),
+    this.addInfoStorage()
    
+     },
   computed: {
     ...mapGetters("dronoports", ["getInfrByPlatformId"]),
     splitPlatformId() {
@@ -279,6 +295,7 @@ export default {
       return this.$route.params.platform.match(/\d+/g);
     },
   },
+  
 };
 </script>
 

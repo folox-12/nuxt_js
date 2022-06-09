@@ -85,6 +85,7 @@ export default {
   methods: {
     changeData(number, value) {
       this.description[number] = value;
+       localStorage.setItem('DataPostamatSensor', JSON.stringify(this.description))
     },
 
      DeleteImg(index){
@@ -92,12 +93,26 @@ export default {
     },
     clearInput(index){
       this.description[index] = ''
+      localStorage.setItem('DataPostamatSensor', JSON.stringify(this.description))
     },
      addPhoto(value){
       this.img.push(value)
     }
 
+  ,
+ TakeDataFromLocalSensor(){
+       const DataLocalSensor = localStorage.getItem('DataSensorLocal')
+      if(DataLocalSensor != null){
+      this.description = JSON.parse(DataLocalSensor)
+     
+      }
+    }
+
   },
+  beforeMount(){
+    this.TakeDataFromLocalSensor()
+   
+     },
 };
 </script>
 

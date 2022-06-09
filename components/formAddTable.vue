@@ -35,7 +35,6 @@ export default {
   data() {
     return {
       info: new Array(this.LengthInput),
-      // info: ["", "", "", ""],
     };
   },
 
@@ -48,7 +47,6 @@ export default {
   methods: {
     input(value, n) {
       Vue.set(this.info, n, value);
-      console.log(this.info);
     },
   },
 };
