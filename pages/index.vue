@@ -7,8 +7,8 @@
       :icon="'search'"
       :placeHolder="placeHolder"
       :rightSideView="[
-        { name: 'Filters', img: 'ico/filter.svg' },
-        { name: 'Options', img: 'ico/settings.svg' },
+        { name: 'Filters', img: 'filter' },
+        { name: 'Options', img: 'setting' },
       ]"
     >
       <template
@@ -176,6 +176,7 @@ import pagination from "../components/pagination.vue";
 import spoiler from "../components/UI/spoiler.vue";
 import radioButton from "../components/UI/radio-button.vue";
 import { mapGetters } from "vuex";
+
 export default {
   components: {
     ModalWindow,
