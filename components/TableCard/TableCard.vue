@@ -190,7 +190,7 @@
                 v-bind:value="description[4]"
                 v-mask="[ 'от XXX до XXX', 'от XX до XX', 'от XXX до XX',   ]"
                 @input="$emit('changeInfo', 4, $event.target.value)"
-              /><button @click="clearInput(title[4]), $emit('clearInput', 4)">
+              /><button @click="clearInput(title[4]), $emit('clearInput', 4)" class="card-main-list-point__button">
                 <img src="@/assets/img/ico/smallClear.svg" alt="" />
               </button>
             </div>
