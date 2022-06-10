@@ -63,12 +63,8 @@
               <OpenCard
                 v-if="!$store.getters['GetChangestatus']"
                 :link="'/Platform' + index.id"
-              ></OpenCard>
-              <EditCard
-                v-else
-                :propid="index"
-                @deletePoint="deletePoint"
-              ></EditCard>
+              />
+              <EditCard v-else :propid="index" @deletePoint="deletePoint" />
             </td>
           </tr>
           <tr>
@@ -79,9 +75,9 @@
         </tbody>
       </table>
       <WarningMessage
-        v-show="this.modalError"
+        v-if="this.modalError"
         :title="$t('titleforWarningMessage')"
-      ></WarningMessage>
+      />
     </div>
     <slot></slot>
   </section>
