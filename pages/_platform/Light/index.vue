@@ -5,6 +5,7 @@
         :img="img"
         :titleImg="titleImg"
         @DeleteImg="DeleteImg"
+        @addPhoto="addPhoto"
       ></Imagecard>
       <hr />
       <div class="card__main card-main">
@@ -89,6 +90,7 @@ export default {
   methods: {
     changeData(number, value) {
       this.description[number] = value;
+        localStorage.setItem('DataLightLocal', JSON.stringify(this.description))
     },
 
     DeleteImg(index) {
@@ -97,7 +99,23 @@ export default {
     clearInput(index) {
       this.description[index] = "";
     },
+     addPhoto(value){
+      this.img.push(value)
+      localStorage.setItem('DataLightLocal', JSON.stringify(this.description))
+    },
+  TakeDataFromLocalLight(){
+       const DataLocalLight = localStorage.getItem('DataLightLocal')
+      if(DataLocalLight != null){
+      this.description = JSON.parse(DataLocalLight)
+     
+      }
+    }
+
   },
+  beforeMount(){
+    this.TakeDataFromLocalLight()
+   
+     },
 };
 </script>
 

@@ -4,7 +4,7 @@
       <Imagecard
         :img="img"
         :titleImg="titleImg"
-      
+      @addPhoto="addPhoto"
         @DeleteImg="DeleteImg"
       ></Imagecard>
       <hr />
@@ -70,6 +70,7 @@ export default {
   methods: {
     changeData(number, value) {
       this.description[number] = value;
+      localStorage.setItem('DataPostamatWall', JSON.stringify(this.description))
     },
 
      DeleteImg(index){
@@ -77,9 +78,26 @@ export default {
     },
     clearInput(index){
       this.description[index] = ''
+        localStorage.setItem('DataPostamatWall', JSON.stringify(this.description))
+    },
+     addPhoto(value){
+      this.img.push(value)
+    }
+
+  ,
+ TakeDataFromLocalWall(){
+       const DataLocalWall = localStorage.getItem('DataSensorWall')
+      if(DataLocalWall != null){
+      this.description = JSON.parse(DataLocalWall)
+     
+      }
     }
 
   },
+  beforeMount(){
+    this.TakeDataFromLocalWall()
+   
+     },
 };
 </script>
 

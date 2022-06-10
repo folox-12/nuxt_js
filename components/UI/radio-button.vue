@@ -3,7 +3,7 @@
     <div
       class="radio-button__item"
       v-for="(item, index) in allRadioInput"
-      :key="item"
+      :key="index"
       @click="checkButton(item)"
     >
       <input
@@ -13,28 +13,46 @@
         :class="{ checked: item === radioValue }"
       />
       <label for="radio">
-        {{ index }}
+        {{ $t(index) }}
       </label>
     </div>
-    <input
-      type="number"
-      v-if="radioValue === 'custom'"
+    <fd-input
       v-model="inputValue"
       class="custom"
-      max="20"
+      v-if="radioValue === 'custom'"
+      @input="$emit('radioValue', inputValue, name)"
+      :closeIcon="closeIconForInput"
+      :placeholder="$t('enter-value')"
+    />
+    <fd-button
+      :text="showALl ? $t('hide-all-btn') : $t('show-all-btn')"
+      :type="'white'"
+      @click="showALl = !showALl"
+      v-if="lengthAllRadioInput"
     />
   </div>
 </template>
 
 <script>
+import fdInput from "./fd-input.vue";
+import fdButton from "./fd-button.vue";
 export default {
   data() {
     return {
       radioValue: "",
-      inputValue: "",
+      inputValue: 0,
+      showALl: false,
     };
   },
+
+  components: {
+    fdInput,
+    fdButton,
+  },
   props: {
+    name: {
+      type: String,
+    },
     valuesRadio: {
       required: true,
     },
@@ -42,12 +60,31 @@ export default {
       type: Boolean,
       default: false,
     },
+    closeIconForInput: {
+      type: Boolean,
+      default: false,
+    },
+    lengthRadio: {
+      type: Number,
+      default: 5,
+    },
   },
   computed: {
+    lengthAllRadioInput() {
+      return Object.keys(this.valuesRadio).length > this.lengthRadio;
+    },
     allRadioInput() {
       let obj = { ...this.valuesRadio };
+      if (this.lengthAllRadioInput & !this.showALl) {
+        obj = Object.fromEntries(
+          Object.entries(obj).slice(0, this.lengthRadio)
+        );
+      }
+      if (this.showALl) {
+        obj = { ...this.valuesRadio };
+      }
       if (this.custom) {
-        obj["Несколько"] = "custom";
+        obj["several-filter"] = "custom";
       }
       return obj;
     },
@@ -56,14 +93,20 @@ export default {
     checkButton(value) {
       if (this.radioValue == value) {
         this.radioValue = "";
+        value = null;
       } else {
         this.radioValue = value;
+        if (value === "custom") {
+          return;
+        }
       }
+
+      this.$emit("radioValue", value, this.name);
     },
   },
 };
 </script>
-<style lang="scss">
+<style lang="scss" scoped>
 .radio-button {
   display: flex;
   flex-direction: column;
@@ -71,7 +114,7 @@ export default {
   &__item {
     cursor: pointer;
     &:hover {
-      // background-color: grey;
+      color: #9b42f2;
     }
   }
 }

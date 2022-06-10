@@ -14,7 +14,7 @@
               <nuxt-link
                 no-prefetch
                 active-class="nuxt-link-exact-active"
-                :to="localePath('Platform')"
+                :to="localePath('/Platform1')"
                 >{{ $t("platforms-title") }}</nuxt-link
               >
               <nuxt-link no-prefetch :to="localePath('Test')">{{

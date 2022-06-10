@@ -73,16 +73,35 @@
               </button>
             </div>
 
-            <div v-else-if="type[1] == 'three quantity'">
+            <div v-else-if="type[1] == 'three quantity'" class='divThreeQuantity'>
               <input
                 :id="title[1]"
                 type="text"
-                class="card-main-list__input"
-               v-mask="[ '#### x #### x ###', '### x ### x ###',]"
-                v-model="description[1]"
+                class="card-main-list__input inputThreeQuantity"
+                v-model="this.splitStringThreePoint[0]"
                 @input="$emit('changeInfo', 1, $event.target.value)"
               />
-              <button @click="clearInput(title[1]), $emit('clearInput', 1)">
+              <button @click="clearInput(title[1]), $emit('clearInput', 1)" class="card-main-list-point__1button">
+                <img src="@/assets/img/ico/smallClear.svg" alt="" />
+              </button>
+                <input
+                :id="title[1]"
+                type="text"
+                class="card-main-list__input inputThreeQuantity"
+                v-model="this.splitStringThreePoint[1]"
+                @input="$emit('changeInfo', 1, $event.target.value)"
+              />
+              <button @click="clearInput(title[1]), $emit('clearInput', 1)" class="card-main-list-point__2button">
+                <img src="@/assets/img/ico/smallClear.svg" alt="" />
+              </button>
+                <input
+                :id="title[1]"
+                type="text"
+                class="card-main-list__input inputThreeQuantity"
+                v-model="this.splitStringThreePoint[2]"
+                @input="$emit('changeInfo', 1, $event.target.value)"
+              />
+              <button @click="clearInput(title[1]), $emit('clearInput', 1)" class="card-main-list-point__3button">
                 <img src="@/assets/img/ico/smallClear.svg" alt="" />
               </button>
             </div>
@@ -182,16 +201,30 @@
         <li>
           <div class="card-main-list__point">
             <h4>{{ $t(title[5]) }}</h4>
-            <div>
+            <div v-if="type[5] == 'number'">
               <input
                 :id="title[5]"
-                type="text"
+                type="number"
                 class="card-main-list__input"
                 v-bind:value="description[5]"
                 @input="$emit('changeInfo', 5, $event.target.value)"
-              /><button @click="clearInput(title[5]), $emit('clearInput', 5)">
+              /><button @click="clearInput(title[5]), $emit('clearInput', 5)" style="right:-5px">
                 <img src="@/assets/img/ico/smallClear.svg" alt="" />
               </button>
+            </div>
+            <div v-if="type[5] == 'select'">
+              <select
+                :id="title[5]"
+                class="card-main-list__input"
+                @change="$emit('changeInfo', 5, $event.target.value)"
+              >
+              <option v-bind:value="description[5]">{{description[5]}}</option>
+              <option v-if="description[5] != '24/7'" value="24/7">24/7</option>
+              <option v-if="description[5] != '6/1'" value="6/1">6/1</option>
+              <option v-if="description[5] != '5/2'" value="5/2">5/2</option>
+              <option v-if="description[5] != '4/3'" value="4/3">4/3</option>
+              <option v-if="description[5] != '2/2'" value="2/2">2/2</option>
+              </select>
             </div>
           </div>
         </li>
@@ -200,14 +233,14 @@
         <li>
           <div class="card-main-list__point">
             <h4>{{ $t(title[6]) }}</h4>
-            <div>
+            <div v-if="type[6] == 'number'">
               <input
                 :id="title[6]"
-                type="text"
+                type="number"
                 class="card-main-list__input"
                 v-bind:value="description[6]"
                 @input="$emit('changeInfo', 6, $event.target.value)"
-              /><button @click="clearInput(title[6]), $emit('clearInput', 6)">
+              /><button @click="clearInput(title[6]), $emit('clearInput', 6)" style="right:-5px;">
                 <img src="@/assets/img/ico/smallClear.svg" alt="" />
               </button>
             </div>
@@ -218,14 +251,14 @@
         <li>
           <div class="card-main-list__point">
             <h4>{{ $t(title[7]) }}</h4>
-            <div>
+            <div v-if="type[7] == 'number'">
               <input
                 :id="title[7]"
-                type="text"
+                type="number"
                 class="card-main-list__input"
                 v-bind:value="description[7]"
                 @input="$emit('changeInfo', 7, $event.target.value)"
-              /><button @click="clearInput(title[7]), $emit('clearInput', 7)">
+              /><button @click="clearInput(title[7]), $emit('clearInput', 7)" style="right:-5px;">
                 <img src="@/assets/img/ico/smallClear.svg" alt="" />
               </button>
             </div>
@@ -236,14 +269,14 @@
         <li>
           <div class="card-main-list__point">
             <h4>{{ title[8] }}</h4>
-            <div>
+            <div v-if="type[8] == 'number'">
               <input
                 :id="title[8]"
-                type="text"
+                type="number"
                 class="card-main-list__input"
                 v-bind:value="description[8]"
                 @input="$emit('changeInfo', 8, $event.target.value)"
-              /><button @click="clearInput(title[8]), $emit('clearInput', 8)">
+              /><button @click="clearInput(title[8]), $emit('clearInput', 8)" style="right:-5px;">
                 <img src="@/assets/img/ico/smallClear.svg" alt="" />
               </button>
             </div>
@@ -277,7 +310,9 @@ export default {
   directives: {mask},
   data() {
 
-    return {};
+    return {
+      splitStringThreePoint:[],
+    };
 
   },
   props: {
@@ -299,8 +334,27 @@ export default {
     clearInput(index) {
       document.getElementById(index).value = "";
     },
+    splitThreePoints(){
+  if(this.type[1] == 'three quantity'){
+    let stringToSplit = this.description[1];
+    var splitChar = 'x';
+    this.splitStringThreePoint = stringToSplit.split(splitChar);
+    console.log(this.splitStringThreePoint)
+  }
+}
   },
+  
+   beforeMount(){
+    this.splitThreePoints()
+
+   
+     },
 };
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.divThreeQuantity{
+  display: flex;
+  gap:10px;
+}
+</style>

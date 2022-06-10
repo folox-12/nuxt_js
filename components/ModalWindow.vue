@@ -2,31 +2,7 @@
   <div class="ModalWindow">
     <div class="ModalWindow__container">
       <div class="Close" @click="$emit('close-modal')">
-        <svg
-          width="31"
-          height="29"
-          viewBox="0 0 31 29"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <rect
-            xmlns="http://www.w3.org/2000/svg"
-            x="0.140625"
-            y="18.3906"
-            width="25.4384"
-            height="2.6467"
-            transform="rotate(-45 0.140625 18.3906)"
-            fill="#6D6A7A"
-          />
-          <rect
-            xmlns="http://www.w3.org/2000/svg"
-            x="1.87109"
-            width="25.4384"
-            height="2.6467"
-            transform="rotate(45 1.87109 0)"
-            fill="#6D6A7A"
-          />
-        </svg>
+        <iconBase :iconType="'close'" :width="'32px'" :height="'32px'" />
       </div>
       <div class="ModalWindow__container-description">
         <h6 v-if="$store.getters['GetChangestatus'] == false">
@@ -46,8 +22,9 @@
             type="file"
             name="avatar"
             id="uppic"
+            ref="file"
             accept="image/gif,image/jpeg,image/jpg,image/png"
-            @change="addImage($event)"
+            @change="addImage()"
             class="uppic"
           />
         </div>
@@ -57,11 +34,16 @@
 </template>
 
 <script>
+import IconBase from "./icons/IconBase.vue";
 export default {
   data() {
     return {
       img: require("../assets/img/ico/addphoto.svg"),
+      example: null,
     };
+  },
+  components: {
+    IconBase,
   },
   props: {
     image: {
@@ -76,15 +58,13 @@ export default {
     },
   },
   methods: {
-    addImage($event) {
+    addImage() {
+      this.example = this.$refs.file.files[0];
+      //  this.img = URL.createObjectURL(this.example);
       let agree = confirm("Добавить фото?");
       if (agree == true) {
-        const image = $event.target.files[0];
-        const reader = new FileReader();
-        reader.readAsDataURL(image);
-        reader.onload = ($event) => {
-          this.img = $event.target.result;
-        };
+        this.$emit("addPhoto", URL.createObjectURL(this.example));
+        this.$emit("close-modal");
       }
     },
   },

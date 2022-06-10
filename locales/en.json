@@ -14,7 +14,7 @@
   "postamat-table-title": "Postamat",
   "counter-table": "Total found: ",
 
-  "platform-title-page": "Landing area №3",
+  "platform-title-page": "Landing area №",
   "platform-title": "Platfrom",
 
   "adress-table-card": "Address",
@@ -106,5 +106,36 @@
   "wall-desc-title": "Grid galvanized \"Рабица\"",
   "cell-dimensions-table-card": "Cell dimensions (LxW) (mm)",
   "time-order-table-card": "Time of issue of the order (min.)",
-  "degree-protection-table-card": "Degree of protection IP"
+  "degree-protection-table-card": "Degree of protection IP",
+  "add-btn-exit-platform": "Cancel",
+
+  "Test": "Test",
+  "Infrastructure": "Infrastructure",
+  "Map": "Map",
+  "Platform": "Platform",
+  "Postamat": "Postamat",
+  "Camera": "Camera",
+  "Light": "Light",
+  "Wall": "Wall",
+  "Sensor": "Sensor",
+  "Droneport": "Droneport",
+  "Main": "Main",
+
+  "titleforWarningMessage":"You didn't fill in all the fields",
+
+  "Table": "Table",
+
+  "representation-type": "Representation type",
+  "representation-settings": "Representation settings",
+  "city-filter": "City",
+  "several-filter": "Several",
+  "enter-value": "Enter value",
+
+  "nothing-found": "Nothing found",
+  "Filters": "Filters",
+  "Options": "Options",
+
+  "flight-route": "Flight route/area",
+  "flight-location-search": "Find a location to fly"
+
 }

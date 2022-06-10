@@ -23,31 +23,60 @@
       sunt numquam, soluta consectetur, quod recusandae consequuntur.
     </div>
     <radioButton
-      :valuesRadio="{ 1: 1, 2: 2, Все: 21 }"
+      :valuesRadio="{ 1: 1, 2: 2, 3: 3, 4: 4, 5: 5, 6: 6, Все: 21 }"
       :custom="true"
     ></radioButton>
+    <fdButton :text="'при'" :type="'white'" @click="someFunction" />
+    <fdInput v-model="value" :closeIcon="true" :type="'primary'" />
+    <iconBase
+      :iconType="'plus-circle'"
+      :fill="'red'"
+      @click="foo"
+      :backgroundColor="'grey'"
+    />
   </div>
 </template>
 <script>
 import selectComponent from "../components/selectComponent.vue";
 import spoiler from "../components/UI/spoiler.vue";
 import radioButton from "../components/UI/radio-button.vue";
-
+import tableView from "../components/table-view.vue";
+import fdButton from "../components/UI/fd-button.vue";
+import fdInput from "../components/UI/fd-input.vue";
+import iconBase from "../components/icons/IconBase.vue";
+import { mapGetters } from "vuex";
 export default {
   data() {
     return {
       mySelectedValues: "",
+      value: "",
     };
   },
   components: {
     "v-select": selectComponent,
     spoiler,
     radioButton,
+    tableView,
+    iconBase,
+    fdButton,
+    fdInput,
   },
   created() {},
   methods: {
+    foo() {
+      alert("");
+    },
     select(value) {
       this.selectValue = value;
+    },
+    someFunction() {
+      alert("yep");
+    },
+  },
+  computed: {
+    ...mapGetters("Map", ["getCoordinate"]),
+    Coordinate() {
+      return this.getCoordinate[inputValue];
     },
   },
 };

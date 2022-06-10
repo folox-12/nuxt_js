@@ -2,23 +2,16 @@
   <keep-alive>
     <div class="filters">
       <div class="header-page__search header-page-search">
-        <div class="header-page-search__input">
-          <img src="../assets/img/ico/search.svg" alt="" class="search-icon" />
-          <input
-            type="search"
-            v-model="inputValue"
-            :placeholder="$t('search-by-address')"
-            id="input-main"
-          />
-          <button class="clear-input" id="clear-input" @click="clearInput()">
-            <img src="../assets/img/ico/close.svg" alt="" />
-          </button>
-        </div>
+        <fd-input
+          v-model="inputValue"
+          :placeholder="placeHolder"
+          :icon="icon"
+        ></fd-input>
         <div class="header-page-search__buttons">
           <button
             v-for="key in sortedRightSideViews"
             :key="key.name"
-            v-on:click="toggleShowRightSide(key.name)"
+            @click="toggleShowRightSide(key.name)"
             :class="isBtnActive(key.name)"
           >
             <img :src="key.img" alt="#" />
@@ -40,6 +33,7 @@
           :typeViewOfRightSide="typeViewOfRightSide"
           :getNameForSort="sortByName"
           :updateItemsOnPage="updateItemsOnPage"
+          :updateFilter="updateFilter"
         >
         </slot>
       </div>
@@ -48,9 +42,12 @@
 </template>
 
 <script>
+import fdInput from "./UI/fd-input.vue";
 export default {
   data() {
     return {
+      filters: {},
+      filteredData: [],
       sortName: "",
       inputValue: "",
       to: this.itemsOnPage,
@@ -61,7 +58,9 @@ export default {
       sortFlag: "",
     };
   },
-  components: {},
+  components: {
+    fdInput,
+  },
   props: {
     rightSideView: {
       type: Array,
@@ -81,7 +80,11 @@ export default {
     },
     placeHolder: {
       type: String,
-      default: "Поиск по адресу",
+      // default: "Поиск по адресу",
+    },
+    icon: {
+      type: String,
+      default: "",
     },
   },
   computed: {
@@ -104,22 +107,29 @@ export default {
           data = data.sort((a, b) => a[this.sortName] > b[this.sortName]);
         }
       }
-      return data.filter((elem) => {
+      let dataForFilter = data.filter((elem) => {
         return elem.address
           .toLowerCase()
           .replace(/[\s.,\s]/g, "")
           .includes(querySearch, 0);
+      });
+      let filters = { ...this.filters };
+      let filterKeys = Object.keys(filters);
+      return dataForFilter.filter(function (eachObj) {
+        return filterKeys.every(function (eachKey) {
+          if (!filters[eachKey].length) {
+            return true;
+          }
+          return filters[eachKey] <= eachObj[eachKey];
+        });
       });
     },
     tableDataPaginated() {
       return this.tableDataSearched.slice(this.from, this.to);
     },
   },
-
+  watch: {},
   methods: {
-    changeInputValue() {
-      this.inputValue = inputValue;
-    },
     toggleShowRightSide(value) {
       if (value == this.typeViewOfRightSide) {
         this.showRightSide = !this.showRightSide;
@@ -138,33 +148,15 @@ export default {
     updatedIndexRow(value) {
       this.pageNumber = value;
     },
+    updateFilter(value, key) {
+      this.$set(this.filters, key, [value]);
+    },
     clearInput() {
       this.inputValue = "";
     },
     switchTypeOfView(value) {
       this.viewFormat = value;
     },
-    // searchedDataDescription(filters) {
-    //   if (!filters) {
-    //     return tableData[1];
-    //   }
-    //   let data = tableData[1];
-    //   return data.filter((elem) => {
-    //     for (const [key, value] of Object.entries(filters)) {
-    //       return elem[key]
-    //         .toLowerCase()
-    //         .replace(/[\s.,\s]/g, "")
-    //         .includes(
-    //           value
-    //             .trim()
-    //             .toLowerCase()
-    //             .replace(/[\s.,\s]/g, ""),
-    //           0
-    //         );
-    //     }
-    //   });
-    // },
-
     sortByName(value, arrowDirection) {
       this.sortName = value;
       this.sortFlag = arrowDirection;
@@ -184,17 +176,17 @@ export default {
 
 <style lang="scss" scoped>
 .filter-content {
-  width: 100%;
   display: flex;
   gap: 15px;
+  flex-direction: row;
 }
-.filter-content :first-child() {
-  flex: 1 1 63%;
+.filter-content > :nth-child(1) {
+  flex: 1 1 auto;
+  min-width: 325px;
 }
 
-.filter-content :last-child() {
+.filter-content > :nth-child(2) {
   flex: 0 0 35%;
-  opacity: 0;
 }
 .header-page {
   &__search {

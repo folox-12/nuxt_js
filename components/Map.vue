@@ -30,14 +30,14 @@
       </div>
       <div class="TopShelf-items">
         <div class="TopShelf-items__input">
-          <input
-            type="text"
-            placeholder="Найти населенный пункт для полета"
-            class="Search"
+          <fd-input
+            v-model="valueInput"
+            @input="ChangeCenter"
+            :placeholder="'Найти населенный пункт для полета'"
           />
         </div>
         <div class="TopShelf-items__filters">
-          <button class="LayoutShow">
+          <button class="TileShow" @click="showSettingsTile = !showSettingsTile">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="24"
@@ -53,7 +53,7 @@
             </svg>
           </button>
 
-          <button class="FigureBuild">
+          <button class="FigureBuild" >
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="24"
@@ -74,7 +74,7 @@
             <span>>1000m</span>
           </button>
 
-          <button class="Settings">
+          <button class="Settings" @click="showSettingsView = !showSettingsView">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="24"
@@ -91,24 +91,47 @@
             </svg>
           </button>
         </div>
-      </div>
-    </div>
-    <div class="Layout">
-      <div id="map-wraper" style="height: 55vh; width:65vh">
-      <client-only>
-      <l-map :zoom="zoom" :center="[55.673,37.2733]" :max-zoom="MaxZoom" :min-zoom="MinZoom">
-      <l-tile-layer url="http://{s}.tile.osm.org/{z}/{x}/{y}.png"></l-tile-layer>
-      <l-marker :lat-lng="[55.668,37.2790]"></l-marker>
-      <l-marker :lat-lng="[55.678,37.2413]"></l-marker>
-      <l-marker :lat-lng="[55.686,37.2840]"></l-marker>
-      </l-map>
-      </client-only>
+        <div class="SettingsMap" v-if="showSettingsTile">
+          <div class="SettingsMap__Tile" v-click-outside="onClickOutsideTile">
+            <radioButton
+              @radioValue="getTileValue"
+              :valuesRadio="{
+                  OSM: 0,
+                  Спутник: 1,
+                  Светлая: 2,
+                  Темная:3,
+                }"
+                />
+          </div>
+        </div>
+        <div class="SettingsMap" v-if="showSettingsView">
+          <div class="SettingsMap__View SettingsMap-View" v-click-outside="onClickOutsideView">
+            <div class="SettingsMap-View__Layer">
+              <h2>Отображение слоев</h2>
+              <radioButton
+                @radioValue="getViewLayerValue"
+                :valuesRadio="{
+                    Вкл: 1,
+                  }"
+                  />
+            </div>
+            <div class="SettingsMap-View__Rad">
+              <h2>Радиус сигнала</h2>
+              <radioButton
+                @radioValue="getViewRadValue"
+                :valuesRadio="{
+                    Вкл: 1,
+                  }"
+                  />
+            </div>
+          </div>
+        </div>
       </div>
     </div>
     <div class="RightShelf">
       <div class="RightShelf-items">
         <div class="RightShelf-items__buttons">
-          <button calss="Location">
+          <button calss="Location" @click="createUserMarker()">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="24"
@@ -139,46 +162,466 @@
               </g>
             </svg>
           </button>
-
-          <button class="Plus">+</button>
-
-          <button class="Minus">-</button>
+          <button class="Plus" @click="MaxZoomPlus()">+</button>
+          <button class="Minus" @click="MaxZoomMinus()">-</button>
         </div>
       </div>
     </div>
+    <div class="Layout">
+      <div class="Map" id="map-wraper" style="height: 100%; width: 100%">
+        <client-only>
+          <l-map
+            :options="{ zoomControl: false, attributionControl: false }"
+            :zoom="MapOptions[0].zoom"
+            :center="MapOptions[3].Center"
+            :max-zoom="MapOptions[1].MaxZoom"
+            :min-zoom="MapOptions[2].MinZoom"
+          >
+            <l-tile-layer
+              :url= MapOptions[4].Url
+            ></l-tile-layer>
+
+            <l-polygon v-if ="showLayer" 
+              :lat-lngs="polygon.latlngs"
+              :color="polygon.color"
+            ></l-polygon>
+
+            <div class="Markers-area">
+              <div class="Marker-container">
+                <CustomMapMarker
+                  v-for="item in Address"
+                  :key="item"
+                  :Adres="item"
+                  :showRadius="showRadius"
+                ></CustomMapMarker>
+                 <l-marker  :lat-lng="[latt,longg]" v-if = "showUserPos">
+                   <l-popup>Вы здесь</l-popup>
+                 </l-marker>
+              </div>
+            </div>
+
+          </l-map>
+        </client-only>
+      </div>
+    </div>
+    
+    
   </div>
 </template>
 
 <script>
 
+
+
+import fdInput from "../components/UI/fd-input.vue";
+import { mapGetters } from "vuex";
+import fdButton from "../components/UI/fd-button.vue";
+import radioButton from "../components/UI/radio-button.vue";
+import vClickOutside from 'v-click-outside'
+
+
 export default {
   layout: "map",
-  
-  data() {
-    
-    return {
-      iconURL:'../assets/img/FDmarker.png',
-      zoom:13,
-      MaxZoom:18,
-      MinZoom:10,
-      showDescr: false,
-      
-    };
+
+  directives: {
+      clickOutside: vClickOutside.directive
+    },
+  components: {
+    fdInput,
+    fdButton,
+    radioButton,
   },
-  headerData:{
-      title: "Карта",
+
+methods: {
+
+
+  createUserMarker(){navigator.geolocation.getCurrentPosition(this.showPosition)},
+    showPosition(position) {
+    this.latt = position.coords.latitude
+    this.longg= position.coords.longitude;
+    this.showUserPos = !this.showUserPos
   },
-  methods: {
+
+    getTileValue(value) {
+      this.TileValue = value;
+      if(this.TileValue ){
+        this.MapOptions[4].Url = this.tile[this.TileValue].Tile
+      }else{
+        this.MapOptions[4].Url = 'http://{s}.tile.osm.org/{z}/{x}/{y}.png'
+      }
+    },
+
+    getViewRadValue(value){
+      this.RadValue = value;
+      if(this.RadValue = 1){
+        this.showRadius = !this.showRadius
+      }
+    },
+
+     getViewLayerValue(value){
+      this.LayValue = value;
+      if(this.LayValue = 1){
+        this.showLayer = !this.showLayer
+      }
+    },
     
+
+    ChangeCenter() {
+      if (this.Coordinate) {
+        this.MapOptions[3].Center = this.Coordinate;
+      } else {
+        this.MapOptions[3].Center = this.coordinate;
+      }
+      if(this.valueInput == "Odintsovo"){
+        this.showLayer = true
+      }else{
+        this.showLayer = false
+      }
+    },
+    MaxZoomPlus() {
+      this.MapOptions[0].zoom += 1;
+    },
+    MaxZoomMinus() {
+      this.MapOptions[0].zoom -= 1;
+    },
+
     hideDescr() {
       this.showDescr = false;
     },
+
+    onClickOutsideTile(event) {
+      this.showSettingsTile =false
+    },
+
+    onClickOutsideView(event) {
+      this.showSettingsView =false
+    },
   },
+
+  data() {
+    return {
+      latt : null,
+      longg : null,
+
+      TileValue:"",
+      ViewLayerValue:"",
+      ViewRadValue:"",
+      UserCoord: false,
+      RadValue:"",
+
+      iconUrlCustom: require("../assets/img/Marker.png"),
+      valueInput: "",
+      Address: [
+        [55.678, 37.2413],
+        [55.668, 37.279],
+        [55.686, 37.284],
+      ],
+
+
+      showDescr: false,
+      showSettingsTile:false,
+      showRadius: false,
+      showSettingsView:false,
+      showUserPos:false,
+      showLayer:false,
+
+   
+
+      MapOptions: [
+        {  zoom: 13 },
+        {  MaxZoom: 22 },
+        {  MinZoom: 10 },
+        {  Center: [55.673, 37.2733] },
+        {  Url:"http://{s}.tile.osm.org/{z}/{x}/{y}.png"},
+      ],
+
+      tile:[
+        {Tile: 'http://{s}.tile.osm.org/{z}/{x}/{y}.png'},//OSM
+        {Tile: 'https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}'},//Satellite
+        {Tile:"https://tiles.stadiamaps.com/tiles/osm_bright/{z}/{x}/{y}{r}.png"},//StadiamapsBright
+        {Tile: 'https://tiles.stadiamaps.com/tiles/alidade_smooth_dark/{z}/{x}/{y}{r}.png'},//Dark
+      ],
+      polygon: {
+        latlngs: [
+          [55.657595, 37.232727],
+          [55.658888, 37.232706],
+          [55.659013, 37.233039],
+          [55.659902, 37.233092],
+          [55.660732, 37.23857],
+          [55.66127, 37.238681],
+          [55.662875, 37.245219],
+          [55.663764, 37.244071],
+          [55.665889, 37.250655],
+          [55.666597, 37.249263],
+          [55.667405, 37.24485],
+          [55.66796, 37.243845],
+          [55.666563, 37.226464],
+          [55.669916, 37.224666],
+          [55.671036, 37.222979],
+          [55.672723, 37.222294],
+          [55.675708, 37.23167],
+          [55.674178, 37.233538],
+          [55.675016, 37.23764],
+          [55.678604, 37.243322],
+          [55.680736, 37.241849],
+          [55.685081, 37.245037],
+          [55.687708, 37.248039],
+          [55.688478, 37.249279],
+          [55.688921, 37.245977],
+          [55.686621, 37.243625],
+          [55.687691, 37.240393],
+          [55.68902, 37.241019],
+          [55.690494, 37.243226],
+          [55.689547, 37.246053],
+          [55.689458, 37.247116],
+          [55.689776, 37.249499],
+          [55.691631, 37.246465],
+          [55.69252, 37.248623],
+          [55.691896, 37.25074],
+          [55.690138, 37.253715],
+          [55.690736, 37.258132],
+          [55.689888, 37.265035],
+          [55.688975, 37.268882],
+          [55.687002, 37.272187],
+          [55.687065, 37.273879],
+          [55.690887, 37.272804],
+          [55.691316, 37.275399],
+          [55.691766, 37.276493],
+          [55.692342, 37.27918],
+          [55.686847, 37.281827],
+          [55.686777, 37.282472],
+          [55.689134, 37.291574],
+          [55.690618, 37.290708],
+          [55.693616, 37.293794],
+          [55.69453, 37.296462],
+          [55.694248, 37.302329],
+          [55.693266, 37.302539],
+          [55.692422, 37.30379],
+          [55.691945, 37.306187],
+          [55.690653, 37.308538],
+          [55.690602, 37.310313],
+          [55.688391, 37.310495],
+          [55.687609, 37.30983],
+          [55.687024, 37.310058],
+          [55.687104, 37.31056],
+          [55.684519, 37.312762],
+          [55.68351, 37.310806],
+          [55.682411, 37.310937],
+          [55.681962, 37.311214],
+          [55.682157, 37.312502],
+          [55.683773, 37.319081],
+          [55.684697, 37.321376],
+          [55.686188, 37.324147],
+          [55.691561, 37.320986],
+          [55.691948, 37.322267],
+          [55.692193, 37.322573],
+          [55.692775, 37.322841],
+          [55.693305, 37.322729],
+          [55.695366, 37.321406],
+          [55.695723, 37.319579],
+          [55.697734, 37.317973],
+          [55.698039, 37.31709],
+          [55.699009, 37.317168],
+          [55.700653, 37.317825],
+          [55.702824, 37.317706],
+          [55.707714, 37.316749],
+          [55.708021, 37.330373],
+          [55.70166, 37.326511],
+          [55.701664, 37.326193],
+          [55.700007, 37.325131],
+          [55.697402, 37.324235],
+          [55.695538, 37.334874],
+          [55.694454, 37.333253],
+          [55.693433, 37.334169],
+          [55.693815, 37.337152],
+          [55.685986, 37.328855],
+          [55.68414, 37.333949],
+          [55.683196, 37.333545],
+          [55.682426, 37.334737],
+          [55.681991, 37.334022],
+          [55.682832, 37.33246],
+          [55.681687, 37.331258],
+          [55.683108, 37.326895],
+          [55.685583, 37.329466],
+          [55.685705, 37.329031],
+          [55.682999, 37.326243],
+          [55.681495, 37.331208],
+          [55.680261, 37.334128],
+          [55.676267, 37.345737],
+          [55.678841, 37.348907],
+          [55.677635, 37.353372],
+          [55.675354, 37.357002],
+          [55.673241, 37.353562],
+          [55.672683, 37.348848],
+          [55.668834, 37.348289],
+          [55.664924, 37.344554],
+          [55.667099, 37.335361],
+          [55.668043, 37.335723],
+          [55.667084, 37.342332],
+          [55.670498, 37.342804],
+          [55.670862, 37.341099],
+          [55.670826, 37.339757],
+          [55.670256, 37.339554],
+          [55.670662, 37.33655],
+          [55.671663, 37.336828],
+          [55.67199, 37.337204],
+          [55.672815, 37.335284],
+          [55.67279, 37.333588],
+          [55.673809, 37.333352],
+          [55.673785, 37.332269],
+          [55.674427, 37.331239],
+          [55.674305, 37.330988],
+          [55.674434, 37.329799],
+          [55.675035, 37.329581],
+          [55.676461, 37.32653],
+          [55.677121, 37.327251],
+          [55.676747, 37.322919],
+          [55.673456, 37.322765],
+          [55.672818, 37.32468],
+          [55.670814, 37.324168],
+          [55.67091, 37.31968],
+          [55.67339, 37.319763],
+          [55.673708, 37.317777],
+          [55.674235, 37.317698],
+          [55.674372, 37.317437],
+          [55.674801, 37.317795],
+          [55.674993, 37.317294],
+          [55.675138, 37.315421],
+          [55.677113, 37.316813],
+          [55.677607, 37.314655],
+          [55.680195, 37.309785],
+          [55.681168, 37.308559],
+          [55.680484, 37.305329],
+          [55.67681, 37.305757],
+          [55.673173, 37.305423],
+          [55.672964, 37.305717],
+          [55.672338, 37.30536],
+          [55.670327, 37.303163],
+          [55.67098, 37.301953],
+          [55.671327, 37.30227],
+          [55.671659, 37.301189],
+          [55.671556, 37.301092],
+          [55.671741, 37.300485],
+          [55.671123, 37.299838],
+          [55.671591, 37.297265],
+          [55.670233, 37.296085],
+          [55.66872, 37.295827],
+          [55.665421, 37.295672],
+          [55.664394, 37.295372],
+          [55.663505, 37.296236],
+          [55.663463, 37.29581],
+          [55.662937, 37.295095],
+          [55.662957, 37.294414],
+          [55.663307, 37.293803],
+          [55.661675, 37.289296],
+          [55.660876, 37.290093],
+          [55.659324, 37.289649],
+          [55.658092, 37.287529],
+          [55.655615, 37.289704],
+          [55.655502, 37.289344],
+          [55.65059, 37.262615],
+          [55.649984, 37.258427],
+          [55.649113, 37.254187],
+          [55.648121, 37.250655],
+          [55.648534, 37.250005],
+          [55.648577, 37.248527],
+          [55.65124, 37.243086],
+          [55.651621, 37.241742],
+          [55.652367, 37.240154],
+          [55.654228, 37.238897],
+          [55.653414, 37.235861],
+          [55.654021, 37.234943],
+          [55.65379, 37.23445],
+          [55.654106, 37.233956],
+          [55.653719, 37.232882],
+          [55.653727, 37.225273],
+          [55.657902, 37.225295],
+          [55.657058, 37.236349],
+          [55.654633, 37.23863],
+          [55.656733, 37.241269],
+          [55.656933, 37.241805],
+          [55.656303, 37.242588],
+          [55.657059, 37.244735],
+          [55.657667, 37.243925],
+          [55.658133, 37.245604],
+          [55.658442, 37.247581],
+          [55.658673, 37.247516],
+          [55.658465, 37.245694],
+          [55.659654, 37.244579],
+          [55.659172, 37.243393],
+          [55.659296, 37.242806],
+          [55.659987, 37.242989],
+          [55.660097, 37.241604],
+          [55.659036, 37.241255],
+          [55.658165, 37.239296],
+          [55.657934, 37.240209],
+          [55.657438, 37.240873],
+          [55.656897, 37.240196],
+          [55.657135, 37.238661]
+        ],
+        color: "#1E90FF",
+      },
+      
+    };
+  },
+
+  props: {
+    coordinate: {
+      type: Array,
+      default: [55.673, 37.2733],
+    },
+  },
+  mounted() {},
+
+  watch: {
+    coordinate() {
+      if (this.coordinate) {
+        return (this.MapOptions[3].Center = this.coordinate);
+      }
+    },
+  },
+  computed: {
+    ...mapGetters("Map", ["getCoordinate"]),
+    Coordinate() {
+      return this.getCoordinate[this.valueInput];
+    },
+    
+  },
+
+  
 };
 </script>
 
 <style lang="scss" scoped>
 @import "../assets/scss/fonts";
+
+
+.SettingsMap{
+  max-width: 240px;
+  min-width: 240px;
+  height: fit-content;
+  background-color: rgb(246, 246, 246);
+  position: absolute;
+  z-index: 30;
+  top: 0;
+  right: 0;
+  margin: 45px 15px;
+  display: flex;
+  align-items: center;
+  padding: 15px;
+  border-bottom-left-radius: 20px;
+  border-bottom-right-radius: 20px;
+
+}
+
+.Marker-container {
+  position: relative;
+}
+
+.ModalButton {
+  width: 100px;
+  height: 48px;
+}
 
 h1 {
   margin-top: 15px;
@@ -189,8 +632,8 @@ h1 {
 .map {
   background-color: $white;
   width: 100%;
+  position: relative;
   height: 780px;
-  margin-top: 30px;
 }
 
 svg {
@@ -200,7 +643,8 @@ svg {
 .TopShelf__descr {
   display: flex;
   align-items: center;
-  margin: 15px;
+  position: relative;
+  margin: 0 15px 15px;
   button {
     display: flex;
     align-items: center;
@@ -214,9 +658,9 @@ svg {
 
 .RightShelf-items__buttons {
   position: absolute;
-  left: 1;
+  bottom: 1;
+  margin-top: 100px;
   margin-left: 30px;
-  bottom: 150px;
   display: flex;
   flex-direction: column;
   gap: 10px;
@@ -243,44 +687,27 @@ svg {
 .TopShelf-items {
   position: absolute;
   margin-top: 10px;
-  left: 1;
-  margin-left: 60px;
+  width: 100%;
   display: flex;
+  padding: 0 15px;
   align-items: center;
-  z-index:2;
+  justify-content: space-between;
+  z-index: 2;
 
   &__input {
-    :hover {
-      border: 1px solid #9c42f5;
-      transition: 0.15s;
-      padding: 14px;
-    }
-    :focus {
-      border: 1px solid #9c42f5;
-      box-shadow: 0 0 0 4px rgba(156, 66, 245, 0.12);
-      transition: 0.4s;
-    }
-    input {
-      z-index: 2;
-      border-radius: 10px;
-      padding: 15px;
-      height: 48px;
-      width: 400px;
-      box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-      right: 0;
-    }
+    width: 100%;
   }
   &__filters {
     background-color: rgb(255, 255, 255);
     border-radius: 5px;
-    min-height: 44px;
-    min-width: 230px;
+    min-height: 48px;
+    min-width: 240px;
     gap: 5px;
     height: 40px;
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-left: 170px;
+    margin-left: 100px;
     span {
       font-size: 17px;
     }
@@ -302,17 +729,23 @@ svg {
 }
 
 .Layout {
-  margin: 15px 15px 20px 15px;
   position: relative;
+  width: 100%;
+  height: 100%;
   z-index: 1;
-  width: f;
+  .Map {
+    width: 100%;
+    height: 100%;
+    position: relative;
+  }
 }
-
-
 
 .Modal_descr {
   position: absolute;
-  margin-left: 50px;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
   z-index: 3;
   &-figure {
     z-index: 2;
@@ -354,6 +787,18 @@ svg {
 .ModalDescrButton:hover {
   svg {
     fill: blueviolet;
+  }
+}
+
+.SettingsMap-View{
+  display: flex;
+  flex-direction: column;
+  grid-gap: 15px;
+
+  h2{
+    font-size: 16px;
+    font-weight: 500;
+    margin-bottom: 15px;
   }
 }
 </style>

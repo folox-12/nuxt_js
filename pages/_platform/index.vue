@@ -1,8 +1,13 @@
 <template>
   <div class="page">
     <div class="card">
-      <Imagecard  :img="img" :titleImg="titleImg" @DeleteImg="DeleteImg"></Imagecard>
-     
+      <Imagecard
+        :img="img"
+        :titleImg="titleImg"
+        @DeleteImg="DeleteImg"
+        @addPhoto="addPhoto"
+      ></Imagecard>
+
       <hr />
       <div class="card__main card-main">
         <div class="card-main__title">
@@ -14,7 +19,7 @@
           :description="description"
           :type="type"
           @changeInfo="changeData"
-          @clearInput='clearInput'
+          @clearInput="clearInput"
         ></Tablecard>
 
         <div class="card__infrastructure card-infrastructure">
@@ -46,7 +51,12 @@
                 <th align="right">{{ $t("infrastructure-num") }}</th>
                 <th></th>
               </tr>
-              <tr v-for="(item, index) in infrastructure" v-bind:key="index">
+              <tr
+                v-for="(item, index) in this.getInfrByPlatformId(
+                  parseInt(splitPlatformId)
+                )"
+                v-bind:key="index"
+              >
                 <td>{{ $t(item.name) }}</td>
                 <td>{{ item.company }}</td>
                 <td>{{ item.type }}</td>
@@ -54,19 +64,50 @@
                 <td>
                   <OpenCard
                     v-if="$store.getters['GetChangestatus'] == false"
-                    :link="item.link"
+                    :link="'/' + $route.params.platform + item.link"
                   ></OpenCard>
-                  <EditCard v-else></EditCard>
+                  <EditCard
+                    v-else
+                    :propid="index"
+                    @deletePoint="deletePoint"
+                  ></EditCard>
+                </td>
+              </tr>
+              <tr>
+                <td colspan="5">
+                  <AddCard
+                    v-show="addcardParam"
+                    :LengthInput="4"
+                    @addInfo="addInfo"
+                  ></AddCard>
                 </td>
               </tr>
             </table>
+            <WarningMessage
+              v-show="this.modalError"
+              :title="$t('titleforWarningMessage')"
+            ></WarningMessage>
           </div>
           <div class="card-infrastructure__button">
             <button
-              v-if="$store.getters['GetChangestatus'] == true"
+              v-if="
+                $store.getters['GetChangestatus'] == true &&
+                addcardParam == false
+              "
               class="spoiler__reset_button"
+              @click="addcardParam = true"
             >
               {{ $t("add-btn-edit-platform") }}
+            </button>
+            <button
+              v-else-if="
+                $store.getters['GetChangestatus'] == true &&
+                addcardParam == true
+              "
+              class="spoiler__reset_button"
+              @click="addcardParam = false"
+            >
+              {{ $t("add-btn-exit-platform") }}
             </button>
           </div>
         </div>
@@ -76,20 +117,15 @@
 </template>
 
 <script>
+import { mapGetters, mapActions } from "vuex";
 import Imagecard from "@/components/ImgCard.vue";
 import Tablecard from "@/components/TableCard/TableCard.vue";
 import ModalWindow from "@/components/ModalWindow.vue";
 import OpenCard from "@/components/buttonCardOpen.vue";
 import EditCard from "@/components/buttonCardEditing.vue";
+import AddCard from "@/components/formAddTable.vue";
+import WarningMessage from "@/components/modalErrorInput.vue";
 export default {
-  /*
-  async asyncData({ store }) {
-    await store.dispatch("i18n/setRouteParams", {
-      en: { postId: "my-post" },
-      ru: { Platform: "" },
-    });
-  },
-  */
   layout: "card",
   components: {
     Imagecard,
@@ -97,52 +133,57 @@ export default {
     ModalWindow,
     OpenCard,
     EditCard,
+    AddCard,
+    WarningMessage,
   },
 
   data() {
     return {
+      modalError: false,
+      addcardParam: false,
+      titleforWarningMessage: "titleforWarningMessage",
       infrastructure: [
         {
           name: "droneport",
           company: "Hive",
           type: "М300",
           id: "312312414",
-          link: "/Platform/Droneport",
+          link: "/Droneport",
         },
         {
           name: "camera",
           company: "AHD",
           type: "C201HD",
           id: "312312414",
-          link: "/Platform/Camera",
+          link: "/Camera",
         },
         {
           name: "motion-sensors",
           company: "Ajax",
           type: "MonionProtect",
           id: "312312414",
-          link: "/Platform/Sensor",
+          link: "/Sensor",
         },
         {
           name: "protection",
           company: "Wall",
           type: "WallOne",
           id: "312312414",
-          link: "/Platform/Wall",
+          link: "/Wall",
         },
         {
           name: "lights",
           company: "FERON",
           type: "SP3040",
           id: "312312414",
-          link: "/Platform/Light",
+          link: "/Light",
         },
         {
           name: "postamat",
           company: "Ozon",
           type: "Box",
           id: "312312414",
-          link: "/Platform/Postamat",
+          link: "/Postamat",
         },
       ],
 
@@ -173,14 +214,14 @@ export default {
         "24/7",
         "",
       ],
-      type:[
-        'addres',
-        'text',
-        'date',
-        'two quantity',
-        'two quantity',
-        'select',
-      ]
+      type: [
+        "addres",
+        "text",
+        "date",
+        "two quantity",
+        "two quantity",
+        "select",
+      ],
     };
   },
   headerData: {
@@ -189,18 +230,80 @@ export default {
   methods: {
     changeData(number, value) {
       this.description[number] = value;
+      localStorage.setItem('DataStationLocal', JSON.stringify( this.description))
     },
-    DeleteImg(index){
-      this.img.splice(index, 1)
+    DeleteImg(index) {
+      this.img.splice(index, 1);
     },
-    clearInput(index){
-      this.description[index] = ''
-    }
+    clearInput(index) {
+      this.description[index] = "";
+       localStorage.setItem('DataStationLocal', JSON.stringify( this.description))
+    },
+
+    ...mapActions("dronoports", [
+      "addDroneport",
+      "deleteDroneport",
+      "addDroneportStorage",
+    ]),
+    addInfo(value) {
+      if (value.includes(undefined) || value.includes("")) {
+        this.modalError = true;
+        setTimeout(() => {
+          this.modalError = false;
+        }, 2000);
+      } else {
+        var object = {
+          name: value[0],
+          company: value[1],
+          link: "/",
+          type: value[2],
+          id: value[3],
+        };
+        let id = parseInt(this.splitPlatformId);
+        this.addDroneport([id, object]);
+      }
+    },
+
+    deletePoint(value) {
+      var id = parseInt(this.splitPlatformId);
+      this.deleteDroneport([id, value]);
+    },
+    addInfoStorage(){
+       var id = parseInt(this.splitPlatformId);
+      this.addDroneportStorage([id])
+    },
+    addPhoto(value) {
+      this.img.push(value);
+       localStorage.setItem('imgStationLocal', JSON.stringify(this.img))
+    },
+    TakeDataFromLocalStation(){
+    const DataLocalStation = localStorage.getItem('DataStationLocal')
+      if(DataLocalStation != null){
+      this.description = JSON.parse(DataLocalStation)
+     
+      }
   },
+
+  },
+
+    beforeMount(){
+    this.TakeDataFromLocalStation(),
+    this.addInfoStorage()
+   
+     },
+
+  computed: {
+    ...mapGetters("dronoports", ["getInfrByPlatformId"]),
+    splitPlatformId() {
+      console.log(this.$route.params.platform.match(/\d+/g));
+      return this.$route.params.platform.match(/\d+/g);
+    },
+  },
+  
 };
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 @import "@/assets/scss/card-area";
 ::-webkit-scrollbar {
   width: 5px;
