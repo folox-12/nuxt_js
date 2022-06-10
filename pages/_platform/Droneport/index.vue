@@ -234,11 +234,8 @@ export default {
     },
     addInfo(value){
        if (
-        value[0] == "" ||
-        value[1] == "" ||
-        value[2] == "" 
+        value.includes(undefined) || value.includes("")
       ) {
-        console.log(value);
         this.modalError = true;
         console.log(this.modalError);
         setTimeout(() => {
@@ -254,8 +251,7 @@ export default {
     },
     addInfo1(value){
       if (
-        value[0] == "" ||
-        value[1] == "" 
+       value.includes(undefined) || value.includes("")
       ) {
         console.log(value);
         this.modalError = true;
