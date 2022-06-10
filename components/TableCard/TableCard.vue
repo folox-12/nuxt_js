@@ -67,24 +67,41 @@
                 class="card-main-list__input"
                 v-bind:value="description[1]"
                 v-mask="[ 'XXXX-XXX-XXXX', 'XXXX-XXXX-XXXX',]"
-               
                 @input="$emit('changeInfo', 1, $event.target.value)"
               /><button @click="clearInput(title[1]), $emit('clearInput', 1)">
                 <img src="@/assets/img/ico/smallClear.svg" alt="" />
               </button>
             </div>
 
-            <div v-else-if="type[1] == 'three quantity'">
+            <div v-else-if="type[1] == 'three quantity'" class='divThreeQuantity'>
               <input
                 :id="title[1]"
                 type="text"
-                class="card-main-list__input"
-               v-mask="['## x ## x ##', '#### x #### x ###', '### x ### x ###', ]"
-                placeholder="длина-ширина-высота"
-                v-model="description[1]"
+                class="card-main-list__input inputThreeQuantity"
+                v-model="this.splitStringThreePoint[0]"
                 @input="$emit('changeInfo', 1, $event.target.value)"
               />
-              <button @click="clearInput(title[1]), $emit('clearInput', 1)">
+              <button @click="clearInput(title[1]), $emit('clearInput', 1)" class="card-main-list-point__1button">
+                <img src="@/assets/img/ico/smallClear.svg" alt="" />
+              </button>
+                <input
+                :id="title[1]"
+                type="text"
+                class="card-main-list__input inputThreeQuantity"
+                v-model="this.splitStringThreePoint[1]"
+                @input="$emit('changeInfo', 1, $event.target.value)"
+              />
+              <button @click="clearInput(title[1]), $emit('clearInput', 1)" class="card-main-list-point__2button">
+                <img src="@/assets/img/ico/smallClear.svg" alt="" />
+              </button>
+                <input
+                :id="title[1]"
+                type="text"
+                class="card-main-list__input inputThreeQuantity"
+                v-model="this.splitStringThreePoint[2]"
+                @input="$emit('changeInfo', 1, $event.target.value)"
+              />
+              <button @click="clearInput(title[1]), $emit('clearInput', 1)" class="card-main-list-point__3button">
                 <img src="@/assets/img/ico/smallClear.svg" alt="" />
               </button>
             </div>
@@ -294,7 +311,7 @@ export default {
   data() {
 
     return {
-      
+      splitStringThreePoint:[],
     };
 
   },
@@ -317,8 +334,27 @@ export default {
     clearInput(index) {
       document.getElementById(index).value = "";
     },
+    splitThreePoints(){
+  if(this.type[1] == 'three quantity'){
+    let stringToSplit = this.description[1];
+    var splitChar = 'x';
+    this.splitStringThreePoint = stringToSplit.split(splitChar);
+    console.log(this.splitStringThreePoint)
+  }
+}
   },
+  
+   beforeMount(){
+    this.splitThreePoints()
+
+   
+     },
 };
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.divThreeQuantity{
+  display: flex;
+  gap:10px;
+}
+</style>
