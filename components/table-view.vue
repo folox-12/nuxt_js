@@ -72,12 +72,8 @@
             </td>
           </tr>
           <tr>
-            <td colspan="5">
-              <AddCard
-                v-show="$store.getters['GetChangestatus']"
-                :LengthInput="3"
-                @addInfo="addInfo"
-              ></AddCard>
+            <td colspan="5" v-if="$store.getters['GetChangestatus']">
+              <AddCard :LengthInput="3" @addInfo="addInfo"></AddCard>
             </td>
           </tr>
         </tbody>

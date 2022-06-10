@@ -140,7 +140,6 @@
                   @radioValue="updateFilter"
                 />
               </spoiler>
-              <spoiler :title="$t('serviced-drones')"></spoiler>
               <spoiler :title="$t('postamat-title-page')">
                 <radioButton
                   :valuesRadio="{ 1: 1, 2: 2 }"
