@@ -36,7 +36,7 @@
                 :value="description[0]"
                 @input="$emit('changeInfo', 0, $event.target.value)"
               />
-              <button @click="clearInput(title[0]), $emit('clearInput', 0)">
+              <button @click="clearInput(title[0]), $emit('clearInput', 0)" class="card-main-list-point__button">
                 <img src="@/assets/img/ico/smallClear.svg" alt="" />
               </button>
             </div>
