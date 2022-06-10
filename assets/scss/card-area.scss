@@ -207,15 +207,7 @@ $color-for-bg: #ffffff;
     div {
       position: relative;
     }
-    button {
-      position: absolute;
-      right: 0px;
-      top: 1.6rem;
-      padding-right: 15px;
-      background-color: transparent;
-      cursor: pointer;
-      align-items: center;
-    }
+    
     h4 {
       font-family: "Montserrat";
       font-style: normal;
@@ -342,7 +334,7 @@ $color-for-bg: #ffffff;
 .card-main-list-point{
   &__1button{
     position: absolute;
-    left:-500px;
+    left:80px;
     top: 1.6rem;
     padding-right: 15px;
     background-color: transparent;
@@ -351,7 +343,7 @@ $color-for-bg: #ffffff;
   }
   &__2button{
     position: absolute;
-    left:-280px;
+    left:190px;
     top: 1.6rem;
     padding-right: 15px;
     background-color: transparent;
@@ -360,11 +352,21 @@ $color-for-bg: #ffffff;
   }
   &__3button{
     position: absolute;
-    left:-60px;
+    left:305px;
     top: 1.6rem;
     padding-right: 15px;
     background-color: transparent;
     cursor: pointer;
     align-items: center;
+  }
+  &__button{
+    position: absolute;
+    right: 0px;
+    top: 1.6rem;
+    padding-right: 15px;
+    background-color: transparent;
+    cursor: pointer;
+    align-items: center;
+  
   }
 }

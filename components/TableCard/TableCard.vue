@@ -49,7 +49,7 @@
                 v-mask="[ 'XXXX-XXX-XXXX', 'XXXX-XXXX-XXXX',]"
                 @input="$emit('changeInfo', 0, $event.target.value)"
               />
-              <button @click="clearInput(title[0]), $emit('clearInput', 0)">
+              <button @click="clearInput(title[0]), $emit('clearInput', 0)"  class="card-main-list-point__button">
                 <img src="@/assets/img/ico/smallClear.svg" alt="" />
               </button>
             </div>
@@ -68,7 +68,7 @@
                 v-bind:value="description[1]"
                 v-mask="[ 'XXXX-XXX-XXXX', 'XXXX-XXXX-XXXX',]"
                 @input="$emit('changeInfo', 1, $event.target.value)"
-              /><button @click="clearInput(title[1]), $emit('clearInput', 1)">
+              /><button @click="clearInput(title[1]), $emit('clearInput', 1)" class="card-main-list-point__button">
                 <img src="@/assets/img/ico/smallClear.svg" alt="" />
               </button>
             </div>
@@ -119,7 +119,7 @@
                 class="card-main-list__input"
                 v-bind:value="description[2]"
                 @input="$emit('changeInfo', 2, $event.target.value)"
-              /><button @click="clearInput(title[2]), $emit('clearInput', 2)" style="right:-5px;">
+              /><button @click="clearInput(title[2]), $emit('clearInput', 2)" style="right:-5px;"  class="card-main-list-point__button">
                 <img src="@/assets/img/ico/smallClear.svg" alt="" />
               </button>
             </div>
@@ -130,7 +130,7 @@
                 class="card-main-list__input"
                 v-bind:value="description[2]"
                 @input="$emit('changeInfo', 2, $event.target.value)"
-              /><button @click="clearInput(title[2]), $emit('clearInput', 2)" style="right:-5px;">
+              /><button @click="clearInput(title[2]), $emit('clearInput', 2)" style="right:-5px;"  class="card-main-list-point__button">
                 <img src="@/assets/img/ico/smallClear.svg" alt="" />
               </button>
             </div>
@@ -147,9 +147,9 @@
                 type="text"
                 class="card-main-list__input"
                 v-bind:value="description[3]"
-                v-mask="[ '## x ##', '# x #', '## x #', ]"
+                v-mask="[ '## x ##', '# x #', '## x #' ]"
                 @input="$emit('changeInfo', 3, $event.target.value)"
-              /><button @click="clearInput(title[3]), $emit('clearInput', 3)">
+              /><button @click="clearInput(title[3]), $emit('clearInput', 3)"  class="card-main-list-point__button">
                 <img src="@/assets/img/ico/smallClear.svg" alt="" />
               </button>
             </div>
@@ -160,7 +160,7 @@
                 class="card-main-list__input"
                 v-bind:value="description[3]"
                 @input="$emit('changeInfo', 3, $event.target.value)"
-              /><button @click="clearInput(title[3]), $emit('clearInput', 3)" style="right:-5px;">
+              /><button @click="clearInput(title[3]), $emit('clearInput', 3)" style="right:-5px;"  class="card-main-list-point__button">
                 <img src="@/assets/img/ico/smallClear.svg" alt="" />
               </button>
             </div>
@@ -178,7 +178,7 @@
                 class="card-main-list__input"
                 v-bind:value="description[4]"
                 @input="$emit('changeInfo', 4, $event.target.value)"
-              /><button @click="clearInput(title[4]), $emit('clearInput', 4)" style="right:-5px;">
+              /><button @click="clearInput(title[4]), $emit('clearInput', 4)" style="right:-5px;"  class="card-main-list-point__button">
                 <img src="@/assets/img/ico/smallClear.svg" alt="" />
               </button>
             </div>
@@ -208,7 +208,7 @@
                 class="card-main-list__input"
                 v-bind:value="description[5]"
                 @input="$emit('changeInfo', 5, $event.target.value)"
-              /><button @click="clearInput(title[5]), $emit('clearInput', 5)" style="right:-5px">
+              /><button @click="clearInput(title[5]), $emit('clearInput', 5)" style="right:-5px"  class="card-main-list-point__button">
                 <img src="@/assets/img/ico/smallClear.svg" alt="" />
               </button>
             </div>
@@ -240,7 +240,7 @@
                 class="card-main-list__input"
                 v-bind:value="description[6]"
                 @input="$emit('changeInfo', 6, $event.target.value)"
-              /><button @click="clearInput(title[6]), $emit('clearInput', 6)" style="right:-5px;">
+              /><button @click="clearInput(title[6]), $emit('clearInput', 6)" style="right:-5px;"  class="card-main-list-point__button">
                 <img src="@/assets/img/ico/smallClear.svg" alt="" />
               </button>
             </div>
@@ -258,7 +258,7 @@
                 class="card-main-list__input"
                 v-bind:value="description[7]"
                 @input="$emit('changeInfo', 7, $event.target.value)"
-              /><button @click="clearInput(title[7]), $emit('clearInput', 7)" style="right:-5px;">
+              /><button @click="clearInput(title[7]), $emit('clearInput', 7)" style="right:-5px;"  class="card-main-list-point__button">
                 <img src="@/assets/img/ico/smallClear.svg" alt="" />
               </button>
             </div>
@@ -276,7 +276,7 @@
                 class="card-main-list__input"
                 v-bind:value="description[8]"
                 @input="$emit('changeInfo', 8, $event.target.value)"
-              /><button @click="clearInput(title[8]), $emit('clearInput', 8)" style="right:-5px;">
+              /><button @click="clearInput(title[8]), $emit('clearInput', 8)" style="right:-5px;"  class="card-main-list-point__button">
                 <img src="@/assets/img/ico/smallClear.svg" alt="" />
               </button>
             </div>
@@ -294,7 +294,7 @@
                 class="card-main-list__input"
                 v-bind:value="description[9]"
                 @input="$emit('changeInfo', 9, $event.target.value)"
-              /><button @click="clearInput(title[9]), $emit('clearInput', 9)">
+              /><button @click="clearInput(title[9]), $emit('clearInput', 9)"  class="card-main-list-point__button">
                 <img src="@/assets/img/ico/smallClear.svg" alt="" />
               </button>
             </div>
@@ -339,7 +339,6 @@ export default {
     let stringToSplit = this.description[1];
     var splitChar = 'x';
     this.splitStringThreePoint = stringToSplit.split(splitChar);
-    console.log(this.splitStringThreePoint)
   }
 }
   },
