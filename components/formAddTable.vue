@@ -1,11 +1,6 @@
 <template>
   <div v-if="$store.getters['GetChangestatus'] == true" class="inputForm">
-    <InputForm
-      v-for="n in LengthInput"
-      :key="n"
-      @input="input"
-      :id="n - 1"
-    ></InputForm>
+    <InputForm v-for="n in LengthInput" :key="n" @input="input" :id="n - 1" />
     <iconBase
       class="addBtn"
       @mouseover="fillColor = '#9b42f2'"
@@ -33,7 +28,6 @@ export default {
       info: new Array(this.LengthInput),
 
       fillColor: "grey",
-
     };
   },
 

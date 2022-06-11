@@ -63,29 +63,21 @@
               <OpenCard
                 v-if="!$store.getters['GetChangestatus']"
                 :link="'/Platform' + index.id"
-              ></OpenCard>
-              <EditCard
-                v-else
-                :propid="index"
-                @deletePoint="deletePoint"
-              ></EditCard>
+              />
+              <EditCard v-else :propid="index" @deletePoint="deletePoint" />
             </td>
           </tr>
           <tr>
-            <td colspan="5">
-              <AddCard
-                v-show="$store.getters['GetChangestatus']"
-                :LengthInput="3"
-                @addInfo="addInfo"
-              ></AddCard>
+            <td colspan="5" v-if="$store.getters['GetChangestatus']">
+              <AddCard :LengthInput="3" @addInfo="addInfo"></AddCard>
             </td>
           </tr>
         </tbody>
       </table>
       <WarningMessage
-        v-show="this.modalError"
+        v-if="this.modalError"
         :title="$t('titleforWarningMessage')"
-      ></WarningMessage>
+      />
     </div>
     <slot></slot>
   </section>
