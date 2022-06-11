@@ -125,6 +125,7 @@ import OpenCard from "../../../components/buttonCardOpen.vue";
 import AddCard from "@/components/formAddTable.vue"
 import EditCard from "@/components/buttonCardEditing.vue";
 import WarningMessage from "@/components/modalErrorInput.vue";
+import Vue from "Vue"
 export default {
   layout: "card",
   components: {
@@ -218,16 +219,38 @@ export default {
     },
   },
   methods: {
-    changeData(number, value) {
-      this.description[number] = value;
+    changeData(index,value,type) {
+      if(type != undefined){
+          var splitChar = 'x';
+       let DataSplitted = this.description[index].split(splitChar)
+        DataSplitted[type] = String(value)
+       let ClearDataSplitted = DataSplitted
+       let StringToInput = ClearDataSplitted.join('x');
+       this.description[index] = StringToInput;
       localStorage.setItem('DataDroneportLocal', JSON.stringify( this.description))
+      }
+      else{
+      this.description[index] = value;
+      localStorage.setItem('DataDroneportLocal', JSON.stringify( this.description))
+      }
     },
      DeleteImg(index){
       this.img.splice(index, 1)
     },
-    clearInput(index){
+    clearInput(index,type){
+      if(type != undefined){
+        var splitChar = 'x';
+       let DataSplitted = this.description[index].split(splitChar)
+       DataSplitted[type] = ' '
+       let ClearDataSplitted = DataSplitted
+       let StringToInput = ClearDataSplitted.join('x');
+       this.description[index] = StringToInput;
+       localStorage.setItem('DataDroneportLocal', JSON.stringify( this.description))
+      }
+      else{
       this.description[index] = ''
       localStorage.setItem('DataDroneportLocal', JSON.stringify( this.description))
+      }
     },
      addPhoto(value){
       this.img.push(value)
