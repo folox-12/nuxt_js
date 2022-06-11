@@ -141,32 +141,21 @@ export default {
   },
   actions: {
     addDroneport: ({ commit }, array) => commit("addDroneport", array),
-    addPlatform: ({ commit }, platformData) =>commit("addPlatform", platformData),
+    addPlatform: ({ commit }, platformData) =>
+      commit("addPlatform", platformData),
     deleteDroneport: ({ commit }, array) => commit("deleteDroneport", array),
-    deletePlatform: ({ commit }, idPlatform) =>commit("deletePlatform", idPlatform),
-  addDroneportStorage:({commit}, array) => commit('addDroneportStorage',array)
-
+    deletePlatform: ({ commit }, idPlatform) =>
+      commit("deletePlatform", idPlatform),
   },
   mutations: {
     addDroneport: (state, array) => {
       state.tableData[1][array[0] - 1].infrastructure.push(array[1]);
-
-          localStorage.setItem('tableInfrastructure', JSON.stringify(state.tableData[1][array[0] - 1].infrastructure))
-    },
-    addDroneportStorage:(state,array) =>{
-      const infrastructureTable = localStorage.getItem('tableInfrastructure')
-      if(infrastructureTable != null){
-      state.tableData[1][array[0] - 1].infrastructure = JSON.parse(infrastructureTable)
-      }
-      
-
     },
     addPlatform: (state, platformData) => {
       state.tableData[1].push(platformData);
     },
     deleteDroneport: (state, array) => {
       state.tableData[1][array[0] - 1].infrastructure.splice(array[1], 1);
-      localStorage.setItem('tableInfrastructure', JSON.stringify(state.tableData[1][array[0] - 1].infrastructure))
     },
     deletePlatform: (state, idDelete) => {
       let platformsData = state.tableData[1];
@@ -199,6 +188,9 @@ export default {
     },
     getInfrByPlatformId: (state) => (id) => {
       return state.tableData[1].find((el) => el.id === id).infrastructure;
+    },
+    getPlatformInfoById: (state) => (id) => {
+      return state.tableData[1].find((el) => el.id === id);
     },
   },
 };
