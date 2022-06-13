@@ -207,18 +207,18 @@ export default {
       ],
       description: [
         "г. Одинцово, б-р Маршала Крылова, 20",
-        "450n-144-vc67",
+        "5 x 5 ",
         "08.02.22",
-        "5 х 5",
+        "450n-144-vc67",
         "от -10 до 30",
         "24/7",
         "",
       ],
       type: [
         "addres",
-        "text",
+        "three quantity",
         "date",
-        "two quantity",
+       "text",
         "two quantity",
         "select",
       ],
@@ -236,11 +236,11 @@ export default {
        let ClearDataSplitted = DataSplitted
        let StringToInput = ClearDataSplitted.join('x');
        this.description[index] = StringToInput;
-      localStorage.setItem('DataDroneportLocal', JSON.stringify( this.description))
+      localStorage.setItem('DataStationLocal', JSON.stringify( this.description))
       }
       else{
       this.description[index] = value;
-      localStorage.setItem('DataDroneportLocal', JSON.stringify( this.description))
+      localStorage.setItem('DataStationLocal', JSON.stringify( this.description))
       }
     },
     DeleteImg(index) {
@@ -254,11 +254,11 @@ export default {
        let ClearDataSplitted = DataSplitted
        let StringToInput = ClearDataSplitted.join('x');
        this.description[index] = StringToInput;
-       localStorage.setItem('DataDroneportLocal', JSON.stringify( this.description))
+       localStorage.setItem('DataStationLocal', JSON.stringify( this.description))
       }
       else{
       this.description[index] = ''
-      localStorage.setItem('DataDroneportLocal', JSON.stringify( this.description))
+      localStorage.setItem('DataStationLocal', JSON.stringify( this.description))
       }
     },
 

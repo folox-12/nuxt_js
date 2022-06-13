@@ -61,7 +61,7 @@
           <div class="card-main-list__point">
             <h4>{{ $t(title[1]) }}</h4>
             <div v-if="type[1] == 'text'">
-              <input
+              <input 
                 :id="title[1]"
                 type="text"
                 class="card-main-list__input"
@@ -74,34 +74,34 @@
             </div>
 
             <div v-else-if="type[1] == 'three quantity'" class='divThreeQuantity'>
-              <input
+              <input v-if="this.splitStringThreePoint[0]"
                 :id="'first'+title[1]"
                 type="text"
                 class="card-main-list__input inputThreeQuantity"
                 v-bind:value="this.splitStringThreePoint[0]"
                 @input="$emit('changeInfo', 1, $event.target.value, 0)"
               />
-              <button @click="clearInput('first'+title[1]), $emit('clearInput', 1,0)" class="card-main-list-point__1button">
+              <button v-if="this.splitStringThreePoint[0]" @click="clearInput('first'+title[1]), $emit('clearInput', 1,0)" class="card-main-list-point__1button">
                 <img src="@/assets/img/ico/smallClear.svg" alt="" />
               </button>
-                <input
+                <input v-if="this.splitStringThreePoint[1]"
                 :id="'second'+title[1]"
                 type="text"
                 class="card-main-list__input inputThreeQuantity"
                 v-bind:value="this.splitStringThreePoint[1]"
                 @input="$emit('changeInfo', 1, $event.target.value, 1)"
               />
-              <button @click="clearInput('second'+title[1]), $emit('clearInput', 1, 1)" class="card-main-list-point__2button">
+              <button v-if="this.splitStringThreePoint[1]" @click="clearInput('second'+title[1]), $emit('clearInput', 1, 1)" class="card-main-list-point__2button">
                 <img src="@/assets/img/ico/smallClear.svg" alt="" />
               </button>
-                <input
+                <input v-if="this.splitStringThreePoint[2]"
                 :id="'third'+title[1]"
                 type="text"
                 class="card-main-list__input inputThreeQuantity"
                 v-bind:value="this.splitStringThreePoint[2]"
                 @input="$emit('changeInfo', 1, $event.target.value, 2)"
               />
-              <button @click="clearInput('third'+title[1]), $emit('clearInput', 1,2)" class="card-main-list-point__3button">
+              <button  v-if="this.splitStringThreePoint[2]" @click="clearInput('third'+title[1]), $emit('clearInput', 1,2)" class="card-main-list-point__3button">
                 <img src="@/assets/img/ico/smallClear.svg" alt="" />
               </button>
             </div>
@@ -141,18 +141,19 @@
         <li>
           <div class="card-main-list__point">
             <h4>{{ $t(title[3]) }}</h4>
-            <div v-if='type[3] == "two quantity"'>
-              <input
+             <div v-if="type[3] == 'text'">
+              <input 
                 :id="title[3]"
                 type="text"
                 class="card-main-list__input"
                 v-bind:value="description[3]"
-                v-mask="[ '## x ##', '# x #', '## x #' ]"
+                v-mask="[ 'XXXX-XXX-XXXX', 'XXXX-XXXX-XXXX',]"
                 @input="$emit('changeInfo', 3, $event.target.value)"
-              /><button @click="clearInput(title[3]), $emit('clearInput', 3)"  class="card-main-list-point__button">
+              /><button @click="clearInput(title[3]), $emit('clearInput', 3)" class="card-main-list-point__button">
                 <img src="@/assets/img/ico/smallClear.svg" alt="" />
               </button>
             </div>
+
              <div v-else-if="type[3] == 'number'">
               <input
               :id="title[3]"
@@ -337,9 +338,10 @@ export default {
     splitThreePoints(){
   if(this.type[1] == 'three quantity'){
     let stringToSplit = this.description[1];
-    var splitChar = 'x';
+    var splitChar = ' x ';
     let splittedSring = stringToSplit.split(splitChar);
     this.splitStringThreePoint = splittedSring;
+    console.log(this.splitStringThreePoint)
   }
 }
   },
