@@ -199,6 +199,7 @@ export default {
 
   headerData: {
     title: "landing-areas-list-title-page",
+    link: "/Edit",
   },
   created() {},
   computed: {

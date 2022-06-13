@@ -4,6 +4,7 @@
       <div class="header-page__mainblok">
         <div class="header-page__title">
           <h1>{{ $t(headerData.title) + splitPlatformId }}</h1>
+          <!-- <h6>{{ headerData.link }}</h6> -->
           <div class="header-page__button">
             <fdButton @click="click" :text="$t(checkStore)" />
           </div>
@@ -21,7 +22,7 @@ export default {
   },
   props: {
     headerData: {
-      type: Function,
+      type: Object,
       required: true,
       default: "Page",
     },

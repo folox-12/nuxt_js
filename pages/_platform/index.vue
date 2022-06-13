@@ -228,11 +228,9 @@ export default {
   computed: {
     ...mapGetters("dronoports", ["getInfrByPlatformId", "getPlatformInfoById"]),
     splitPlatformId() {
-      // console.log(this.$route.params.platform.match(/\d+/g));
       return this.$route.params.platform.match(/\d+/g);
     },
     GetPlatformAddress() {
-      // console.log(parseInt(this.splitPlatformId));
       return this.getPlatformInfoById(parseInt(this.splitPlatformId)).address;
     },
   },

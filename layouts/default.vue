@@ -3,12 +3,14 @@
     <Header></Header>
     <main>
       <div class="container">
+        <h6>{{ headerData }}</h6>
         <Breadcrumbs :crumbs="getAllRoute" />
         <TitleOfPage
           :headerData="headerData"
           v-if="headerData"
           @click="ChangeEditStatus"
-        ></TitleOfPage>
+        >
+        </TitleOfPage>
         <nuxt />
       </div>
     </main>
@@ -40,9 +42,9 @@ export default {
       return this.$route.fullPath;
     },
     headerData() {
-      return this.$route.matched.map((r) => {
-        return r.components.default.options.headerData;
-      })[0];
+      return this.$route.matched.map(
+        (r) => r.components.default.options.headerData
+      )[0];
     },
   },
   methods: {
@@ -54,6 +56,7 @@ export default {
         "setChangestatus",
         !this.$store.getters["GetChangestatus"]
       );
+      if (this.headerData.link) this.$router.push(this.headerData.link);
     },
   },
 };
