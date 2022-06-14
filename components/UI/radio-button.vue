@@ -20,24 +20,34 @@
       v-model="inputValue"
       class="custom"
       v-if="radioValue === 'custom'"
+      @input="$emit('radioValue', inputValue, name)"
       :closeIcon="closeIconForInput"
       :placeholder="$t('enter-value')"
+    />
+    <fd-button
+      :text="showALl ? $t('hide-all-btn') : $t('show-all-btn')"
+      :type="'white'"
+      @click="showALl = !showALl"
+      v-if="lengthAllRadioInput"
     />
   </div>
 </template>
 
 <script>
 import fdInput from "./fd-input.vue";
+import fdButton from "./fd-button.vue";
 export default {
   data() {
     return {
       radioValue: "",
-      inputValue: "",
+      inputValue: 0,
+      showALl: false,
     };
   },
 
   components: {
     fdInput,
+    fdButton,
   },
   props: {
     name: {
@@ -54,10 +64,25 @@ export default {
       type: Boolean,
       default: false,
     },
+    lengthRadio: {
+      type: Number,
+      default: 5,
+    },
   },
   computed: {
+    lengthAllRadioInput() {
+      return Object.keys(this.valuesRadio).length > this.lengthRadio;
+    },
     allRadioInput() {
       let obj = { ...this.valuesRadio };
+      if (this.lengthAllRadioInput & !this.showALl) {
+        obj = Object.fromEntries(
+          Object.entries(obj).slice(0, this.lengthRadio)
+        );
+      }
+      if (this.showALl) {
+        obj = { ...this.valuesRadio };
+      }
       if (this.custom) {
         obj["several-filter"] = "custom";
       }
@@ -71,6 +96,9 @@ export default {
         value = null;
       } else {
         this.radioValue = value;
+        if (value === "custom") {
+          return;
+        }
       }
 
       this.$emit("radioValue", value, this.name);

@@ -88,20 +88,57 @@ export default {
     title: "light-title",
   },
   methods: {
-    changeData(number, value) {
-      this.description[number] = value;
+    changeData(index,value,type) {
+      if(type != undefined){
+          var splitChar = 'x';
+       let DataSplitted = this.description[index].split(splitChar)
+        DataSplitted[type] = String(value)
+       let ClearDataSplitted = DataSplitted
+       let StringToInput = ClearDataSplitted.join('x');
+       this.description[index] = StringToInput;
+      localStorage.setItem('DataDroneportLocal', JSON.stringify( this.description))
+      }
+      else{
+      this.description[index] = value;
+      localStorage.setItem('DataDroneportLocal', JSON.stringify( this.description))
+      }
     },
 
     DeleteImg(index) {
       this.img.splice(index, 1);
     },
-    clearInput(index) {
-      this.description[index] = "";
+      clearInput(index,type){
+      if(type != undefined){
+        var splitChar = 'x';
+       let DataSplitted = this.description[index].split(splitChar)
+       DataSplitted[type] = ' '
+       let ClearDataSplitted = DataSplitted
+       let StringToInput = ClearDataSplitted.join('x');
+       this.description[index] = StringToInput;
+       localStorage.setItem('DataDroneportLocal', JSON.stringify( this.description))
+      }
+      else{
+      this.description[index] = ''
+      localStorage.setItem('DataDroneportLocal', JSON.stringify( this.description))
+      }
     },
      addPhoto(value){
       this.img.push(value)
+      localStorage.setItem('DataLightLocal', JSON.stringify(this.description))
+    },
+  TakeDataFromLocalLight(){
+       const DataLocalLight = localStorage.getItem('DataLightLocal')
+      if(DataLocalLight != null){
+      this.description = JSON.parse(DataLocalLight)
+     
+      }
     }
+
   },
+  beforeMount(){
+    this.TakeDataFromLocalLight()
+   
+     },
 };
 </script>
 

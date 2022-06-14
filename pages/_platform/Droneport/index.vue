@@ -125,6 +125,7 @@ import OpenCard from "../../../components/buttonCardOpen.vue";
 import AddCard from "@/components/formAddTable.vue"
 import EditCard from "@/components/buttonCardEditing.vue";
 import WarningMessage from "@/components/modalErrorInput.vue";
+import Vue from "Vue"
 export default {
   layout: "card",
   components: {
@@ -218,25 +219,46 @@ export default {
     },
   },
   methods: {
-    changeData(number, value) {
-      this.description[number] = value;
+    changeData(index,value,type) {
+      if(type != undefined){
+          var splitChar = 'x';
+       let DataSplitted = this.description[index].split(splitChar)
+        DataSplitted[type] = String(value)
+       let ClearDataSplitted = DataSplitted
+       let StringToInput = ClearDataSplitted.join('x');
+       this.description[index] = StringToInput;
+      localStorage.setItem('DataDroneportLocal', JSON.stringify( this.description))
+      }
+      else{
+      this.description[index] = value;
+      localStorage.setItem('DataDroneportLocal', JSON.stringify( this.description))
+      }
     },
      DeleteImg(index){
       this.img.splice(index, 1)
     },
-    clearInput(index){
+    clearInput(index,type){
+      if(type != undefined){
+        var splitChar = 'x';
+       let DataSplitted = this.description[index].split(splitChar)
+       DataSplitted[type] = ' '
+       let ClearDataSplitted = DataSplitted
+       let StringToInput = ClearDataSplitted.join('x');
+       this.description[index] = StringToInput;
+       localStorage.setItem('DataDroneportLocal', JSON.stringify( this.description))
+      }
+      else{
       this.description[index] = ''
+      localStorage.setItem('DataDroneportLocal', JSON.stringify( this.description))
+      }
     },
      addPhoto(value){
       this.img.push(value)
     },
     addInfo(value){
        if (
-        value[0] == "" ||
-        value[1] == "" ||
-        value[2] == "" 
+        value.includes(undefined) || value.includes("")
       ) {
-        console.log(value);
         this.modalError = true;
         console.log(this.modalError);
         setTimeout(() => {
@@ -247,12 +269,12 @@ export default {
         else{
       let object = {"id": value[0],"name": value[1],"by": value[2],};
       this.equipments.push(object)
+       localStorage.setItem('DataDroneportLocaleequipments', JSON.stringify(this.equipments))
         }
     },
     addInfo1(value){
       if (
-        value[0] == "" ||
-        value[1] == "" 
+       value.includes(undefined) || value.includes("")
       ) {
         console.log(value);
         this.modalError = true;
@@ -265,15 +287,45 @@ export default {
       else{
       let object = {"name": value[0],"model": value[1]};
        this.drones.push(object)
+         localStorage.setItem('DataDroneportLocaledrones', JSON.stringify(this.drones))
       }
     },
     deletePoint(value){
       this.equipments.splice(value,1)
+       localStorage.setItem('DataDroneportLocaleequipments', JSON.stringify(this.equipments))
     },
     deletePoint1(value){
       this.drones.splice(value,1)
+      localStorage.setItem('DataDroneportLocaledrones', JSON.stringify(this.drones))
     },
+    TakeDataFromLocalDroneport(){
+    const DataLocalDroneport = localStorage.getItem('DataDroneportLocal')
+      if(DataLocalDroneport != null){
+      this.description = JSON.parse(DataLocalDroneport)
+     
+      }
   },
+   TakeDataFromLocalDroneportquipments(){
+    const DataLocalDroneportquipments = localStorage.getItem('DataDroneportLocaleequipments')
+      if(DataLocalDroneportquipments != null){
+      this.equipments = JSON.parse(DataLocalDroneportquipments)
+     
+      }
+  },
+   TakeDataFromLocalDroneportdrones(){
+    const DataLocalDroneportdrones = localStorage.getItem('DataDroneportLocaledrones')
+      if(DataLocalDroneportdrones != null){
+      this.drones = JSON.parse(DataLocalDroneportdrones)
+     
+      }
+  },
+  },
+  beforeMount(){
+    this.TakeDataFromLocalDroneport(),
+    this.TakeDataFromLocalDroneportquipments(),
+    this.TakeDataFromLocalDroneportdrones()
+   
+     },
 };
 </script>
 

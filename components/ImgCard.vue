@@ -15,13 +15,13 @@
         :iconType="'search'"
         :backgroundColor="'#ffffff'"
       />
-      <button
+      <icon-base
         @click="$emit('DeleteImg', index)"
         v-else
         class="card-images__loop"
-      >
-        <img src="@/assets/img/ico/delete.svg" alt="" />
-      </button>
+        :iconType="'close'"
+        :backgroundColor="'#ffffff'"
+      />
     </div>
     <h1
       class="card-images__noPhoto"

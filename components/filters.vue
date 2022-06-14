@@ -6,16 +6,16 @@
           v-model="inputValue"
           :placeholder="placeHolder"
           :icon="icon"
-        ></fd-input>
+        />
         <div class="header-page-search__buttons">
-          <button
+          <iconBase
             v-for="key in sortedRightSideViews"
             :key="key.name"
+            :backgroundColor="'white'"
+            :fill="typeViewOfRightSide === key.name ? '#9b42f2' : 'grey'"
+            :iconType="key.img"
             @click="toggleShowRightSide(key.name)"
-            :class="isBtnActive(key.name)"
-          >
-            <img :src="key.img" alt="#" />
-          </button>
+          />
         </div>
       </div>
       <div class="filter-content">
@@ -43,6 +43,7 @@
 
 <script>
 import fdInput from "./UI/fd-input.vue";
+import iconBase from "./icons/IconBase.vue";
 export default {
   data() {
     return {
@@ -60,6 +61,7 @@ export default {
   },
   components: {
     fdInput,
+    iconBase,
   },
   props: {
     rightSideView: {

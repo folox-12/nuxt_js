@@ -199,26 +199,26 @@ export default {
       ],
       title: [
         "adress-table-card",
-        "registration-num-table-card",
-        "creation-date-table-card",
         "dimensions-table-card-meters",
+        "creation-date-table-card",
+        "registration-num-table-card",
         "alowable-temp-table-card",
         "operating-mode-table-card",
       ],
       description: [
         "г. Одинцово, б-р Маршала Крылова, 20",
-        "450n-144-vc67",
+        "5 x 5 ",
         "08.02.22",
-        "5 х 5",
+        "450n-144-vc67",
         "от -10 до 30",
         "24/7",
         "",
       ],
       type: [
         "addres",
-        "text",
+        "three quantity",
         "date",
-        "two quantity",
+       "text",
         "two quantity",
         "select",
       ],
@@ -228,25 +228,50 @@ export default {
     title: "platform-title-page",
   },
   methods: {
-    changeData(number, value) {
-      this.description[number] = value;
+    changeData(index,value,type) {
+      if(type != undefined){
+          var splitChar = 'x';
+       let DataSplitted = this.description[index].split(splitChar)
+        DataSplitted[type] = String(value)
+       let ClearDataSplitted = DataSplitted
+       let StringToInput = ClearDataSplitted.join('x');
+       this.description[index] = StringToInput;
+      localStorage.setItem('DataStationLocal', JSON.stringify( this.description))
+      }
+      else{
+      this.description[index] = value;
+      localStorage.setItem('DataStationLocal', JSON.stringify( this.description))
+      }
     },
     DeleteImg(index) {
       this.img.splice(index, 1);
     },
-    clearInput(index) {
-      this.description[index] = "";
+     clearInput(index,type){
+      if(type != undefined){
+        var splitChar = 'x';
+       let DataSplitted = this.description[index].split(splitChar)
+       DataSplitted[type] = ' '
+       let ClearDataSplitted = DataSplitted
+       let StringToInput = ClearDataSplitted.join('x');
+       this.description[index] = StringToInput;
+       localStorage.setItem('DataStationLocal', JSON.stringify( this.description))
+      }
+      else{
+      this.description[index] = ''
+      localStorage.setItem('DataStationLocal', JSON.stringify( this.description))
+      }
     },
 
-    ...mapActions("dronoports", ["addDroneport", "deleteDroneport","addDroneportStorage"]),
+    ...mapActions("dronoports", [
+      "addDroneport",
+      "deleteDroneport",
+      "addDroneportStorage",
+    ]),
     addInfo(value) {
       if (value.includes(undefined) || value.includes("")) {
-        console.log(value);
         this.modalError = true;
-        console.log(this.modalError);
         setTimeout(() => {
           this.modalError = false;
-          console.log(this.modalError);
         }, 2000);
       } else {
         var object = {
@@ -258,20 +283,37 @@ export default {
         };
         let id = parseInt(this.splitPlatformId);
         this.addDroneport([id, object]);
-    
       }
     },
-   
 
     deletePoint(value) {
       var id = parseInt(this.splitPlatformId);
       this.deleteDroneport([id, value]);
     },
+    addInfoStorage(){
+       var id = parseInt(this.splitPlatformId);
+      this.addDroneportStorage([id])
+    },
     addPhoto(value) {
       this.img.push(value);
+       localStorage.setItem('imgStationLocal', JSON.stringify(this.img))
     },
+    TakeDataFromLocalStation(){
+    const DataLocalStation = localStorage.getItem('DataStationLocal')
+      if(DataLocalStation != null){
+      this.description = JSON.parse(DataLocalStation)
+     
+      }
   },
+
+  },
+
+    beforeMount(){
+    this.TakeDataFromLocalStation(),
+    this.addInfoStorage()
    
+     },
+
   computed: {
     ...mapGetters("dronoports", ["getInfrByPlatformId"]),
     splitPlatformId() {
@@ -279,10 +321,11 @@ export default {
       return this.$route.params.platform.match(/\d+/g);
     },
   },
+  
 };
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 @import "@/assets/scss/card-area";
 ::-webkit-scrollbar {
   width: 5px;

@@ -63,25 +63,21 @@
               <OpenCard
                 v-if="!$store.getters['GetChangestatus']"
                 :link="'/Platform' + index.id"
-              ></OpenCard>
-              <EditCard
-                v-else
-                :propid="index"
-                @deletePoint="deletePoint"
-              ></EditCard>
+              />
+              <EditCard v-else :propid="index" @deletePoint="deletePoint" />
             </td>
           </tr>
           <tr>
-            <td colspan="5">
-              <AddCard
-                v-show="$store.getters['GetChangestatus']"
-                :LengthInput="3"
-                @addInfo="addInfo"
-              ></AddCard>
+            <td colspan="5" v-if="$store.getters['GetChangestatus']">
+              <AddCard :LengthInput="3" @addInfo="addInfo"></AddCard>
             </td>
           </tr>
         </tbody>
       </table>
+      <WarningMessage
+        v-if="this.modalError"
+        :title="$t('titleforWarningMessage')"
+      />
     </div>
     <slot></slot>
   </section>
@@ -91,6 +87,8 @@
 import OpenCard from "@/components/buttonCardOpen.vue";
 import EditCard from "@/components/buttonCardEditing.vue";
 import AddCard from "@/components/formAddTable.vue";
+import WarningMessage from "@/components/modalErrorInput.vue";
+
 import { mapActions } from "vuex";
 
 export default {
@@ -99,10 +97,12 @@ export default {
     OpenCard,
     EditCard,
     AddCard,
+    WarningMessage,
   },
 
   data() {
     return {
+      modalError: false,
       to: "",
       sortedFlag: "",
       flagDirection: false,
@@ -126,15 +126,22 @@ export default {
   methods: {
     ...mapActions("dronoports", ["addPlatform", "deletePlatform"]),
     addInfo(value) {
-      let object = {
-        id: 10,
-        address: value[0],
-        dronoport: value[1],
-        postamat: value[2],
-        infrastructure: [],
-      };
-      // console.log("f " + object.address);
-      this.addPlatform(object);
+      if (value.includes(undefined) || value.includes("")) {
+        this.modalError = true;
+        setTimeout(() => {
+          this.modalError = false;
+        }, 2000);
+      } else {
+        let object = {
+          id: 10,
+          address: value[0],
+          dronoport: value[1],
+          postamat: value[2],
+          infrastructure: [],
+        };
+        // console.log("f " + object.address);
+        this.addPlatform(object);
+      }
     },
     deletePoint(value) {
       //console.log(value.id);
