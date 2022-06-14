@@ -31,13 +31,54 @@
       <div class="TopShelf-items">
         <div class="TopShelf-items__input">
           <fd-input
+            v-if="showInput"
             v-model="valueInput"
             @input="ChangeCenter"
             :placeholder="'Найти населенный пункт для полета'"
           />
         </div>
-        <div class="TopShelf-items__filters">
-          <button class="TileShow" @click="showSettingsTile = !showSettingsTile">
+        <div class="TopShelf-items__inputClosed" v-if="showInputClosed">
+          <button @click="hideTopShelfTools()">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              role="presentation"
+              class="svg-icon svg-icon--default"
+            >
+              <g>
+                <path
+                  d="M9.5,3A6.5,6.5 0 0,1 16,9.5C16,11.11 15.41,12.59 14.44,13.73L14.71,14H15.5L20.5,19L19,20.5L14,15.5V14.71L13.73,14.44C12.59,15.41 11.11,16 9.5,16A6.5,6.5 0 0,1 3,9.5A6.5,6.5 0 0,1 9.5,3M9.5,5C7,5 5,7 5,9.5C5,12 7,14 9.5,14C12,14 14,12 14,9.5C14,7 12,5 9.5,5Z"
+                ></path>
+              </g>
+            </svg>
+          </button>
+        </div>
+        <div class="TopShelf-items__inputActive" v-if="showInputActive">
+          <button @click="hideTopShelfTools">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              role="presentation"
+              class="svg-icon svg-icon--default"
+            >
+              <!---->
+              <g>
+                <path
+                  d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z"
+                ></path>
+              </g>
+            </svg>
+          </button>
+        </div>
+        <div class="TopShelf-items__filters" v-if="showTopFilters">
+          <button
+            class="TileShow"
+            @click="showSettingsTile = !showSettingsTile"
+          >
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="24"
@@ -53,7 +94,7 @@
             </svg>
           </button>
 
-          <button class="FigureBuild" >
+          <button class="FigureBuild" @click="foo()">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="24"
@@ -74,20 +115,22 @@
             <span>>1000m</span>
           </button>
 
-          <button class="Settings" @click="showSettingsView = !showSettingsView">
+          <button
+            class="Settings"
+            @click="showSettingsView = !showSettingsView"
+          >
             <svg
               xmlns="http://www.w3.org/2000/svg"
-              width="24"
-              height="24"
-              viewBox="0 0 24 24"
-              role="presentation"
-              class="svg-icon svg-icon--default"
+              width="20"
+              height="20"
+              viewBox="0 0 20 20"
             >
-              <g>
-                <path
-                  d="M12,8A4,4 0 0,1 16,12A4,4 0 0,1 12,16A4,4 0 0,1 8,12A4,4 0 0,1 12,8M12,10A2,2 0 0,0 10,12A2,2 0 0,0 12,14A2,2 0 0,0 14,12A2,2 0 0,0 12,10M10,22C9.75,22 9.54,21.82 9.5,21.58L9.13,18.93C8.5,18.68 7.96,18.34 7.44,17.94L4.95,18.95C4.73,19.03 4.46,18.95 4.34,18.73L2.34,15.27C2.21,15.05 2.27,14.78 2.46,14.63L4.57,12.97L4.5,12L4.57,11L2.46,9.37C2.27,9.22 2.21,8.95 2.34,8.73L4.34,5.27C4.46,5.05 4.73,4.96 4.95,5.05L7.44,6.05C7.96,5.66 8.5,5.32 9.13,5.07L9.5,2.42C9.54,2.18 9.75,2 10,2H14C14.25,2 14.46,2.18 14.5,2.42L14.87,5.07C15.5,5.32 16.04,5.66 16.56,6.05L19.05,5.05C19.27,4.96 19.54,5.05 19.66,5.27L21.66,8.73C21.79,8.95 21.73,9.22 21.54,9.37L19.43,11L19.5,12L19.43,13L21.54,14.63C21.73,14.78 21.79,15.05 21.66,15.27L19.66,18.73C19.54,18.95 19.27,19.04 19.05,18.95L16.56,17.95C16.04,18.34 15.5,18.68 14.87,18.93L14.5,21.58C14.46,21.82 14.25,22 14,22H10M11.25,4L10.88,6.61C9.68,6.86 8.62,7.5 7.85,8.39L5.44,7.35L4.69,8.65L6.8,10.2C6.4,11.37 6.4,12.64 6.8,13.8L4.68,15.36L5.43,16.66L7.86,15.62C8.63,16.5 9.68,17.14 10.87,17.38L11.24,20H12.76L13.13,17.39C14.32,17.14 15.37,16.5 16.14,15.62L18.57,16.66L19.32,15.36L17.2,13.81C17.6,12.64 17.6,11.37 17.2,10.2L19.31,8.65L18.56,7.35L16.15,8.39C15.38,7.5 14.32,6.86 13.12,6.62L12.75,4H11.25Z"
-                ></path>
-              </g>
+              <path
+                d="M12 10C12 11.1046 11.1046 12 10 12V14C12.2091 14 14 12.2091 14 10H12ZM10 12C8.89543 12 8 11.1046 8 10H6C6 12.2091 7.79086 14 10 14V12ZM8 10C8 8.89543 8.89543 8 10 8V6C7.79086 6 6 7.79086 6 10H8ZM10 8C11.1046 8 12 8.89543 12 10H14C14 7.79086 12.2091 6 10 6V8Z"
+              />
+              <path
+                d="M13.2687 4.07658L12.7915 4.95535L12.7915 4.95535L13.2687 4.07658ZM17.6497 8.22126L18.1463 9.08922L17.6497 8.22126ZM18.2169 6.10414L17.3529 6.60753L18.2169 6.10414ZM16.8097 9.85577L17.8095 9.83462L16.8097 9.85577ZM17.6496 11.7788L18.1463 10.9108L18.1463 10.9108L17.6496 11.7788ZM16.8097 10.1443L17.8095 10.1654L16.8097 10.1443ZM18.2169 13.8958L17.3528 13.3924L17.3528 13.3924L18.2169 13.8958ZM15.3801 15.6763L14.8835 16.5443L14.8835 16.5443L15.3801 15.6763ZM17.5125 15.105L18.3765 15.6084L18.3765 15.6084L17.5125 15.105ZM13.5348 15.7711L14.0511 16.6275L14.0511 16.6275L13.5348 15.7711ZM13.2687 15.9234L13.746 16.8022L13.2687 15.9234ZM6.73157 15.9234L7.20883 15.0447L6.73157 15.9234ZM2.48784 15.105L1.62377 15.6084L1.62377 15.6084L2.48784 15.105ZM4.62018 15.6763L5.1168 16.5443L5.1168 16.5443L4.62018 15.6763ZM2.35065 11.7787L1.85402 10.9108L2.35065 11.7787ZM1.7834 13.8958L2.64746 13.3924L2.64746 13.3924L1.7834 13.8958ZM3.19056 10.1443L4.19034 10.1231L3.19056 10.1443ZM2.35063 8.22127L2.84725 7.3533L2.35063 8.22127ZM3.19056 9.85578L2.19078 9.83463L3.19056 9.85578ZM1.78337 6.10415L0.919305 5.60077L0.919305 5.60077L1.78337 6.10415ZM4.62015 4.32367L4.12352 5.19163L4.12352 5.19163L4.62015 4.32367ZM2.48779 4.89501L3.35185 5.39839L3.35185 5.39839L2.48779 4.89501ZM6.46547 4.22895L5.94919 3.37253L6.46547 4.22895ZM6.73157 4.07658L7.20883 4.95535L6.73157 4.07658ZM15.3801 4.32366L14.8835 3.45569L15.3801 4.32366ZM13.5348 4.22894L14.0511 3.37252L13.5348 4.22894ZM6.46547 15.7711L5.9492 16.6275L6.46547 15.7711ZM17.5125 4.89501L18.3766 4.39162L17.5125 4.89501ZM9.27081 2H10.7295V0H9.27081V2ZM6.98175 5.08537C7.05636 5.04039 7.13207 4.99703 7.20883 4.95535L6.25432 3.19782C6.15116 3.25384 6.04943 3.3121 5.94919 3.37253L6.98175 5.08537ZM2.64743 6.60754L3.35185 5.39839L1.62372 4.39163L0.919305 5.60077L2.64743 6.60754ZM4.18903 10C4.18903 9.95886 4.18947 9.91783 4.19034 9.87693L2.19078 9.83463C2.18962 9.88963 2.18903 9.94476 2.18903 10H4.18903ZM4.19034 10.1231C4.18947 10.0822 4.18903 10.0412 4.18903 10H2.18903C2.18903 10.0553 2.18962 10.1104 2.19078 10.1654L4.19034 10.1231ZM3.3519 14.6016L2.64746 13.3924L0.919333 14.3992L1.62377 15.6084L3.3519 14.6016ZM7.20883 15.0447C7.13207 15.003 7.05637 14.9596 6.98175 14.9146L5.9492 16.6275C6.04944 16.6879 6.15116 16.7462 6.25432 16.8022L7.20883 15.0447ZM10.7295 18H9.27081V20H10.7295V18ZM13.0185 14.9146C12.9439 14.9596 12.8682 15.003 12.7915 15.0447L13.746 16.8022C13.8491 16.7462 13.9508 16.6879 14.0511 16.6275L13.0185 14.9146ZM17.3528 13.3924L16.6484 14.6016L18.3765 15.6084L19.081 14.3992L17.3528 13.3924ZM15.8113 10C15.8113 10.0412 15.8108 10.0822 15.81 10.1231L17.8095 10.1654C17.8107 10.1104 17.8113 10.0552 17.8113 10H15.8113ZM15.81 9.87692C15.8108 9.91783 15.8113 9.95885 15.8113 10H17.8113C17.8113 9.94475 17.8107 9.88963 17.8095 9.83462L15.81 9.87692ZM16.6484 5.39839L17.3529 6.60753L19.081 5.60076L18.3766 4.39162L16.6484 5.39839ZM12.7915 4.95535C12.8682 4.99703 12.9439 5.04039 13.0185 5.08536L14.0511 3.37252C13.9508 3.31209 13.8491 3.25384 13.746 3.19782L12.7915 4.95535ZM13.746 3.19782C13.4108 3.01577 13.2705 2.74442 13.2705 2.54104H11.2705C11.2705 3.64708 11.976 4.51246 12.7915 4.95535L13.746 3.19782ZM18.1463 9.08922C19.3724 8.38766 19.7921 6.8214 19.081 5.60076L17.3529 6.60753C17.5049 6.86848 17.4152 7.20331 17.153 7.35329L18.1463 9.08922ZM17.8095 9.83462C17.8014 9.44965 17.9685 9.19094 18.1463 9.08922L17.153 7.35329C16.1907 7.9039 15.7903 8.94867 15.81 9.87692L17.8095 9.83462ZM18.1463 10.9108C17.9685 10.8091 17.8014 10.5504 17.8095 10.1654L15.81 10.1231C15.7903 11.0513 16.1907 12.0961 17.153 12.6467L18.1463 10.9108ZM19.081 14.3992C19.7921 13.1786 19.3724 11.6123 18.1463 10.9108L17.153 12.6467C17.4151 12.7967 17.5048 13.1315 17.3528 13.3924L19.081 14.3992ZM14.8835 16.5443C16.1073 17.2445 17.6668 16.8267 18.3765 15.6084L16.6484 14.6016C16.4916 14.8708 16.1471 14.9631 15.8767 14.8084L14.8835 16.5443ZM14.0511 16.6275C14.3854 16.426 14.6992 16.4389 14.8835 16.5443L15.8767 14.8084C14.916 14.2587 13.814 14.4351 13.0185 14.9146L14.0511 16.6275ZM13.2705 17.459C13.2705 17.2556 13.4108 16.9842 13.746 16.8022L12.7915 15.0447C11.976 15.4875 11.2705 16.3529 11.2705 17.459H13.2705ZM10.7295 20C12.1329 20 13.2705 18.8623 13.2705 17.459H11.2705C11.2705 17.7578 11.0283 18 10.7295 18V20ZM6.72978 17.459C6.72978 18.8623 7.86744 20 9.27081 20V18C8.97201 18 8.72978 17.7578 8.72978 17.459H6.72978ZM6.25432 16.8022C6.58952 16.9842 6.72978 17.2556 6.72978 17.459H8.72978C8.72978 16.3529 8.0243 15.4875 7.20883 15.0447L6.25432 16.8022ZM1.62377 15.6084C2.33352 16.8267 3.89301 17.2445 5.1168 16.5443L4.12355 14.8084C3.8532 14.9631 3.50869 14.8708 3.3519 14.6016L1.62377 15.6084ZM1.85402 10.9108C0.627885 11.6123 0.208224 13.1786 0.919333 14.3992L2.64746 13.3924C2.49544 13.1315 2.58516 12.7967 2.84727 12.6467L1.85402 10.9108ZM2.19078 10.1654C2.19893 10.5504 2.03179 10.8091 1.85402 10.9108L2.84727 12.6467C3.80957 12.0961 4.20997 11.0513 4.19034 10.1231L2.19078 10.1654ZM1.854 9.08923C2.03178 9.19095 2.19892 9.44966 2.19078 9.83463L4.19034 9.87693C4.20997 8.94868 3.80956 7.90391 2.84725 7.3533L1.854 9.08923ZM0.919305 5.60077C0.208189 6.82141 0.627852 8.38767 1.854 9.08923L2.84725 7.3533C2.58512 7.20332 2.49541 6.86849 2.64743 6.60754L0.919305 5.60077ZM5.11677 3.4557C3.89297 2.75548 2.33348 3.17333 1.62372 4.39163L3.35185 5.39839C3.50865 5.12925 3.85316 5.03694 4.12352 5.19163L5.11677 3.4557ZM5.94919 3.37253C5.61487 3.57407 5.30104 3.56113 5.11677 3.4557L4.12352 5.19163C5.08427 5.74134 6.18628 5.5649 6.98175 5.08537L5.94919 3.37253ZM6.72978 2.54104C6.72978 2.74442 6.58952 3.01577 6.25432 3.19782L7.20883 4.95535C8.0243 4.51246 8.72978 3.64708 8.72978 2.54104H6.72978ZM14.8835 3.45569C14.6992 3.56113 14.3854 3.57406 14.0511 3.37252L13.0185 5.08536C13.814 5.5649 14.916 5.74134 15.8768 5.19162L14.8835 3.45569ZM10.7295 2C11.0283 2 11.2705 2.24223 11.2705 2.54104H13.2705C13.2705 1.13766 12.1329 0 10.7295 0V2ZM5.1168 16.5443C5.30106 16.4389 5.61489 16.4259 5.9492 16.6275L6.98175 14.9146C6.18629 14.4351 5.08429 14.2587 4.12355 14.8084L5.1168 16.5443ZM18.3766 4.39162C17.6668 3.17332 16.1073 2.75547 14.8835 3.45569L15.8768 5.19162C16.1471 5.03693 16.4916 5.12924 16.6484 5.39839L18.3766 4.39162ZM9.27081 0C7.86744 0 6.72978 1.13766 6.72978 2.54104H8.72978C8.72978 2.24223 8.97201 2 9.27081 2V0Z"
+              />
             </svg>
           </button>
         </div>
@@ -96,33 +139,36 @@
             <radioButton
               @radioValue="getTileValue"
               :valuesRadio="{
-                  OSM: 0,
-                  Спутник: 1,
-                  Светлая: 2,
-                  Темная:3,
-                }"
-                />
+                OSM: 0,
+                Спутник: 1,
+                Светлая: 2,
+                Темная: 3,
+              }"
+            />
           </div>
         </div>
         <div class="SettingsMap" v-if="showSettingsView">
-          <div class="SettingsMap__View SettingsMap-View" v-click-outside="onClickOutsideView">
+          <div
+            class="SettingsMap__View SettingsMap-View"
+            v-click-outside="onClickOutsideView"
+          >
             <div class="SettingsMap-View__Layer">
               <h2>Отображение слоев</h2>
               <radioButton
                 @radioValue="getViewLayerValue"
                 :valuesRadio="{
-                    Вкл: 1,
-                  }"
-                  />
+                  Вкл: 1,
+                }"
+              />
             </div>
             <div class="SettingsMap-View__Rad">
               <h2>Радиус сигнала</h2>
               <radioButton
                 @radioValue="getViewRadValue"
                 :valuesRadio="{
-                    Вкл: 1,
-                  }"
-                  />
+                  Вкл: 1,
+                }"
+              />
             </div>
           </div>
         </div>
@@ -134,16 +180,16 @@
           <button calss="Location" @click="createUserMarker()">
             <svg
               xmlns="http://www.w3.org/2000/svg"
-              width="24"
-              height="24"
-              viewBox="0 0 24 24"
-              class="svg-icon svg-icon--default"
+              width="20"
+              height="21"
+              viewBox="0 0 20 21"
+              fill="none"
             >
-              <g>
-                <path
-                  d="M19.07,4.93L17.66,6.34C19.1,7.79 20,9.79 20,12A8,8 0 0,1 12,20A8,8 0 0,1 4,12C4,7.92 7.05,4.56 11,4.07V6.09C8.16,6.57 6,9.03 6,12A6,6 0 0,0 12,18A6,6 0 0,0 18,12C18,10.34 17.33,8.84 16.24,7.76L14.83,9.17C15.55,9.9 16,10.9 16,12A4,4 0 0,1 12,16A4,4 0 0,1 8,12C8,10.14 9.28,8.59 11,8.14V10.28C10.4,10.63 10,11.26 10,12A2,2 0 0,0 12,14A2,2 0 0,0 14,12C14,11.26 13.6,10.62 13,10.28V2H12A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12C22,9.24 20.88,6.74 19.07,4.93Z"
-                ></path>
-              </g>
+              <path
+                d="M1.96481 11.8315L2.42882 10.9457L2.42882 10.9457L1.96481 11.8315ZM2.06372 8.59453L1.65467 7.68202L2.06372 8.59453ZM6.68509 15.1075L5.79925 15.5716L5.79925 15.5716L6.68509 15.1075ZM4.99779 13.4202L4.53378 14.3061L4.53378 14.3061L4.99779 13.4202ZM11.5108 18.0416L12.4233 18.4507L11.5108 18.0416ZM8.27379 18.1405L9.15962 17.6765L9.15962 17.6765L8.27379 18.1405ZM18.0054 3.55365L18.9179 3.96271L18.0054 3.55365ZM16.5517 2.09993L16.1426 1.18742L16.5517 2.09993ZM17.0929 3.1446L10.5983 17.6326L12.4233 18.4507L18.9179 3.96271L17.0929 3.1446ZM9.15962 17.6765L7.57092 14.6435L5.79925 15.5716L7.38796 18.6045L9.15962 17.6765ZM5.46179 12.5344L2.42882 10.9457L1.5008 12.7174L4.53378 14.3061L5.46179 12.5344ZM2.47278 9.50704L16.9607 3.01244L16.1426 1.18742L1.65467 7.68202L2.47278 9.50704ZM2.42882 10.9457C1.83719 10.6358 1.86333 9.78024 2.47278 9.50704L1.65467 7.68202C-0.478386 8.63822 -0.569892 11.6327 1.5008 12.7174L2.42882 10.9457ZM7.57092 14.6435C7.09883 13.7423 6.36305 13.0065 5.46179 12.5344L4.53378 14.3061C5.07453 14.5893 5.516 15.0308 5.79925 15.5716L7.57092 14.6435ZM10.5983 17.6326C10.3251 18.242 9.46952 18.2681 9.15962 17.6765L7.38796 18.6045C8.4726 20.6752 11.4671 20.5837 12.4233 18.4507L10.5983 17.6326ZM18.9179 3.96271C19.7072 2.20191 17.9034 0.398092 16.1426 1.18742L16.9607 3.01244C16.9962 2.99654 17.0123 2.99985 17.0189 3.00126C17.0317 3.00396 17.0522 3.01281 17.0724 3.03298C17.0925 3.05315 17.1014 3.07362 17.1041 3.0864C17.1055 3.09304 17.1088 3.10912 17.0929 3.1446L18.9179 3.96271Z"
+                fill="#141029"
+                fill-opacity="0.8"
+              />
             </svg>
           </button>
 
@@ -177,13 +223,13 @@
             :max-zoom="MapOptions[1].MaxZoom"
             :min-zoom="MapOptions[2].MinZoom"
           >
-            <l-tile-layer
-              :url= MapOptions[4].Url
-            ></l-tile-layer>
+            <l-tile-layer :url="MapOptions[4].Url"></l-tile-layer>
 
-            <l-polygon v-if ="showLayer" 
+            <l-polygon
+              v-if="showLayer"
               :lat-lngs="polygon.latlngs"
               :color="polygon.color"
+              @click="showLayerDescription()"
             ></l-polygon>
 
             <div class="Markers-area">
@@ -194,77 +240,72 @@
                   :Adres="item"
                   :showRadius="showRadius"
                 ></CustomMapMarker>
-                 <l-marker  :lat-lng="[latt,longg]" v-if = "showUserPos">
-                   <l-popup>Вы здесь</l-popup>
-                 </l-marker>
+                <l-marker :lat-lng="[latt, longg]" v-if="showUserPos">
+                  <l-popup>Вы здесь</l-popup>
+                </l-marker>
               </div>
             </div>
-
           </l-map>
         </client-only>
       </div>
     </div>
-    
-    
   </div>
 </template>
 
 <script>
-
-
-
 import fdInput from "../components/UI/fd-input.vue";
 import { mapGetters } from "vuex";
 import fdButton from "../components/UI/fd-button.vue";
 import radioButton from "../components/UI/radio-button.vue";
-import vClickOutside from 'v-click-outside'
-
+import vClickOutside from "v-click-outside";
 
 export default {
   layout: "map",
 
   directives: {
-      clickOutside: vClickOutside.directive
-    },
+    clickOutside: vClickOutside.directive,
+  },
   components: {
     fdInput,
     fdButton,
     radioButton,
   },
 
-methods: {
-
-
-  createUserMarker(){navigator.geolocation.getCurrentPosition(this.showPosition)},
+  methods: {
+    foo() {
+      alert("123");
+    },
+    createUserMarker() {
+      navigator.geolocation.getCurrentPosition(this.showPosition);
+    },
     showPosition(position) {
-    this.latt = position.coords.latitude
-    this.longg= position.coords.longitude;
-    this.showUserPos = !this.showUserPos
-  },
+      this.latt = position.coords.latitude;
+      this.longg = position.coords.longitude;
+      this.showUserPos = !this.showUserPos;
+    },
 
     getTileValue(value) {
       this.TileValue = value;
-      if(this.TileValue ){
-        this.MapOptions[4].Url = this.tile[this.TileValue].Tile
-      }else{
-        this.MapOptions[4].Url = 'http://{s}.tile.osm.org/{z}/{x}/{y}.png'
+      if (this.TileValue) {
+        this.MapOptions[4].Url = this.tile[this.TileValue].Tile;
+      } else {
+        this.MapOptions[4].Url = "http://{s}.tile.osm.org/{z}/{x}/{y}.png";
       }
     },
 
-    getViewRadValue(value){
+    getViewRadValue(value) {
       this.RadValue = value;
-      if(this.RadValue = 1){
-        this.showRadius = !this.showRadius
+      if ((this.RadValue = 1)) {
+        this.showRadius = !this.showRadius;
       }
     },
 
-     getViewLayerValue(value){
+    getViewLayerValue(value) {
       this.LayValue = value;
-      if(this.LayValue = 1){
-        this.showLayer = !this.showLayer
+      if ((this.LayValue = 1)) {
+        this.showLayer = !this.showLayer;
       }
     },
-    
 
     ChangeCenter() {
       if (this.Coordinate) {
@@ -272,11 +313,14 @@ methods: {
       } else {
         this.MapOptions[3].Center = this.coordinate;
       }
-      if(this.valueInput == "Odintsovo"){
-        this.showLayer = true
-      }else{
-        this.showLayer = false
+      if (this.valueInput == "Odintsovo") {
+        this.showLayer = true;
+      } else {
+        this.showLayer = false;
       }
+    },
+    showLayerDescription() {
+      this.$emit("LayerDescription");
     },
     MaxZoomPlus() {
       this.MapOptions[0].zoom += 1;
@@ -290,24 +334,30 @@ methods: {
     },
 
     onClickOutsideTile(event) {
-      this.showSettingsTile =false
+      this.showSettingsTile = false;
     },
 
     onClickOutsideView(event) {
-      this.showSettingsView =false
+      this.showSettingsView = false;
+    },
+    hideTopShelfTools() {
+      this.showInput = !this.showInput;
+      this.showTopFilters = !this.showTopFilters;
+      this.showInputClosed = !this.showInputClosed;
+      this.showInputActive = !this.showInputActive;
     },
   },
 
   data() {
     return {
-      latt : null,
-      longg : null,
+      latt: null,
+      longg: null,
 
-      TileValue:"",
-      ViewLayerValue:"",
-      ViewRadValue:"",
+      TileValue: "",
+      ViewLayerValue: "",
+      ViewRadValue: "",
       UserCoord: false,
-      RadValue:"",
+      RadValue: "",
 
       iconUrlCustom: require("../assets/img/Marker.png"),
       valueInput: "",
@@ -317,29 +367,37 @@ methods: {
         [55.686, 37.284],
       ],
 
-
       showDescr: false,
-      showSettingsTile:false,
+      showSettingsTile: false,
       showRadius: false,
-      showSettingsView:false,
-      showUserPos:false,
-      showLayer:false,
-
-   
+      showSettingsView: false,
+      showUserPos: false,
+      showLayer: false,
+      showLayoutDescription: false,
+      showInput: false,
+      showTopFilters: true,
+      showInputClosed: true,
+      showInputActive: false,
 
       MapOptions: [
-        {  zoom: 13 },
-        {  MaxZoom: 22 },
-        {  MinZoom: 10 },
-        {  Center: [55.673, 37.2733] },
-        {  Url:"http://{s}.tile.osm.org/{z}/{x}/{y}.png"},
+        { zoom: 13 },
+        { MaxZoom: 22 },
+        { MinZoom: 10 },
+        { Center: [55.673, 37.2733] },
+        { Url: "http://{s}.tile.osm.org/{z}/{x}/{y}.png" },
       ],
 
-      tile:[
-        {Tile: 'http://{s}.tile.osm.org/{z}/{x}/{y}.png'},//OSM
-        {Tile: 'https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}'},//Satellite
-        {Tile:"https://tiles.stadiamaps.com/tiles/osm_bright/{z}/{x}/{y}{r}.png"},//StadiamapsBright
-        {Tile: 'https://tiles.stadiamaps.com/tiles/alidade_smooth_dark/{z}/{x}/{y}{r}.png'},//Dark
+      tile: [
+        { Tile: "http://{s}.tile.osm.org/{z}/{x}/{y}.png" }, //OSM
+        {
+          Tile: "https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}",
+        }, //Satellite
+        {
+          Tile: "https://tiles.stadiamaps.com/tiles/osm_bright/{z}/{x}/{y}{r}.png",
+        }, //StadiamapsBright
+        {
+          Tile: "https://tiles.stadiamaps.com/tiles/alidade_smooth_dark/{z}/{x}/{y}{r}.png",
+        }, //Dark
       ],
       polygon: {
         latlngs: [
@@ -557,11 +615,10 @@ methods: {
           [55.657934, 37.240209],
           [55.657438, 37.240873],
           [55.656897, 37.240196],
-          [55.657135, 37.238661]
+          [55.657135, 37.238661],
         ],
         color: "#1E90FF",
       },
-      
     };
   },
 
@@ -585,18 +642,14 @@ methods: {
     Coordinate() {
       return this.getCoordinate[this.valueInput];
     },
-    
   },
-
-  
 };
 </script>
 
 <style lang="scss" scoped>
 @import "../assets/scss/fonts";
 
-
-.SettingsMap{
+.SettingsMap {
   max-width: 240px;
   min-width: 240px;
   height: fit-content;
@@ -605,13 +658,12 @@ methods: {
   z-index: 30;
   top: 0;
   right: 0;
-  margin: 45px 15px;
+  margin: 45px 30px;
   display: flex;
   align-items: center;
   padding: 15px;
   border-bottom-left-radius: 20px;
   border-bottom-right-radius: 20px;
-
 }
 
 .Marker-container {
@@ -658,9 +710,9 @@ svg {
 
 .RightShelf-items__buttons {
   position: absolute;
-  bottom: 1;
-  margin-top: 100px;
-  margin-left: 30px;
+  margin-top: 200px;
+  margin-right: 30px;
+  right: 0;
   display: flex;
   flex-direction: column;
   gap: 10px;
@@ -689,11 +741,47 @@ svg {
   margin-top: 10px;
   width: 100%;
   display: flex;
-  padding: 0 15px;
+  padding: 0 30px;
   align-items: center;
   justify-content: space-between;
   z-index: 2;
-
+  &__inputClosed {
+    button {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: rgb(255, 255, 255);
+      border-radius: 5px;
+      min-height: 48px;
+      min-width: 48px;
+      margin-left: 90px;
+      margin-right: 30px;
+      &:hover {
+        color: blueviolet;
+        svg {
+          fill: blueviolet;
+        }
+      }
+    }
+  }
+  &__inputActive {
+    button {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: #fff;
+      border-radius: 5px;
+      min-height: 48px;
+      min-width: 48px;
+      margin-left: 10px;
+      &:hover {
+        color: blueviolet;
+        svg {
+          fill: blueviolet;
+        }
+      }
+    }
+  }
   &__input {
     width: 100%;
   }
@@ -707,7 +795,6 @@ svg {
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-left: 100px;
     span {
       font-size: 17px;
     }
@@ -733,6 +820,7 @@ svg {
   width: 100%;
   height: 100%;
   z-index: 1;
+  padding: 0px 20px 65px 20px;
   .Map {
     width: 100%;
     height: 100%;
@@ -790,12 +878,12 @@ svg {
   }
 }
 
-.SettingsMap-View{
+.SettingsMap-View {
   display: flex;
   flex-direction: column;
   grid-gap: 15px;
 
-  h2{
+  h2 {
     font-size: 16px;
     font-weight: 500;
     margin-bottom: 15px;

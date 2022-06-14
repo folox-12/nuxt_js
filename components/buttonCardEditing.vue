@@ -27,7 +27,7 @@
             <span>Удалить</span>
           </button>
         </div>
-        <div v-else class="ModalButton-button1" v-if="this.showButton">
+        <div v-else class="ModalButton-button1" v-show="showButton">
           <button>
             <svg
               id="editing"
@@ -118,7 +118,7 @@ export default {
   components: { ModalWindow },
   data() {
     return {
-      showModal: false,
+      showModal:'false',
       showButton: false,
       id: 0,
     };
@@ -135,6 +135,7 @@ export default {
   },
 
   methods: {
+
     statusOfSessionButtton(){
       sessionStorage.setItem('statusOfButtonEdit', this.showModal)
         window.addEventListener("click", (e) => {
@@ -148,6 +149,7 @@ export default {
                   sessionStorage.setItem('statusOfButtonEdit', this.showModal)
                   
         }
+
       });
     },
     hideButton() {
