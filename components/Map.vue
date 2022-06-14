@@ -94,7 +94,7 @@
             </svg>
           </button>
 
-          <button class="FigureBuild">
+          <button class="FigureBuild" @click="foo()">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="24"
@@ -272,6 +272,9 @@ export default {
   },
 
   methods: {
+    foo() {
+      alert("123");
+    },
     createUserMarker() {
       navigator.geolocation.getCurrentPosition(this.showPosition);
     },

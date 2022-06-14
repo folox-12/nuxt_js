@@ -200,12 +200,17 @@
             <span> Центр: 55,678N, 37,2777E</span>
           </div>
           <div class="cityBlock-footer">
-            <fd-button :type="'white'" :text="'Показать площадки'"></fd-button>
+            <fd-button
+              :type="'white'"
+              :text="'Показать площадки'"
+              @click="showPlatforDescr = true"
+            ></fd-button>
           </div>
         </div>
       </div>
       <div
         class="Layout-Description-container__platfomBlock Layout-Description-container-platfomBlock"
+        v-if="showPlatforDescr"
       >
         <div class="platfomBlock__title">
           <h1>Посадочная площадка №1</h1>
@@ -214,7 +219,9 @@
           <span>Оснащение:</span>
         </div>
         <div class="platfomBlock__footer">
-          <fd-button :type="'white'" :text="'Открыть'"></fd-button>
+          <nuxt-link no-prefetch :to="localePath('/Platform1')">
+            <fd-button :type="'white'" :text="'Открыть'"></fd-button>
+          </nuxt-link>
         </div>
       </div>
     </div>
@@ -254,6 +261,7 @@ export default {
       getCheckboxValue: "",
       placeHolder: "search-by-address",
       showModal: false,
+      showPlatforDescr: false,
       showLayerDescription: false,
       Coordinate: [55.673, 37.2733],
     };
@@ -354,6 +362,8 @@ export default {
   top: 0;
   padding: 20px;
   .Layout-Description-head {
+    justify-content: space-between;
+    align-items: center;
     height: 60px;
     display: flex;
     .Layout-Description-head__title {
@@ -367,6 +377,8 @@ export default {
     .Layout-Description-head__close {
       top: 0;
       right: 0;
+      display: flex;
+      justify-content: end;
       button {
         background-color: inherit;
       }
@@ -429,6 +441,12 @@ export default {
         display: flex;
         flex-direction: column;
         gap: 10px;
+      }
+      .platfomBlock__footer {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
       }
     }
   }

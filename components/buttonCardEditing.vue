@@ -28,7 +28,7 @@
             <span>Удалить</span>
           </button>
         </div>
-        <div v-else class="ModalButton-button1" v-show="showButton">
+        <div v-else class="ModalButton-button1" v-show="showButton" v-click-outside.stop="closeButton">
           <button>
             <svg
               id="editing"
@@ -136,6 +136,9 @@ export default {
   },
 
   methods: {
+    closeButton(){
+      this.showButton = false
+    },
     hideButton() {
       document.addEventListener("DOMContentLoaded", () => {
         const button = document.querySelector(".ModalButton-Show-button");
