@@ -1,7 +1,7 @@
 <template>
   <div class="Test">
     <filters
-      :view-format="'table'"
+      :view-format="'map'"
       :data="dataAboutDronoport"
       :itemsOnPage="5"
       :icon="'search'"
@@ -44,7 +44,11 @@
             @UpdatedPageNumber="UpdatedPageNumber"
           />
         </tableView>
-        <Map v-else-if="viewFormat === 'map'" :coordinate="Coordinate"></Map>
+        <Map
+          v-else-if="viewFormat === 'map'"
+          :coordinate="Coordinate"
+          @LayerDescription="funcLayerDescription"
+        ></Map>
         <keep-alive>
           <rightSide
             v-if="showRightSide"
@@ -161,6 +165,60 @@
         </keep-alive>
       </template>
     </filters>
+    <div class="Layout-Description" v-if="showLayerDescription">
+      <div class="Layout-Description-head">
+        <div class="Layout-Description-head__title">
+          <h1>Информация по выбранным слоям</h1>
+        </div>
+        <div class="Layout-Description-head__close">
+          <button @click="showLayerDescription = false">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              role="presentation"
+              class="svg-icon svg-icon--default"
+            >
+              <g>
+                <path
+                  d="M19,6.41L17.59,5L12,10.59L6.41,5L5,6.41L10.59,12L5,17.59L6.41,19L12,13.41L17.59,19L19,17.59L13.41,12L19,6.41Z"
+                ></path>
+              </g>
+            </svg>
+          </button>
+        </div>
+      </div>
+      <div class="Layout-Description-container">
+        <div
+          class="Layout-Description-container__cityBlock Layout-Description-container-cityBlock"
+        >
+          <div class="cityBlock-title">
+            <h1>Город Одинцово</h1>
+          </div>
+          <div class="cityBlock-container">
+            <span> Площадки: 3</span>
+            <span> Центр: 55,678N, 37,2777E</span>
+          </div>
+          <div class="cityBlock-footer">
+            <fd-button :type="'white'" :text="'Показать площадки'"></fd-button>
+          </div>
+        </div>
+      </div>
+      <div
+        class="Layout-Description-container__platfomBlock Layout-Description-container-platfomBlock"
+      >
+        <div class="platfomBlock__title">
+          <h1>Посадочная площадка №1</h1>
+        </div>
+        <div class="platfomBlock__container">
+          <span>Оснащение:</span>
+        </div>
+        <div class="platfomBlock__footer">
+          <fd-button :type="'white'" :text="'Открыть'"></fd-button>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -175,6 +233,8 @@ import pagination from "../components/pagination.vue";
 
 import spoiler from "../components/UI/spoiler.vue";
 import radioButton from "../components/UI/radio-button.vue";
+import fdButton from "../components/UI/fd-button.vue";
+
 import { mapGetters } from "vuex";
 export default {
   components: {
@@ -187,12 +247,14 @@ export default {
     rightSide,
     spoiler,
     radioButton,
+    fdButton,
   },
   data() {
     return {
       getCheckboxValue: "",
       placeHolder: "search-by-address",
       showModal: false,
+      showLayerDescription: false,
       Coordinate: [55.673, 37.2733],
     };
   },
@@ -208,6 +270,9 @@ export default {
     ...mapGetters("Map", ["getCoordinate"]),
   },
   methods: {
+    funcLayerDescription() {
+      this.showLayerDescription = !this.showLayerDescription;
+    },
     GetValueCheckbox() {
       alert("hello");
     },
@@ -270,6 +335,100 @@ export default {
         svg {
           fill: #fff;
         }
+      }
+    }
+  }
+}
+.Layout-Description {
+  span {
+    font-size: 16px;
+    font-weight: 500;
+  }
+  border-right: 1px dashed blueviolet;
+  background-color: white;
+  width: 30%;
+  height: 100%;
+  position: fixed;
+  z-index: 1000;
+  left: 0;
+  top: 0;
+  padding: 20px;
+  .Layout-Description-head {
+    height: 60px;
+    display: flex;
+    .Layout-Description-head__title {
+      h1 {
+        color: rgba(20, 16, 41, 0.8);
+        font-size: 20px;
+        letter-spacing: -1px;
+        font-weight: 700;
+      }
+    }
+    .Layout-Description-head__close {
+      top: 0;
+      right: 0;
+      button {
+        background-color: inherit;
+      }
+    }
+  }
+  .Layout-Description-container {
+    background-color: rgb(48, 121, 232, 0.2);
+    border: 1px dashed #3079e8;
+    height: fit-content;
+    padding: 20px;
+    margin-top: 40px;
+    &-cityBlock {
+      .cityBlock-title {
+        h1 {
+          font-weight: 600;
+          font-size: 22px;
+          margin-right: 16px;
+          color: black;
+          display: flex;
+          justify-content: center;
+        }
+      }
+      .cityBlock-container {
+        height: 90px;
+        margin-top: 20px;
+        padding-left: 10px;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+      }
+      .cityBlock-footer {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+      }
+    }
+    &-platfomBlock {
+      border: 1px dashed rgb(130, 130, 130);
+      margin-top: 40px;
+      padding: 20px;
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+      background-color: rgba(232, 232, 232, 0.2);
+      border-radius: 20px;
+      .platfomBlock__title {
+        h1 {
+          color: rgba(20, 16, 41, 0.8);
+          font-size: 20px;
+          letter-spacing: -1px;
+          font-weight: 700;
+        }
+        margin-right: 16px;
+        justify-content: center;
+        display: flex;
+      }
+      .platfomBlock__container {
+        height: 90px;
+        margin-top: 20px;
+        padding-left: 10px;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
       }
     }
   }
