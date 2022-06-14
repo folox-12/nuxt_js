@@ -5,8 +5,7 @@
         <div class="ModalButton-Show">
           <button
             class="ModalButton-Show-button"
-            @click="showButton = true"
-            v-on:click="hideButton()"
+            @click="hideButton()"
           >
             <svg
               width="16"
@@ -24,7 +23,7 @@
           </button>
         </div>
         <nuxt-link :to="localePath(link)"
-          ><button class="ModalButton-button" v-show="showButton">
+          ><button class="ModalButton-button" v-if="this.showButton">
             {{ $t("open-btn") }}
           </button></nuxt-link
         >
@@ -48,16 +47,32 @@ export default {
   components: { ModalWindow },
   data() {
     return {
-      showModal: false,
+      showModal: 'false',
       showButton: false,
     };
   },
 
   methods: {
-    hideButton() {
-      document.addEventListener("DOMContentLoaded", () => {
-        const button = document.querySelector(".ModalButton-Show-button");
+    statusOfSessionButtton(){
+      sessionStorage.setItem('statusOfButton', this.showModal)
+        window.addEventListener("click", (e) => {
+        const target = e.target;
+        if (
+          !target.closest(".ModalButton-Show-button") &&
+          !target.closest(".ModalButton-button")
+        ) {
+          this.showButton = false;
+          this.showModal = 'false';
+                  sessionStorage.setItem('statusOfButton', this.showModal)
+                  
+        }
       });
+    },
+    hideButton() {
+
+      if(sessionStorage.getItem('statusOfButton') == 'true'){
+            
+     
       window.addEventListener("click", (e) => {
         const target = e.target;
         if (
@@ -65,10 +80,28 @@ export default {
           !target.closest(".ModalButton-button")
         ) {
           this.showButton = false;
+          this.showModal = 'false';
+                  sessionStorage.setItem('statusOfButton', this.showModal)
+                  
         }
       });
-    },
+      }
+      else if (sessionStorage.getItem('statusOfButton') != 'true'){
+      this.showModal = 'true'
+        sessionStorage.setItem('statusOfButton', this.showModal)
+         this.showButton = true
+         
+         
+          
+        
+      }
+      }
+    
+     
   },
+  beforeMount(){
+    this.statusOfSessionButtton()
+  }
 };
 </script>
 

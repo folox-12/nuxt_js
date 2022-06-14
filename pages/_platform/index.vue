@@ -62,7 +62,7 @@
                 <td>{{ item.type }}</td>
                 <td align="right">{{ item.id }}</td>
                 <td>
-                  <OpenCard
+                  <OpenCard 
                     v-if="$store.getters['GetChangestatus'] == false"
                     :link="'/' + $route.params.platform + item.link"
                   ></OpenCard>
@@ -142,6 +142,7 @@ export default {
       modalError: false,
       addcardParam: false,
       titleforWarningMessage: "titleforWarningMessage",
+      FuncClose: true,
       infrastructure: [
         {
           name: "droneport",

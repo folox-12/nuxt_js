@@ -5,7 +5,6 @@
         <div class="ModalButton-Show">
           <button
             class="ModalButton-Show-button"
-            @click="showButton = true"
             v-on:click="hideButton()"
           >
             <svg
@@ -28,7 +27,7 @@
             <span>Удалить</span>
           </button>
         </div>
-        <div v-else class="ModalButton-button1" v-show="showButton">
+        <div v-else class="ModalButton-button1" v-if="this.showButton">
           <button>
             <svg
               id="editing"
@@ -136,10 +135,25 @@ export default {
   },
 
   methods: {
-    hideButton() {
-      document.addEventListener("DOMContentLoaded", () => {
-        const button = document.querySelector(".ModalButton-Show-button");
+    statusOfSessionButtton(){
+      sessionStorage.setItem('statusOfButtonEdit', this.showModal)
+        window.addEventListener("click", (e) => {
+        const target = e.target;
+        if (
+          !target.closest(".ModalButton-Show-button") &&
+          !target.closest(".ModalButton-button")
+        ) {
+          this.showButton = false;
+          this.showModal = 'false';
+                  sessionStorage.setItem('statusOfButtonEdit', this.showModal)
+                  
+        }
       });
+    },
+    hideButton() {
+  if(sessionStorage.getItem('statusOfButtonEdit') == 'true'){
+            
+     
       window.addEventListener("click", (e) => {
         const target = e.target;
         if (
@@ -147,8 +161,21 @@ export default {
           !target.closest(".ModalButton-button")
         ) {
           this.showButton = false;
+          this.showModal = 'false';
+                  sessionStorage.setItem('statusOfButtonEdit', this.showModal)
+                  
         }
       });
+      }
+      else if (sessionStorage.getItem('statusOfButtonEdit') != 'true'){
+      this.showModal = 'true'
+        sessionStorage.setItem('statusOfButtonEdit', this.showModal)
+         this.showButton = true
+         
+         
+          
+        
+      }
     },
     deletePoint() {
       this.$emit("deletePoint", this.propid);
@@ -159,6 +186,9 @@ export default {
       this.init;
     },
   },
+  beforeMount(){
+    this.statusOfSessionButtton()
+  }
 };
 </script>
 
