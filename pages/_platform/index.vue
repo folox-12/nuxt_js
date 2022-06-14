@@ -199,9 +199,9 @@ export default {
       ],
       title: [
         "adress-table-card",
-        "registration-num-table-card",
-        "creation-date-table-card",
         "dimensions-table-card-meters",
+        "creation-date-table-card",
+        "registration-num-table-card",
         "alowable-temp-table-card",
         "operating-mode-table-card",
       ],
