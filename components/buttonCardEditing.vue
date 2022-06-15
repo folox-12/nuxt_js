@@ -137,7 +137,7 @@ export default {
   methods: {
 
     statusOfSessionButtton(){
-      sessionStorage.setItem('statusOfButtonEdit', this.showModal)
+      sessionStorage.setItem('statusOfButton', this.showModal)
         window.addEventListener("click", (e) => {
         const target = e.target;
         if (
@@ -146,14 +146,14 @@ export default {
         ) {
           this.showButton = false;
           this.showModal = 'false';
-                  sessionStorage.setItem('statusOfButtonEdit', this.showModal)
+                  sessionStorage.setItem('statusOfButton', this.showModal)
                   
         }
 
       });
     },
     hideButton() {
-  if(sessionStorage.getItem('statusOfButtonEdit') == 'true'){
+  if(sessionStorage.getItem('statusOfButton') == 'true'){
             
      
       window.addEventListener("click", (e) => {
@@ -164,14 +164,14 @@ export default {
         ) {
           this.showButton = false;
           this.showModal = 'false';
-                  sessionStorage.setItem('statusOfButtonEdit', this.showModal)
+                  sessionStorage.setItem('statusOfButton', this.showModal)
                   
         }
       });
       }
-      else if (sessionStorage.getItem('statusOfButtonEdit') != 'true'){
+      else if (sessionStorage.getItem('statusOfButton') != 'true'){
       this.showModal = 'true'
-        sessionStorage.setItem('statusOfButtonEdit', this.showModal)
+        sessionStorage.setItem('statusOfButton', this.showModal)
          this.showButton = true
          
          
