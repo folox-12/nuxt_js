@@ -196,8 +196,13 @@
             <h1>Город Одинцово</h1>
           </div>
           <div class="cityBlock-container">
-            <span> Площадки: 3</span>
-            <span> Центр: 55,678N, 37,2777E</span>
+            <h2>Площадки</h2>
+            <span> - Северная улица, 5к2</span>
+            <span> - Акуловская улица, 1А</span>
+            <span> - б-р Маршала Крылова, 20</span>
+            <h2>Центр</h2>
+            <span>55,678 N</span>
+            <span>37,2777 E</span>
           </div>
           <div class="cityBlock-footer">
             <fd-button
@@ -216,7 +221,14 @@
           <h1>Посадочная площадка №1</h1>
         </div>
         <div class="platfomBlock__container">
-          <span>Оснащение:</span>
+          <h2>Адрес</h2>
+          <span>г. Одинцово, б-р Маршала Крылова, 20</span>
+          <h2>Регистрационный номер</h2>
+          <span>450n-144-vc67</span>
+          <h2>Дата создания</h2>
+          <span>08.02.22</span>
+          <h2>Рабочая температура(C°)</h2>
+          <span>от -10 до 30</span>
         </div>
         <div class="platfomBlock__footer">
           <nuxt-link no-prefetch :to="localePath('/Platform1')">
@@ -224,6 +236,29 @@
           </nuxt-link>
         </div>
       </div>
+      <!-- <div
+        class="Layout-Description-container__platfomBlock Layout-Description-container-platfomBlock"
+        v-if="showPlatforDescr"
+      >
+        <div class="platfomBlock__title">
+          <h1>Посадочная площадка №1</h1>
+        </div>
+        <div class="platfomBlock__container">
+          <h2>Адрес</h2>
+          <span>г. Одинцово, б-р Маршала Крылова, 20</span>
+          <h2>Регистрационный номер</h2>
+          <span>450n-144-vc67</span>
+          <h2>Дата создания</h2>
+          <span>08.02.22</span>
+          <h2>Рабочая температура(C°)</h2>
+          <span>от -10 до 30</span>
+        </div>
+        <div class="platfomBlock__footer">
+          <nuxt-link no-prefetch :to="localePath('/Platform1')">
+            <fd-button :type="'white'" :text="'Открыть'"></fd-button>
+          </nuxt-link>
+        </div>
+      </div> -->
     </div>
   </div>
 </template>
@@ -348,31 +383,49 @@ export default {
   }
 }
 .Layout-Description {
+  h1 {
+    font-weight: 600;
+    font-size: 22px;
+    margin-right: 16px;
+    color: black;
+    display: flex;
+    justify-content: center;
+  }
+  h2 {
+    font-weight: 600;
+    font-size: 18px;
+    margin-right: 16px;
+    color: black;
+  }
   span {
     font-size: 16px;
     font-weight: 500;
   }
-  border-right: 1px dashed blueviolet;
+  overflow-y: scroll;
   background-color: white;
-  width: 30%;
+  width: 25%;
   height: 100%;
   position: fixed;
   z-index: 1000;
   left: 0;
   top: 0;
-  padding: 20px;
+  padding: 0px 20px 0px 20px;
   .Layout-Description-head {
+    height: 200px;
     justify-content: space-between;
     align-items: center;
     height: 60px;
     display: flex;
+    position: fixed;
+    width: 322px;
+    line-height: 30px;
+    background-color: rgb(255, 255, 255);
+    padding: 0px 0px 0px 20px;
+    height: 100px;
+
     .Layout-Description-head__title {
-      h1 {
-        color: rgba(20, 16, 41, 0.8);
-        font-size: 20px;
-        letter-spacing: -1px;
-        font-weight: 700;
-      }
+      display: flex;
+      justify-items: center;
     }
     .Layout-Description-head__close {
       top: 0;
@@ -389,21 +442,12 @@ export default {
     border: 1px dashed #3079e8;
     height: fit-content;
     padding: 20px;
-    margin-top: 40px;
+    margin-top: 120px;
     &-cityBlock {
-      .cityBlock-title {
-        h1 {
-          font-weight: 600;
-          font-size: 22px;
-          margin-right: 16px;
-          color: black;
-          display: flex;
-          justify-content: center;
-        }
-      }
       .cityBlock-container {
-        height: 90px;
+        height: fit-content;
         margin-top: 20px;
+        margin-bottom: 20px;
         padding-left: 10px;
         display: flex;
         flex-direction: column;
@@ -413,7 +457,6 @@ export default {
         display: flex;
         align-items: center;
         justify-content: center;
-        flex-direction: column;
       }
     }
     &-platfomBlock {
@@ -424,19 +467,15 @@ export default {
       background-color: rgba(232, 232, 232, 0.2);
       border-radius: 20px;
       .platfomBlock__title {
-        h1 {
-          color: rgba(20, 16, 41, 0.8);
-          font-size: 20px;
-          letter-spacing: -1px;
-          font-weight: 700;
-        }
         margin-right: 16px;
         justify-content: center;
+        align-items: center;
         display: flex;
       }
       .platfomBlock__container {
-        height: 90px;
+        height: fit-content;
         margin-top: 20px;
+        margin-bottom: 20px;
         padding-left: 10px;
         display: flex;
         flex-direction: column;
@@ -446,9 +485,34 @@ export default {
         display: flex;
         align-items: center;
         justify-content: center;
-        flex-direction: column;
       }
     }
   }
+}
+::-webkit-scrollbar {
+  width: 5px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: #ffffff;
+  border-radius: 6px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #9b42f5;
+  border-radius: 6px;
+}
+
+progress::-webkit-progress-bar {
+  color: #9b42f5;
+}
+
+progress::-webkit-progress-value {
+  color: #9b42f5;
+}
+
+progress {
+  color: #9b42f5;
 }
 </style>
