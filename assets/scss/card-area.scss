@@ -281,6 +281,9 @@ $color-for-bg: #ffffff;
       flex-direction: column;
       gap: 30px;
       align-items: center;
+      h4{
+        text-align: center;
+      }
     }
   }
   .card-infrastructure {
