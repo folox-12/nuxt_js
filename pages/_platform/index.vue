@@ -62,7 +62,7 @@
                 <td>{{ item.type }}</td>
                 <td align="right">{{ item.id }}</td>
                 <td>
-                  <OpenCard 
+                  <OpenCard
                     v-if="$store.getters['GetChangestatus'] == false"
                     :link="'/' + $route.params.platform + item.link"
                   ></OpenCard>
@@ -143,50 +143,6 @@ export default {
       addcardParam: false,
       titleforWarningMessage: "titleforWarningMessage",
       FuncClose: true,
-      infrastructure: [
-        {
-          name: "droneport",
-          company: "Hive",
-          type: "М300",
-          id: "312312414",
-          link: "/Droneport",
-        },
-        {
-          name: "camera",
-          company: "AHD",
-          type: "C201HD",
-          id: "312312414",
-          link: "/Camera",
-        },
-        {
-          name: "motion-sensors",
-          company: "Ajax",
-          type: "MonionProtect",
-          id: "312312414",
-          link: "/Sensor",
-        },
-        {
-          name: "protection",
-          company: "Wall",
-          type: "WallOne",
-          id: "312312414",
-          link: "/Wall",
-        },
-        {
-          name: "lights",
-          company: "FERON",
-          type: "SP3040",
-          id: "312312414",
-          link: "/Light",
-        },
-        {
-          name: "postamat",
-          company: "Ozon",
-          type: "Box",
-          id: "312312414",
-          link: "/Postamat",
-        },
-      ],
 
       img: [
         require("@/assets/img/platform1.jpg"),
@@ -207,7 +163,8 @@ export default {
         "operating-mode-table-card",
       ],
       description: [
-        "г. Одинцово, б-р Маршала Крылова, 20",
+        this.GetPlatformAddress(),
+        // this.f(),
         "5 x 5 ",
         "08.02.22",
         "450n-144-vc67",
@@ -219,7 +176,7 @@ export default {
         "addres",
         "three quantity",
         "date",
-       "text",
+        "text",
         "two quantity",
         "select",
       ],
@@ -229,45 +186,11 @@ export default {
     title: "platform-title-page",
   },
   methods: {
-    changeData(index,value,type) {
-      if(type != undefined){
-          var splitChar = 'x';
-       let DataSplitted = this.description[index].split(splitChar)
-        DataSplitted[type] = String(value)
-       let ClearDataSplitted = DataSplitted
-       let StringToInput = ClearDataSplitted.join('x');
-       this.description[index] = StringToInput;
-      localStorage.setItem('DataStationLocal', JSON.stringify( this.description))
-      }
-      else{
-      this.description[index] = value;
-      localStorage.setItem('DataStationLocal', JSON.stringify( this.description))
-      }
-    },
     DeleteImg(index) {
       this.img.splice(index, 1);
     },
-     clearInput(index,type){
-      if(type != undefined){
-        var splitChar = 'x';
-       let DataSplitted = this.description[index].split(splitChar)
-       DataSplitted[type] = ' '
-       let ClearDataSplitted = DataSplitted
-       let StringToInput = ClearDataSplitted.join('x');
-       this.description[index] = StringToInput;
-       localStorage.setItem('DataStationLocal', JSON.stringify( this.description))
-      }
-      else{
-      this.description[index] = ''
-      localStorage.setItem('DataStationLocal', JSON.stringify( this.description))
-      }
-    },
 
-    ...mapActions("dronoports", [
-      "addDroneport",
-      "deleteDroneport",
-      "addDroneportStorage",
-    ]),
+    ...mapActions("dronoports", ["addDroneport", "deleteDroneport"]),
     addInfo(value) {
       if (value.includes(undefined) || value.includes("")) {
         this.modalError = true;
@@ -291,38 +214,24 @@ export default {
       var id = parseInt(this.splitPlatformId);
       this.deleteDroneport([id, value]);
     },
-    addInfoStorage(){
-       var id = parseInt(this.splitPlatformId);
-      this.addDroneportStorage([id])
-    },
+
     addPhoto(value) {
       this.img.push(value);
-       localStorage.setItem('imgStationLocal', JSON.stringify(this.img))
+      localStorage.setItem("imgStationLocal", JSON.stringify(this.img));
     },
-    TakeDataFromLocalStation(){
-    const DataLocalStation = localStorage.getItem('DataStationLocal')
-      if(DataLocalStation != null){
-      this.description = JSON.parse(DataLocalStation)
-     
-      }
+    GetPlatformAddress() {
+      // return this.getPlatformInfoById(parseInt(this.splitPlatformId)).address;
+      return "г. Одинцово, б-р Маршала Крылова, 20";
+    },
   },
-
-  },
-
-    beforeMount(){
-    this.TakeDataFromLocalStation(),
-    this.addInfoStorage()
-   
-     },
 
   computed: {
-    ...mapGetters("dronoports", ["getInfrByPlatformId"]),
+    ...mapGetters("dronoports", ["getInfrByPlatformId", "getPlatformInfoById"]),
     splitPlatformId() {
       console.log(this.$route.params.platform.match(/\d+/g));
       return this.$route.params.platform.match(/\d+/g);
     },
   },
-  
 };
 </script>
 
