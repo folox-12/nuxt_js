@@ -1,7 +1,7 @@
 <template>
   <div class="Test">
     <filters
-      :view-format="'map'"
+      :view-format="'table'"
       :data="dataAboutDronoport"
       :itemsOnPage="5"
       :icon="'search'"
@@ -271,7 +271,6 @@ import rightSide from "../components/right-side.vue";
 import tableView from "../components/table-view.vue";
 import Map from "../components/Map.vue";
 import pagination from "../components/pagination.vue";
-
 import spoiler from "../components/UI/spoiler.vue";
 import radioButton from "../components/UI/radio-button.vue";
 import fdButton from "../components/UI/fd-button.vue";
@@ -304,6 +303,7 @@ export default {
 
   headerData: {
     title: "landing-areas-list-title-page",
+    link: "/Edit",
   },
   created() {},
   computed: {

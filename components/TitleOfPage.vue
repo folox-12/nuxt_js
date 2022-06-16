@@ -21,7 +21,7 @@ export default {
   },
   props: {
     headerData: {
-      type: Function,
+      type: Object,
       required: true,
       default: "Page",
     },
