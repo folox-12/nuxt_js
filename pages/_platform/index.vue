@@ -201,6 +201,46 @@ export default {
         this.addDroneport([id, object]);
       }
     },
+    changeData(index, value, type) {
+      if (type != undefined) {
+        var splitChar = "x";
+        let DataSplitted = this.description[index].split(splitChar);
+        DataSplitted[type] = String(value);
+        let ClearDataSplitted = DataSplitted;
+        let StringToInput = ClearDataSplitted.join("x");
+        this.description[index] = StringToInput;
+        localStorage.setItem(
+          "DataStationLocal",
+          JSON.stringify(this.description)
+        );
+      } else {
+        this.description[index] = value;
+        localStorage.setItem(
+          "DataStationLocal",
+          JSON.stringify(this.description)
+        );
+      }
+    },
+    clearInput(index, type) {
+      if (type != undefined) {
+        var splitChar = "x";
+        let DataSplitted = this.description[index].split(splitChar);
+        DataSplitted[type] = " ";
+        let ClearDataSplitted = DataSplitted;
+        let StringToInput = ClearDataSplitted.join("x");
+        this.description[index] = StringToInput;
+        // localStorage.setItem(
+        //   "DataStationLocal",
+        //   JSON.stringify(this.description)
+        // );
+      } else {
+        this.description[index] = "";
+        // localStorage.setItem(
+        //   "DataStationLocal",
+        //   JSON.stringify(this.description)
+        // );
+      }
+    },
 
     deletePoint(value) {
       var id = parseInt(this.splitPlatformId);
@@ -209,7 +249,7 @@ export default {
 
     addPhoto(value) {
       this.img.push(value);
-      localStorage.setItem("imgStationLocal", JSON.stringify(this.img));
+      // localStorage.setItem("imgStationLocal", JSON.stringify(this.img));
     },
   },
 
