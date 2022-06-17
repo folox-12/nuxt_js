@@ -338,7 +338,7 @@ export default {
     splitThreePoints(){
   if(this.type[1] == 'three quantity'){
     let stringToSplit = this.description[1];
-    var splitChar = ' x ';
+    var splitChar = 'x';
     let splittedSring = stringToSplit.split(splitChar);
     this.splitStringThreePoint = splittedSring;
     console.log(this.splitStringThreePoint)
