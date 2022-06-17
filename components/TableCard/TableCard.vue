@@ -3,6 +3,7 @@
     v-if="$store.getters['GetChangestatus'] == false"
     class="card-main__list card-main-list"
   >
+    <!-- <h6>{{ this.description }}</h6> -->
     <ul>
       <div
         v-for="(item, index) in title"

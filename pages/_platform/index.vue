@@ -1,6 +1,7 @@
 <template>
   <div class="page">
     <div class="card">
+      <!-- <h6>{{ this.description }}</h6> -->
       <Imagecard
         :img="img"
         :titleImg="titleImg"
@@ -162,16 +163,7 @@ export default {
         "alowable-temp-table-card",
         "operating-mode-table-card",
       ],
-      description: [
-        this.GetPlatformAddress(),
-        // this.f(),
-        "5 x 5 ",
-        "08.02.22",
-        "450n-144-vc67",
-        "от -10 до 30",
-        "24/7",
-        "",
-      ],
+
       type: [
         "addres",
         "three quantity",
@@ -219,10 +211,6 @@ export default {
       this.img.push(value);
       localStorage.setItem("imgStationLocal", JSON.stringify(this.img));
     },
-    GetPlatformAddress() {
-      // return this.getPlatformInfoById(parseInt(this.splitPlatformId)).address;
-      return "г. Одинцово, б-р Маршала Крылова, 20";
-    },
   },
 
   computed: {
@@ -230,6 +218,22 @@ export default {
     splitPlatformId() {
       console.log(this.$route.params.platform.match(/\d+/g));
       return this.$route.params.platform.match(/\d+/g);
+    },
+    GetPlatformAddress() {
+      return this.getPlatformInfoById(parseInt(this.splitPlatformId)).address;
+      // return "г. Одинцово, б-р Маршала Крылова, 20";
+    },
+
+    description: function () {
+      return [
+        this.GetPlatformAddress,
+        "5 x 5 ",
+        "08.02.22",
+        "450n-144-vc67",
+        "от -10 до 30",
+        "24/7",
+        "",
+      ];
     },
   },
 };
