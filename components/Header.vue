@@ -182,7 +182,7 @@ a.nuxt-link-exact-active {
 @media (max-width: 667px) {
   .header__burger {
     display: block;
-    position: relative;
+    position: fixed;
     width: 20px;
     height: 16px;
     z-index: 1001;
