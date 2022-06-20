@@ -28,8 +28,12 @@
           </button>
         </div>
         <div v-else class="ModalButton-button1" v-show="showButton">
-          <button>
-            <svg
+          <button @click='editingIdIntrustructure'> 
+            <svg  v-bind:class="
+      statusOfEditing == true
+        ? 'svg-infrustructure-editing'
+        : ''
+    "
               id="editing"
               width="21"
               height="21"
@@ -130,6 +134,10 @@ export default {
     },
     Type:{
       type: String
+    },
+    statusOfEditing:{
+      type:Boolean,
+      default: false,
     }
 
   },
@@ -182,6 +190,10 @@ export default {
     deletePoint() {
       this.$emit("deletePoint", this.propid);
     },
+    editingIdIntrustructure(){
+      this.$emit("editingIdIntrustructure", this.propid)
+     
+    }
   },
   watch: {
     propid: function (new_value) {
@@ -195,6 +207,11 @@ export default {
 </script>
 
 <style lang="scss">
+.svg-infrustructure-editing{
+  path{
+    fill:#9B42F5;
+  }
+}
 .ModalButton {
   position: relative;
   &-Show {

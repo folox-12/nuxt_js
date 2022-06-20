@@ -52,16 +52,20 @@
                 <th align="right">{{ $t("infrastructure-num") }}</th>
                 <th></th>
               </tr>
-              <tr
+              <tr  v-bind:class="
+      EditingInrustructureStatus == true && EditingInrustructureId == index && $store.getters['GetChangestatus'] == true
+        ? 'card-infrustruscture-editing' : '' " 
                 v-for="(item, index) in this.getInfrByPlatformId(
                   parseInt(splitPlatformId)
                 )"
                 v-bind:key="index"
+                
               >
                 <td>{{ $t(item.name) }}</td>
                 <td>{{ item.company }}</td>
                 <td>{{ item.type }}</td>
-                <td align="right">{{ item.id }}</td>
+                <td v-if="EditingInrustructureStatus == false || (EditingInrustructureStatus == true && EditingInrustructureId != index)" align="right">{{ item.id }}</td>
+                <td v-if="EditingInrustructureStatus == true && EditingInrustructureId == index && $store.getters['GetChangestatus'] == true" align="right" ><InputInfrustructure :value="item.id" :id="index" @input='EditIdfrustructure'/></td>
                 <td>
                   <OpenCard
                     v-if="$store.getters['GetChangestatus'] == false"
@@ -70,7 +74,9 @@
                   <EditCard
                     v-else
                     :propid="index"
+                    :statusOfEditing="EditingInrustructureStatus"
                     @deletePoint="deletePoint"
+                    @editingIdIntrustructure="editingIdIntrustructure"
                   ></EditCard>
                 </td>
               </tr>
@@ -126,6 +132,7 @@ import OpenCard from "@/components/buttonCardOpen.vue";
 import EditCard from "@/components/buttonCardEditing.vue";
 import AddCard from "@/components/formAddTable.vue";
 import WarningMessage from "@/components/modalErrorInput.vue";
+import InputInfrustructure from "@/components/UI/fd-input.vue";
 export default {
   layout: "card",
   components: {
@@ -136,6 +143,7 @@ export default {
     EditCard,
     AddCard,
     WarningMessage,
+    InputInfrustructure,
   },
 
   data() {
@@ -144,6 +152,8 @@ export default {
       addcardParam: false,
       titleforWarningMessage: "titleforWarningMessage",
       FuncClose: true,
+      EditingInrustructureStatus: false,
+      EditingInrustructureId: '',
 
       img: [
         require("@/assets/img/platform1.jpg"),
@@ -182,7 +192,7 @@ export default {
       this.img.splice(index, 1);
     },
 
-    ...mapActions("dronoports", ["addDroneport", "deleteDroneport"]),
+    ...mapActions("dronoports", ["addDroneport", "deleteDroneport", "EditIdfrustructureActions"]),
     addInfo(value) {
       if (value.includes(undefined) || value.includes("")) {
         this.modalError = true;
@@ -241,10 +251,19 @@ export default {
         // );
       }
     },
-
+    EditIdfrustructure(value, id){
+      var idOfTable = parseInt(this.splitPlatformId);
+      this.EditIdfrustructureActions([value,id,idOfTable ])
+    },
     deletePoint(value) {
       var id = parseInt(this.splitPlatformId);
       this.deleteDroneport([id, value]);
+    },
+    editingIdIntrustructure(value){
+      this.EditingInrustructureStatus = !this.EditingInrustructureStatus,
+      this.EditingInrustructureId = value
+      
+
     },
 
     addPhoto(value) {
@@ -256,7 +275,7 @@ export default {
   computed: {
     ...mapGetters("dronoports", ["getInfrByPlatformId", "getPlatformInfoById"]),
     splitPlatformId() {
-      console.log(this.$route.params.platform.match(/\d+/g));
+      
       return this.$route.params.platform.match(/\d+/g);
     },
     GetPlatformAddress() {
@@ -308,8 +327,13 @@ progress {
 }
 
 table {
+ border-spacing: 0px;
   svg {
     margin-left: 0.5rem;
   }
+}
+.card-infrustruscture-editing{
+  background: #F7F7F9;
+
 }
 </style>
