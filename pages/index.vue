@@ -1,5 +1,11 @@
 <template>
   <div class="Test">
+    <TitleOfPage
+      :headerData="headerData"
+      v-if="headerData"
+      @click="ChangeEditStatus"
+      :buttonValue="$t('add-message')"
+    />
     <filters
       :view-format="'table'"
       :data="dataAboutDronoport"
@@ -264,6 +270,7 @@
 </template>
 
 <script>
+import TitleOfPage from "../components/TitleOfPage.vue";
 import ModalWindow from "../components/ModalWindow.vue";
 import selectComponent from "../components/selectComponent.vue";
 import filters from "../components/filters";
@@ -289,6 +296,7 @@ export default {
     spoiler,
     radioButton,
     fdButton,
+    TitleOfPage,
   },
   data() {
     return {
@@ -311,8 +319,21 @@ export default {
       dataAboutDronoport: "getAllDronoport",
     }),
     ...mapGetters("Map", ["getCoordinate"]),
+
+    headerData() {
+      return this.$route.matched.map(
+        (r) => r.components.default.options.headerData
+      )[0];
+    },
   },
   methods: {
+    ChangeEditStatus() {
+      this.$store.commit(
+        "setChangestatus",
+        !this.$store.getters["GetChangestatus"]
+      );
+      if (this.headerData.link) this.$router.push(this.headerData.link);
+    },
     funcLayerDescription() {
       this.showLayerDescription = !this.showLayerDescription;
     },

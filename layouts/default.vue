@@ -1,15 +1,10 @@
 <template>
   <div id="app">
-    <Header></Header>
+    <Header />
     <main>
       <div class="container">
         <!-- <h6>{{ headerData }}</h6> -->
         <Breadcrumbs :crumbs="getAllRoute" />
-        <TitleOfPage
-          :headerData="headerData"
-          v-if="headerData"
-          @click="ChangeEditStatus"
-        ></TitleOfPage>
         <nuxt />
       </div>
     </main>
@@ -46,18 +41,7 @@ export default {
       )[0];
     },
   },
-  methods: {
-    openFilter() {
-      this.showFilter = !this.showFilter;
-    },
-    ChangeEditStatus() {
-      this.$store.commit(
-        "setChangestatus",
-        !this.$store.getters["GetChangestatus"]
-      );
-      if (this.headerData.link) this.$router.push(this.headerData.link);
-    },
-  },
+  methods: {},
 };
 </script>
 
