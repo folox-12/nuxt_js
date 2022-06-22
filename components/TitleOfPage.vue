@@ -5,7 +5,7 @@
         <div class="header-page__title">
           <h1>{{ $t(headerData.title) + splitPlatformId }}</h1>
           <div class="header-page__button">
-            <fdButton @click="click" :text="$t(checkStore)" />
+            <fdButton @click="click" :text="buttonValue" />
           </div>
         </div>
       </div>
@@ -20,6 +20,10 @@ export default {
     fdButton,
   },
   props: {
+    buttonValue: {
+      type: String,
+      default: "Редактировать",
+    },
     headerData: {
       type: Object,
       required: true,
@@ -80,20 +84,6 @@ export default {
         color: #141029;
       }
     }
-    // &__button {
-    //   button {
-    //     background: linear-gradient(90deg, #0094ff 3.2%, #9b42f5 73.28%);
-    //     color: white;
-    //     height: 38px;
-    //     min-width: 150px;
-    //     font-family: "Montserrat", serif;
-    //     border: none;
-    //     border-radius: 10px;
-    //     cursor: pointer;
-    //     -webkit-transition: 0.5s;
-    //     transition: all 0.2s;
-    //   }
-    // }
   }
 }
 </style>

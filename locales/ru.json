@@ -5,6 +5,7 @@
 
   "landing-areas-list-title-page": "Список посадочных площадок",
   "edit-message": "Редактировать",
+  "add-message": "Добавить",
 
   "search-by-address": "Поиск по адресу",
 
@@ -110,6 +111,7 @@
   "time-order-table-card": "Время выдачи заказа (мин.)",
   "degree-protection-table-card": "Степень защиты IP",
   "add-btn-exit-platform": "Отменить",
+
 
   "Test": "Тест",
   "Infrastructure": "Инфраструктура",
