@@ -1,5 +1,11 @@
 <template>
   <div class="page">
+    <TitleOfPage
+      :headerData="headerData"
+      v-if="headerData"
+      @click="ChangeEditStatus"
+      :buttonValue="$t('edit-message')"
+    />
     <div class="card">
       <!-- <h6>{{ this.description }}</h6> -->
       <Imagecard
@@ -7,7 +13,7 @@
         :titleImg="titleImg"
         @DeleteImg="DeleteImg"
         @addPhoto="addPhoto"
-      ></Imagecard>
+      />
 
       <hr />
       <div class="card__main card-main">
@@ -21,7 +27,7 @@
           :type="type"
           @changeInfo="changeData"
           @clearInput="clearInput"
-        ></Tablecard>
+        />
 
         <div class="card__infrastructure card-infrastructure">
           <div class="card-infrastructure__title">
@@ -52,20 +58,48 @@
                 <th align="right">{{ $t("infrastructure-num") }}</th>
                 <th></th>
               </tr>
-              <tr  v-bind:class="
-      EditingInrustructureStatus == true && EditingInrustructureId == index && $store.getters['GetChangestatus'] == true
-        ? 'card-infrustruscture-editing' : '' " 
+              <tr
+                v-bind:class="
+                  EditingInrustructureStatus == true &&
+                  EditingInrustructureId == index &&
+                  $store.getters['GetChangestatus'] == true
+                    ? 'card-infrustruscture-editing'
+                    : ''
+                "
                 v-for="(item, index) in this.getInfrByPlatformId(
                   parseInt(splitPlatformId)
                 )"
                 v-bind:key="index"
-                
               >
                 <td>{{ $t(item.name) }}</td>
                 <td>{{ item.company }}</td>
                 <td>{{ item.type }}</td>
-                <td v-if="EditingInrustructureStatus == false || (EditingInrustructureStatus == true && EditingInrustructureId != index) || $store.getters['GetChangestatus'] == false" align="right">{{ item.id }}</td>
-                <td v-if="EditingInrustructureStatus == true && EditingInrustructureId == index && $store.getters['GetChangestatus'] == true" align="right" ><InputInfrustructure :value="item.id" :id="index" @Clearinput="ClearinputTableInfrus" @input='EditIdfrustructure'/></td>
+                <td
+                  v-if="
+                    EditingInrustructureStatus == false ||
+                    (EditingInrustructureStatus == true &&
+                      EditingInrustructureId != index) ||
+                    $store.getters['GetChangestatus'] == false
+                  "
+                  align="right"
+                >
+                  {{ item.id }}
+                </td>
+                <td
+                  v-if="
+                    EditingInrustructureStatus == true &&
+                    EditingInrustructureId == index &&
+                    $store.getters['GetChangestatus'] == true
+                  "
+                  align="right"
+                >
+                  <InputInfrustructure
+                    :value="item.id"
+                    :id="index"
+                    @Clearinput="ClearinputTableInfrus"
+                    @input="EditIdfrustructure"
+                  />
+                </td>
                 <td>
                   <OpenCard
                     v-if="$store.getters['GetChangestatus'] == false"
@@ -124,6 +158,7 @@
 </template>
 
 <script>
+import TitleOfPage from "../../components/TitleOfPage.vue";
 import { mapGetters, mapActions } from "vuex";
 import Imagecard from "@/components/ImgCard.vue";
 import Tablecard from "@/components/TableCard/TableCard.vue";
@@ -134,8 +169,8 @@ import AddCard from "@/components/formAddTable.vue";
 import WarningMessage from "@/components/modalErrorInput.vue";
 import InputInfrustructure from "@/components/UI/fd-input.vue";
 export default {
-  layout: "card",
   components: {
+    TitleOfPage,
     Imagecard,
     Tablecard,
     ModalWindow,
@@ -153,7 +188,7 @@ export default {
       titleforWarningMessage: "titleforWarningMessage",
       FuncClose: true,
       EditingInrustructureStatus: false,
-      EditingInrustructureId: '',
+      EditingInrustructureId: "",
 
       img: [
         require("@/assets/img/platform1.jpg"),
@@ -188,11 +223,23 @@ export default {
     title: "platform-title-page",
   },
   methods: {
+    ChangeEditStatus() {
+      this.$store.commit(
+        "setChangestatus",
+        !this.$store.getters["GetChangestatus"]
+      );
+      if (this.headerData.link) this.$router.push(this.headerData.link);
+    },
     DeleteImg(index) {
       this.img.splice(index, 1);
     },
 
-    ...mapActions("dronoports", ["addDroneport", "deleteDroneport", "EditIdfrustructureActions", "ClearinputTableInfrusActions"]),
+    ...mapActions("dronoports", [
+      "addDroneport",
+      "deleteDroneport",
+      "EditIdfrustructureActions",
+      "ClearinputTableInfrusActions",
+    ]),
     addInfo(value) {
       if (value.includes(undefined) || value.includes("")) {
         this.modalError = true;
@@ -231,9 +278,9 @@ export default {
         );
       }
     },
-    ClearinputTableInfrus(value,id){
-       var idOfTable = parseInt(this.splitPlatformId);
-        this.ClearinputTableInfrusActions([id,idOfTable])
+    ClearinputTableInfrus(value, id) {
+      var idOfTable = parseInt(this.splitPlatformId);
+      this.ClearinputTableInfrusActions([id, idOfTable]);
     },
     clearInput(index, type) {
       if (type != undefined) {
@@ -255,19 +302,17 @@ export default {
         // );
       }
     },
-    EditIdfrustructure(value, id){
+    EditIdfrustructure(value, id) {
       var idOfTable = parseInt(this.splitPlatformId);
-      this.EditIdfrustructureActions([value,id,idOfTable ])
+      this.EditIdfrustructureActions([value, id, idOfTable]);
     },
     deletePoint(value) {
       var id = parseInt(this.splitPlatformId);
       this.deleteDroneport([id, value]);
     },
-    editingIdIntrustructure(value){
-      this.EditingInrustructureStatus = !this.EditingInrustructureStatus,
-      this.EditingInrustructureId = value
-      
-
+    editingIdIntrustructure(value) {
+      (this.EditingInrustructureStatus = !this.EditingInrustructureStatus),
+        (this.EditingInrustructureId = value);
     },
 
     addPhoto(value) {
@@ -277,9 +322,13 @@ export default {
   },
 
   computed: {
+    headerData() {
+      return this.$route.matched.map(
+        (r) => r.components.default.options.headerData
+      )[0];
+    },
     ...mapGetters("dronoports", ["getInfrByPlatformId", "getPlatformInfoById"]),
     splitPlatformId() {
-      
       return this.$route.params.platform.match(/\d+/g);
     },
     GetPlatformAddress() {
@@ -331,13 +380,12 @@ progress {
 }
 
 table {
- border-spacing: 0px;
+  border-spacing: 0px;
   svg {
     margin-left: 0.5rem;
   }
 }
-.card-infrustruscture-editing{
-  background: #F7F7F9;
-
+.card-infrustruscture-editing {
+  background: #f7f7f9;
 }
 </style>

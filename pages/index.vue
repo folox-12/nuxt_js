@@ -1,5 +1,5 @@
 <template>
-  <div class="Test">
+  <div class="list">
     <TitleOfPage
       :headerData="headerData"
       v-if="headerData"
