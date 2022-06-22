@@ -99,4 +99,10 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.edit-area {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+</style>

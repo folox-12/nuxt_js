@@ -22,7 +22,6 @@ export default {
   props: {
     buttonValue: {
       type: String,
-      default: "Редактировать",
     },
     headerData: {
       type: Object,
