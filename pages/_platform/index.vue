@@ -65,7 +65,7 @@
                 <td>{{ item.company }}</td>
                 <td>{{ item.type }}</td>
                 <td v-if="EditingInrustructureStatus == false || (EditingInrustructureStatus == true && EditingInrustructureId != index) || $store.getters['GetChangestatus'] == false" align="right">{{ item.id }}</td>
-                <td v-if="EditingInrustructureStatus == true && EditingInrustructureId == index && $store.getters['GetChangestatus'] == true" align="right" ><InputInfrustructure :value="item.id" :id="index" @input='EditIdfrustructure'/></td>
+                <td v-if="EditingInrustructureStatus == true && EditingInrustructureId == index && $store.getters['GetChangestatus'] == true" align="right" ><InputInfrustructure :value="item.id" :id="index" @Clearinput="ClearinputTableInfrus" @input='EditIdfrustructure'/></td>
                 <td>
                   <OpenCard
                     v-if="$store.getters['GetChangestatus'] == false"
@@ -192,7 +192,7 @@ export default {
       this.img.splice(index, 1);
     },
 
-    ...mapActions("dronoports", ["addDroneport", "deleteDroneport", "EditIdfrustructureActions"]),
+    ...mapActions("dronoports", ["addDroneport", "deleteDroneport", "EditIdfrustructureActions", "ClearinputTableInfrusActions"]),
     addInfo(value) {
       if (value.includes(undefined) || value.includes("")) {
         this.modalError = true;
@@ -230,6 +230,10 @@ export default {
           JSON.stringify(this.description)
         );
       }
+    },
+    ClearinputTableInfrus(value,id){
+       var idOfTable = parseInt(this.splitPlatformId);
+        this.ClearinputTableInfrusActions([id,idOfTable])
     },
     clearInput(index, type) {
       if (type != undefined) {

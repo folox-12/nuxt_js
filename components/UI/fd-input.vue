@@ -81,7 +81,7 @@ export default {
     },
     clearInput() {
       this.value = "";
-      this.$emit("input", "");
+      this.$emit("Clearinput", "", this.id);
     },
   },
 };
