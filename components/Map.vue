@@ -37,7 +37,7 @@
             :placeholder="'Найти населенный пункт для полета'"
           />
         </div>
-        <div class="TopShelf-items__inputClosed" v-if="showInputClosed">
+        <div class="TopShelf-items__inputClosed" v-show="showInputClosed">
           <button @click="hideTopShelfTools()">
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -55,7 +55,7 @@
             </svg>
           </button>
         </div>
-        <div class="TopShelf-items__inputActive" v-if="showInputActive">
+        <div class="TopShelf-items__inputActive" v-show="showInputActive">
           <button @click="hideTopShelfTools">
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -74,12 +74,16 @@
             </svg>
           </button>
         </div>
-        <div class="TopShelf-items__filters" v-if="showTopFilters">
+        <div class="TopShelf-items__filters" v-show="showTopFilters">
           <button
             class="TileShow"
             @click="showSettingsTile = !showSettingsTile"
           >
             <svg
+            v-bind:class="
+     showSettingsTile == true || TileValue != ''
+        ? 'activeIconMapView'
+        : ''"
               xmlns="http://www.w3.org/2000/svg"
               width="24"
               height="24"
@@ -124,6 +128,11 @@
               width="20"
               height="20"
               viewBox="0 0 20 20"
+               v-bind:class="
+      showSettingsView == true || showLayer == true || showRadius == true
+        ? 'activeIconMap'
+        : ''
+    "
             >
               <path
                 d="M12 10C12 11.1046 11.1046 12 10 12V14C12.2091 14 14 12.2091 14 10H12ZM10 12C8.89543 12 8 11.1046 8 10H6C6 12.2091 7.79086 14 10 14V12ZM8 10C8 8.89543 8.89543 8 10 8V6C7.79086 6 6 7.79086 6 10H8ZM10 8C11.1046 8 12 8.89543 12 10H14C14 7.79086 12.2091 6 10 6V8Z"
@@ -134,7 +143,7 @@
             </svg>
           </button>
         </div>
-        <div class="SettingsMap" v-if="showSettingsTile">
+        <div class="SettingsMap" v-show="showSettingsTile">
           <div class="SettingsMap__Tile" v-click-outside="onClickOutsideTile">
             <radioButton
               @radioValue="getTileValue"
@@ -147,19 +156,21 @@
             />
           </div>
         </div>
-        <div class="SettingsMap" v-if="showSettingsView">
+        <div class="SettingsMap" v-show="showSettingsView">
           <div
             class="SettingsMap__View SettingsMap-View"
             v-click-outside="onClickOutsideView"
           >
             <div class="SettingsMap-View__Layer">
               <h2>Отображение слоев</h2>
+             
               <radioButton
                 @radioValue="getViewLayerValue"
                 :valuesRadio="{
                   Вкл: 1,
                 }"
               />
+              
             </div>
             <div class="SettingsMap-View__Rad">
               <h2>Радиус сигнала</h2>
@@ -334,11 +345,11 @@ export default {
     },
 
     onClickOutsideTile(event) {
-      this.showSettingsTile = false;
+      // this.showSettingsTile = false;
     },
 
     onClickOutsideView(event) {
-      this.showSettingsView = false;
+      // this.showSettingsView = false;
     },
     hideTopShelfTools() {
       this.showInput = !this.showInput;
@@ -648,7 +659,18 @@ export default {
 
 <style lang="scss" scoped>
 @import "../assets/scss/fonts";
-
+.activeIconMap{
+  path{
+    fill:#9B42F5;
+  }
+}
+.activeIconMapView{
+  g{
+    path{
+    fill:#9B42F5;
+  }
+  }
+}
 .SettingsMap {
   max-width: 240px;
   min-width: 240px;
