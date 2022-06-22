@@ -64,7 +64,7 @@
                 <td>{{ $t(item.name) }}</td>
                 <td>{{ item.company }}</td>
                 <td>{{ item.type }}</td>
-                <td v-if="EditingInrustructureStatus == false || (EditingInrustructureStatus == true && EditingInrustructureId != index)" align="right">{{ item.id }}</td>
+                <td v-if="EditingInrustructureStatus == false || (EditingInrustructureStatus == true && EditingInrustructureId != index) || $store.getters['GetChangestatus'] == false" align="right">{{ item.id }}</td>
                 <td v-if="EditingInrustructureStatus == true && EditingInrustructureId == index && $store.getters['GetChangestatus'] == true" align="right" ><InputInfrustructure :value="item.id" :id="index" @input='EditIdfrustructure'/></td>
                 <td>
                   <OpenCard
