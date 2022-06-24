@@ -38,7 +38,7 @@
               <td v-if="$store.getters['GetChangestatus'] == true"><EditCard :propid="index" :Type="'string'" @deletePoint="deletePoint"></EditCard></td>
             </tr>
              <tr><td colspan="3" v-if='computedObj.length == 0'>{{$t("no-info")}}</td></tr>
-            <tr><td colspan="3"> <AddCard v-show="addcardParam1" :LengthInput="3" @addInfo='addInfo'></AddCard></td></tr>
+            <tr><td colspan="3"> <AddCard :typeOfForm = this.infrastructuretype v-show="addcardParam1" :LengthInput="3" @addInfo='addInfo'></AddCard></td></tr>
           </table>
           <div v-if="$store.getters['GetChangestatus'] == false">
             <button
@@ -96,7 +96,7 @@
               <td v-else><EditCard :propid="index" :Type="'string'" @deletePoint="deletePoint1"></EditCard></td>
             </tr>
             <tr><td colspan="3" v-if='drones.length == 0'>{{$t("no-info")}}</td></tr>
-            <tr><td colspan="3"> <AddCard v-show="addcardParam" :LengthInput="2" @addInfo='addInfo1'></AddCard></td></tr>
+            <tr><td colspan="3"> <AddCard  :typeOfForm="input" v-show="addcardParam" :LengthInput="2" @addInfo='addInfo1'></AddCard></td></tr>
           </table>
           <button
               v-if="$store.getters['GetChangestatus'] == true && addcardParam == false"
@@ -141,6 +141,7 @@ export default {
     
 
     return {
+      infrastructuretype: 'input',
       modalError: false,
       addcardParam1 : false,
       addcardParam : false,

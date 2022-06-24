@@ -118,8 +118,8 @@
                 <td colspan="5">
                   <AddCard
                     v-show="addcardParam"
-                    :LengthInput="3"
-                    :typeOfForm = infrastructure
+                    :LengthInput="2"
+                    :typeOfForm = this.infrastructuretype
                     @addInfo="addInfo"
                   ></AddCard>
                 </td>
@@ -184,6 +184,7 @@ export default {
 
   data() {
     return {
+      infrastructuretype: 'infrastructure',
       modalError: false,
       addcardParam: false,
       titleforWarningMessage: "titleforWarningMessage",
@@ -241,8 +242,8 @@ export default {
       "EditIdfrustructureActions",
       "ClearinputTableInfrusActions",
     ]),
-    addInfo(value,option) {
-      if (value.includes(undefined) || value.includes("") || option == "" ) {
+    addInfo(value,option, BrandOfInfrustructure) {
+      if (value.includes(undefined) || value.includes("") || option == "" ||  BrandOfInfrustructure == "") {
         this.modalError = true;
         setTimeout(() => {
           this.modalError = false;
@@ -250,10 +251,10 @@ export default {
       } else {
         var object = {
           name: option,
-          company: value[0],
+          company:  BrandOfInfrustructure,
           link: "/",
-          type: value[1],
-          id: value[2],
+          type: value[0],
+          id: value[1],
         };
         let id = parseInt(this.splitPlatformId);
         this.addDroneport([id, object]);

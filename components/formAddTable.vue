@@ -1,9 +1,16 @@
 <template>
   <div v-if="$store.getters['GetChangestatus'] == true" class="inputForm">
-    <div class="fd-input">
-      <select @change="changeOption($event)" v-if="typeOfForm == infrastructure" name="" id="" class='dropdown_infr'>
+    <div class="fd-input" v-if="typeOfForm == 'infrastructure'">
+      <select @change="changeOption($event)"  name="" id="" class='dropdown_infr'>
         <option selected disabled>Тип инфраструктуры</option>
-        <option v-for="(point, index) in listOfInfrustructure" :key="index" :value="point">{{point}}</option>
+        <option v-for="(point, index) in listOfInfrustructure" :key="index" :value="index">{{point}}</option>
+      </select>
+      </div>
+      <div class="fd-input" v-if="typeOfForm == 'infrastructure'">
+      <select @change="changeOptionModel($event)"  name="" id="" class='dropdown_infr'>
+        <option selected disabled>Бренд</option>
+        <option  disabled v-if="this.infoFromOption == ''">Выберите тип </option>
+        <option  v-show="statusOfSelectedType" v-for="(point, index) in listOfInfrustructureBrand[idOfTypeInfrustructure]" :key="index" :value="point">{{point}}</option>
       </select>
       </div>
     <InputForm v-for="n in LengthInput" :key="n" @input="input" :id="n - 1" />
@@ -11,7 +18,7 @@
       class="addBtn"
       @mouseover="fillColor = '#9b42f2'"
       @mouseleave="fillColor = 'grey'"
-      @click="$emit('addInfo', info, infoFromOption)"
+      @click="$emit('addInfo', info, infoFromOption, BrandOfInfrustructure)"
       :fill="fillColor"
       :iconType="'plus-circle'"
       :backgroundColor="'rgba(0, 0, 0, 0)'"
@@ -33,8 +40,10 @@ export default {
     return {
       info: new Array(this.LengthInput),
       infoFromOption: '',
-
+      statusOfSelectedType: false,
+      idOfTypeInfrustructure: '',
       fillColor: "grey",
+      BrandOfInfrustructure: '',
       listOfInfrustructure:[
         "Дронопорт",
         "Постамат",
@@ -42,6 +51,14 @@ export default {
         "Датчики движения",
         "Освещение",
         "Ограждение"
+      ],
+       listOfInfrustructureBrand:[
+        ['Hive','Rave', 'Mufe', 'Heve'],
+        ['Ozon','Yandex', 'Sber', 'Amazon',],
+        ['AHD','Sony', 'Canon', 'Samsung'],
+        ['Ajax','Jquery', 'Vue', 'React'],
+        ['Feron','Peron', 'Maton', 'Seron'],
+        ['Wall','noWall', 'BigWall', 'SmallWall'],
       ]
     };
   },
@@ -53,6 +70,7 @@ export default {
     },
     typeOfForm:{
       type: String,
+       required: true,
     },
   },
   methods: {
@@ -60,8 +78,14 @@ export default {
       Vue.set(this.info, n, value);
     },
     changeOption(event){
-     this.infoFromOption = event.target.value,
-     console.log(this.infoFromOption)
+      let idOfType = event.target.value
+      this.idOfTypeInfrustructure = idOfType
+    let dataToAdd = this.listOfInfrustructure[idOfType] 
+     this.infoFromOption = dataToAdd
+     this.statusOfSelectedType = true
+    },
+    changeOptionModel(event){
+      this.BrandOfInfrustructure = event.target.value
     },
   },
 };
