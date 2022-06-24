@@ -118,7 +118,8 @@
                 <td colspan="5">
                   <AddCard
                     v-show="addcardParam"
-                    :LengthInput="4"
+                    :LengthInput="3"
+                    :typeOfForm = infrastructure
                     @addInfo="addInfo"
                   ></AddCard>
                 </td>
@@ -240,19 +241,19 @@ export default {
       "EditIdfrustructureActions",
       "ClearinputTableInfrusActions",
     ]),
-    addInfo(value) {
-      if (value.includes(undefined) || value.includes("")) {
+    addInfo(value,option) {
+      if (value.includes(undefined) || value.includes("") || option == "" ) {
         this.modalError = true;
         setTimeout(() => {
           this.modalError = false;
         }, 2000);
       } else {
         var object = {
-          name: value[0],
-          company: value[1],
+          name: option,
+          company: value[0],
           link: "/",
-          type: value[2],
-          id: value[3],
+          type: value[1],
+          id: value[2],
         };
         let id = parseInt(this.splitPlatformId);
         this.addDroneport([id, object]);

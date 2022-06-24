@@ -188,8 +188,12 @@
     <div class="RightShelf">
       <div class="RightShelf-items">
         <div class="RightShelf-items__buttons">
-          <button calss="Location" @click="createUserMarker()">
+          <button class="Location" @click="createUserMarker()">
             <svg
+            v-bind:class="
+     showUserPos == true 
+        ? 'activeIconMap'
+        : ''"
               xmlns="http://www.w3.org/2000/svg"
               width="20"
               height="21"
@@ -204,7 +208,7 @@
             </svg>
           </button>
 
-          <button calss="FullScreen">
+          <button class="FullScreen">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="24"
