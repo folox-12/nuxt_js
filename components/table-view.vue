@@ -44,6 +44,7 @@
             class="table-el"
             v-for="(index, row) in tableDescription"
             :key="row.id"
+            @dblclick="openPlatform(index.id)"
           >
             <td class="numerical">
               <span>{{ row + indexForNumberOfRow }}</span>
@@ -59,11 +60,7 @@
               <span>{{ key }}</span>
             </td>
             <td class="null">
-              <OpenCard
-                v-if="!$store.getters['GetChangestatus']"
-                :link="'/Platform' + index.id"
-              />
-              <EditCard v-else :propid="index" @deletePoint="deletePoint" />
+              <EditCard :propid="index" @deletePoint="deletePoint" />
             </td>
           </tr>
         </tbody>
@@ -119,6 +116,9 @@ export default {
   },
   methods: {
     ...mapActions("dronoports", ["addPlatform", "deletePlatform"]),
+    openPlatform(id) {
+      this.$router.push("/Platform" + id);
+    },
     addInfo(value) {
       if (value.includes(undefined) || value.includes("")) {
         this.modalError = true;
