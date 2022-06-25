@@ -55,6 +55,7 @@
       ]"
       :itemsOnPage="5"
     />
+    <dropdownMenu />
   </div>
 </template>
 <script>
@@ -65,6 +66,7 @@ import tableView from "../components/table-view.vue";
 import fdButton from "../components/UI/fd-button.vue";
 import fdInput from "../components/UI/fd-input.vue";
 import iconBase from "../components/icons/IconBase.vue";
+import dropdownMenu from "../components/dropdownMenu.vue";
 import { mapGetters } from "vuex";
 export default {
   data() {
@@ -81,6 +83,7 @@ export default {
     iconBase,
     fdButton,
     fdInput,
+    dropdownMenu,
   },
   created() {},
   methods: {

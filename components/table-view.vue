@@ -44,7 +44,7 @@
             class="table-el"
             v-for="(index, row) in tableDescription"
             :key="row.id"
-            @dblclick="openPlatform(index.id)"
+            @dblclick="openLink(index.id)"
           >
             <td class="numerical">
               <span>{{ row + indexForNumberOfRow }}</span>
@@ -60,7 +60,7 @@
               <span>{{ key }}</span>
             </td>
             <td class="null">
-              <EditCard :propid="index" @deletePoint="deletePoint" />
+              <dropdownMenu :propid="index.id" @deletePoint="deletePoint" />
             </td>
           </tr>
         </tbody>
@@ -79,7 +79,7 @@ import OpenCard from "@/components/buttonCardOpen.vue";
 import EditCard from "@/components/buttonCardEditing.vue";
 import AddCard from "@/components/formAddTable.vue";
 import WarningMessage from "@/components/modalErrorInput.vue";
-
+import dropdownMenu from "./dropdownMenu.vue";
 import { mapActions } from "vuex";
 
 export default {
@@ -89,6 +89,7 @@ export default {
     EditCard,
     AddCard,
     WarningMessage,
+    dropdownMenu,
   },
 
   data() {
@@ -116,7 +117,7 @@ export default {
   },
   methods: {
     ...mapActions("dronoports", ["addPlatform", "deletePlatform"]),
-    openPlatform(id) {
+    openLink(id) {
       if (id) {
         this.$router.push("/Platform" + id);
       }
@@ -140,8 +141,7 @@ export default {
       }
     },
     deletePoint(value) {
-      //console.log(value.id);
-      this.deletePlatform(value.id);
+      this.deletePlatform(value);
     },
     removeObjProperty(obj, prop_name) {
       const arr = Object.entries(obj);
@@ -181,6 +181,7 @@ export default {
     display: block;
     width: 100%;
     overflow-x: scroll;
+    height: fit-content;
     margin-bottom: 16px;
   }
   table.table__data {

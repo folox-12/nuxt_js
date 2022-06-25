@@ -3,7 +3,7 @@
     <div class="save-btn">
       <div class="ModalButton">
         <div class="ModalButton-Show">
-          <button class="ModalButton-Show-button" v-on:click="hideButton()">
+          <button class="ModalButton-Show-button" v-on:click="hideButton">
             <svg
               width="16"
               height="16"
@@ -29,28 +29,30 @@
           </button>
         </div>
         <div v-else class="ModalButton-button1" v-show="showButton">
-          <button @click="editingIdIntrustructure">
-            <svg
-              v-bind:class="
-                statusOfEditing == true ? 'svg-infrustructure-editing' : ''
-              "
-              id="editing"
-              width="21"
-              height="21"
-              viewBox="0 0 21 21"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
+          <div class="ModalButton-button1_body">
+            <button @click="editingIdIntrustructure">
+              <svg
+                v-bind:class="
+                  statusOfEditing == true ? 'svg-infrustructure-editing' : ''
+                "
                 id="editing"
-                fill-rule="evenodd"
-                clip-rule="evenodd"
-                d="M18.9046 3.30962L19.677 2.47207C20.083 2.03287 20.1226 1.40981 19.7166 0.980824L19.4393 0.684618C19.0729 0.306699 18.459 0.388411 18.053 0.796972L17.2509 1.60388L18.9046 3.30962ZM7.32223 13.973L9.41222 13.0844L18.1882 4.03476L16.534 2.33923L7.76796 11.3889L6.8765 13.5032C6.75763 13.7891 7.05479 14.0854 7.32223 13.973ZM18.0839 17.5376C18.0839 19.7949 16.9052 21.0002 14.9043 21.0002H3.44407C1.24512 21.0002 0.0664062 19.7949 0.0664062 17.5376V5.87324C0.0664062 3.62615 1.24512 2.4209 3.44407 2.4209H13.8445L11.5762 4.75991H3.65208C2.79033 4.75991 2.33469 5.19911 2.33469 6.12859V17.2823C2.33469 18.2118 2.79033 18.6612 3.65208 18.6612H14.6963C15.3402 18.6612 15.8156 18.2118 15.8156 17.2823V9.20301L18.0839 6.864V17.5376Z"
-                fill="#141029"
-                fill-opacity="0.8"
-              />
-            </svg>
-          </button>
+                width="21"
+                height="21"
+                viewBox="0 0 21 21"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  id="editing"
+                  fill-rule="evenodd"
+                  clip-rule="evenodd"
+                  d="M18.9046 3.30962L19.677 2.47207C20.083 2.03287 20.1226 1.40981 19.7166 0.980824L19.4393 0.684618C19.0729 0.306699 18.459 0.388411 18.053 0.796972L17.2509 1.60388L18.9046 3.30962ZM7.32223 13.973L9.41222 13.0844L18.1882 4.03476L16.534 2.33923L7.76796 11.3889L6.8765 13.5032C6.75763 13.7891 7.05479 14.0854 7.32223 13.973ZM18.0839 17.5376C18.0839 19.7949 16.9052 21.0002 14.9043 21.0002H3.44407C1.24512 21.0002 0.0664062 19.7949 0.0664062 17.5376V5.87324C0.0664062 3.62615 1.24512 2.4209 3.44407 2.4209H13.8445L11.5762 4.75991H3.65208C2.79033 4.75991 2.33469 5.19911 2.33469 6.12859V17.2823C2.33469 18.2118 2.79033 18.6612 3.65208 18.6612H14.6963C15.3402 18.6612 15.8156 18.2118 15.8156 17.2823V9.20301L18.0839 6.864V17.5376Z"
+                  fill="#141029"
+                  fill-opacity="0.8"
+                />
+              </svg>
+            </button>
+          </div>
           <hr />
           <button @click="deletePoint">
             <svg
@@ -121,7 +123,7 @@ export default {
   components: { ModalWindow },
   data() {
     return {
-      showModal: "false",
+      showModal: false,
       showButton: false,
       id: 0,
     };
@@ -175,6 +177,7 @@ export default {
       }
     },
     deletePoint() {
+      this.showMenu = false;
       this.$emit("deletePoint", this.propid);
     },
     editingIdIntrustructure() {
@@ -206,18 +209,18 @@ export default {
     }
   }
   &-button1 {
-    width: 61px;
-    height: 86px;
-    background-color: white;
-    box-shadow: 2px 4px 20px rgba(0, 0, 0, 0.2);
-    border-radius: 10px;
-    z-index: 9999;
+    z-index: 999;
     position: absolute;
-    display: flex;
-    flex-direction: column;
     right: -15px;
     top: -20px;
-
+    background-color: white;
+    padding: 5px;
+    box-shadow: 2px 4px 20px rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+    &__body {
+      display: flex;
+      flex-direction: column;
+    }
     button {
       background: transparent;
       padding: 10px 10px 10px 10px;
