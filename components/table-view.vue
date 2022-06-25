@@ -117,7 +117,9 @@ export default {
   methods: {
     ...mapActions("dronoports", ["addPlatform", "deletePlatform"]),
     openPlatform(id) {
-      this.$router.push("/Platform" + id);
+      if (id) {
+        this.$router.push("/Platform" + id);
+      }
     },
     addInfo(value) {
       if (value.includes(undefined) || value.includes("")) {

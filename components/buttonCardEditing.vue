@@ -3,12 +3,8 @@
     <div class="save-btn">
       <div class="ModalButton">
         <div class="ModalButton-Show">
-          <button
-            class="ModalButton-Show-button"
-            v-on:click="hideButton()"
-          >
+          <button class="ModalButton-Show-button" v-on:click="hideButton()">
             <svg
-             
               width="16"
               height="16"
               viewBox="0 0 16 16"
@@ -23,18 +19,21 @@
             </svg>
           </button>
         </div>
-        <div v-if="Type == 'string'" class="ModalButton-button2" v-show="showButton">
-          <button  @click="deletePoint">
+        <div
+          v-if="Type == 'string'"
+          class="ModalButton-button2"
+          v-show="showButton"
+        >
+          <button @click="deletePoint">
             <span>Удалить</span>
           </button>
         </div>
         <div v-else class="ModalButton-button1" v-show="showButton">
-          <button @click='editingIdIntrustructure'> 
-            <svg  v-bind:class="
-      statusOfEditing == true
-        ? 'svg-infrustructure-editing'
-        : ''
-    "
+          <button @click="editingIdIntrustructure">
+            <svg
+              v-bind:class="
+                statusOfEditing == true ? 'svg-infrustructure-editing' : ''
+              "
               id="editing"
               width="21"
               height="21"
@@ -118,53 +117,32 @@
 import ModalWindow from "../components/ModalWindow.vue";
 
 export default {
-  
   layout: "map",
   components: { ModalWindow },
   data() {
     return {
-      showModal:'false',
+      showModal: "false",
       showButton: false,
       id: 0,
     };
   },
 
-  props:{
-    propid:{
-      type: Number
+  props: {
+    propid: {
+      type: Number,
     },
-    Type:{
-      type: String
+    Type: {
+      type: String,
     },
-    statusOfEditing:{
-      type:Boolean,
+    statusOfEditing: {
+      type: Boolean,
       default: false,
-    }
-
+    },
   },
 
   methods: {
-
-    statusOfSessionButtton(){
-      sessionStorage.setItem('statusOfButton', this.showModal)
-        window.addEventListener("click", (e) => {
-        const target = e.target;
-        if (
-          !target.closest(".ModalButton-Show-button") &&
-          !target.closest(".ModalButton-button")
-        ) {
-          this.showButton = false;
-          this.showModal = 'false';
-                  sessionStorage.setItem('statusOfButton', this.showModal)
-                  
-        }
-
-      });
-    },
-    hideButton() {
-  if(sessionStorage.getItem('statusOfButton') == 'true'){
-            
-     
+    statusOfSessionButtton() {
+      sessionStorage.setItem("statusOfButton", this.showModal);
       window.addEventListener("click", (e) => {
         const target = e.target;
         if (
@@ -172,45 +150,52 @@ export default {
           !target.closest(".ModalButton-button")
         ) {
           this.showButton = false;
-          this.showModal = 'false';
-                  sessionStorage.setItem('statusOfButton', this.showModal)
-                  
+          this.showModal = "false";
+          sessionStorage.setItem("statusOfButton", this.showModal);
         }
       });
-      }
-      else if (sessionStorage.getItem('statusOfButton') != 'true'){
-      this.showModal = 'true'
-        sessionStorage.setItem('statusOfButton', this.showModal)
-         this.showButton = true
-         
-         
-          
-        
+    },
+    hideButton() {
+      if (sessionStorage.getItem("statusOfButton") == "true") {
+        window.addEventListener("click", (e) => {
+          const target = e.target;
+          if (
+            !target.closest(".ModalButton-Show-button") &&
+            !target.closest(".ModalButton-button")
+          ) {
+            this.showButton = false;
+            this.showModal = "false";
+            sessionStorage.setItem("statusOfButton", this.showModal);
+          }
+        });
+      } else if (sessionStorage.getItem("statusOfButton") != "true") {
+        this.showModal = "true";
+        sessionStorage.setItem("statusOfButton", this.showModal);
+        this.showButton = true;
       }
     },
     deletePoint() {
       this.$emit("deletePoint", this.propid);
     },
-    editingIdIntrustructure(){
-      this.$emit("editingIdIntrustructure", this.propid)
-     
-    }
+    editingIdIntrustructure() {
+      this.$emit("editingIdIntrustructure", this.propid);
+    },
   },
   watch: {
     propid: function (new_value) {
       this.init;
     },
   },
-  beforeMount(){
-    this.statusOfSessionButtton()
-  }
+  beforeMount() {
+    this.statusOfSessionButtton();
+  },
 };
 </script>
 
 <style lang="scss">
-.svg-infrustructure-editing{
-  path{
-    fill:#9B42F5;
+.svg-infrustructure-editing {
+  path {
+    fill: #9b42f5;
   }
 }
 .ModalButton {
@@ -254,8 +239,8 @@ export default {
       transform: matrix(1, 0.01, 0, -1, 0, 0);
     }
   }
-  &-button2{
-     width: 117px;
+  &-button2 {
+    width: 117px;
     height: 55px;
     background-color: white;
     box-shadow: 2px 4px 20px rgba(0, 0, 0, 0.2);
@@ -266,18 +251,17 @@ export default {
     flex-direction: column;
     right: -15px;
     top: -20px;
-     button {
+    button {
       background: transparent;
       padding: 15px 10px 15px 10px;
-      span{
-        font-family: 'Montserrat';
-font-style: normal;
-font-weight: 500;
-font-size: 16px;
-color: rgba(20, 16, 41, 0.8);
+      span {
+        font-family: "Montserrat";
+        font-style: normal;
+        font-weight: 500;
+        font-size: 16px;
+        color: rgba(20, 16, 41, 0.8);
       }
     }
   }
- 
 }
 </style>

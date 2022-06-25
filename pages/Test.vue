@@ -34,6 +34,27 @@
       @click="foo"
       :backgroundColor="'grey'"
     />
+    <table-view
+      :tableTitle="['№', 'Адрес', 'Дронопорт', 'Постамат']"
+      :tableDescription="[
+        {
+          address: 'jlasdkfja, asdlfjasldf, asjdkfasdjflkasd;ljf, ',
+          dronport: 2,
+          postamat: 2,
+        },
+        { address: 'jlasdkfj2', dronport: 2, postamat: 2 },
+        { address: 'jlasdkfj3', dronport: 2, postamat: 2 },
+        { address: 'jlasdkfj4', dronport: 2, postamat: 2 },
+        { address: 'jlasdkfj6', dronport: 2, postamat: 2 },
+        { address: 'jlasdkfj7', dronport: 2, postamat: 2 },
+        { address: 'jlasdkfj8', dronport: 2, postamat: 2 },
+        { address: 'jlasdkfja', dronport: 2, postamat: 2 },
+        { address: 'jlasdkfja', dronport: 2, postamat: 2 },
+        { address: 'jlasdkfja', dronport: 2, postamat: 2 },
+        { address: 'jlasdkfja', dronport: 2, postamat: 2 },
+      ]"
+      :itemsOnPage="5"
+    />
   </div>
 </template>
 <script>
