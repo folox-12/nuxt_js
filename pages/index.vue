@@ -3,7 +3,7 @@
     <TitleOfPage
       :headerData="headerData"
       v-if="headerData"
-      @click="ChangeEditStatus"
+      @click="addPlatform"
       :buttonValue="$t('add-message')"
     />
     <filters
@@ -327,18 +327,11 @@ export default {
     },
   },
   methods: {
-    ChangeEditStatus() {
-      this.$store.commit(
-        "setChangestatus",
-        !this.$store.getters["GetChangestatus"]
-      );
+    addPlatform() {
       if (this.headerData.link) this.$router.push(this.headerData.link);
     },
     funcLayerDescription() {
       this.showLayerDescription = !this.showLayerDescription;
-    },
-    GetValueCheckbox() {
-      alert("hello");
     },
     getFilterForMapCity(value) {
       this.Coordinate = value;

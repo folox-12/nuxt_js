@@ -28,10 +28,10 @@ export default {
       return this.$route.fullPath;
     },
     headerData() {
-        return this.$route.matched.map(r => {
-          return r.components.default.options.headerData
-        })[0]
-      }
+      return this.$route.matched.map((r) => {
+        return r.components.default.options.headerData;
+      })[0];
+    },
   },
 };
 </script>

@@ -47,7 +47,6 @@
           >
             <td class="numerical">
               <span>{{ row + indexForNumberOfRow }}</span>
-              <!-- <span>{{ index }}</span> -->
             </td>
             <td
               v-for="(key, value) in removeObjProperty(
@@ -65,11 +64,6 @@
                 :link="'/Platform' + index.id"
               />
               <EditCard v-else :propid="index" @deletePoint="deletePoint" />
-            </td>
-          </tr>
-          <tr>
-            <td colspan="5" v-if="$store.getters['GetChangestatus']">
-              <AddCard :LengthInput="3" @addInfo="addInfo"></AddCard>
             </td>
           </tr>
         </tbody>

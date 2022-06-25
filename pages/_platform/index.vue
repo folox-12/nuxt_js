@@ -4,7 +4,11 @@
       :headerData="headerData"
       v-if="headerData"
       @click="ChangeEditStatus"
-      :buttonValue="$t('edit-message')"
+      :buttonValue="
+        this.$store.getters['GetChangestatus']
+          ? $t('accept-edit-btn')
+          : $t('edit-message')
+      "
     />
     <div class="card">
       <!-- <h6>{{ this.description }}</h6> -->
@@ -119,7 +123,7 @@
                   <AddCard
                     v-show="addcardParam"
                     :LengthInput="2"
-                    :typeOfForm = this.infrastructuretype
+                    :typeOfForm="this.infrastructuretype"
                     @addInfo="addInfo"
                   ></AddCard>
                 </td>
@@ -184,7 +188,7 @@ export default {
 
   data() {
     return {
-      infrastructuretype: 'infrastructure',
+      infrastructuretype: "infrastructure",
       modalError: false,
       addcardParam: false,
       titleforWarningMessage: "titleforWarningMessage",
@@ -242,8 +246,13 @@ export default {
       "EditIdfrustructureActions",
       "ClearinputTableInfrusActions",
     ]),
-    addInfo(value,option, BrandOfInfrustructure) {
-      if (value.includes(undefined) || value.includes("") || option == "" ||  BrandOfInfrustructure == "") {
+    addInfo(value, option, BrandOfInfrustructure) {
+      if (
+        value.includes(undefined) ||
+        value.includes("") ||
+        option == "" ||
+        BrandOfInfrustructure == ""
+      ) {
         this.modalError = true;
         setTimeout(() => {
           this.modalError = false;
@@ -251,7 +260,7 @@ export default {
       } else {
         var object = {
           name: option,
-          company:  BrandOfInfrustructure,
+          company: BrandOfInfrustructure,
           link: "/",
           type: value[0],
           id: value[1],
