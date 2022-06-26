@@ -10,9 +10,16 @@
       <select @change="changeOptionModel($event)"  name="" id="" class='dropdown_infr'>
         <option selected disabled>Бренд</option>
         <option  disabled v-if="this.infoFromOption == ''">Выберите тип </option>
-        <option  v-show="statusOfSelectedType" v-for="(point, index) in listOfInfrustructureBrand[idOfTypeInfrustructure]" :key="index" :value="point">{{point}}</option>
+        <option  v-show="statusOfSelectedType" v-for="(point, index) in listOfInfrustructureBrand[idOfTypeInfrustructure]" :key="index" :value="index">{{point}}</option>
       </select>
       </div>
+       <!-- <div class="fd-input" v-if="typeOfForm == 'infrastructure'">
+      <select @change="changeOptionModelCat($event)"  name="" id="" class='dropdown_infr'>
+        <option selected disabled>Модель</option>
+        <option  disabled v-if="this.BrandOfInfrustructure == ''">Выберите бренд</option>
+        <option  v-show="statusOfSelectedBrand" v-for="(point, index) in listOfInfrustructureModel[idOfTypeInfrustructure][idOfBrandInfrustructure]" :key="index" :value="point">{{point}}</option>
+      </select>
+      </div> -->
     <InputForm v-for="n in LengthInput" :key="n" @input="input" :id="n - 1" />
     <iconBase
       class="addBtn"
@@ -41,7 +48,9 @@ export default {
       info: new Array(this.LengthInput),
       infoFromOption: '',
       statusOfSelectedType: false,
+      statusOfSelectedBrand: false,
       idOfTypeInfrustructure: '',
+      idOfBrandInfrustructure: '',
       fillColor: "grey",
       BrandOfInfrustructure: '',
       listOfInfrustructure:[
@@ -59,6 +68,44 @@ export default {
         ['Ajax','Jquery', 'Vue', 'React'],
         ['Feron','Peron', 'Maton', 'Seron'],
         ['Wall','noWall', 'BigWall', 'SmallWall'],
+      ],
+      listOfInfrustructureModel:[
+         [
+          ['m300','m200', 'm500', 'm100'],
+          ['x300','x200', 'x500', 'mx00'],
+          ['e300','e200', 'e500', 'e100'],
+          ['g300','g200', 'g500', 'g100'],
+         ],
+         [
+          ['m999','m203', 'm504', 'm101'],
+          ['x3g0','x200', 'x500', 'mx40'],
+          ['e30z','e2h0', 'e5d0', 'e102'],
+          ['g3n0','g500', 'g5h0', 'g1042'],
+        ],
+         [
+          ['m302','m20x', 'm504', 'm100'],
+          ['x300','x200', 'x500', 'mx00'],
+          ['ev00','e200', 'g550', 'e130'],
+          ['gl00','g2v0', 'gz00', 'g1g0'],
+        ],
+         [
+          ['n300','m200', 'm5d0', 'B100'],
+          ['x300','x200', 'x5sda00', 'mx00'],
+          ['e3040','e200123', 'e5b0', 'e100'],
+          ['g300','gr500', 'g500', 'g1056'],
+        ],
+         [
+          ['m300','m220', 'm500', 'm100'],
+          ['x3v0','x200', 'x500', 'mb00'],
+          ['Q300','e2A0', 'e500', 'e160'],
+          ['g300','A200', 'B500', 'g105'],
+        ],
+         [
+          ['m300','1200', 'F500', '2100'],
+          ['x300','x200', 'x500', 'mx00'],
+          ['e350','e200', 'e500', 'eb00'],
+          ['g3b0','g230', 'g510', 'g1bB0'],
+        ],
       ]
     };
   },
@@ -85,8 +132,17 @@ export default {
      this.statusOfSelectedType = true
     },
     changeOptionModel(event){
-      this.BrandOfInfrustructure = event.target.value
+     
+       let idOfBrand = event.target.value
+       this.idOfBrandInfrustructure = idOfBrand
+        let idOfTypeInfrustructure = this.idOfTypeInfrustructure 
+      let infoAboutBrand = this.listOfInfrustructureBrand[idOfTypeInfrustructure][idOfBrand]
+      this.BrandOfInfrustructure = infoAboutBrand
+       this.statusOfSelectedBrand = true
     },
+    changeOptionModelCat(event){
+
+    }
   },
 };
 </script>
