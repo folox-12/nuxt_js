@@ -11,10 +11,12 @@
           @click="editingIdIntrustructure"
           :iconType="'edit'"
           :backgroundColor="'rgba(1, 1, 1, 0)'"
+          :fillActive="fillActive"
         />
         <iconBase
           @click="deletePoint"
           :iconType="'delete'"
+          :fillActive="fillActive"
           :backgroundColor="'rgba(1, 1, 1, 0)'"
         />
       </div>
@@ -36,6 +38,10 @@ export default {
     clickOutside: vClickOutside.directive,
   },
   props: {
+    fillActive: {
+      type: String,
+      default: "#9b42f5",
+    },
     propid: {
       type: Number,
     },
