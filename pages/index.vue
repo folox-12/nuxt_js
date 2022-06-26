@@ -328,6 +328,10 @@ export default {
   },
   methods: {
     addPlatform() {
+      this.$store.commit(
+        "setChangestatus",
+        !this.$store.getters["GetChangestatus"]
+      );
       if (this.headerData.link) this.$router.push(this.headerData.link);
     },
     funcLayerDescription() {

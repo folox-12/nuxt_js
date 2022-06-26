@@ -121,8 +121,9 @@
   "Sensor": "Sensor",
   "Droneport": "Droneport",
   "Main": "Main",
+  "Edit": "Edit",
 
-  "titleforWarningMessage":"You didn't fill in all the fields",
+  "titleforWarningMessage": "You didn't fill in all the fields",
 
   "Table": "Table",
 
@@ -137,6 +138,8 @@
   "Options": "Options",
 
   "flight-route": "Flight route/area",
-  "flight-location-search": "Find a location to fly"
+  "flight-location-search": "Find a location to fly",
 
+  "edit-page-title": "Edit list of landing areas",
+  "address-edit": "Type address of platfrom"
 }

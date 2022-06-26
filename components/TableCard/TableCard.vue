@@ -413,16 +413,15 @@ export default {
       document.getElementById(index).value = "";
     },
 
-    splitThreePoints(){
-  if(this.type[1] == 'three quantity'){
-    let stringToSplit = this.description[1];
-    var splitChar = 'x';
-    let splittedSring = stringToSplit.split(splitChar);
-    this.splitStringThreePoint = splittedSring;
-    console.log(this.splitStringThreePoint)
-  }
-}
-
+    splitThreePoints() {
+      if (this.type[1] == "three quantity") {
+        let stringToSplit = this.description[1];
+        var splitChar = "x";
+        let splittedSring = stringToSplit.split(splitChar);
+        this.splitStringThreePoint = splittedSring;
+        console.log(this.splitStringThreePoint);
+      }
+    },
   },
 
   beforeMount() {

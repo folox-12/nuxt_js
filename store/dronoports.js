@@ -138,6 +138,20 @@ export default {
         },
       ],
     ],
+    infrastructureDir: [
+      {
+        name: "Droneport",
+        link: "/Droneport",
+      },
+      {
+        name: "Postamat",
+        link: "/Postamat",
+      },
+      {
+        name: "Camera",
+        link: "/Camera",
+      },
+    ],
   },
   actions: {
     addDroneport: ({ commit }, array) => commit("addDroneport", array),
@@ -146,22 +160,31 @@ export default {
     deleteDroneport: ({ commit }, array) => commit("deleteDroneport", array),
     deletePlatform: ({ commit }, idPlatform) =>
       commit("deletePlatform", idPlatform),
-      EditIdfrustructureActions:({commit}, array) => commit("EditIdfrustructureMutations", array),
-      ClearinputTableInfrusActions:({commit}, array) => commit("ClearinputTableInfrusMutations", array)
+    EditIdfrustructureActions: ({ commit }, array) =>
+      commit("EditIdfrustructureMutations", array),
+    ClearinputTableInfrusActions: ({ commit }, array) =>
+      commit("ClearinputTableInfrusMutations", array),
   },
   mutations: {
-    ClearinputTableInfrusMutations: (state,array) =>{
-      state.tableData[1][array[1] - 1].infrastructure[array[0]].id = ''
+    ClearinputTableInfrusMutations: (state, array) => {
+      state.tableData[1][array[1] - 1].infrastructure[array[0]].id = "";
     },
     addDroneport: (state, array) => {
       state.tableData[1][array[0] - 1].infrastructure.push(array[1]);
     },
-    EditIdfrustructureMutations:(state,array) => {
-      state.tableData[1][array[2] - 1].infrastructure[array[1]].id = array[0]
+    EditIdfrustructureMutations: (state, array) => {
+      state.tableData[1][array[2] - 1].infrastructure[array[1]].id = array[0];
     },
 
     addPlatform: (state, platformData) => {
-      state.tableData[1].push(platformData);
+      let length = state.tableData[1].length;
+      state.tableData[1].push({
+        id: length + 1,
+        dronoport: platformData.dronoport,
+        address: platformData.address,
+        postamat: platformData.postamat,
+        infrastructure: [],
+      });
     },
     deleteDroneport: (state, array) => {
       state.tableData[1][array[0] - 1].infrastructure.splice(array[1], 1);
@@ -182,9 +205,11 @@ export default {
     getAllDronoport(state) {
       return state.tableData;
     },
+    /*
     countOfLenght(state) {
-      return state.tableData[1].length;
+       return state.tableData[1].length;
     },
+    */
     filteredDataDescription(filters) {
       if (!filters) {
         return state.tableData[1];
@@ -198,6 +223,9 @@ export default {
             .includes(value, 0);
         });
       }
+    },
+    getLenght: (state) => {
+      return state.tableData[1].length;
     },
     getInfrByPlatformId: (state) => (id) => {
       return state.tableData[1].find((el) => el.id === id).infrastructure;

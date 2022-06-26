@@ -112,7 +112,6 @@
   "degree-protection-table-card": "Степень защиты IP",
   "add-btn-exit-platform": "Отменить",
 
-
   "Test": "Тест",
   "Infrastructure": "Инфраструктура",
   "Map": "Карта",
@@ -124,8 +123,9 @@
   "Sensor": "Датчик движения",
   "Droneport": "Дронопорт",
   "Main": "Главная",
+  "Edit": "Редактирование",
 
-  "titleforWarningMessage" :"Вы заполнили не все поля",
+  "titleforWarningMessage": "Вы заполнили не все поля",
 
   "Table": "Таблица",
 
@@ -140,6 +140,8 @@
   "Options": "Настройки",
 
   "flight-route": "Маршрут/район полета",
-  "flight-location-search": "Найти населенный пункт для полета"
+  "flight-location-search": "Найти населенный пункт для полета",
 
+  "edit-page-title": "Редактирование списка площадок",
+  "address-edit": "Введите адрес площадки"
 }
