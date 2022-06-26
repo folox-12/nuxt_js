@@ -44,10 +44,10 @@
             class="table-el"
             v-for="(index, row) in tableDescription"
             :key="row.id"
+            @dblclick="openLink(index.id)"
           >
             <td class="numerical">
               <span>{{ row + indexForNumberOfRow }}</span>
-              <!-- <span>{{ index }}</span> -->
             </td>
             <td
               v-for="(key, value) in removeObjProperty(
@@ -60,16 +60,7 @@
               <span>{{ key }}</span>
             </td>
             <td class="null">
-              <OpenCard
-                v-if="!$store.getters['GetChangestatus']"
-                :link="'/Platform' + index.id"
-              />
-              <EditCard v-else :propid="index" @deletePoint="deletePoint" />
-            </td>
-          </tr>
-          <tr>
-            <td colspan="5" v-if="$store.getters['GetChangestatus']">
-              <AddCard :LengthInput="3" @addInfo="addInfo"></AddCard>
+              <dropdownMenu :propid="index.id" @deletePoint="deletePoint" />
             </td>
           </tr>
         </tbody>
@@ -88,7 +79,7 @@ import OpenCard from "@/components/buttonCardOpen.vue";
 import EditCard from "@/components/buttonCardEditing.vue";
 import AddCard from "@/components/formAddTable.vue";
 import WarningMessage from "@/components/modalErrorInput.vue";
-
+import dropdownMenu from "./dropdownMenu.vue";
 import { mapActions } from "vuex";
 
 export default {
@@ -98,6 +89,7 @@ export default {
     EditCard,
     AddCard,
     WarningMessage,
+    dropdownMenu,
   },
 
   data() {
@@ -125,6 +117,11 @@ export default {
   },
   methods: {
     ...mapActions("dronoports", ["addPlatform", "deletePlatform"]),
+    openLink(id) {
+      if (id) {
+        this.$router.push("/Platform" + id);
+      }
+    },
     addInfo(value) {
       if (value.includes(undefined) || value.includes("")) {
         this.modalError = true;
@@ -144,8 +141,7 @@ export default {
       }
     },
     deletePoint(value) {
-      //console.log(value.id);
-      this.deletePlatform(value.id);
+      this.deletePlatform(value);
     },
     removeObjProperty(obj, prop_name) {
       const arr = Object.entries(obj);
@@ -185,6 +181,7 @@ export default {
     display: block;
     width: 100%;
     overflow-x: scroll;
+    height: fit-content;
     margin-bottom: 16px;
   }
   table.table__data {

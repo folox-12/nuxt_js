@@ -1,6 +1,6 @@
 <template>
   <div>
-    <header class="header" >
+    <header class="header">
       <div class="container">
         <div class="header__body">
           <div class="header__row">
@@ -11,34 +11,38 @@
               <nuxt-link no-prefetch :to="localePath('/')">{{
                 $t("landing-areas-list-title-header")
               }}</nuxt-link>
-              <nuxt-link
-                no-prefetch
-                active-class="nuxt-link-exact-active"
-                :to="localePath('/Platform1')"
-                >{{ $t("platforms-title") }}</nuxt-link
-              >
+
               <nuxt-link no-prefetch :to="localePath('Test')">{{
                 $t("test-title")
               }}</nuxt-link>
             </nav>
             <div class="header__account">
-              
               <nuxt-link href="" :to="localePath('/User')">
                 <img src="@/assets/img/fd-logo.png" />
               </nuxt-link>
               <div class="lang-selector">
-                <a class='lang-button'
+                <a
+                  class="lang-button"
                   href="#"
                   v-if="$i18n.locale == 'en'"
                   @click.prevent.stop="$i18n.setLocale('ru')"
-                  ><CustomIcon :iconType ="'UnitedKingdom'" :width="'24px'" :height="'24px'"/>EN</a
+                  ><CustomIcon
+                    :iconType="'UnitedKingdom'"
+                    :width="'24px'"
+                    :height="'24px'"
+                  />EN</a
                 >
-                <a class="lang-button"
+                <a
+                  class="lang-button"
                   href="#"
                   v-if="$i18n.locale !== 'en'"
                   @click.prevent.stop="$i18n.setLocale('en')"
-                  >
-                  <CustomIcon :iconType ="'Russia'" :width="'24px'" :height="'24px'"/>RU</a
+                >
+                  <CustomIcon
+                    :iconType="'Russia'"
+                    :width="'24px'"
+                    :height="'24px'"
+                  />RU</a
                 >
               </div>
             </div>
@@ -61,8 +65,8 @@ import { mapMutations, mapGetters } from "vuex";
 import CustomIcon from "./icons/IconBase";
 
 export default {
-  components:{
-    CustomIcon
+  components: {
+    CustomIcon,
   },
   data() {
     return {
@@ -97,18 +101,18 @@ export default {
 };
 </script>
 <style lang="scss" scoped>
-.lang-button{
-      height: auto;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 5px;
-    font-family: 'Montserrat';
-    font-style: normal;
-    font-weight: 500;
-    font-size: 16px;
-    line-height: 20px;
-    color: #454254;
+.lang-button {
+  height: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+  font-family: "Montserrat";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 20px;
+  color: #454254;
 }
 
 .header {
@@ -239,38 +243,35 @@ a.nuxt-link-exact-active {
     left: 270px;
   }
   .header {
-    &__menu{
-    position: fixed;
-    left: -100%;
-    width: 100%;
-    max-width: 300px;
-    height: 100%;
-    background-color: white;
-    transition: all 0.3s ease 0s;
-    padding: 80px 10px 20px 10px;
-    z-index: 2;
-    flex-direction: column;
+    &__menu {
+      position: fixed;
+      left: -100%;
+      width: 100%;
+      max-width: 300px;
+      height: 100%;
+      background-color: white;
+      transition: all 0.3s ease 0s;
+      padding: 80px 10px 20px 10px;
+      z-index: 2;
+      flex-direction: column;
       gap: 10px;
     }
-    &__menu.active1{
+    &__menu.active1 {
       left: 0;
-      top:20px;
+      top: 20px;
       z-index: 1005;
-     a{
-       padding-left:50px;
-     }
+      a {
+        padding-left: 50px;
+      }
     }
     &__row {
-     
-      padding-left:30px;
+      padding-left: 30px;
     }
-   &__account{
-     a{
-       padding-right:10px;
-     }
-   }
-    
+    &__account {
+      a {
+        padding-right: 10px;
+      }
+    }
   }
- 
 }
 </style>

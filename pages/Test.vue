@@ -34,6 +34,28 @@
       @click="foo"
       :backgroundColor="'grey'"
     />
+    <table-view
+      :tableTitle="['№', 'Адрес', 'Дронопорт', 'Постамат']"
+      :tableDescription="[
+        {
+          address: 'jlasdkfja, asdlfjasldf, asjdkfasdjflkasd;ljf, ',
+          dronport: 2,
+          postamat: 2,
+        },
+        { address: 'jlasdkfj2', dronport: 2, postamat: 2 },
+        { address: 'jlasdkfj3', dronport: 2, postamat: 2 },
+        { address: 'jlasdkfj4', dronport: 2, postamat: 2 },
+        { address: 'jlasdkfj6', dronport: 2, postamat: 2 },
+        { address: 'jlasdkfj7', dronport: 2, postamat: 2 },
+        { address: 'jlasdkfj8', dronport: 2, postamat: 2 },
+        { address: 'jlasdkfja', dronport: 2, postamat: 2 },
+        { address: 'jlasdkfja', dronport: 2, postamat: 2 },
+        { address: 'jlasdkfja', dronport: 2, postamat: 2 },
+        { address: 'jlasdkfja', dronport: 2, postamat: 2 },
+      ]"
+      :itemsOnPage="5"
+    />
+    <dropdownMenu />
   </div>
 </template>
 <script>
@@ -44,6 +66,7 @@ import tableView from "../components/table-view.vue";
 import fdButton from "../components/UI/fd-button.vue";
 import fdInput from "../components/UI/fd-input.vue";
 import iconBase from "../components/icons/IconBase.vue";
+import dropdownMenu from "../components/dropdownMenu.vue";
 import { mapGetters } from "vuex";
 export default {
   data() {
@@ -60,6 +83,7 @@ export default {
     iconBase,
     fdButton,
     fdInput,
+    dropdownMenu,
   },
   created() {},
   methods: {
