@@ -13,19 +13,19 @@
         <option  v-show="statusOfSelectedType" v-for="(point, index) in listOfInfrustructureBrand[idOfTypeInfrustructure]" :key="index" :value="index">{{point}}</option>
       </select>
       </div>
-       <!-- <div class="fd-input" v-if="typeOfForm == 'infrastructure'">
+       <div class="fd-input" v-if="typeOfForm == 'infrastructure'">
       <select @change="changeOptionModelCat($event)"  name="" id="" class='dropdown_infr'>
         <option selected disabled>Модель</option>
         <option  disabled v-if="this.BrandOfInfrustructure == ''">Выберите бренд</option>
         <option  v-show="statusOfSelectedBrand" v-for="(point, index) in listOfInfrustructureModel[idOfTypeInfrustructure][idOfBrandInfrustructure]" :key="index" :value="point">{{point}}</option>
       </select>
-      </div> -->
+      </div>
     <InputForm v-for="n in LengthInput" :key="n" @input="input" :id="n - 1" />
     <iconBase
       class="addBtn"
       @mouseover="fillColor = '#9b42f2'"
       @mouseleave="fillColor = 'grey'"
-      @click="$emit('addInfo', info, infoFromOption, BrandOfInfrustructure)"
+      @click="$emit('addInfo', info, infoFromOption, BrandOfInfrustructure, infoFromOptionModel)"
       :fill="fillColor"
       :iconType="'plus-circle'"
       :backgroundColor="'rgba(0, 0, 0, 0)'"
@@ -49,10 +49,11 @@ export default {
       infoFromOption: '',
       statusOfSelectedType: false,
       statusOfSelectedBrand: false,
-      idOfTypeInfrustructure: '',
-      idOfBrandInfrustructure: '',
+      idOfTypeInfrustructure: 0,
+      idOfBrandInfrustructure: 0,
       fillColor: "grey",
       BrandOfInfrustructure: '',
+      infoFromOptionModel: '',
       listOfInfrustructure:[
         "Дронопорт",
         "Постамат",
@@ -139,9 +140,11 @@ export default {
       let infoAboutBrand = this.listOfInfrustructureBrand[idOfTypeInfrustructure][idOfBrand]
       this.BrandOfInfrustructure = infoAboutBrand
        this.statusOfSelectedBrand = true
+      
     },
     changeOptionModelCat(event){
-
+      let infoFromOptionModel = event.target.value;
+  this.infoFromOptionModel = infoFromOptionModel
     }
   },
 };
