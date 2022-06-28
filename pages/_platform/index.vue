@@ -195,6 +195,7 @@ export default {
       FuncClose: true,
       EditingInrustructureStatus: false,
       EditingInrustructureId: "",
+      linkForInfr: '',
 
       img: [
         require("@/assets/img/platform1.jpg"),
@@ -259,12 +260,33 @@ export default {
           this.modalError = false;
         }, 2000);
       } else {
+        switch(option){
+          case 'Дронопорт':
+            this.linkForInfr = "Droneport"
+            break
+            case 'Постамат':
+            this.linkForInfr = "Postamat"
+            break
+            case 'Камера':
+            this.linkForInfr = "Camera"
+            break
+            case 'Датчики движения':
+            this.linkForInfr = "Sensor"
+            break
+            case 'Освещение':
+            this.linkForInfr = "Light"
+            break
+            case 'Ограждение':
+            this.linkForInfr = "Wall"
+            break
+        }
         var object = {
           name: option,
           company: BrandOfInfrustructure,
-          link: "/",
+          link: "/" + this.linkForInfr,
           type:  modelOfBrand,
           id: value[0],
+        
         };
         let id = parseInt(this.splitPlatformId);
         this.addDroneport([id, object]);
