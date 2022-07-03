@@ -77,7 +77,13 @@ export default {
     margin-bottom: 30px;
   }
 }
-
+@media (max-width: 667px){
+   .header-page {
+  &__navigation {
+      padding-top: 125px;
+    }
+   }
+ }
 .header-page-navigation {
   &__item {
     display: flex;

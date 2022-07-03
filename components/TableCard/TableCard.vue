@@ -434,5 +434,6 @@ export default {
 .divThreeQuantity {
   display: flex;
   gap: 10px;
+  align-items: center;
 }
 </style>

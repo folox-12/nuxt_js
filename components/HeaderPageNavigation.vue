@@ -19,8 +19,10 @@ export default {};
     display: flex;
     padding-top: 65px;
     margin-bottom: 30px;
+   
   }
 }
+ 
 
 .header-page-navigation {
   &__item {
@@ -32,7 +34,7 @@ export default {};
       font-family: "Montserrat";
       font-style: bold;
       font-weight: 400;
-      font-size: 18px;
+      font-size: 8px;
       line-height: 22px;
       color: #141029;
       text-decoration: none;

@@ -71,6 +71,10 @@ export default {
     justify-content: center;
     position: relative;
     flex-direction: column;
+      @media(max-width:667px){
+        flex-direction: row;
+        justify-content: flex-start;
+    }
   }
 
   &__ul {
@@ -89,6 +93,7 @@ export default {
     justify-content: center;
     cursor: pointer;
     border-radius: 100%;
+  
     &:hover {
       background-color: #f7f7f9;
     }
@@ -103,6 +108,9 @@ export default {
     color: #6d6a7a;
     font-size: 17px;
     font-weight: 400;
+    @media(max-width:667px){
+    
+    }
   }
 }
 </style>

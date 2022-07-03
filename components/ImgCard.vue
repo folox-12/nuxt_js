@@ -98,4 +98,5 @@ export default {
 
 .card-images__image {
 }
+
 </style>
