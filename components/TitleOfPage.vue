@@ -55,6 +55,9 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.title-of-page{
+  margin-bottom:15px;
+}
 .header-page {
   &__title {
     display: flex;
